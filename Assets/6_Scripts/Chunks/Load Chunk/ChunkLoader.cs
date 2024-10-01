@@ -6,6 +6,8 @@ public class ChunkLoader : MonoBehaviour
 {
     [SerializeField] private List<Chunk> m_ChunksToLoad;
     [SerializeField] private StartChunk set;
+
+    private Transform parent;
     
     private ChunkRandomizer randomizer = ChunkRandomizer.GetInstance();
     
