@@ -2,47 +2,34 @@ using UnityEngine;
 
 public class Parallax : MonoBehaviour
 {
-    //[SerializeField] private InputReader inputReader;
-    [SerializeField] private FloatVariable so_Speed;
+    #region Serialize Fileds
+    
     [SerializeField] private GameObject background;
     [SerializeField] private bool instantiateFirstBackground;
     
-    [Range(0, 1f)]
-    [SerializeField] private float parallaxEffectMultiplier;  // Controls the speed of the parallax effect
+    #endregion
 
-    private Transform player;
+    #region Compoonents
     
+    private Transform player;
     private SpriteRenderer sprite;
     private GameObject nextBackground;
     
-    private Vector3 lastCameraPosition;  // Stores the last position of the camera
+    #endregion
 
-    private float screenSize = 18f;
-
-    private bool isBackgroundLoaded;
-    private bool isBackgroundCleared;
-    public Bounds Bounds { get; private set; }
-
-    private Transform cameraTransform => Camera.main.transform;
-
-    /*
-    private void OnEnable()
-    {
-        inputReader.RunEvent += OnMove;
-    }
-
-    private void OnDisable()
-    {
-        inputReader.RunEvent -= OnMove;
-    }
-
-    private void OnMove(bool value) => m_Running = value;*/
+    #region Constants
     
-    private void MoveIllusion()
-    {
-        transform.Translate(Vector2.left * (so_Speed.Value * parallaxEffectMultiplier * Time.deltaTime));
-    }
+    private const float screenSize = 18f; // replace with SO data
+
+    #endregion
     
+    #region Members
+    
+    private bool m_IsBackgroundLoaded;
+    private bool m_IsBackgroundCleared;
+    private Bounds m_Bounds;
+    
+    #endregion
     
     void Start()
     {
@@ -55,69 +42,40 @@ public class Parallax : MonoBehaviour
         
         sprite = background.GetComponent<SpriteRenderer>();
         SetNewBounds(sprite.bounds);
-        
-        // Set the last camera position to the camera's starting position
-        lastCameraPosition = cameraTransform.position;
-
-        Debug.Log(Bounds);
-    }
-
-    private void Locomotion()
-    {
-        MoveIllusion();
     }
 
     void Update()
     {
-        Locomotion();
-        
-        var distanceToPlayer = Bounds.extents.x + background.transform.position.x - player.position.x;
+        var distanceToPlayer = m_Bounds.extents.x + background.transform.position.x - player.position.x;
 
-        AddBackground(distanceToPlayer);
-        RemoveBackground(distanceToPlayer);
+        AddBackgroundDependingOn(distanceToPlayer);
+        RemoveBackgroundDependingOn(distanceToPlayer);
     }
 
-    private void AddBackground(float distanceToPlayer)
+    private void AddBackgroundDependingOn(float distanceToPlayer)
     {
-        if (distanceToPlayer < screenSize + 2f && !isBackgroundLoaded)
+        if (distanceToPlayer < screenSize + 2f && !m_IsBackgroundLoaded)
         {
-            Debug.Log("Load");    
-            
             DuplicateBackground(background);
-            isBackgroundLoaded = true;
-            isBackgroundCleared = false;
+            m_IsBackgroundLoaded = true;
+            m_IsBackgroundCleared = false;
         }
     }
 
-    private void RemoveBackground(float distanceToPlayer)
+    private void RemoveBackgroundDependingOn(float distanceToPlayer)
     {
-        if (distanceToPlayer < -6f && !isBackgroundCleared)
+        if (distanceToPlayer < -6f && !m_IsBackgroundCleared)
         {
-            Debug.Log("Clear");            
-            /*prevBackground.SetActive(false);*/
-
             ClearBackground(background);
-            
-            isBackgroundCleared = true;
-            isBackgroundLoaded = false;
+            m_IsBackgroundCleared = true;
+            m_IsBackgroundLoaded = false;
         }
     }
     
-    private void Move()
-    {
-        Vector3 deltaMovement = cameraTransform.position - lastCameraPosition;
-        deltaMovement.z = 0f;
-        Debug.Log(deltaMovement);
-        
-        transform.Translate(deltaMovement * (parallaxEffectMultiplier * 50 * Time.deltaTime));
-        //transform.position += new Vector3(deltaMovement.x * parallaxEffectMultiplier * 50 * Time.deltaTime, 0);
-        lastCameraPosition = cameraTransform.position;
-    }
-
     private void DuplicateBackground(GameObject back)
     {
         var next = Instantiate(back, transform);
-        next.transform.position += new Vector3(Bounds.extents.x * 2, 0, 0);
+        next.transform.position += new Vector3(m_Bounds.extents.x * 2, 0, 0);
         nextBackground = next;
     }
 
@@ -130,6 +88,6 @@ public class Parallax : MonoBehaviour
     
     private void SetNewBounds(Bounds bounds)
     {
-        Bounds = bounds;
+        m_Bounds = bounds;
     }
 }
