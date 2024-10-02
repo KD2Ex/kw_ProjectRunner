@@ -75,6 +75,17 @@ public class Parallax : MonoBehaviour
     private void DuplicateBackground(GameObject back)
     {
         var next = Instantiate(back, transform);
+
+        back.TryGetComponent<Animator>(out var animator);
+
+        if (animator)
+        {
+            Debug.Log("animator gotten");
+            
+            var time = animator.GetCurrentAnimatorStateInfo(0).normalizedTime;
+            next.GetComponent<SyncAnimation>().Sync(time);
+        }
+        
         next.transform.position += new Vector3(m_Bounds.extents.x * 2, 0, 0);
         nextBackground = next;
     }
