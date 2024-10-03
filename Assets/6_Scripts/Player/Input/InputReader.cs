@@ -1,4 +1,3 @@
-using System.Net.Http.Headers;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -10,6 +9,7 @@ public class InputReader : ScriptableObject, PlayerInput.IGameplayActions
 
     public UnityAction<bool> RunEvent;
     public UnityAction StopEvent;
+    public UnityAction<bool> JumpEvent;
     
     private void OnEnable()
     {
@@ -37,5 +37,10 @@ public class InputReader : ScriptableObject, PlayerInput.IGameplayActions
         if (!context.started) return;
 
         StopEvent?.Invoke();
+    }
+
+    public void OnJump(InputAction.CallbackContext context)
+    {
+        JumpEvent?.Invoke(context.performed || context.started);
     }
 }

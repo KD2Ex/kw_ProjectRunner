@@ -1,9 +1,11 @@
-﻿public class IdleState : BaseState
+﻿using UnityEngine;
+
+public class IdleState : BaseState
 {
-    public IdleState(Player player) : base(player)
+
+    public IdleState(Player player, Animator animator) : base(player, animator)
     {
     }
-
     public override void Enter()
     {
         base.Enter();
@@ -23,4 +25,6 @@
     {
         base.Exit();
     }
+
+
 }
