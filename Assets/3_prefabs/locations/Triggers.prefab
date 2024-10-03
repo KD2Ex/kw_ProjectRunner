@@ -1,0 +1,159 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4898049861239432496
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4402784984140385498}
+  m_Layer: 0
+  m_Name: Triggers
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4402784984140385498
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4898049861239432496}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 18, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 5469751542242925343}
+  - {fileID: 2780611351562418573}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &5231522059139079877
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 4402784984140385498}
+    m_Modifications:
+    - target: {fileID: 248383612591932890, guid: cbdb34134277dfc48a51149ef000489c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 248383612591932890, guid: cbdb34134277dfc48a51149ef000489c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 248383612591932890, guid: cbdb34134277dfc48a51149ef000489c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 248383612591932890, guid: cbdb34134277dfc48a51149ef000489c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 248383612591932890, guid: cbdb34134277dfc48a51149ef000489c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 248383612591932890, guid: cbdb34134277dfc48a51149ef000489c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 248383612591932890, guid: cbdb34134277dfc48a51149ef000489c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 248383612591932890, guid: cbdb34134277dfc48a51149ef000489c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 248383612591932890, guid: cbdb34134277dfc48a51149ef000489c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 248383612591932890, guid: cbdb34134277dfc48a51149ef000489c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6259750391461531341, guid: cbdb34134277dfc48a51149ef000489c, type: 3}
+      propertyPath: m_Name
+      value: Load Chunk Trigger
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: cbdb34134277dfc48a51149ef000489c, type: 3}
+--- !u!4 &5469751542242925343 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 248383612591932890, guid: cbdb34134277dfc48a51149ef000489c, type: 3}
+  m_PrefabInstance: {fileID: 5231522059139079877}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &5523105930108337922
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 4402784984140385498}
+    m_Modifications:
+    - target: {fileID: 5261329214864937039, guid: 3d4b3a93e29b6134b8b045a957633c1b, type: 3}
+      propertyPath: m_Name
+      value: Deload Chunk Trigger
+      objectReference: {fileID: 0}
+    - target: {fileID: 7651814632759101071, guid: 3d4b3a93e29b6134b8b045a957633c1b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7651814632759101071, guid: 3d4b3a93e29b6134b8b045a957633c1b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7651814632759101071, guid: 3d4b3a93e29b6134b8b045a957633c1b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7651814632759101071, guid: 3d4b3a93e29b6134b8b045a957633c1b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7651814632759101071, guid: 3d4b3a93e29b6134b8b045a957633c1b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7651814632759101071, guid: 3d4b3a93e29b6134b8b045a957633c1b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7651814632759101071, guid: 3d4b3a93e29b6134b8b045a957633c1b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7651814632759101071, guid: 3d4b3a93e29b6134b8b045a957633c1b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7651814632759101071, guid: 3d4b3a93e29b6134b8b045a957633c1b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7651814632759101071, guid: 3d4b3a93e29b6134b8b045a957633c1b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 3d4b3a93e29b6134b8b045a957633c1b, type: 3}
+--- !u!4 &2780611351562418573 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7651814632759101071, guid: 3d4b3a93e29b6134b8b045a957633c1b, type: 3}
+  m_PrefabInstance: {fileID: 5523105930108337922}
+  m_PrefabAsset: {fileID: 0}

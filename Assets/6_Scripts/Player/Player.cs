@@ -120,6 +120,10 @@ public class Player : MonoBehaviour
             {
                 EnableAirDashCollider();
 
+                if (m_SlideInput) m_AirDashMovementDirection = -1f;
+                else
+                if (m_JumpInput) m_AirDashMovementDirection = 1f;
+                
                 m_JumpInput = false;
                 m_SlideInput = false;
             })
@@ -278,7 +282,6 @@ public class Player : MonoBehaviour
     {
         m_AirDashMovementDirection = direction;
     }
-
 
     private void OnTriggerEnter2D(Collider2D other)
     {

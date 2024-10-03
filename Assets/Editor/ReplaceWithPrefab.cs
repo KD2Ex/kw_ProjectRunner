@@ -13,7 +13,7 @@ public class ReplaceWithPrefab : EditorWindow
 
     private void OnGUI()
     {
-        prefab = (GameObject)EditorGUILayout.ObjectField("Prefab", prefab, typeof(GameObject), false);
+        prefab = (GameObject) EditorGUILayout.ObjectField("Prefab", prefab, typeof(GameObject), false);
 
         if (GUILayout.Button("Replace"))
         {
@@ -27,7 +27,7 @@ public class ReplaceWithPrefab : EditorWindow
 
                 if (prefabType == PrefabType.Prefab)
                 {
-                    newObject = (GameObject)PrefabUtility.InstantiatePrefab(prefab);
+                    newObject = (GameObject) PrefabUtility.InstantiatePrefab(prefab);
                 }
                 else
                 {
@@ -53,4 +53,5 @@ public class ReplaceWithPrefab : EditorWindow
 
         GUI.enabled = false;
         EditorGUILayout.LabelField("Selection count: " + Selection.objects.Length);
+    }
 }

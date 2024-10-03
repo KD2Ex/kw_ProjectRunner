@@ -6,6 +6,7 @@ public class ChunkLoader : MonoBehaviour
 {
     [SerializeField] private List<Chunk> m_ChunksToLoad;
     [SerializeField] private StartChunk set;
+    [SerializeField] private GameObject triggers;
 
     private Transform parent;
     
@@ -41,7 +42,9 @@ public class ChunkLoader : MonoBehaviour
         
         var go = chunk.Result[0];
         // not sure that this is the best practice, need more experience with Async operations
-        go.transform.position = new Vector3(transform.position.x + 18f, transform.position.y, 0f); 
+        go.transform.position = new Vector3(transform.position.x + 18f, transform.position.y, 0f);
+        go.AddComponent<ChunkManager>();
+        Instantiate(triggers, go.transform);
         go.SetActive(true);
     }
 
