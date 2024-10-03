@@ -18,7 +18,7 @@ public class FallingState : BaseState
     {
         base.Update();
         
-        if (player.transform.position.y > -1.4f)
+        if (!player.Grounded)
         {
             player.transform.Translate(Vector2.down * (player.GravityForce * Time.deltaTime));
         }

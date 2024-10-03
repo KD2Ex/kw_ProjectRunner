@@ -549,6 +549,7 @@ MonoBehaviour:
   m_RunCollider: {fileID: 6093950592488004033}
   m_JumpCollider: {fileID: 2524875154350778777}
   m_SlideCollider: {fileID: 7739528313030190183}
+  m_AirDashCollider: {fileID: 1626456211063237479}
 --- !u!114 &6057032323218788224
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -722,7 +723,7 @@ CapsuleCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 55
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2

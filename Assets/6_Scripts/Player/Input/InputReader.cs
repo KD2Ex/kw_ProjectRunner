@@ -1,3 +1,4 @@
+using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -12,6 +13,7 @@ public class InputReader : ScriptableObject, PlayerInput.IGameplayActions
     public UnityAction<bool> JumpEvent;
     public UnityAction<bool> SlideEvent;
     public UnityAction<bool> AirDashEvent;
+    public UnityAction<float> AirDashMovementEvent;
     
     private void OnEnable()
     {
@@ -54,5 +56,12 @@ public class InputReader : ScriptableObject, PlayerInput.IGameplayActions
     public void OnAirDash(InputAction.CallbackContext context)
     {
         AirDashEvent?.Invoke(context.performed || context.started);
+    }
+
+    public void OnAirDashMovement(InputAction.CallbackContext context)
+    {
+        if (context.performed) return;
+        
+        AirDashMovementEvent?.Invoke(context.ReadValue<float>());
     }
 }

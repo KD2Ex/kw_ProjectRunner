@@ -71,6 +71,15 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""AirDashMovement"",
+                    ""type"": ""Button"",
+                    ""id"": ""f8499fdc-b068-4bb9-a517-021a65a79337"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -150,6 +159,39 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""action"": ""AirDash"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""1D Axis"",
+                    ""id"": ""320ca018-cfbc-479a-8dd7-f92b4151abe7"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AirDashMovement"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""5c75cc47-81af-4bb4-a161-e5428f8f54a1"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""MnK"",
+                    ""action"": ""AirDashMovement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""6016415a-aa8a-4575-ab7d-6e0e73352510"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""MnK"",
+                    ""action"": ""AirDashMovement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -174,6 +216,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_Gameplay_Jump = m_Gameplay.FindAction("Jump", throwIfNotFound: true);
         m_Gameplay_Slide = m_Gameplay.FindAction("Slide", throwIfNotFound: true);
         m_Gameplay_AirDash = m_Gameplay.FindAction("AirDash", throwIfNotFound: true);
+        m_Gameplay_AirDashMovement = m_Gameplay.FindAction("AirDashMovement", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -240,6 +283,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_Jump;
     private readonly InputAction m_Gameplay_Slide;
     private readonly InputAction m_Gameplay_AirDash;
+    private readonly InputAction m_Gameplay_AirDashMovement;
     public struct GameplayActions
     {
         private @PlayerInput m_Wrapper;
@@ -249,6 +293,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         public InputAction @Jump => m_Wrapper.m_Gameplay_Jump;
         public InputAction @Slide => m_Wrapper.m_Gameplay_Slide;
         public InputAction @AirDash => m_Wrapper.m_Gameplay_AirDash;
+        public InputAction @AirDashMovement => m_Wrapper.m_Gameplay_AirDashMovement;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -273,6 +318,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @AirDash.started += instance.OnAirDash;
             @AirDash.performed += instance.OnAirDash;
             @AirDash.canceled += instance.OnAirDash;
+            @AirDashMovement.started += instance.OnAirDashMovement;
+            @AirDashMovement.performed += instance.OnAirDashMovement;
+            @AirDashMovement.canceled += instance.OnAirDashMovement;
         }
 
         private void UnregisterCallbacks(IGameplayActions instance)
@@ -292,6 +340,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @AirDash.started -= instance.OnAirDash;
             @AirDash.performed -= instance.OnAirDash;
             @AirDash.canceled -= instance.OnAirDash;
+            @AirDashMovement.started -= instance.OnAirDashMovement;
+            @AirDashMovement.performed -= instance.OnAirDashMovement;
+            @AirDashMovement.canceled -= instance.OnAirDashMovement;
         }
 
         public void RemoveCallbacks(IGameplayActions instance)
@@ -334,5 +385,6 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         void OnJump(InputAction.CallbackContext context);
         void OnSlide(InputAction.CallbackContext context);
         void OnAirDash(InputAction.CallbackContext context);
+        void OnAirDashMovement(InputAction.CallbackContext context);
     }
 }
