@@ -29,8 +29,9 @@ public class Player : MonoBehaviour
     
     private float m_ChunksCurrentSpeed => so_ChunksCurrentSpeed.Value;
     private bool m_Running => m_ChunksCurrentSpeed > 0;
-    
-    public bool Grounded => transform.position.y <= -1.5f;
+
+    public static readonly float GroundLine = -1.77f; // replace with so data
+    public bool Grounded => transform.position.y <= GroundLine;
     public float JumpSpeed => 10f;
     public float GravityForce => 10f;
     public float AirDashMovementSpeed => 6f;
@@ -214,6 +215,8 @@ public class Player : MonoBehaviour
     public void ReturnToDefaultControls()
     {
         m_inputReader.AirDashMovementEvent -= AirDashMovement;
+
+        m_AirDashMovementDirection = 0f;
         
         m_inputReader.JumpEvent += OnJump;
         m_inputReader.SlideEvent += OnSlide;

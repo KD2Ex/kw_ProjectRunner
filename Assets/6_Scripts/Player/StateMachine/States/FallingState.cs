@@ -10,8 +10,6 @@ public class FallingState : BaseState
     public override void Enter()
     {
         base.Enter();
-
-        animator.SetBool(player.animHash_Jump, false);
     }
 
     public override void Update()
@@ -32,5 +30,7 @@ public class FallingState : BaseState
     public override void Exit()
     {
         base.Exit();
+
+        player.transform.position = new Vector3(player.transform.position.x, Player.GroundLine, 0f);
     }
 }

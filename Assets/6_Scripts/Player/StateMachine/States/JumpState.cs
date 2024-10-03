@@ -34,7 +34,6 @@ public class JumpState : BaseState
     public override void Exit()
     {
         base.Exit();
+        animator.SetBool(player.animHash_Jump, false);
     }
-
-
 }
