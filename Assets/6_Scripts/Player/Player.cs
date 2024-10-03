@@ -251,8 +251,28 @@ public class Player : MonoBehaviour
         m_AirDashMovementDirection = direction;
     }
 
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        Debug.Log("On Trigger:  " + other.gameObject.name);
+
+        var tag = other.gameObject.tag;
+
+        switch (tag)
+        {
+            case "Coin":
+                other.gameObject.SetActive(false);
+                // add coin
+                break;
+        }
+    }
+
     private void OnCollisionEnter2D(Collision2D other)
     {
+        Debug.Log(other.gameObject.name);
+        
+        m_SpeedController.ResetSpeed();
+        
         var tag = other.gameObject.tag;
 
         switch (tag)
@@ -262,13 +282,14 @@ public class Player : MonoBehaviour
                 break;
             case "Coin":
                 // collect coin
+                other.gameObject.SetActive(false);
                 break;
         }
     }
 
     private void Die()
     {
-           
+        
     }
 
     public void DeactiveDash()
