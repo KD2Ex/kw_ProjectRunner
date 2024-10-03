@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class StateMachine
 {
+    public Type CurrentState => m_Current.State.GetType();
+    
     private StateNode m_Current;
     private Dictionary<Type, StateNode> m_Nodes = new();
     private HashSet<ITransition> m_AnyTransitions = new();

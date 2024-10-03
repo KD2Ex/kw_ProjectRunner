@@ -9,11 +9,12 @@ public class InputReader : ScriptableObject, PlayerInput.IGameplayActions
     private PlayerInput _input;
 
     public UnityAction<bool> RunEvent;
-    public UnityAction StopEvent;
+    public UnityAction<bool> StopEvent;
     public UnityAction<bool> JumpEvent;
     public UnityAction<bool> SlideEvent;
     public UnityAction<bool> AirDashEvent;
     public UnityAction<float> AirDashMovementEvent;
+    public UnityAction DashAbilityTest;
     
     private void OnEnable()
     {
@@ -38,9 +39,7 @@ public class InputReader : ScriptableObject, PlayerInput.IGameplayActions
 
     public void OnStop(InputAction.CallbackContext context)
     {
-        if (!context.started) return;
-
-        StopEvent?.Invoke();
+        StopEvent?.Invoke(context.started || context.performed);
     }
 
     public void OnJump(InputAction.CallbackContext context)
@@ -63,5 +62,12 @@ public class InputReader : ScriptableObject, PlayerInput.IGameplayActions
         if (context.performed) return;
         
         AirDashMovementEvent?.Invoke(context.ReadValue<float>());
+    }
+
+    public void OnDashAbilityTest(InputAction.CallbackContext context)
+    {
+        if (!context.started) return;
+        
+        DashAbilityTest?.Invoke();
     }
 }

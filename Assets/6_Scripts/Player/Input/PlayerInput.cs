@@ -80,6 +80,15 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""DashAbilityTest"",
+                    ""type"": ""Button"",
+                    ""id"": ""08c40cb0-648f-4ff5-b138-3e29eebb0578"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -192,6 +201,17 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""action"": ""AirDashMovement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""97b34128-ce52-470b-98d1-00f362a26eec"",
+                    ""path"": ""<Keyboard>/shift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""MnK"",
+                    ""action"": ""DashAbilityTest"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -217,6 +237,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_Gameplay_Slide = m_Gameplay.FindAction("Slide", throwIfNotFound: true);
         m_Gameplay_AirDash = m_Gameplay.FindAction("AirDash", throwIfNotFound: true);
         m_Gameplay_AirDashMovement = m_Gameplay.FindAction("AirDashMovement", throwIfNotFound: true);
+        m_Gameplay_DashAbilityTest = m_Gameplay.FindAction("DashAbilityTest", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -284,6 +305,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_Slide;
     private readonly InputAction m_Gameplay_AirDash;
     private readonly InputAction m_Gameplay_AirDashMovement;
+    private readonly InputAction m_Gameplay_DashAbilityTest;
     public struct GameplayActions
     {
         private @PlayerInput m_Wrapper;
@@ -294,6 +316,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         public InputAction @Slide => m_Wrapper.m_Gameplay_Slide;
         public InputAction @AirDash => m_Wrapper.m_Gameplay_AirDash;
         public InputAction @AirDashMovement => m_Wrapper.m_Gameplay_AirDashMovement;
+        public InputAction @DashAbilityTest => m_Wrapper.m_Gameplay_DashAbilityTest;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -321,6 +344,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @AirDashMovement.started += instance.OnAirDashMovement;
             @AirDashMovement.performed += instance.OnAirDashMovement;
             @AirDashMovement.canceled += instance.OnAirDashMovement;
+            @DashAbilityTest.started += instance.OnDashAbilityTest;
+            @DashAbilityTest.performed += instance.OnDashAbilityTest;
+            @DashAbilityTest.canceled += instance.OnDashAbilityTest;
         }
 
         private void UnregisterCallbacks(IGameplayActions instance)
@@ -343,6 +369,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @AirDashMovement.started -= instance.OnAirDashMovement;
             @AirDashMovement.performed -= instance.OnAirDashMovement;
             @AirDashMovement.canceled -= instance.OnAirDashMovement;
+            @DashAbilityTest.started -= instance.OnDashAbilityTest;
+            @DashAbilityTest.performed -= instance.OnDashAbilityTest;
+            @DashAbilityTest.canceled -= instance.OnDashAbilityTest;
         }
 
         public void RemoveCallbacks(IGameplayActions instance)
@@ -386,5 +415,6 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         void OnSlide(InputAction.CallbackContext context);
         void OnAirDash(InputAction.CallbackContext context);
         void OnAirDashMovement(InputAction.CallbackContext context);
+        void OnDashAbilityTest(InputAction.CallbackContext context);
     }
 }

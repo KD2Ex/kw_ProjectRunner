@@ -1,5 +1,7 @@
+using System;
 using UnityEngine;
 
+[RequireComponent(typeof(SpeedController))]
 public class Player : MonoBehaviour
 {
     [SerializeField] private InputReader m_inputReader;
@@ -12,7 +14,8 @@ public class Player : MonoBehaviour
     [SerializeField] private Collider2D m_JumpCollider;
     [SerializeField] private Collider2D m_SlideCollider;
     [SerializeField] private Collider2D m_AirDashCollider;
-    
+
+    private SpeedController m_SpeedController;
     private Rigidbody2D m_rigidbody;
     private Animator m_Animator;
     private StateMachine m_StateMachine;
@@ -21,11 +24,17 @@ public class Player : MonoBehaviour
     public int animHash_Move => Animator.StringToHash("Move");
     public int animHash_Slide => Animator.StringToHash("Dodge");
     public int animHash_Bounce => Animator.StringToHash("Bounce");
+    public int animHash_Dash => Animator.StringToHash("Faster");
+    public int animHash_Idle => Animator.StringToHash("Idle");
     
+    private bool m_StopInput;
     private bool m_JumpInput;
     private bool m_SlideInput;
     private bool m_AirDashInput;
+    private bool m_DashInput;
+    
     private bool m_JumpAnimationFinished;
+    private bool m_Dashing;
     
     private float m_ChunksCurrentSpeed => so_ChunksCurrentSpeed.Value;
     private bool m_Running => m_ChunksCurrentSpeed > 0;
@@ -36,26 +45,31 @@ public class Player : MonoBehaviour
     public float GravityForce => 10f;
     public float AirDashMovementSpeed => 6f;
     public float UpperAirDashBound => 1.5f; 
-    public float LowerAirDashBound => -6.6f; 
+    public float LowerAirDashBound => -6.6f;
+    public float DashSpeedMultiplier => 1.5f;
     
     public float m_AirDashMovementDirection { get; private set; }
 
     private void Awake()
     {
+        m_SpeedController = GetComponent<SpeedController>();
         m_rigidbody = GetComponent<Rigidbody2D>();
         m_Animator = GetComponent<Animator>();
         
         m_StateMachine = new StateMachine();
 
+        var sleepState = new SleepState(this, m_Animator);
         var idleState = new IdleState(this, m_Animator);
         var runState = new RunState(this, m_Animator);
         var jumpState = new JumpState(this, m_Animator);
         var fallingState = new FallingState(this, m_Animator);
         var slideState = new SlideState(this, m_Animator);
         var airDashState = new AirDashState(this, m_Animator);
+        var dashState = new DashState(this, m_Animator);
         
-        At(idleState, runState, new FuncPredicate(() => m_Running));
-        At(runState, idleState, new FuncPredicate(() => !m_Running));
+        At(sleepState, runState, new FuncPredicate(() => m_Running));
+        At(idleState, runState, new ActionPredicate(() => m_Running, () => m_StopInput = false));
+        At(runState, idleState, new ActionPredicate(() => m_StopInput, () => m_SpeedController.ResetSpeed()));
         At(runState, jumpState, 
             new ActionPredicate(
                 () => m_JumpInput && Grounded,
@@ -102,9 +116,19 @@ public class Player : MonoBehaviour
         );
         
         At(airDashState, fallingState, new ActionPredicate(() => !m_AirDashInput, () => EnableJumpCollider()));
+        At(runState, dashState, new ActionPredicate(() => m_DashInput, () =>
+        {
+            m_SpeedController.ApplyMultiplier(DashSpeedMultiplier);
+            m_Dashing = true;
+            m_DashInput = false;
+        }));
         
+        At(dashState, runState, new ActionPredicate(() => !m_Dashing, () =>
+        {
+            m_SpeedController.ApplyMultiplier(1f);
+        }));
         
-        m_StateMachine.SetState(idleState);
+        m_StateMachine.SetState(sleepState);
     }
 
     protected void At(IState from, IState to, IPredicate condition) => m_StateMachine.AddTransition(from, to, condition);
@@ -114,20 +138,26 @@ public class Player : MonoBehaviour
     {
         m_inputReader.JumpEvent += OnJump;
         m_inputReader.SlideEvent += OnSlide;
+        m_inputReader.StopEvent += OnStop;
         m_inputReader.AirDashEvent += OnAirDash;
+        m_inputReader.DashAbilityTest += OnDash;
     }
 
     private void OnDisable()
     {
         m_inputReader.JumpEvent -= OnJump;
         m_inputReader.SlideEvent -= OnSlide;
+        m_inputReader.StopEvent -= OnStop;
         m_inputReader.AirDashEvent -= OnAirDash;
+        m_inputReader.DashAbilityTest -= OnDash;
     }
     
     void Start()
     {
         QualitySettings.vSyncCount = 0;
         Application.targetFrameRate = 60;
+
+        //Time.timeScale = .5f;
     }
 
     void Update()
@@ -140,21 +170,16 @@ public class Player : MonoBehaviour
         m_StateMachine.FixedUpdate();
     }
 
-    private void OnJump(bool value)
+    private void OnStop(bool value) => m_StopInput = value;
+    private void OnJump(bool value) => m_JumpInput = value;
+    private void OnSlide(bool value) => m_SlideInput = value;
+    private void OnAirDash(bool value) => m_AirDashInput = value;
+    private void OnDash()
     {
-        m_JumpInput = value;
+        Debug.Log(m_StateMachine.CurrentState.ToString());
+        m_DashInput = m_StateMachine.CurrentState.ToString() == "RunState";
     }
 
-    private void OnSlide(bool value)
-    {
-        m_SlideInput = value;
-    }
-
-    private void OnAirDash(bool value)
-    {
-        m_AirDashInput = value;
-    }
-    
     // used as event in jump_on animation
     public void JumpAnimationFinished()
     {
@@ -208,7 +233,6 @@ public class Player : MonoBehaviour
         m_inputReader.JumpEvent -= OnJump;
         m_inputReader.SlideEvent -= OnSlide;
 
-        //m_inputReader. += ;
         m_inputReader.AirDashMovementEvent += AirDashMovement;
     }
 
@@ -226,4 +250,30 @@ public class Player : MonoBehaviour
     {
         m_AirDashMovementDirection = direction;
     }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        var tag = other.gameObject.tag;
+
+        switch (tag)
+        {
+            case "Enemy": 
+                // dead
+                break;
+            case "Coin":
+                // collect coin
+                break;
+        }
+    }
+
+    private void Die()
+    {
+           
+    }
+
+    public void DeactiveDash()
+    {
+        m_Dashing = false;
+    }
+    
 }

@@ -30,6 +30,7 @@ public class ChunkLoader : MonoBehaviour
     {
         var pos = new Vector3(transform.position.x + 18f, transform.position.y, 0f);
 
+        //SyncInstantiate(prefab, pos);
         var obj = InstantiateAsync(prefab, pos, Quaternion.identity);
         StartCoroutine(Loading(obj));
     }
@@ -39,6 +40,14 @@ public class ChunkLoader : MonoBehaviour
         yield return new WaitUntil(() => chunk.isDone);
         
         var go = chunk.Result[0];
+        // not sure that this is the best practice, need more experience with Async operations
+        go.transform.position = new Vector3(transform.position.x + 18f, transform.position.y, 0f); 
         go.SetActive(true);
+    }
+
+    private void SyncInstantiate(GameObject prefab, Vector3 pos)
+    {
+        var instance = Instantiate(prefab, pos, Quaternion.identity);
+        instance.SetActive(true);
     }
 }

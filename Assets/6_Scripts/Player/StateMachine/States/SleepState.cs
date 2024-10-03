@@ -1,16 +1,14 @@
 ﻿using UnityEngine;
 
-public class IdleState : BaseState
+public class SleepState : BaseState
 {
-
-    public IdleState(Player player, Animator animator) : base(player, animator)
+    public SleepState(Player player, Animator animator) : base(player, animator)
     {
     }
+
     public override void Enter()
     {
         base.Enter();
-        
-        animator.SetBool(player.animHash_Idle, true);
     }
 
     public override void Update()
@@ -26,6 +24,5 @@ public class IdleState : BaseState
     public override void Exit()
     {
         base.Exit();
-        animator.SetBool(player.animHash_Idle, false);
     }
 }

@@ -10,17 +10,17 @@ public class SpeedController : MonoBehaviour
     private bool m_Running;
     private float m_ElapsedTime;
     private float m_Acceleration;
+
+    private float m_SpeedMultiplier = 1f;
     
     private void OnEnable()
     {
         m_InputReader.RunEvent += OnMove;
-        m_InputReader.StopEvent += Stop;
     }
 
     private void OnDisable()
     {
         m_InputReader.RunEvent -= OnMove;
-        m_InputReader.StopEvent -= Stop;
     }
 
     void Start()
@@ -52,13 +52,19 @@ public class SpeedController : MonoBehaviour
         m_ElapsedTime += Time.deltaTime;
         m_Acceleration = (m_AccelerationRate * m_ElapsedTime) / (1 + m_Diminishing * m_ElapsedTime);
 
-        so_Speed.Value = m_Acceleration;
+        so_Speed.Value = m_Acceleration * m_SpeedMultiplier;
     }
 
-    private void ResetSpeed()
+    public void ResetSpeed()
     {
         m_Acceleration = 0f;
         m_ElapsedTime = 0f;
         so_Speed.Value = 0f;
+    }
+
+    public void ApplyMultiplier(float value)
+    {
+        m_SpeedMultiplier = value;
+        so_Speed.Value = m_Acceleration * m_SpeedMultiplier;
     }
 }
