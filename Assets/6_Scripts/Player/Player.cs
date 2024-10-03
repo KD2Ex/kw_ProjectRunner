@@ -10,13 +10,20 @@ public class Player : MonoBehaviour
     [Header("Hit boxes")] 
     [SerializeField] private Collider2D m_RunCollider;
     [SerializeField] private Collider2D m_JumpCollider;
+    [SerializeField] private Collider2D m_SlideCollider;
+    [SerializeField] private Collider2D m_AirDashCollider;
     
     private Rigidbody2D m_rigidbody;
     private Animator m_Animator;
     private StateMachine m_StateMachine;
 
+    public int animHash_Jump => Animator.StringToHash("Jump");
+    public int animHash_Move => Animator.StringToHash("Move");
+    public int animHash_Slide => Animator.StringToHash("Dodge");
+    
     private bool m_Jumping;
     private bool m_Airborne;
+    private bool m_SlideInput;
     private bool m_JumpAnimationFinished;
     
     private float m_ChunksCurrentSpeed => so_ChunksCurrentSpeed.Value;
@@ -38,6 +45,7 @@ public class Player : MonoBehaviour
         var jumpState = new JumpState(this, m_Animator);
         var airState = new AirState(this, m_Animator);
         var fallingState = new FallingState(this, m_Animator);
+        var slideState = new SlideState(this, m_Animator);
         
         At(idleState, runState, new FuncPredicate(() => m_Running));
         At(runState, idleState, new FuncPredicate(() => !m_Running));
@@ -46,8 +54,7 @@ public class Player : MonoBehaviour
                 () => m_Jumping && m_Grounded,
                 () =>
                 {
-                    m_RunCollider.enabled = false;
-                    m_JumpCollider.enabled = true;
+                    EnableJumpCollider();
                 })
             );
         At(jumpState, fallingState, new ActionPredicate(() => !m_Jumping && m_JumpAnimationFinished, () => m_Airborne = true));
@@ -55,10 +62,24 @@ public class Player : MonoBehaviour
             () => m_Grounded,
             () =>
             {
-                m_RunCollider.enabled = true;
-                m_JumpCollider.enabled = false;
+                EnableRunCollider();
             })
         );
+        
+        At(runState, slideState, new ActionPredicate(() => m_SlideInput && m_Grounded,
+            () =>
+            {
+                EnableSlideCollider();
+            })
+        );
+        
+        At(slideState, runState, new ActionPredicate(() => !m_SlideInput,
+            () =>
+            {
+                EnableRunCollider();
+            })
+        );
+        
         
         m_StateMachine.SetState(idleState);
     }
@@ -69,11 +90,13 @@ public class Player : MonoBehaviour
     private void OnEnable()
     {
         m_inputReader.JumpEvent += OnJump;
+        m_inputReader.SlideEvent += OnSlide;
     }
 
     private void OnDisable()
     {
         m_inputReader.JumpEvent -= OnJump;
+        m_inputReader.SlideEvent -= OnSlide;
     }
     
     void Start()
@@ -97,11 +120,9 @@ public class Player : MonoBehaviour
         m_Jumping = value;
     }
 
-    private bool IsAnimationPlaying()
+    private void OnSlide(bool value)
     {
-        Debug.Log("Normalized time " + m_Animator.GetCurrentAnimatorStateInfo(0).normalizedTime);
-        Debug.Log(m_Animator.GetCurrentAnimatorClipInfo(0)[0].clip.name);
-        return m_Animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1f;
+        m_SlideInput = value;
     }
     
     // used as event in jump_on animation
@@ -114,5 +135,41 @@ public class Player : MonoBehaviour
     public void JumpAnimationStarted()
     {
         m_JumpAnimationFinished = false;
+    }
+
+    private void EnableRunCollider()
+    {
+        m_RunCollider.enabled = true;
+        
+        m_JumpCollider.enabled = false;
+        m_SlideCollider.enabled = false;
+        m_AirDashCollider.enabled = false;
+    }
+
+    private void EnableJumpCollider()
+    {
+        m_JumpCollider.enabled = true;
+        
+        m_RunCollider.enabled = false;
+        m_SlideCollider.enabled = false;
+        m_AirDashCollider.enabled = false;
+    }
+
+    private void EnableSlideCollider()
+    {
+        m_SlideCollider.enabled = true;
+        
+        m_RunCollider.enabled = false;
+        m_JumpCollider.enabled = false;
+        m_AirDashCollider.enabled = false;
+    }
+
+    private void EnableAirDashCollider()
+    {
+        m_AirDashCollider.enabled = true;
+        
+        m_SlideCollider.enabled = false;
+        m_RunCollider.enabled = false;
+        m_JumpCollider.enabled = false;
     }
 }

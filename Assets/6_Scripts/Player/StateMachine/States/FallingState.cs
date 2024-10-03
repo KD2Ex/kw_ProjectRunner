@@ -2,6 +2,7 @@
 
 public class FallingState : BaseState
 {
+
     public FallingState(Player player, Animator animator) : base(player, animator)
     {
     }
@@ -10,7 +11,7 @@ public class FallingState : BaseState
     {
         base.Enter();
 
-        animator.SetBool("Jump", false);
+        animator.SetBool(player.animHash_Jump, false);
     }
 
     public override void Update()

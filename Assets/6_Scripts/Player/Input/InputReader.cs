@@ -10,6 +10,8 @@ public class InputReader : ScriptableObject, PlayerInput.IGameplayActions
     public UnityAction<bool> RunEvent;
     public UnityAction StopEvent;
     public UnityAction<bool> JumpEvent;
+    public UnityAction<bool> SlideEvent;
+    public UnityAction<bool> AirDashEvent;
     
     private void OnEnable()
     {
@@ -29,7 +31,7 @@ public class InputReader : ScriptableObject, PlayerInput.IGameplayActions
 
     public void OnRun(InputAction.CallbackContext context)
     {
-        RunEvent?.Invoke(context.performed);
+        RunEvent?.Invoke(context.started || context.performed);
     }
 
     public void OnStop(InputAction.CallbackContext context)
@@ -42,5 +44,15 @@ public class InputReader : ScriptableObject, PlayerInput.IGameplayActions
     public void OnJump(InputAction.CallbackContext context)
     {
         JumpEvent?.Invoke(context.performed || context.started);
+    }
+
+    public void OnSlide(InputAction.CallbackContext context)
+    {
+        SlideEvent?.Invoke(context.performed || context.started);
+    }
+
+    public void OnAirDash(InputAction.CallbackContext context)
+    {
+        AirDashEvent?.Invoke(context.performed || context.started);
     }
 }

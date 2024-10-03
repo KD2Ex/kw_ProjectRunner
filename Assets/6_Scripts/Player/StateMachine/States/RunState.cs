@@ -9,7 +9,7 @@ public class RunState : BaseState
     public override void Enter()
     {
         base.Enter();
-        animator.SetBool("Move", true);
+        animator.SetBool(player.animHash_Move, true);
         // subscribe W action to Jump
     }
 
@@ -26,6 +26,6 @@ public class RunState : BaseState
     public override void Exit()
     {
         base.Exit();
-        animator.SetBool("Move", false);
+        animator.SetBool(player.animHash_Move, false);
     }
 }

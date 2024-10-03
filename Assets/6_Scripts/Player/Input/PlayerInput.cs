@@ -53,6 +53,24 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Slide"",
+                    ""type"": ""Button"",
+                    ""id"": ""559bdd88-ce83-40c8-961c-0ff20ccc37cc"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""AirDash"",
+                    ""type"": ""Button"",
+                    ""id"": ""4655f2c5-fc12-47cf-b004-7fb7df781926"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -99,6 +117,39 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""action"": ""Jump"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d95d8031-6cf5-4701-a111-ef8f0ecd2527"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1018e498-6b85-4dee-81b2-41f39bc99815"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""MnK"",
+                    ""action"": ""Slide"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""090e36bb-86a9-4fb1-bdf4-cd130e4ff8aa"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AirDash"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -121,6 +172,8 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_Gameplay_Run = m_Gameplay.FindAction("Run", throwIfNotFound: true);
         m_Gameplay_Stop = m_Gameplay.FindAction("Stop", throwIfNotFound: true);
         m_Gameplay_Jump = m_Gameplay.FindAction("Jump", throwIfNotFound: true);
+        m_Gameplay_Slide = m_Gameplay.FindAction("Slide", throwIfNotFound: true);
+        m_Gameplay_AirDash = m_Gameplay.FindAction("AirDash", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -185,6 +238,8 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_Run;
     private readonly InputAction m_Gameplay_Stop;
     private readonly InputAction m_Gameplay_Jump;
+    private readonly InputAction m_Gameplay_Slide;
+    private readonly InputAction m_Gameplay_AirDash;
     public struct GameplayActions
     {
         private @PlayerInput m_Wrapper;
@@ -192,6 +247,8 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         public InputAction @Run => m_Wrapper.m_Gameplay_Run;
         public InputAction @Stop => m_Wrapper.m_Gameplay_Stop;
         public InputAction @Jump => m_Wrapper.m_Gameplay_Jump;
+        public InputAction @Slide => m_Wrapper.m_Gameplay_Slide;
+        public InputAction @AirDash => m_Wrapper.m_Gameplay_AirDash;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -210,6 +267,12 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Jump.started += instance.OnJump;
             @Jump.performed += instance.OnJump;
             @Jump.canceled += instance.OnJump;
+            @Slide.started += instance.OnSlide;
+            @Slide.performed += instance.OnSlide;
+            @Slide.canceled += instance.OnSlide;
+            @AirDash.started += instance.OnAirDash;
+            @AirDash.performed += instance.OnAirDash;
+            @AirDash.canceled += instance.OnAirDash;
         }
 
         private void UnregisterCallbacks(IGameplayActions instance)
@@ -223,6 +286,12 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Jump.started -= instance.OnJump;
             @Jump.performed -= instance.OnJump;
             @Jump.canceled -= instance.OnJump;
+            @Slide.started -= instance.OnSlide;
+            @Slide.performed -= instance.OnSlide;
+            @Slide.canceled -= instance.OnSlide;
+            @AirDash.started -= instance.OnAirDash;
+            @AirDash.performed -= instance.OnAirDash;
+            @AirDash.canceled -= instance.OnAirDash;
         }
 
         public void RemoveCallbacks(IGameplayActions instance)
@@ -263,5 +332,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         void OnRun(InputAction.CallbackContext context);
         void OnStop(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
+        void OnSlide(InputAction.CallbackContext context);
+        void OnAirDash(InputAction.CallbackContext context);
     }
 }

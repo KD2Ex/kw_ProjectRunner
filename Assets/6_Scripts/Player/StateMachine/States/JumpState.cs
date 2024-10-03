@@ -3,8 +3,6 @@ using UnityEngine;
 
 public class JumpState : BaseState
 {
-    private float time;
-    private string m_JumpStartAnimName;
     private bool playing;
     
     public JumpState(Player player, Animator animator) : base(player, animator)
@@ -15,8 +13,7 @@ public class JumpState : BaseState
     {
         base.Enter();
         
-        animator.SetBool("Jump", true);
-        m_JumpStartAnimName = animator.GetCurrentAnimatorClipInfo(0).First().clip.name;
+        animator.SetBool(player.animHash_Jump, true);
     }
 
     public override void Update()
