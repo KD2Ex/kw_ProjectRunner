@@ -26,6 +26,8 @@ public class Player : MonoBehaviour
     public int animHash_Bounce => Animator.StringToHash("Bounce");
     public int animHash_Dash => Animator.StringToHash("Faster");
     public int animHash_Idle => Animator.StringToHash("Idle");
+    public int animHash_DodgeDeath => Animator.StringToHash("Dead0");
+    public int animHash_RunJumpDeath => Animator.StringToHash("Dead1");
     
     private bool m_StopInput;
     private bool m_JumpInput;
@@ -35,6 +37,11 @@ public class Player : MonoBehaviour
     
     private bool m_JumpAnimationFinished;
     private bool m_Dashing;
+
+    private bool m_IsDead;
+    private bool m_Restart;
+
+    public int m_DeathType { get; private set; }
     
     private float m_ChunksCurrentSpeed => so_ChunksCurrentSpeed.Value;
     private bool m_Running => m_ChunksCurrentSpeed > 0;
@@ -50,6 +57,8 @@ public class Player : MonoBehaviour
     
     public float m_AirDashMovementDirection { get; private set; }
 
+    private IState sleepState;
+    
     private void Awake()
     {
         m_SpeedController = GetComponent<SpeedController>();
@@ -58,7 +67,7 @@ public class Player : MonoBehaviour
         
         m_StateMachine = new StateMachine();
 
-        var sleepState = new SleepState(this, m_Animator);
+        sleepState = new SleepState(this, m_Animator);
         var idleState = new IdleState(this, m_Animator);
         var runState = new RunState(this, m_Animator);
         var jumpState = new JumpState(this, m_Animator);
@@ -66,6 +75,7 @@ public class Player : MonoBehaviour
         var slideState = new SlideState(this, m_Animator);
         var airDashState = new AirDashState(this, m_Animator);
         var dashState = new DashState(this, m_Animator);
+        var deathState = new DeathState(this, m_Animator);
         
         At(sleepState, runState, new FuncPredicate(() => m_Running));
         At(idleState, runState, new ActionPredicate(() => m_Running, () => m_StopInput = false));
@@ -128,7 +138,9 @@ public class Player : MonoBehaviour
             m_SpeedController.ApplyMultiplier(1f);
         }));
         
-        m_StateMachine.SetState(sleepState);
+        AtAny(deathState, new FuncPredicate(() => m_IsDead));
+        AtAny(sleepState, new ActionPredicate(() => m_Restart, () => m_Restart = false));
+        
     }
 
     protected void At(IState from, IState to, IPredicate condition) => m_StateMachine.AddTransition(from, to, condition);
@@ -158,6 +170,8 @@ public class Player : MonoBehaviour
         Application.targetFrameRate = 60;
 
         //Time.timeScale = .5f;
+        m_StateMachine.SetState(sleepState);
+        
     }
 
     void Update()
@@ -280,18 +294,32 @@ public class Player : MonoBehaviour
             case "Enemy": 
                 // dead
                 break;
-            case "Coin":
-                // collect coin
-                other.gameObject.SetActive(false);
+            default:
+                Die();
                 break;
         }
     }
 
     private void Die()
     {
-        
+        m_DeathType = m_StateMachine.CurrentState.ToString() == "SlideState" ? 0 : 1;
+        m_IsDead = true;
+
+        m_SpeedController.ResetSpeed();
+        DisableInput();
     }
 
+    public void Restart()
+    {
+        m_Restart = true;
+        m_SpeedController.ResetSpeed();
+    }
+    
+    private void DisableInput()
+    {
+        m_inputReader.DisableGameplayInput();
+    }
+    
     public void DeactiveDash()
     {
         m_Dashing = false;

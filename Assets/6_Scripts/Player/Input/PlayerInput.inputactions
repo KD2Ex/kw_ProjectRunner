@@ -335,6 +335,34 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "Dev",
+            "id": "d482a8b4-5816-42be-936c-f4cde1aebc47",
+            "actions": [
+                {
+                    "name": "RestartScenes",
+                    "type": "Button",
+                    "id": "a4d34ee2-3941-4c16-9694-0cc27a489080",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "2bd30e4d-21dc-493e-b77e-db1c60f99a9e",
+                    "path": "<Keyboard>/pageDown",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "MnK",
+                    "action": "RestartScenes",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [

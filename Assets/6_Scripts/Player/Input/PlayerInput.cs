@@ -357,6 +357,34 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Dev"",
+            ""id"": ""d482a8b4-5816-42be-936c-f4cde1aebc47"",
+            ""actions"": [
+                {
+                    ""name"": ""RestartScenes"",
+                    ""type"": ""Button"",
+                    ""id"": ""a4d34ee2-3941-4c16-9694-0cc27a489080"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""2bd30e4d-21dc-493e-b77e-db1c60f99a9e"",
+                    ""path"": ""<Keyboard>/pageDown"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""MnK"",
+                    ""action"": ""RestartScenes"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -381,6 +409,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_Gameplay_AirDash = m_Gameplay.FindAction("AirDash", throwIfNotFound: true);
         m_Gameplay_AirDashMovement = m_Gameplay.FindAction("AirDashMovement", throwIfNotFound: true);
         m_Gameplay_DashAbilityTest = m_Gameplay.FindAction("DashAbilityTest", throwIfNotFound: true);
+        // Dev
+        m_Dev = asset.FindActionMap("Dev", throwIfNotFound: true);
+        m_Dev_RestartScenes = m_Dev.FindAction("RestartScenes", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -532,6 +563,52 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         }
     }
     public GameplayActions @Gameplay => new GameplayActions(this);
+
+    // Dev
+    private readonly InputActionMap m_Dev;
+    private List<IDevActions> m_DevActionsCallbackInterfaces = new List<IDevActions>();
+    private readonly InputAction m_Dev_RestartScenes;
+    public struct DevActions
+    {
+        private @PlayerInput m_Wrapper;
+        public DevActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
+        public InputAction @RestartScenes => m_Wrapper.m_Dev_RestartScenes;
+        public InputActionMap Get() { return m_Wrapper.m_Dev; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(DevActions set) { return set.Get(); }
+        public void AddCallbacks(IDevActions instance)
+        {
+            if (instance == null || m_Wrapper.m_DevActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_DevActionsCallbackInterfaces.Add(instance);
+            @RestartScenes.started += instance.OnRestartScenes;
+            @RestartScenes.performed += instance.OnRestartScenes;
+            @RestartScenes.canceled += instance.OnRestartScenes;
+        }
+
+        private void UnregisterCallbacks(IDevActions instance)
+        {
+            @RestartScenes.started -= instance.OnRestartScenes;
+            @RestartScenes.performed -= instance.OnRestartScenes;
+            @RestartScenes.canceled -= instance.OnRestartScenes;
+        }
+
+        public void RemoveCallbacks(IDevActions instance)
+        {
+            if (m_Wrapper.m_DevActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IDevActions instance)
+        {
+            foreach (var item in m_Wrapper.m_DevActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_DevActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public DevActions @Dev => new DevActions(this);
     private int m_MnKSchemeIndex = -1;
     public InputControlScheme MnKScheme
     {
@@ -559,5 +636,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         void OnAirDash(InputAction.CallbackContext context);
         void OnAirDashMovement(InputAction.CallbackContext context);
         void OnDashAbilityTest(InputAction.CallbackContext context);
+    }
+    public interface IDevActions
+    {
+        void OnRestartScenes(InputAction.CallbackContext context);
     }
 }

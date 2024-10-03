@@ -4,7 +4,7 @@ using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 [CreateAssetMenu(fileName = "Input Reader", menuName = "Scriptable Objects/Player/Input")]
-public class InputReader : ScriptableObject, PlayerInput.IGameplayActions
+public class InputReader : ScriptableObject, PlayerInput.IGameplayActions, PlayerInput.IDevActions
 {
     private PlayerInput _input;
 
@@ -15,12 +15,24 @@ public class InputReader : ScriptableObject, PlayerInput.IGameplayActions
     public UnityAction<bool> AirDashEvent;
     public UnityAction<float> AirDashMovementEvent;
     public UnityAction DashAbilityTest;
+    public UnityAction RestartScenesEvent;
+    
+    public void DisableGameplayInput()
+    {
+        _input.Gameplay.Disable();
+    }
+
+    public void EnableGameplayInput()
+    {
+        _input.Gameplay.Enable();
+    }
     
     private void OnEnable()
     {
         if (_input == null)
         {
             _input = new PlayerInput();
+            _input.Dev.SetCallbacks(this);
             _input.Gameplay.SetCallbacks(this);
         }
         
@@ -69,5 +81,11 @@ public class InputReader : ScriptableObject, PlayerInput.IGameplayActions
         if (!context.started) return;
         
         DashAbilityTest?.Invoke();
+    }
+
+    public void OnRestartScenes(InputAction.CallbackContext context)
+    {
+        if (!context.started) return;
+        RestartScenesEvent?.Invoke();
     }
 }

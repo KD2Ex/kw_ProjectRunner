@@ -38,6 +38,8 @@ public class SpeedController : MonoBehaviour
 
     private void OnMove(bool value)
     {
+        Debug.Log("Move " + value);
+        
         m_Running = value;
     }
 
