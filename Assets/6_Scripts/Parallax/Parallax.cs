@@ -75,8 +75,9 @@ public class Parallax : MonoBehaviour
         var next = Instantiate(back, transform);
         next.name = back.name;
         
-        back.TryGetComponent<Animator>(out var animator);
-
+        currentBackground.TryGetComponent<Animator>(out var animator);
+        
+        
         if (animator)
         {
             Debug.Log("animator gotten");
@@ -88,6 +89,7 @@ public class Parallax : MonoBehaviour
         m_SpritesBounds.TryGetValue(next.name, out var newBounds);
 
         var offset = m_Bounds.extents.x + newBounds.extents.x;
+
         m_xOffset += offset;
         
         SetNewBounds(newBounds);

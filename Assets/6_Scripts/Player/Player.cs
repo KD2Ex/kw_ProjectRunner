@@ -47,7 +47,7 @@ public class Player : MonoBehaviour
     private bool m_Running => m_ChunksCurrentSpeed > 0;
 
     public static readonly float GroundLine = -1.77f; // replace with so data
-    public bool Grounded => transform.position.y <= GroundLine;
+    public bool Grounded => transform.position.y - .01f <= GroundLine;
     public float JumpSpeed => 10f;
     public float GravityForce => 10f;
     public float AirDashMovementSpeed => 6f;
@@ -177,6 +177,11 @@ public class Player : MonoBehaviour
     void Update()
     {
        m_StateMachine.Update();
+       
+       /*Debug.Log($"Jump {m_JumpInput}");
+       Debug.Log($"Slide {m_SlideInput}");
+       Debug.Log($"Grounded {Grounded}");*/
+
     }
 
     private void FixedUpdate()
@@ -185,8 +190,17 @@ public class Player : MonoBehaviour
     }
 
     private void OnStop(bool value) => m_StopInput = value;
-    private void OnJump(bool value) => m_JumpInput = value;
-    private void OnSlide(bool value) => m_SlideInput = value;
+    private void OnJump(bool value)
+    {
+
+        m_JumpInput = value;
+    }
+
+    private void OnSlide(bool value)
+    {
+        m_SlideInput = value;
+    }
+
     private void OnAirDash(bool value) => m_AirDashInput = value;
     private void OnDash()
     {
