@@ -3,43 +3,48 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [SerializeField] private InputReader m_inputReader;
-    [SerializeField] private float m_AccelerationRate;
-    [SerializeField] private float m_Diminishing;
+
+    [Header("Reference values")] [SerializeField]
+    private FloatVariable so_ChunksCurrentSpeed;
     
     private Rigidbody2D m_rigidbody;
-
-    private float m_Acceleration;
-    private float m_ElapsedTime;
-    private bool m_running;
+    private StateMachine m_StateMachine;
+    
+    private float m_ChunksCurrentSpeed => so_ChunksCurrentSpeed.Value;
+    private bool m_Running => m_ChunksCurrentSpeed > 0;
 
     private void Awake()
     {
         m_rigidbody = GetComponent<Rigidbody2D>();
+
+        m_StateMachine = new StateMachine();
+
+        var idleState = new IdleState(this);
+        var runState = new RunState(this);
+        
+        At(idleState, runState, new FuncPredicate(() => m_Running));
+        At(runState, idleState, new FuncPredicate(() => m_Running));
+        
+        m_StateMachine.SetState(idleState);
     }
 
+    protected void At(IState from, IState to, IPredicate condition) => m_StateMachine.AddTransition(from, to, condition);
+    protected void AtAny(IState to, IPredicate condition) => m_StateMachine.AddAnyTransition(to, condition);
+    
     private void OnEnable()
     {
-        m_inputReader.RunEvent += OnRun;
     }
 
     private void OnDisable()
     {
-        m_inputReader.RunEvent -= OnRun;
     }
     
-    private void OnRun(bool value)
-    {
-        m_running = value;
-    }
-    
-    // Start is called before the first frame update
     void Start()
     {
         QualitySettings.vSyncCount = 0;
         Application.targetFrameRate = 60;
     }
 
-    // Update is called once per frame
     void Update()
     {
        
@@ -47,34 +52,5 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Move();
-
-        if (m_running)
-        {
-            IncreaseAcceleration();
-        }
-        else
-        {
-            DecreaseAcceleration();
-            /*m_Acceleration = 0f;
-            m_ElapsedTime = 0f;*/
-        }
-    }
-
-    private void Move()
-    {
-        //m_Acceleration += Time.deltaTime * m_AccelerationRate; 
-        m_rigidbody.MovePosition(transform.position + Vector3.right * (m_Acceleration * Time.deltaTime));
-    }
-
-    private void IncreaseAcceleration()
-    {
-        m_ElapsedTime += Time.deltaTime;
-        m_Acceleration = (m_AccelerationRate * m_ElapsedTime) / (1 + m_Diminishing * m_ElapsedTime);
-    }
-
-    private void DecreaseAcceleration()
-    {
-        
     }
 }

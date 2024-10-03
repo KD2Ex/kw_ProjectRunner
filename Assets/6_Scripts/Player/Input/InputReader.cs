@@ -29,12 +29,6 @@ public class InputReader : ScriptableObject, PlayerInput.IGameplayActions
 
     public void OnRun(InputAction.CallbackContext context)
     {
-
-        /*Debug.Log("Started: " + context.started);
-        Debug.Log("Performed: " + context.performed);
-        Debug.Log("Canceled: " + context.canceled);
-        */
-        
         RunEvent?.Invoke(context.performed);
     }
 
