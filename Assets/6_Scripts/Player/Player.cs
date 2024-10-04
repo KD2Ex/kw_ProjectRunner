@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
     [SerializeField] private Collider2D m_SlideCollider;
     [SerializeField] private Collider2D m_AirDashCollider;
 
+    private Coins m_Coins;
     private SpeedController m_SpeedController;
     private Rigidbody2D m_rigidbody;
     private Animator m_Animator;
@@ -61,6 +62,7 @@ public class Player : MonoBehaviour
     
     private void Awake()
     {
+        m_Coins = GetComponent<Coins>();
         m_SpeedController = GetComponent<SpeedController>();
         m_rigidbody = GetComponent<Rigidbody2D>();
         m_Animator = GetComponent<Animator>();
@@ -293,8 +295,9 @@ public class Player : MonoBehaviour
         {
             case "Coin":
                 other.gameObject.SetActive(false);
-                // add coin
-                break;
+                m_Coins.AddCoins(1);
+                Debug.Log("Coin");
+                return;
         }
     }
 
@@ -302,18 +305,25 @@ public class Player : MonoBehaviour
     {
         Debug.Log(other.gameObject.name);
         
-        m_SpeedController.ResetSpeed();
-        
         var tag = other.gameObject.tag;
-
-        switch (tag)
+        
+        if (m_StateMachine.CurrentState.ToString() == "SlideState")
         {
-            case "Enemy": 
-                // dead
-                break;
-            default:
+            other.gameObject.TryGetComponent<Obstacle>(out var obstacle);
+
+            if (obstacle)
+            {
+                obstacle.GetDestroyed();
+            }
+            else
+            {
                 Die();
-                break;
+            }
+        }
+        else
+        {
+            m_SpeedController.ResetSpeed();
+            Die();
         }
     }
 
@@ -323,6 +333,7 @@ public class Player : MonoBehaviour
         m_IsDead = true;
 
         m_SpeedController.ResetSpeed();
+        m_Coins.ResetValue();
         DisableInput();
     }
 

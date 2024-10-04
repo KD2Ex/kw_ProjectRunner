@@ -1,17 +1,16 @@
-using System;
 using UnityEngine;
 
 public class ChunkManager : MonoBehaviour
 {
-    [SerializeField] private GameObject trigger;
+    /*[SerializeField] private GameObject trigger;
     [SerializeField] private GameObject loadTrigger;
-    [SerializeField] private GameObject deloadTrigger;
+    [SerializeField] private GameObject deloadTrigger;*/
 
     private Transform parent;
 
     private void Awake()
     {
-        parent = GameObject.FindGameObjectWithTag("ChunkParent").transform;
+        parent = GameObject.FindGameObjectWithTag("ChunkParent").transform; // Get rig of FindGameObject
     }
 
     // Start is called before the first frame update
@@ -19,22 +18,12 @@ public class ChunkManager : MonoBehaviour
     {
         transform.SetParent(parent);
         
-        var triggerInstance = Instantiate(trigger, transform);
+        /*var triggerInstance = Instantiate(trigger, transform);
 
         var loadTriggerInstance = Instantiate(loadTrigger, triggerInstance.transform);
-        var deloadTriggerInstance = Instantiate(deloadTrigger, triggerInstance.transform);
+        var deloadTriggerInstance = Instantiate(deloadTrigger, triggerInstance.transform);*/
         
-        deloadTriggerInstance.GetComponent<Trigger>().OnTrigger.AddListener(OnDeloadTrigger);
+        //deloadTriggerInstance.GetComponent<Trigger>().OnTrigger.AddListener(OnDeloadTrigger);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    private void OnDeloadTrigger()
-    {
-        gameObject.SetActive(false);
-    }
 }
