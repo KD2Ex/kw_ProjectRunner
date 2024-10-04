@@ -16,6 +16,11 @@ public class RunState : BaseState
     public override void Update()
     {
         base.Update();
+
+        if (!player.Grounded)
+        {
+            player.ApplyGravity();
+        }
     }
 
     public override void FixedUpdate()

@@ -34,8 +34,8 @@ public class StateMachine
     
     private void ChangeState(IState state)
     {
-        Debug.Log("Current: " + m_Current.State);
-        Debug.Log("New : " + state);
+        /*Debug.Log("Current: " + m_Current.State);
+        Debug.Log("New : " + state);*/
         if (m_Current.State == state) return;
 
         var prevState = m_Current.State;

@@ -18,7 +18,8 @@ public class FallingState : BaseState
         
         if (!player.Grounded)
         {
-            player.transform.Translate(Vector2.down * (player.GravityForce * Time.deltaTime));
+            player.ApplyGravity();
+            //player.transform.Translate(Vector2.down * (player.GravityForce * Time.deltaTime));
         }
     }
 

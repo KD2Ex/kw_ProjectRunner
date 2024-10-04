@@ -35,6 +35,8 @@ public class Player : MonoBehaviour
     private bool m_SlideInput;
     private bool m_AirDashInput;
     private bool m_DashInput;
+
+    public bool JumpInput => m_JumpInput;
     
     private bool m_JumpAnimationFinished;
     private bool m_Dashing;
@@ -48,6 +50,9 @@ public class Player : MonoBehaviour
     private bool m_Running => m_ChunksCurrentSpeed > 0;
 
     public static readonly float GroundLine = -1.77f; // replace with so data
+    public static readonly float XPosition = -12.95f;
+    private static readonly int c_LayerMaskDefault = 0;
+    private static readonly int c_LayerMaskDash = 55;
     public bool Grounded => transform.position.y - .01f <= GroundLine;
     public float JumpSpeed => 10f;
     public float GravityForce => 10f;
@@ -146,6 +151,9 @@ public class Player : MonoBehaviour
         
         AtAny(deathState, new FuncPredicate(() => m_IsDead));
         AtAny(sleepState, new ActionPredicate(() => m_Restart, () => m_Restart = false));
+
+        m_rigidbody.excludeLayers = 0;
+        Debug.Log(m_rigidbody.excludeLayers.value);
         
     }
 
@@ -196,17 +204,8 @@ public class Player : MonoBehaviour
     }
 
     private void OnStop(bool value) => m_StopInput = value;
-    private void OnJump(bool value)
-    {
-
-        m_JumpInput = value;
-    }
-
-    private void OnSlide(bool value)
-    {
-        m_SlideInput = value;
-    }
-
+    private void OnJump(bool value) => m_JumpInput = value;
+    private void OnSlide(bool value) => m_SlideInput = value;
     private void OnAirDash(bool value) => m_AirDashInput = value;
     private void OnDash()
     {
@@ -285,6 +284,16 @@ public class Player : MonoBehaviour
         m_AirDashMovementDirection = direction;
     }
 
+    public void ApplyGravity()
+    {
+        transform.Translate(Vector2.down * (GravityForce * Time.deltaTime));
+    }
+
+    public void RevertGravity()
+    {
+        transform.Translate(Vector2.up * (GravityForce * Time.deltaTime));
+    }
+    
     private void OnTriggerEnter2D(Collider2D other)
     {
         Debug.Log("On Trigger:  " + other.gameObject.name);
@@ -303,14 +312,22 @@ public class Player : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        Debug.Log(other.gameObject.name);
-        
-        var tag = other.gameObject.tag;
+        //Debug.Log(other.gameObject.name);
+
+        transform.position = new Vector3(XPosition, transform.position.y, 0f);
+        other.gameObject.TryGetComponent<Obstacle>(out var obstacle);
+
+        if (Invincible)
+        {
+            if (obstacle)
+            {
+                obstacle.GetDestroyed();
+            }
+            return;
+        }
         
         if (m_StateMachine.CurrentState.ToString() == "SlideState")
         {
-            other.gameObject.TryGetComponent<Obstacle>(out var obstacle);
-
             if (obstacle)
             {
                 obstacle.GetDestroyed();
@@ -348,9 +365,18 @@ public class Player : MonoBehaviour
         m_inputReader.DisableGameplayInput();
     }
     
-    public void DeactiveDash()
+    public void DisableDash()
     {
+        m_rigidbody.excludeLayers = c_LayerMaskDefault;
         m_Dashing = false;
+        Invincible = false;
+    }
+
+    public void ActivateDash()
+    {
+        m_rigidbody.excludeLayers = c_LayerMaskDash;
+        Invincible = true;
     }
     
+    public bool Invincible { get; private set; }
 }

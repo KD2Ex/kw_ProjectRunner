@@ -3,6 +3,8 @@
 public class DashState : BaseState
 {
     private float elapsedTime;
+    private bool upmove;
+    private bool cancelUpMove = true;
     
     public DashState(Player player, Animator animator) : base(player, animator)
     {
@@ -12,7 +14,7 @@ public class DashState : BaseState
     {
         base.Enter();
         animator.SetBool(player.animHash_Dash, true);
-        
+        player.ActivateDash();
     }
 
     public override void Update()
@@ -20,11 +22,61 @@ public class DashState : BaseState
         base.Update();
         elapsedTime += Time.deltaTime;
 
-        if (elapsedTime > 1.5f)
+        Debug.Log($"Jump input in dash state {player.JumpInput}");
+        
+        if (elapsedTime > 5f)
         {
-            player.DeactiveDash();
+            player.DisableDash();
             elapsedTime = 0f;
         }
+
+        if (upmove)
+        {
+            if (player.transform.position.y < 0 && player.JumpInput)
+            {
+                player.RevertGravity();
+            }
+            else
+            {
+                upmove = false;
+            }
+
+            //return;
+        }
+        else
+        {
+            if (!player.Grounded)
+            {
+                player.ApplyGravity();
+            }
+            
+            if (player.JumpInput && !cancelUpMove)
+            {
+                cancelUpMove = false;
+            }
+            else
+            {
+                cancelUpMove = true;
+            }
+            
+        }
+
+        /*Debug.Log($"cancel {cancelUpMove}");
+        Debug.Log($"Jumpinput {player.JumpInput}");
+        Debug.Log($"GRound {player.Grounded}");*/
+
+        if (!cancelUpMove) return;
+        if (player.JumpInput && player.Grounded)
+        {
+            Debug.Log("UPmove");
+            upmove = true;
+            cancelUpMove = false;
+        }
+        else
+        {
+           
+        }
+        
     }
 
     public override void FixedUpdate()

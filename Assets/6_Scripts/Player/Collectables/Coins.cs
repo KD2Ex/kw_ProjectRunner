@@ -13,7 +13,6 @@ public class Coins : MonoBehaviour
     public void AddCoins(float value)
     {
         m_Value.Value += value;
-        Debug.Log(m_Value.Value);
     }
 
     public void RemoveCoins(float value)

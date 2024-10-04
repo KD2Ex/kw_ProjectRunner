@@ -1496,6 +1496,7 @@ GameObject:
   - component: {fileID: 2003045856}
   - component: {fileID: 2003045855}
   - component: {fileID: 2003045857}
+  - component: {fileID: 2003045858}
   m_Layer: 5
   m_Name: Coins Counter
   m_TagString: Untagged
@@ -1634,6 +1635,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Value: {fileID: 11400000, guid: d573596b5a8d7f144a0093c0b4c0fcdb, type: 2}
+--- !u!114 &2003045858
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2003045853}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70b5a83d3e7378841a5e3aed91db5571, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2007199850
 GameObject:
   m_ObjectHideFlags: 0
