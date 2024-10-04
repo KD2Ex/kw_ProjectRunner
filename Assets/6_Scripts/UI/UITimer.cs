@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class UITimer : MonoBehaviour
 {
-    [SerializeField] private TimerData m_Timer;
+    [SerializeField] private FloatVariable m_Timer;
     private TextMeshProUGUI m_Text;
 
     private void Awake()
@@ -13,7 +13,7 @@ public class UITimer : MonoBehaviour
 
     private void LateUpdate()
     {
-        var text = FormatTime(m_Timer.ElapsedTime);
+        var text = FormatTime(m_Timer.Value);
         m_Text.text = text;
     }
 

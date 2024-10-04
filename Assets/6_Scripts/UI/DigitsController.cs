@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class DigitsController : MonoBehaviour
@@ -6,6 +7,9 @@ public class DigitsController : MonoBehaviour
     [SerializeField] private float xGap;
     [SerializeField] private DigitObject digitObject;
     [SerializeField] private Transform spawnPoint;
+
+    private List<DigitObject> digits = new();
+    
     private float Value => Data.Value;
     
     public void UpdateUI()
@@ -17,28 +21,56 @@ public class DigitsController : MonoBehaviour
         {
             int digit = intValue % 10;
             intValue /= 10;
-            
-            CreateDigit(digit, index);
+
+            if (digits.Count == index)
+            {
+                var instance = CreateDigit(digit, index);
+                digits.Add(instance);
+                Align();
+            }
+            else
+            {
+                digits[index].SetDigit(digit);
+            }
             index++;
         }
     }
 
-    private void CreateDigit(int value, int index)
+    private DigitObject CreateDigit(int value, int index)
     {
         var digit = Instantiate<DigitObject>(digitObject, spawnPoint);
 
-        var x = index * xGap;
+        var pos = new Vector3(spawnPoint.position.x + index * xGap * -1, transform.position.y, 0f);
+        var localPos = new Vector3(index * xGap * -1, 0f, 0f);
+        //digit.transform.position = pos;
         
-        digit.transform.position = new Vector3(spawnPoint.position.x + index * xGap * -1, transform.position.y, 0f);
-        digit.Initialize(value);
+        digit.transform.localPosition = localPos;
+        digit.SetDigit(value);
         
         Debug.Log($"Digit: {value}");
+        return digit;
+    }
+
+    private void Align()
+    {
+        spawnPoint.transform.SetParent(null);
+        var length = digits.Count * .35f + (digits.Count - 1) * xGap;
+        Debug.Log($"Length: {length}");
+        Debug.Log($"First digit: {digits[0].transform.position.x}");
+        var center = spawnPoint.position.x - length / 4;
+
+        transform.position = new Vector3(center, transform.position.y, 0f);
+        spawnPoint.transform.SetParent(transform);
+
+        Debug.Log($"Aligned at {center}");
     }
     
     // Start is called before the first frame update
     void Start()
     {
         UpdateUI();
+        
+        
     }
 
     // Update is called once per frame
