@@ -17,17 +17,30 @@ public class PriorityChunk
     }
 }
 
-public class ChunkRandomManager : MonoBehaviour
+[CreateAssetMenu(fileName = "Chunk Random Manager", menuName = "Scriptable Objects/Chunks/Random Manager")]
+public class ChunkRandomManager : ScriptableObject
 {
     [SerializeField] private List<ChunkSet> chunkSets;
-
-    public List<PriorityChunk> SpawnQueue;
-
-    public void Execute()
-    {
-        AddChunkToQueue();
-    }
+    [SerializeField] private List<PriorityChunk> SpawnQueue;
     
+    public List<GameObject> PresentChunks;
+    
+    private void OnEnable()
+    {
+    }
+
+    public PriorityChunk Pop()
+    {
+        if (SpawnQueue.Count == 0)
+        {
+            AddChunkToQueue();
+        }
+        
+        var result = SpawnQueue[0];
+        SpawnQueue.RemoveAt(0);
+        return result;
+    }
+
     private static int CompareByPriority(PriorityChunk x, PriorityChunk y)
     {
         return x.Priority - y.Priority;
@@ -108,20 +121,5 @@ public class ChunkRandomManager : MonoBehaviour
         var index = Random.Range(0, list.Count);
 
         return list[index];
-    }
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-        foreach (var list in chunkSets)
-        {
-            
-        }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
