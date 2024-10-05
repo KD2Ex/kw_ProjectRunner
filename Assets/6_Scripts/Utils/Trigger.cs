@@ -15,7 +15,6 @@ public class Trigger : MonoBehaviour
         if (triggerOnce && triggered) return;
         
         if (!other.CompareTag("Player")) return;
-        Debug.Log("Trigger");
         OnTrigger.Invoke();
 
         if (triggerOnce)

@@ -7,8 +7,8 @@ using Random = UnityEngine.Random;
 [Serializable]
 public class PriorityChunk
 {
-    public readonly Chunk Chunk;
-    public readonly int Priority;
+    public  Chunk Chunk;
+    public  int Priority;
     
     public PriorityChunk(Chunk chunk, int priority)
     {
@@ -22,13 +22,26 @@ public class ChunkRandomManager : ScriptableObject
 {
     [SerializeField] private List<ChunkSet> chunkSets;
     [SerializeField] private List<PriorityChunk> SpawnQueue;
-    
+
+    public List<ChunkSet> Sets => chunkSets;
     public List<GameObject> PresentChunks;
     
     private void OnEnable()
     {
+        
     }
 
+    public void InitializeChunks()
+    {
+        foreach (var set in chunkSets)
+        {
+            foreach (var chunk in set.List.Items)
+            {
+                chunk.Initialize();
+            }
+        }
+    }
+    
     public PriorityChunk Pop()
     {
         if (SpawnQueue.Count == 0)
@@ -37,6 +50,7 @@ public class ChunkRandomManager : ScriptableObject
         }
         
         var result = SpawnQueue[0];
+        
         SpawnQueue.RemoveAt(0);
         return result;
     }
@@ -45,14 +59,26 @@ public class ChunkRandomManager : ScriptableObject
     {
         return x.Priority - y.Priority;
     }
+
+    public void RestoreAvailability()
+    {
+        foreach (var chunkSet in chunkSets)
+        {
+            foreach (var chunk in chunkSet.List.Items)
+            {
+                if (chunk.Available) continue;
+            }
+        }
+    }
     
-    private void AddChunkToQueue()
+    public void AddChunkToQueue()
     {
         var chunks = GetNextChunks();
         chunks.Sort(CompareByPriority);
         
         foreach (var chunk in chunks)
         {
+            if (chunk.Chunk.RemoveAfterSpawn) chunk.Chunk.Available = false;
             SpawnQueue.Add(chunk);
         }
     }
@@ -65,6 +91,7 @@ public class ChunkRandomManager : ScriptableObject
         var result = new List<PriorityChunk>();
         foreach (var set in highestPrioritySets)
         {
+            set.SpawnCondition.ResetTrigger();
             var nextChunk = GetChunkFromList(set.List.Items, FindChunkByWeight);
             
             result.Add(new PriorityChunk(nextChunk, set.Priority));
@@ -80,7 +107,6 @@ public class ChunkRandomManager : ScriptableObject
         foreach (var set in sets)
         {
             var conditionSatisfied = set.SpawnCondition.Evaluate();
-
             if (conditionSatisfied)
             {
                 var availableChunkPresent = set.List.Items.FirstOrDefault(chunk => chunk.Available);

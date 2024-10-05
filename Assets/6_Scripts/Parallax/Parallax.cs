@@ -80,8 +80,6 @@ public class Parallax : MonoBehaviour
         
         if (animator)
         {
-            Debug.Log("animator gotten");
-            
             var time = animator.GetCurrentAnimatorStateInfo(0).normalizedTime;
             next.GetComponent<SyncAnimation>().Sync(time);
         }

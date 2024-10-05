@@ -22,7 +22,6 @@ public class GameEvent : ScriptableObject
     {
         foreach (var listener in listeners)
         {
-            Debug.Log(listener.name);
             listener.Response?.Invoke();
         }
     }

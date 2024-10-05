@@ -4,4 +4,10 @@ using UnityEngine;
 public class FloatVariable : ScriptableObject
 {
     public float Value;
+    public bool ResetOnEnable;
+
+    private void OnEnable()
+    {
+        if (ResetOnEnable) Value = 0f;
+    }
 }

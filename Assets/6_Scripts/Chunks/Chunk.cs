@@ -7,10 +7,21 @@ public class Chunk
     [field: SerializeField] public GameObject Prefab { get; private set; }
     [field: SerializeField] public string Label { get; private set; }
     [field: SerializeField] public int Weight { get; private set; }
-    [SerializeField] private bool RemoveAfterSpawn;
+    [field: SerializeField] public bool RemoveAfterSpawn { get; private set; }
     public bool Available = true;
-    public ScriptableCondition RestoreCondition;
+
+    public void Initialize()
+    {
+        Available = true;
+    }
     
+    public void OnInstantiate()
+    {
+        if (RemoveAfterSpawn)
+        {
+            Available = false;
+        }
+    }
     
     public void Restore()
     {
