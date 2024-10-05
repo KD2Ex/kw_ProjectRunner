@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Unity.PlasticSCM.Editor.UI;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -11,12 +10,18 @@ public class Player : MonoBehaviour
     [Header("Stats")]
     [Range(0, 3)]
     [SerializeField] private float m_JumpTime;
-
     public float JumpTime => m_JumpTime;
-    
+
+    #region SO Data
+
     [Header("Reference values")] 
     [SerializeField] private FloatVariable so_ChunksCurrentSpeed;
     [SerializeField] private FloatVariable so_JumpTime;
+
+
+    #endregion
+   
+    #region Colliders
 
     [Header("Hit boxes")] 
     [SerializeField] private Collider2D m_RunCollider;
@@ -26,12 +31,20 @@ public class Player : MonoBehaviour
     [SerializeField] private Collider2D m_DashCollider;
 
     private List<Collider2D> m_Colliders = new();
-    
+
+
+    #endregion
+
+    #region Components
+
     private Coins m_Coins;
     private SpeedController m_SpeedController;
     private Rigidbody2D m_rigidbody;
     private Animator m_Animator;
-    private StateMachine m_StateMachine;
+
+    #endregion
+    
+    #region Animation Hashes
 
     public int animHash_Jump => Animator.StringToHash("Jump");
     public int animHash_Move => Animator.StringToHash("Move");
@@ -41,29 +54,31 @@ public class Player : MonoBehaviour
     public int animHash_Idle => Animator.StringToHash("Idle");
     public int animHash_DodgeDeath => Animator.StringToHash("Dead0");
     public int animHash_RunJumpDeath => Animator.StringToHash("Dead1");
-    
+
+
+    #endregion
+
+    #region Input flags
+
     private bool m_StopInput;
     private bool m_JumpInput;
     private bool m_SlideInput;
     private bool m_AirDashInput;
     private bool m_DashInput;
 
-    public void ForceToGetDown()
-    {
-        m_JumpInput = false;
-    }
-    public bool JumpInput => m_JumpInput;
-    
+    #endregion
+
+    #region State Flags
+
     private bool m_JumpAnimationFinished;
     private bool m_Dashing;
-
     private bool m_IsDead;
     private bool m_Restart;
-
-    public int m_DeathType { get; private set; }
-    
-    private float m_ChunksCurrentSpeed => so_ChunksCurrentSpeed.Value;
     private bool m_Running => m_ChunksCurrentSpeed > 0;
+
+    #endregion
+
+    #region Consts
 
     public static readonly float GroundLine = -1.77f; // replace with so data
     public static readonly float XPosition = -12.95f;
@@ -76,12 +91,40 @@ public class Player : MonoBehaviour
     public float UpperAirDashBound => 1.5f; 
     public float LowerAirDashBound => -6.6f;
     public float DashSpeedMultiplier => 1.5f;
-    
-    public float m_AirDashMovementDirection { get; private set; }
 
-    private IState sleepState;
+    #endregion
+    
+    #region Events
 
     public UnityEvent OnDashEvent;
+    public UnityEvent OnStartRunning;
+    public UnityEvent OnStopRunning;
+
+
+    #endregion
+
+    #region States
+    
+    private StateMachine m_StateMachine;
+    private IState sleepState;
+    
+    #endregion
+
+    #region Misc
+
+    public void ForceToGetDown()
+    {
+        m_JumpInput = false;
+    }
+    public bool JumpInput => m_JumpInput;
+
+    public int m_DeathType { get; private set; }
+
+    private float m_ChunksCurrentSpeed => so_ChunksCurrentSpeed.Value;
+
+    public float m_AirDashMovementDirection { get; private set; }
+
+    #endregion
     
     private void Awake()
     {
@@ -108,9 +151,17 @@ public class Player : MonoBehaviour
         var dashState = new DashState(this, m_Animator);
         var deathState = new DeathState(this, m_Animator);
         
-        At(sleepState, runState, new FuncPredicate(() => m_Running));
-        At(idleState, runState, new ActionPredicate(() => m_Running, () => m_StopInput = false));
-        At(runState, idleState, new ActionPredicate(() => m_StopInput, () => m_SpeedController.ResetSpeed()));
+        At(sleepState, runState, new ActionPredicate(() => m_Running, () => OnStartRunning?.Invoke()));
+        At(idleState, runState, new ActionPredicate(() => m_Running, () =>
+        {
+            OnStartRunning?.Invoke();
+            m_StopInput = false;
+        }));
+        At(runState, idleState, new ActionPredicate(() => m_StopInput, () =>
+        {
+            m_SpeedController.ResetSpeed();
+            OnStopRunning?.Invoke();
+        }));
         At(runState, jumpState, 
             new ActionPredicate(
                 () => m_JumpInput && Grounded,
@@ -178,7 +229,7 @@ public class Player : MonoBehaviour
             EnableOnly(m_RunCollider);
         }));
         
-        AtAny(deathState, new FuncPredicate(() => m_IsDead));
+        AtAny(deathState, new ActionPredicate(() => m_IsDead, () => OnStopRunning?.Invoke()));
         AtAny(sleepState, new ActionPredicate(() => m_Restart, () => m_Restart = false));
 
         m_rigidbody.excludeLayers = 0;
@@ -219,11 +270,6 @@ public class Player : MonoBehaviour
     void Update()
     {
        m_StateMachine.Update();
-       
-       /*Debug.Log($"Jump {m_JumpInput}");
-       Debug.Log($"Slide {m_SlideInput}");
-       Debug.Log($"Grounded {Grounded}");*/
-
     }
 
     private void FixedUpdate()

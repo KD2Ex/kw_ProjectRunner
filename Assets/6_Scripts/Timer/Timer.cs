@@ -6,11 +6,15 @@ public class Timer : MonoBehaviour
     [SerializeField] private FloatVariable timerData;
     public float m_ElapsedTime;
 
+    private bool isRunning = false;
+    
     private float seconds;
     public UnityEvent EverySecond;
     
     void Update()
     {
+        if (!isRunning) return;
+        
         seconds += Time.deltaTime;
         
         m_ElapsedTime += Time.deltaTime;
@@ -21,5 +25,16 @@ public class Timer : MonoBehaviour
             seconds = 0f;
             EverySecond?.Invoke();
         }
+    }
+
+    public void Stop()
+    {
+        isRunning = false;
+    }
+
+    public void Run()
+    {
+        Debug.Log("RUn");
+        isRunning = true;
     }
 }
