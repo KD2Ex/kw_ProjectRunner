@@ -32,7 +32,7 @@ public class DashState : BaseState
         {
             if (player.transform.position.y < 0 && player.JumpInput)
             {
-                player.RevertGravity();
+                player.ApplyGravity(6f, Vector2.up);
             }
             else
             {
@@ -45,7 +45,7 @@ public class DashState : BaseState
         {
             if (!player.Grounded)
             {
-                player.ApplyGravity();
+                player.ApplyGravity(6f, Vector2.down);
             }
             
             if (player.JumpInput && !cancelUpMove)
@@ -69,10 +69,6 @@ public class DashState : BaseState
             Debug.Log("UPmove");
             upmove = true;
             cancelUpMove = false;
-        }
-        else
-        {
-           
         }
         
     }

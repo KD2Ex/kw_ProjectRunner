@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using Unity.PlasticSCM.Editor.UI;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -21,7 +23,10 @@ public class Player : MonoBehaviour
     [SerializeField] private Collider2D m_JumpCollider;
     [SerializeField] private Collider2D m_SlideCollider;
     [SerializeField] private Collider2D m_AirDashCollider;
+    [SerializeField] private Collider2D m_DashCollider;
 
+    private List<Collider2D> m_Colliders = new();
+    
     private Coins m_Coins;
     private SpeedController m_SpeedController;
     private Rigidbody2D m_rigidbody;
@@ -80,6 +85,12 @@ public class Player : MonoBehaviour
     
     private void Awake()
     {
+        m_Colliders.Add(m_AirDashCollider);
+        m_Colliders.Add(m_DashCollider);
+        m_Colliders.Add(m_JumpCollider);
+        m_Colliders.Add(m_SlideCollider);
+        m_Colliders.Add(m_RunCollider);
+        
         m_Coins = GetComponent<Coins>();
         m_SpeedController = GetComponent<SpeedController>();
         m_rigidbody = GetComponent<Rigidbody2D>();
@@ -106,7 +117,7 @@ public class Player : MonoBehaviour
                 () =>
                 {
                     so_JumpTime.Value = m_JumpTime;
-                    EnableJumpCollider();
+                    EnableOnly(m_JumpCollider);
                 })
             );
         At(jumpState, fallingState, new FuncPredicate(() => !m_JumpInput && m_JumpAnimationFinished));
@@ -114,21 +125,21 @@ public class Player : MonoBehaviour
             () => Grounded,
             () =>
             {
-                EnableRunCollider();
+                EnableOnly(m_RunCollider);
             })
         );
         
         At(runState, slideState, new ActionPredicate(() => m_SlideInput && Grounded,
             () =>
             {
-                EnableSlideCollider();
+                EnableOnly(m_SlideCollider);
             })
         );
         
         At(slideState, runState, new ActionPredicate(() => !m_SlideInput,
             () =>
             {
-                EnableRunCollider();
+                EnableOnly(m_RunCollider);
             })
         );
         
@@ -139,7 +150,7 @@ public class Player : MonoBehaviour
             },
             () =>
             {
-                EnableAirDashCollider();
+                EnableOnly(m_AirDashCollider);
 
                 if (m_SlideInput) m_AirDashMovementDirection = -1f;
                 else
@@ -150,18 +161,21 @@ public class Player : MonoBehaviour
             })
         );
         
-        At(airDashState, fallingState, new ActionPredicate(() => !m_AirDashInput, () => EnableJumpCollider()));
+        At(airDashState, fallingState, new ActionPredicate(() => !m_AirDashInput, () => EnableOnly(m_JumpCollider)));
         At(runState, dashState, new ActionPredicate(() => m_DashInput, () =>
         {
             m_SpeedController.ApplyMultiplier(DashSpeedMultiplier);
             OnDashEvent?.Invoke();
             m_Dashing = true;
             m_DashInput = false;
+            
+            EnableOnly(m_DashCollider);
         }));
         
         At(dashState, runState, new ActionPredicate(() => !m_Dashing, () =>
         {
             m_SpeedController.ApplyMultiplier(1f);
+            EnableOnly(m_RunCollider);
         }));
         
         AtAny(deathState, new FuncPredicate(() => m_IsDead));
@@ -239,42 +253,20 @@ public class Player : MonoBehaviour
         m_JumpAnimationFinished = false;
     }
 
-    private void EnableRunCollider()
+    private void DisableAllColliders()
     {
-        m_RunCollider.enabled = true;
-        
-        m_JumpCollider.enabled = false;
-        m_SlideCollider.enabled = false;
-        m_AirDashCollider.enabled = false;
+        foreach (var item in m_Colliders)
+        {
+            item.enabled = false;
+        }
     }
 
-    private void EnableJumpCollider()
+    private void EnableOnly(Collider2D playerCollider2D)
     {
-        m_JumpCollider.enabled = true;
-        
-        m_RunCollider.enabled = false;
-        m_SlideCollider.enabled = false;
-        m_AirDashCollider.enabled = false;
+        DisableAllColliders();
+        playerCollider2D.enabled = true;
     }
-
-    private void EnableSlideCollider()
-    {
-        m_SlideCollider.enabled = true;
-        
-        m_RunCollider.enabled = false;
-        m_JumpCollider.enabled = false;
-        m_AirDashCollider.enabled = false;
-    }
-
-    private void EnableAirDashCollider()
-    {
-        m_AirDashCollider.enabled = true;
-        
-        m_SlideCollider.enabled = false;
-        m_RunCollider.enabled = false;
-        m_JumpCollider.enabled = false;
-    }
-
+    
     public void SwitchControlsToAirDash()
     {
         m_inputReader.JumpEvent -= OnJump;
@@ -306,6 +298,11 @@ public class Player : MonoBehaviour
     public void RevertGravity()
     {
         transform.Translate(Vector2.up * (GravityForce * Time.deltaTime));
+    }
+
+    public void ApplyGravity(float force, Vector2 direction)
+    {
+        transform.Translate(direction * (force * Time.deltaTime));
     }
     
     private void OnTriggerEnter2D(Collider2D other)
