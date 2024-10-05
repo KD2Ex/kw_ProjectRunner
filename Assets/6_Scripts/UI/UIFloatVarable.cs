@@ -1,7 +1,7 @@
 using TMPro;
 using UnityEngine;
 
-public class UICoins : MonoBehaviour
+public class UIFloatVarable : MonoBehaviour
 {
     [SerializeField] private FloatVariable m_Value;
 

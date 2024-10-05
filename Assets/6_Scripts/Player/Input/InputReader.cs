@@ -17,6 +17,9 @@ public class InputReader : ScriptableObject, PlayerInput.IGameplayActions, Playe
     public UnityAction DashAbilityTest;
     public UnityAction RestartScenesEvent;
     
+    public bool RunTriggered =>_input.Gameplay.Run.triggered;
+
+    
     public void DisableGameplayInput()
     {
         _input.Gameplay.Disable();

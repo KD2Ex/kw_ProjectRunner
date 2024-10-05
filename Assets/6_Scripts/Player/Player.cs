@@ -10,6 +10,11 @@ public class Player : MonoBehaviour
     [Header("Stats")]
     [Range(0, 3)]
     [SerializeField] private float m_JumpTime;
+
+    [SerializeField] private float m_EnergyToDash;
+    private float m_DashEnergy = 0f;
+    private bool m_DashEnergyFull => m_DashEnergy >= 500;
+    
     public float JumpTime => m_JumpTime;
 
     #region SO Data
@@ -17,6 +22,7 @@ public class Player : MonoBehaviour
     [Header("Reference values")] 
     [SerializeField] private FloatVariable so_ChunksCurrentSpeed;
     [SerializeField] private FloatVariable so_JumpTime;
+    [SerializeField] private FloatVariable so_DashEnergy;
 
 
     #endregion
@@ -65,6 +71,7 @@ public class Player : MonoBehaviour
     private bool m_SlideInput;
     private bool m_AirDashInput;
     private bool m_DashInput;
+    private bool m_RunInput;
 
     #endregion
 
@@ -213,7 +220,7 @@ public class Player : MonoBehaviour
         );
         
         At(airDashState, fallingState, new ActionPredicate(() => !m_AirDashInput, () => EnableOnly(m_JumpCollider)));
-        At(runState, dashState, new ActionPredicate(() => m_DashInput, () =>
+        At(runState, dashState, new ActionPredicate(() => m_DashEnergyFull && m_inputReader.RunTriggered, () =>
         {
             m_SpeedController.ApplyMultiplier(DashSpeedMultiplier);
             OnDashEvent?.Invoke();
@@ -241,6 +248,7 @@ public class Player : MonoBehaviour
     
     private void OnEnable()
     {
+        m_inputReader.RunEvent += OnRun;
         m_inputReader.JumpEvent += OnJump;
         m_inputReader.SlideEvent += OnSlide;
         m_inputReader.StopEvent += OnStop;
@@ -250,6 +258,7 @@ public class Player : MonoBehaviour
 
     private void OnDisable()
     {
+        m_inputReader.RunEvent -= OnRun;
         m_inputReader.JumpEvent -= OnJump;
         m_inputReader.SlideEvent -= OnSlide;
         m_inputReader.StopEvent -= OnStop;
@@ -277,6 +286,7 @@ public class Player : MonoBehaviour
         m_StateMachine.FixedUpdate();
     }
 
+    private void OnRun(bool value) => m_RunInput = value;
     private void OnStop(bool value) => m_StopInput = value;
     private void OnJump(bool value) => m_JumpInput = value;
     private void OnSlide(bool value) => m_SlideInput = value;
@@ -360,6 +370,7 @@ public class Player : MonoBehaviour
             case "Coin":
                 other.gameObject.SetActive(false);
                 m_Coins.AddCoins(1);
+                AddDashEnergy(10);
                 return;
         }
     }
@@ -428,8 +439,24 @@ public class Player : MonoBehaviour
 
     public void ActivateDash()
     {
+        m_DashEnergy -= 500;
+        so_DashEnergy.Value -= 500;
         m_rigidbody.excludeLayers = c_LayerMaskDash;
         Invincible = true;
+    }
+
+    private void AddDashEnergy(float value)
+    {
+        if (m_DashEnergy + value >= m_EnergyToDash)
+        {
+            m_DashEnergy = m_EnergyToDash;
+            so_DashEnergy.Value = m_EnergyToDash;
+            return;
+        }
+        m_DashEnergy += value;
+        so_DashEnergy.Value = m_DashEnergy;
+
+        Debug.Log(m_DashEnergy);
     }
     
     public bool Invincible { get; private set; }
