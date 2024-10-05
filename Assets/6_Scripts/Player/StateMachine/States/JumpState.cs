@@ -1,9 +1,9 @@
-﻿using System.Linq;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class JumpState : BaseState
 {
-    private bool playing;
+    private float time;
+    private float elapsedTime = 0f;
     
     public JumpState(Player player, Animator animator) : base(player, animator)
     {
@@ -12,7 +12,7 @@ public class JumpState : BaseState
     public override void Enter()
     {
         base.Enter();
-        
+        time = player.JumpTime;
         animator.SetBool(player.animHash_Jump, true);
     }
 
@@ -24,6 +24,14 @@ public class JumpState : BaseState
         {
             player.transform.Translate(Vector2.up * (player.JumpSpeed * Time.deltaTime));
         }
+
+        elapsedTime += Time.deltaTime;
+
+        if (elapsedTime > time)
+        {
+            elapsedTime = 0f;
+            player.ForceToGetDown();
+        }
     }
 
     public override void FixedUpdate()
@@ -34,6 +42,7 @@ public class JumpState : BaseState
     public override void Exit()
     {
         base.Exit();
+        elapsedTime = 0f;
         animator.SetBool(player.animHash_Jump, false);
     }
 }

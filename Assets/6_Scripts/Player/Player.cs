@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -7,8 +6,15 @@ public class Player : MonoBehaviour
 {
     [SerializeField] private InputReader m_inputReader;
 
-    [Header("Reference values")] [SerializeField]
-    private FloatVariable so_ChunksCurrentSpeed;
+    [Header("Stats")]
+    [Range(0, 3)]
+    [SerializeField] private float m_JumpTime;
+
+    public float JumpTime => m_JumpTime;
+    
+    [Header("Reference values")] 
+    [SerializeField] private FloatVariable so_ChunksCurrentSpeed;
+    [SerializeField] private FloatVariable so_JumpTime;
 
     [Header("Hit boxes")] 
     [SerializeField] private Collider2D m_RunCollider;
@@ -37,6 +43,10 @@ public class Player : MonoBehaviour
     private bool m_AirDashInput;
     private bool m_DashInput;
 
+    public void ForceToGetDown()
+    {
+        m_JumpInput = false;
+    }
     public bool JumpInput => m_JumpInput;
     
     private bool m_JumpAnimationFinished;
@@ -95,6 +105,7 @@ public class Player : MonoBehaviour
                 () => m_JumpInput && Grounded,
                 () =>
                 {
+                    so_JumpTime.Value = m_JumpTime;
                     EnableJumpCollider();
                 })
             );
