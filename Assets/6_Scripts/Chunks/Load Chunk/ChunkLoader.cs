@@ -5,7 +5,7 @@ using UnityEngine;
 public class ChunkLoader : MonoBehaviour
 {
     [SerializeField] private List<Chunk> m_ChunksToLoad;
-    [SerializeField] private StartChunk set;
+    [SerializeField] private ChunkList set;
     [SerializeField] private GameObject triggers;
 
     private Transform parent;

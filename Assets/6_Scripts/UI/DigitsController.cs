@@ -47,7 +47,6 @@ public class DigitsController : MonoBehaviour
         digit.transform.localPosition = localPos;
         digit.SetDigit(value);
         
-        Debug.Log($"Digit: {value}");
         return digit;
     }
 
@@ -55,14 +54,10 @@ public class DigitsController : MonoBehaviour
     {
         spawnPoint.transform.SetParent(null);
         var length = digits.Count * .35f + (digits.Count - 1) * xGap;
-        Debug.Log($"Length: {length}");
-        Debug.Log($"First digit: {digits[0].transform.position.x}");
         var center = spawnPoint.position.x - length / 4;
 
         transform.position = new Vector3(center, transform.position.y, 0f);
         spawnPoint.transform.SetParent(transform);
-
-        Debug.Log($"Aligned at {center}");
     }
     
     // Start is called before the first frame update

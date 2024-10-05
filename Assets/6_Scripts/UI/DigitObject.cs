@@ -11,8 +11,6 @@ public class DigitObject : MonoBehaviour
     public void SetDigit(int digit)
     {
         float time = digit / 10f;
-        Debug.Log(time);
-        
         m_Animator.Play(clip.name, 0, time);
     }
     

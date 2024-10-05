@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(SpeedController))]
 public class Player : MonoBehaviour
@@ -64,6 +65,8 @@ public class Player : MonoBehaviour
     public float m_AirDashMovementDirection { get; private set; }
 
     private IState sleepState;
+
+    public UnityEvent OnDashEvent;
     
     private void Awake()
     {
@@ -140,6 +143,7 @@ public class Player : MonoBehaviour
         At(runState, dashState, new ActionPredicate(() => m_DashInput, () =>
         {
             m_SpeedController.ApplyMultiplier(DashSpeedMultiplier);
+            OnDashEvent?.Invoke();
             m_Dashing = true;
             m_DashInput = false;
         }));
@@ -153,7 +157,6 @@ public class Player : MonoBehaviour
         AtAny(sleepState, new ActionPredicate(() => m_Restart, () => m_Restart = false));
 
         m_rigidbody.excludeLayers = 0;
-        Debug.Log(m_rigidbody.excludeLayers.value);
         
     }
 
@@ -296,8 +299,6 @@ public class Player : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("On Trigger:  " + other.gameObject.name);
-
         var tag = other.gameObject.tag;
 
         switch (tag)
@@ -305,7 +306,6 @@ public class Player : MonoBehaviour
             case "Coin":
                 other.gameObject.SetActive(false);
                 m_Coins.AddCoins(1);
-                Debug.Log("Coin");
                 return;
         }
     }

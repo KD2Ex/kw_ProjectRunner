@@ -14,6 +14,5 @@ public class SyncAnimation : MonoBehaviour
     public void Sync(float offset)
     {
         animator.Play(m_AnimationName, 0, offset);
-        Debug.Log("Synced");
     }
 }

@@ -22,8 +22,6 @@ public class DashState : BaseState
         base.Update();
         elapsedTime += Time.deltaTime;
 
-        Debug.Log($"Jump input in dash state {player.JumpInput}");
-        
         if (elapsedTime > 5f)
         {
             player.DisableDash();
