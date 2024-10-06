@@ -261,7 +261,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 420942069154380877}
-  - component: {fileID: 4428524390392078964}
   m_Layer: 0
   m_Name: chunk_1 Cone n Log
   m_TagString: Untagged
@@ -296,19 +295,6 @@ Transform:
   - {fileID: 1542083061299835028}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4428524390392078964
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8712773012860171368}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 27e1f1b4bf4a9e541994afe2d57777a1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ChunkRandomManager: {fileID: 11400000, guid: 640dddb741bda1e44b8968932f2e1a8f, type: 2}
 --- !u!1 &9011428261872913260
 GameObject:
   m_ObjectHideFlags: 0

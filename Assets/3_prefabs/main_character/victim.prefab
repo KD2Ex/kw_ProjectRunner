@@ -442,7 +442,7 @@ Transform:
   m_GameObject: {fileID: 3295700264019588206}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -14.77, y: -1.81, z: 0}
+  m_LocalPosition: {x: -14.75, y: -1.86, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -547,8 +547,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_inputReader: {fileID: 11400000, guid: a52d0d0aaf7ac834aa753f91be2ca1a2, type: 2}
+  m_CenterController: {fileID: 0}
   m_JumpTime: 1.5
   m_EnergyToDash: 500
+  m_Shield: {fileID: 0}
+  m_Magnet: {fileID: 0}
   so_ChunksCurrentSpeed: {fileID: 11400000, guid: b1c856669e9b5de4b9f4bc17e8bd801f, type: 2}
   so_JumpTime: {fileID: 11400000, guid: 29c75169b017bbe4c95bd5064e723143, type: 2}
   so_DashEnergy: {fileID: 11400000, guid: a98efbcedc037584a9ff3ddbcbac39f6, type: 2}
@@ -680,7 +683,7 @@ BoxCollider2D:
   m_Offset: {x: -0.6780319, y: 0.24215412}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0.3853562, y: 0.63246554}
     oldSize: {x: 6.509063, y: 8.4800005}
     newSize: {x: 8.13, y: 10.6}
     adaptiveTilingThreshold: 0.5

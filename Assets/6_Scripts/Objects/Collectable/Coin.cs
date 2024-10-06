@@ -20,4 +20,5 @@ public class Coin : Collectable
         player.PickupCoin();
         gameObject.SetActive(false);
     }
+    
 }

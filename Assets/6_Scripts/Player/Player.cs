@@ -6,7 +6,8 @@ using UnityEngine.Events;
 public class Player : MonoBehaviour
 {
     [SerializeField] private InputReader m_inputReader;
-
+    [SerializeField] private CenterController m_CenterController;
+    public CenterController CenterController => m_CenterController;
     [Header("Stats")]
     [Range(0, 3)]
     [SerializeField] private float m_JumpTime;
@@ -19,7 +20,8 @@ public class Player : MonoBehaviour
 
     #region PowerUps
 
-    [SerializeField] private Shield shield;
+    [SerializeField] private Shield m_Shield;
+    [SerializeField] private Magnet m_Magnet;
 
     #endregion
     
@@ -271,6 +273,8 @@ public class Player : MonoBehaviour
         m_inputReader.AirDashEvent -= OnAirDash;
         m_inputReader.DashAbilityTest -= OnDash;
     }
+
+    private SpriteRenderer sprite;
     
     void Start()
     {
@@ -279,12 +283,15 @@ public class Player : MonoBehaviour
 
         //Time.timeScale = .5f;
         m_StateMachine.SetState(sleepState);
-        
+
+        sprite = GetComponent<SpriteRenderer>();
     }
 
     void Update()
     {
        m_StateMachine.Update();
+
+       Debug.Log(sprite.bounds.center);
     }
 
     private void FixedUpdate()
@@ -327,6 +334,25 @@ public class Player : MonoBehaviour
     {
         DisableAllColliders();
         playerCollider2D.enabled = true;
+
+        /*if (playerCollider2D == m_JumpCollider)
+        {
+            m_CenterController.ChangeAlignment(Align.Top);
+            return;
+        }
+
+        if (playerCollider2D == m_SlideCollider)
+        {
+            m_CenterController.ChangeAlignment(Align.Bottom);
+            return;
+        }
+
+        if (playerCollider2D == m_RunCollider)
+        {
+            m_CenterController.ChangeAlignment(Align.Center);
+            return;
+        }*/
+        
     }
     
     public void SwitchControlsToAirDash()
@@ -373,32 +399,36 @@ public class Player : MonoBehaviour
         AddDashEnergy(10);
     }
 
-    public void GetShielded(bool isTrue)
+    public void GetShield()
     {
-        if (isTrue)
+        if (m_Shield.gameObject.activeSelf)
         {
-            if (shield.gameObject.activeSelf)
-            {
-                shield.AddDuration();
-            }
-            else
-            {
-                shield.gameObject.SetActive(true);
-                Invincible = true;
-            }
+            m_Shield.AddDuration();
         }
         else
         {
-            Invincible = false;
+            m_Shield.gameObject.SetActive(true);
         }
+    }
+
+    public void GetMagnet()
+    {
+        
     }
     
     private void OnTriggerEnter2D(Collider2D other)
     {
         var tag = other.gameObject.tag;
 
+        Debug.Log(other.gameObject.name);
         other.TryGetComponent<Collectable>(out var collectable);
-        if (collectable) collectable.Pickup(this);
+        if (collectable)
+        {
+            collectable.Pickup(this);
+            return;
+        }
+        
+        other.TryGetComponent<Obstacle>(out var obstacle);
         
         /*switch (tag)
         {
@@ -407,6 +437,35 @@ public class Player : MonoBehaviour
 
                 return;
         }*/
+
+        if (!other.CompareTag("Enemy")) return;
+        
+        if (Invincible)
+        {
+            if (obstacle)
+            {
+                obstacle.GetDestroyed();
+            }
+            return;
+        }
+        
+        if (m_StateMachine.CurrentState.ToString() == "SlideState")
+        {
+            if (obstacle)
+            {
+                obstacle.GetDestroyed();
+            }
+            else
+            {
+                Die();
+            }
+        }
+        else
+        {
+            m_SpeedController.ResetSpeed();
+            Die();
+        }
+        
     }
 
     private void OnCollisionEnter2D(Collision2D other)
@@ -466,17 +525,15 @@ public class Player : MonoBehaviour
     
     public void DisableDash()
     {
-        m_rigidbody.excludeLayers = c_LayerMaskDefault;
+        //m_rigidbody.excludeLayers = c_LayerMaskDefault;
         m_Dashing = false;
-        Invincible = false;
     }
 
     public void ActivateDash()
     {
         m_DashEnergy -= 500;
         so_DashEnergy.Value -= 500;
-        m_rigidbody.excludeLayers = c_LayerMaskDash;
-        Invincible = true;
+        //m_rigidbody.excludeLayers = c_LayerMaskDash;
     }
 
     private void AddDashEnergy(float value)
@@ -489,9 +546,7 @@ public class Player : MonoBehaviour
         }
         m_DashEnergy += value;
         so_DashEnergy.Value = m_DashEnergy;
-
-        Debug.Log(m_DashEnergy);
     }
-    
-    public bool Invincible { get; private set; }
+
+    public bool Invincible => m_Dashing || m_Shield.gameObject.activeSelf;
 }

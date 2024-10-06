@@ -10,6 +10,7 @@ public class FallingState : BaseState
     public override void Enter()
     {
         base.Enter();
+        player.CenterController.ChangeAlignment(Align.Center);
     }
 
     public override void Update()
