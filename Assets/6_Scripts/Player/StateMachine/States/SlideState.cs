@@ -10,7 +10,6 @@ public class SlideState : BaseState
     {
         base.Enter();
         animator.SetBool(player.animHash_Slide, true);
-        player.CenterController.ChangeAlignment(Align.Bottom);
     }
 
     public override void Update()

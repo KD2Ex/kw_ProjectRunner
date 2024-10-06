@@ -15,10 +15,6 @@ public class MagnetToPlayer : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
-    private void Start()
-    {
-    }
-
     private void Update()
     {
         if (!started) return;

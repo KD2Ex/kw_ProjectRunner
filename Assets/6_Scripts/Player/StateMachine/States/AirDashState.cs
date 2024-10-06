@@ -13,6 +13,7 @@ public class AirDashState : BaseState
         base.Enter();
         animator.SetBool(player.animHash_Bounce, true);
         player.SwitchControlsToAirDash();
+        player.BoostersParentController.ChangeParent(Align.Top);
     }
 
     public override void Update()
@@ -37,6 +38,7 @@ public class AirDashState : BaseState
     public override void Exit()
     {
         base.Exit();
+        player.BoostersParentController.ChangeParent(Align.Center);
         animator.SetBool(player.animHash_Bounce, false);
         player.ReturnToDefaultControls();
 

@@ -6,8 +6,10 @@ using UnityEngine.Events;
 public class Player : MonoBehaviour
 {
     [SerializeField] private InputReader m_inputReader;
-    [SerializeField] private CenterController m_CenterController;
-    public CenterController CenterController => m_CenterController;
+    [SerializeField] private PlayerBoostersParentController m_BoostersParentController;
+    public PlayerBoostersParentController BoostersParentController => 
+        m_BoostersParentController;
+    
     [Header("Stats")]
     [Range(0, 3)]
     [SerializeField] private float m_JumpTime;
@@ -293,8 +295,6 @@ public class Player : MonoBehaviour
     void Update()
     {
        m_StateMachine.Update();
-
-       Debug.Log(sprite.bounds.center);
     }
 
     private void FixedUpdate()
@@ -400,30 +400,6 @@ public class Player : MonoBehaviour
     {
         m_Coins.AddCoins(1);
         AddDashEnergy(10);
-    }
-
-    public void GetShield()
-    {
-        if (m_Shield.gameObject.activeSelf)
-        {
-            m_Shield.AddDuration();
-        }
-        else
-        {
-            m_Shield.gameObject.SetActive(true);
-        }
-    }
-
-    public void GetMagnet()
-    {
-        if (m_Shield.gameObject.activeSelf)
-        {
-            m_Shield.AddDuration();
-        }
-        else
-        {
-            m_Shield.gameObject.SetActive(true);
-        }
     }
 
     public void GetPowerUp(PowerUp powerUp)

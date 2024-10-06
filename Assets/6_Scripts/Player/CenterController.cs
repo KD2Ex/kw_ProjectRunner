@@ -6,8 +6,7 @@ using UnityEngine;
 public enum Align
 {
     Top,
-    Center,
-    Bottom
+    Center
 }
 
 [Serializable]

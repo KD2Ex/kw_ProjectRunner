@@ -14,7 +14,6 @@ public class JumpState : BaseState
         base.Enter();
         time = player.JumpTime;
         animator.SetBool(player.animHash_Jump, true);
-        player.CenterController.ChangeAlignment(Align.Top);
     }
 
     public override void Update()

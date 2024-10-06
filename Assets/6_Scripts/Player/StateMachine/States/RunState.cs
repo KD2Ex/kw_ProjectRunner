@@ -10,7 +10,6 @@ public class RunState : BaseState
     {
         base.Enter();
         animator.SetBool(player.animHash_Move, true);
-        player.CenterController.ChangeAlignment(Align.Center);
         // subscribe W action to Jump
     }
 
