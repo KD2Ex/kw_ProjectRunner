@@ -21,7 +21,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: f3051224438942446b74b1c535f8f7c1, type: 2}
+  m_Motion: {fileID: 7400000, guid: 8b875ab4b3bab4ddf87e0b56a54adca0, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -36,18 +36,18 @@ AnimatorController:
   m_Name: 1_tree_three
   serializedVersion: 5
   m_AnimatorParameters:
-  - m_Name: start
+  - m_Name: Destroy
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: Reset
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -70,7 +70,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: start
+    m_ConditionEvent: Destroy
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -4392616460872610392}
@@ -107,7 +107,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 6bd4426c0a633a0438027ce660471ca7, type: 2}
+  m_Motion: {fileID: 7400000, guid: d6c01fa36ee2b4a0ba9ba9ad8ac2c961, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 

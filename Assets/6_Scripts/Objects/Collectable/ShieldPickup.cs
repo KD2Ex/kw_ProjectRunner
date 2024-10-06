@@ -2,7 +2,7 @@
 {
     public override void Pickup(Player player)
     {
-        player.GetShield();
+        player.GetPowerUp(player.Shield);
         gameObject.SetActive(false);
     }
 }

@@ -23,6 +23,9 @@ public class Player : MonoBehaviour
     [SerializeField] private Shield m_Shield;
     [SerializeField] private Magnet m_Magnet;
 
+    public Shield Shield => m_Shield;
+    public Magnet Magnet => m_Magnet;
+    
     #endregion
     
     #region SO Data
@@ -413,7 +416,26 @@ public class Player : MonoBehaviour
 
     public void GetMagnet()
     {
-        
+        if (m_Shield.gameObject.activeSelf)
+        {
+            m_Shield.AddDuration();
+        }
+        else
+        {
+            m_Shield.gameObject.SetActive(true);
+        }
+    }
+
+    public void GetPowerUp(PowerUp powerUp)
+    {
+        if (powerUp.gameObject.activeSelf)
+        {
+            powerUp.AddDuration();
+        }
+        else
+        {
+            powerUp.gameObject.SetActive(true);
+        }
     }
     
     private void OnTriggerEnter2D(Collider2D other)
