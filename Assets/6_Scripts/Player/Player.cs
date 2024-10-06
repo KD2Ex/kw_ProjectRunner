@@ -17,6 +17,12 @@ public class Player : MonoBehaviour
     
     public float JumpTime => m_JumpTime;
 
+    #region PowerUps
+
+    [SerializeField] private Shield shield;
+
+    #endregion
+    
     #region SO Data
 
     [Header("Reference values")] 
@@ -360,19 +366,47 @@ public class Player : MonoBehaviour
     {
         transform.Translate(direction * (force * Time.deltaTime));
     }
+
+    public void PickupCoin()
+    {
+        m_Coins.AddCoins(1);
+        AddDashEnergy(10);
+    }
+
+    public void GetShielded(bool isTrue)
+    {
+        if (isTrue)
+        {
+            if (shield.gameObject.activeSelf)
+            {
+                shield.AddDuration();
+            }
+            else
+            {
+                shield.gameObject.SetActive(true);
+                Invincible = true;
+            }
+        }
+        else
+        {
+            Invincible = false;
+        }
+    }
     
     private void OnTriggerEnter2D(Collider2D other)
     {
         var tag = other.gameObject.tag;
 
-        switch (tag)
+        other.TryGetComponent<Collectable>(out var collectable);
+        if (collectable) collectable.Pickup(this);
+        
+        /*switch (tag)
         {
             case "Coin":
                 other.gameObject.SetActive(false);
-                m_Coins.AddCoins(1);
-                AddDashEnergy(10);
+
                 return;
-        }
+        }*/
     }
 
     private void OnCollisionEnter2D(Collision2D other)
