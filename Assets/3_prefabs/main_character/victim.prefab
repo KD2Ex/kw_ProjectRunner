@@ -293,6 +293,7 @@ GameObject:
   - component: {fileID: 5044802864822521572}
   - component: {fileID: 5404986015755594016}
   - component: {fileID: 3362626057229836298}
+  - component: {fileID: 4031315632370205393}
   m_Layer: 0
   m_Name: X2_ON
   m_TagString: Untagged
@@ -484,6 +485,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &4031315632370205393
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3268589507484647072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe96ded3773540848a70e68791617518, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Duration: {fileID: 11400000, guid: 4d63758c77fb9244899e7ab19a75e780, type: 2}
 --- !u!1 &3295700264019588206
 GameObject:
   m_ObjectHideFlags: 0
@@ -628,6 +642,7 @@ MonoBehaviour:
   m_EnergyToDash: 500
   m_Shield: {fileID: 5220983966587464286}
   m_Magnet: {fileID: 7030251536643839871}
+  m_CoinMultiplier: {fileID: 4031315632370205393}
   so_ChunksCurrentSpeed: {fileID: 11400000, guid: b1c856669e9b5de4b9f4bc17e8bd801f, type: 2}
   so_JumpTime: {fileID: 11400000, guid: 29c75169b017bbe4c95bd5064e723143, type: 2}
   so_DashEnergy: {fileID: 11400000, guid: a98efbcedc037584a9ff3ddbcbac39f6, type: 2}

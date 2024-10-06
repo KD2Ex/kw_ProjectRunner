@@ -13,6 +13,7 @@ public class DashState : BaseState
     public override void Enter()
     {
         base.Enter();
+        elapsedTime = 0f;
         animator.SetBool(player.animHash_Dash, true);
         player.ActivateDash();
     }
@@ -81,6 +82,12 @@ public class DashState : BaseState
     public override void Exit()
     {
         base.Exit();
+        elapsedTime = 0f;
         animator.SetBool(player.animHash_Dash, false);
+    }
+
+    public void AddDuration(float value)
+    {
+        elapsedTime -= value;
     }
 }

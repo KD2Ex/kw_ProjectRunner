@@ -16,7 +16,7 @@ public class Player : MonoBehaviour
 
     [SerializeField] private float m_EnergyToDash;
     private float m_DashEnergy = 0f;
-    private bool m_DashEnergyFull => m_DashEnergy >= 500;
+    private bool m_DashEnergyFull => m_DashEnergy >= m_EnergyToDash;
     
     public float JumpTime => m_JumpTime;
 
@@ -24,7 +24,9 @@ public class Player : MonoBehaviour
 
     [SerializeField] private Shield m_Shield;
     [SerializeField] private Magnet m_Magnet;
+    [SerializeField] private CoinMultiplier m_CoinMultiplier;
 
+    public CoinMultiplier CoinMultiplier => m_CoinMultiplier;
     public Shield Shield => m_Shield;
     public Magnet Magnet => m_Magnet;
     
@@ -127,6 +129,7 @@ public class Player : MonoBehaviour
     
     private StateMachine m_StateMachine;
     private IState sleepState;
+    private DashState dashState;
     
     #endregion
 
@@ -168,7 +171,7 @@ public class Player : MonoBehaviour
         var fallingState = new FallingState(this, m_Animator);
         var slideState = new SlideState(this, m_Animator);
         var airDashState = new AirDashState(this, m_Animator);
-        var dashState = new DashState(this, m_Animator);
+        dashState = new DashState(this, m_Animator);
         var deathState = new DeathState(this, m_Animator);
         
         At(sleepState, runState, new ActionPredicate(() => m_Running, () => OnStartRunning?.Invoke()));
@@ -235,12 +238,7 @@ public class Player : MonoBehaviour
         At(airDashState, fallingState, new ActionPredicate(() => !m_AirDashInput, () => EnableOnly(m_JumpCollider)));
         At(runState, dashState, new ActionPredicate(() => m_DashEnergyFull && m_inputReader.RunTriggered, () =>
         {
-            m_SpeedController.ApplyMultiplier(DashSpeedMultiplier);
-            OnDashEvent?.Invoke();
-            m_Dashing = true;
-            m_DashInput = false;
-            
-            EnableOnly(m_DashCollider);
+            OnDashStateEnter();
         }));
         
         At(dashState, runState, new ActionPredicate(() => !m_Dashing, () =>
@@ -254,6 +252,23 @@ public class Player : MonoBehaviour
 
         m_rigidbody.excludeLayers = 0;
         
+    }
+
+    public void EnterDashState()
+    {
+        OnDashStateEnter();
+        dashState.AddDuration(5f); // replace with so_DashPickupDuration
+        m_StateMachine.ChangeState(dashState);
+    }
+    
+    private void OnDashStateEnter()
+    {
+        m_SpeedController.ApplyMultiplier(DashSpeedMultiplier);
+        OnDashEvent?.Invoke();
+        m_Dashing = true;
+        m_DashInput = false;
+            
+        EnableOnly(m_DashCollider);
     }
 
     protected void At(IState from, IState to, IPredicate condition) => m_StateMachine.AddTransition(from, to, condition);
@@ -337,25 +352,6 @@ public class Player : MonoBehaviour
     {
         DisableAllColliders();
         playerCollider2D.enabled = true;
-
-        /*if (playerCollider2D == m_JumpCollider)
-        {
-            m_CenterController.ChangeAlignment(Align.Top);
-            return;
-        }
-
-        if (playerCollider2D == m_SlideCollider)
-        {
-            m_CenterController.ChangeAlignment(Align.Bottom);
-            return;
-        }
-
-        if (playerCollider2D == m_RunCollider)
-        {
-            m_CenterController.ChangeAlignment(Align.Center);
-            return;
-        }*/
-        
     }
     
     public void SwitchControlsToAirDash()
@@ -529,8 +525,8 @@ public class Player : MonoBehaviour
 
     public void ActivateDash()
     {
-        m_DashEnergy -= 500;
-        so_DashEnergy.Value -= 500;
+        m_DashEnergy -= m_EnergyToDash;
+        so_DashEnergy.Value -= m_EnergyToDash;
         //m_rigidbody.excludeLayers = c_LayerMaskDash;
     }
 

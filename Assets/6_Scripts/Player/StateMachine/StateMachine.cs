@@ -32,7 +32,7 @@ public class StateMachine
         m_Current.State?.Enter();
     }
     
-    private void ChangeState(IState state)
+    public void ChangeState(IState state)
     {
         /*Debug.Log("Current: " + m_Current.State);
         Debug.Log("New : " + state);*/
