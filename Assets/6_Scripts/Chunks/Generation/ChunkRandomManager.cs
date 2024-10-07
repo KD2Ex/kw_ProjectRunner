@@ -69,6 +69,12 @@ public class ChunkRandomManager : ScriptableObject
             foreach (var chunk in chunkSet.List.Items)
             {
                 if (chunk.Available) continue;
+                var evalResult = chunk.RestoreCondition.Evaluate();
+                if (evalResult)
+                {
+                    chunk.RestoreCondition.ResetTrigger();
+                    chunk.Restore();
+                }
             }
         }
     }

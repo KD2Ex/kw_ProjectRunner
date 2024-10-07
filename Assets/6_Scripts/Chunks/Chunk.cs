@@ -10,9 +10,18 @@ public class Chunk
     [field: SerializeField] public bool RemoveAfterSpawn { get; private set; }
     public bool Available = true;
 
+    [field: SerializeField] public ScriptableCondition ScriptableCondition { get; private set; }
+
+    public ChunkSpawnCondition RestoreCondition;
+    
     public void Initialize()
     {
         Available = true;
+
+        if (RemoveAfterSpawn && ScriptableCondition)
+        {
+            RestoreCondition = ScriptableCondition.Init();
+        } 
     }
     
     public void OnInstantiate()
