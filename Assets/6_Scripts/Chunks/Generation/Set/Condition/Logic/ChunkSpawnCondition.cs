@@ -1,5 +1,4 @@
-﻿using UnityEngine;
-
+﻿
 public abstract class ChunkSpawnCondition
 {
     public abstract bool Evaluate();

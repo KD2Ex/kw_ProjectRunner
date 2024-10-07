@@ -10,9 +10,5 @@ public class TimeCondition : ScriptableCondition
     {
         return new TimeSpawnCondition(this);
     }
-    public override bool Evaluate() => timerData.Value > TimeToEvaluate;
 
-    public override void ResetTrigger()
-    {
-    }
 }
