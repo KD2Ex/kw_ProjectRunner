@@ -518,10 +518,9 @@ MonoBehaviour:
     _prefab: Assets/3_prefabs/Parallax Layers/Layer objects/Location 1/Default Location
       Pack/OLD_GLUED_sky.prefab
   - _gameObject: {fileID: 921565715}
-    _prefab: Assets/3_prefabs/locations/location_one/Obstacles/Desctructable/Cone.prefab
+    _prefab: Assets/3_prefabs/locations/location_one/Enemies/Desctructable/Cone.prefab
   - _gameObject: {fileID: 105458383}
-    _prefab: Assets/3_prefabs/locations/location_one/Obstacles/Desctructable/Tree
-      One.prefab
+    _prefab: Assets/3_prefabs/locations/location_one/Enemies/Desctructable/Tree One.prefab
   - _gameObject: {fileID: 1813980940}
     _prefab: Assets/3_prefabs/Collectables/Coin.prefab
   - _gameObject: {fileID: 289609482}
@@ -872,37 +871,6 @@ Transform:
   - {fileID: 326039036}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &853429018
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 853429019}
-  m_Layer: 0
-  m_Name: GameObject
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &853429019
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 853429018}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1139645054}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &866670054 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8067743920688256546, guid: 07ec098b8f84c8e4a9805f3701258ae1, type: 3}
@@ -1023,38 +991,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6331656442776570075, guid: 2ae42c228a56a5245b050215d8ff0ced, type: 3}
   m_PrefabInstance: {fileID: 8649090203571968365}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1139645053
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1139645054}
-  m_Layer: 0
-  m_Name: Magnet
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &1139645054
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1139645053}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.19, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 853429019}
-  m_Father: {fileID: 2025845751}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1170428481 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1238397567683815970, guid: dc2092aced7e96f4d970a0877b566346, type: 3}
@@ -2181,7 +2117,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1139645054}
   - {fileID: 530429294}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2472,18 +2407,6 @@ PrefabInstance:
     - target: {fileID: 3295700264019588206, guid: fd201fd794d481744a6eaf6e75ce15cc, type: 3}
       propertyPath: m_Name
       value: victim
-      objectReference: {fileID: 0}
-    - target: {fileID: 3387110282930873259, guid: fd201fd794d481744a6eaf6e75ce15cc, type: 3}
-      propertyPath: m_EnergyToDash
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 6093950592488004033, guid: fd201fd794d481744a6eaf6e75ce15cc, type: 3}
-      propertyPath: m_Size.y
-      value: 5.9124317
-      objectReference: {fileID: 0}
-    - target: {fileID: 6093950592488004033, guid: fd201fd794d481744a6eaf6e75ce15cc, type: 3}
-      propertyPath: m_Offset.y
-      value: 0.33057702
       objectReference: {fileID: 0}
     - target: {fileID: 7522077933425619329, guid: fd201fd794d481744a6eaf6e75ce15cc, type: 3}
       propertyPath: m_LocalPosition.x

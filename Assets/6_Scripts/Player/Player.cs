@@ -239,6 +239,7 @@ public class Player : MonoBehaviour
         At(runState, dashState, new ActionPredicate(() => m_DashEnergyFull && m_inputReader.RunTriggered, () =>
         {
             OnDashStateEnter();
+            SpendDashEnergy();
         }));
         
         At(dashState, runState, new ActionPredicate(() => !m_Dashing, () =>
@@ -433,6 +434,7 @@ public class Player : MonoBehaviour
         }*/
 
         if (!other.CompareTag("Enemy")) return;
+
         
         if (Invincible)
         {
@@ -523,7 +525,7 @@ public class Player : MonoBehaviour
         m_Dashing = false;
     }
 
-    public void ActivateDash()
+    public void SpendDashEnergy()
     {
         m_DashEnergy -= m_EnergyToDash;
         so_DashEnergy.Value -= m_EnergyToDash;

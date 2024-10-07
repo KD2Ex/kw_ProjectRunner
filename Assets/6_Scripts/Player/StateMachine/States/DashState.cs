@@ -15,7 +15,7 @@ public class DashState : BaseState
         base.Enter();
         elapsedTime = 0f;
         animator.SetBool(player.animHash_Dash, true);
-        player.ActivateDash();
+        player.transform.position = new Vector3(player.transform.position.x, -1.8f, 0f);
     }
 
     public override void Update()
@@ -83,6 +83,8 @@ public class DashState : BaseState
     {
         base.Exit();
         elapsedTime = 0f;
+        player.DisableDash();
+        
         animator.SetBool(player.animHash_Dash, false);
     }
 
