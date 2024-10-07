@@ -41,4 +41,9 @@ public class ChunkSpawnManager : MonoBehaviour
         CurrentChunk = instance.transform;
     }
 
+    public void ClearQueue()
+    {
+        ChunkRandomManager.ClearQueue();
+    }
+    
 }

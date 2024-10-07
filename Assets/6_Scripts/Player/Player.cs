@@ -121,7 +121,7 @@ public class Player : MonoBehaviour
     public UnityEvent OnDashEvent;
     public UnityEvent OnStartRunning;
     public UnityEvent OnStopRunning;
-
+    public UnityEvent OnDeath;
 
     #endregion
 
@@ -506,6 +506,7 @@ public class Player : MonoBehaviour
         m_SpeedController.ResetSpeed();
         m_Coins.ResetValue();
         DisableInput();
+        OnDeath?.Invoke();
     }
 
     public void Restart()

@@ -24,11 +24,15 @@ public class ChunkRandomManager : ScriptableObject
     [SerializeField] private List<PriorityChunk> SpawnQueue;
 
     public List<ChunkSet> Sets => chunkSets;
-    public List<GameObject> PresentChunks;
     
     private void OnEnable()
     {
         
+    }
+
+    public void ClearQueue()
+    {
+        SpawnQueue.Clear();
     }
 
     public void InitializeChunks()
