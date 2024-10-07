@@ -35,6 +35,8 @@ public class ChunkRandomManager : ScriptableObject
     {
         foreach (var set in chunkSets)
         {
+            set.InitCondition();
+            
             foreach (var chunk in set.List.Items)
             {
                 chunk.Initialize();
@@ -91,7 +93,7 @@ public class ChunkRandomManager : ScriptableObject
         var result = new List<PriorityChunk>();
         foreach (var set in highestPrioritySets)
         {
-            set.SpawnCondition.ResetTrigger();
+            set.Condition.ResetTrigger();
             var nextChunk = GetChunkFromList(set.List.Items, FindChunkByWeight);
             
             result.Add(new PriorityChunk(nextChunk, set.Priority));
@@ -106,7 +108,7 @@ public class ChunkRandomManager : ScriptableObject
         
         foreach (var set in sets)
         {
-            var conditionSatisfied = set.SpawnCondition.Evaluate();
+            var conditionSatisfied = set.Condition.Evaluate();
             if (conditionSatisfied)
             {
                 var availableChunkPresent = set.List.Items.FirstOrDefault(chunk => chunk.Available);

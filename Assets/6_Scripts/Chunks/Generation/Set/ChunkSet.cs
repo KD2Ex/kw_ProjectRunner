@@ -6,4 +6,10 @@ public class ChunkSet : ScriptableObject
     public ChunkList List;
     public ScriptableCondition SpawnCondition;
     public int Priority;
+    public ChunkSpawnCondition Condition;
+
+    public void InitCondition()
+    {
+        Condition = SpawnCondition.Init();
+    }
 }
