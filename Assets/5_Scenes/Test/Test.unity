@@ -1505,45 +1505,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3872893639963078119, guid: 9a17c9d16b9736042aa4a741f368d8ff, type: 3}
   m_PrefabInstance: {fileID: 3752164375630225007}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1553156981 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4592588674817901652, guid: 9a17c9d16b9736042aa4a741f368d8ff, type: 3}
-  m_PrefabInstance: {fileID: 3752164375630225007}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1553156979}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bddc715d6e2e9004285d183eba58cab4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1553156982
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1553156979}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8c01f3b0278a4da4ae5a33bd5c4c76fb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameEvent: {fileID: 11400000, guid: a32a6052a92f3ca4fa77d7bc7751d565, type: 2}
-  Response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1553156981}
-        m_TargetAssemblyTypeName: ChunkSpawnManager, Assembly-CSharp
-        m_MethodName: ClearQueue
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1001 &1672396566
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2395,10 +2356,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 3872893639963078119, guid: 9a17c9d16b9736042aa4a741f368d8ff, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1553156982}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9a17c9d16b9736042aa4a741f368d8ff, type: 3}
 --- !u!1 &3858950600128869141 stripped
 GameObject:

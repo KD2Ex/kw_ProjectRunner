@@ -37,7 +37,6 @@ public class MagnetToPlayer : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log(other.tag);
         if (!other.CompareTag("Magnet")) return;
         player = other.transform;
         Execute();

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -10,7 +11,12 @@ public class Timer : MonoBehaviour
     
     private float seconds;
     public UnityEvent EverySecond;
-    
+
+    private void Awake()
+    {
+        timerData.Value = 0f;
+    }
+
     void Update()
     {
         if (!isRunning) return;

@@ -5,15 +5,14 @@ public class PowerUp : MonoBehaviour
     [SerializeField] protected FloatVariable m_Duration;
     protected float elapsedTime = 0f;
     
-    private void OnEnable()
+    protected virtual void OnEnable()
     {
         // play sound
         // play animation
     }
 
-    private void OnDisable()
+    protected virtual void OnDisable()
     {
-        elapsedTime = 0f;
     }
 
     private void Update()
@@ -22,6 +21,8 @@ public class PowerUp : MonoBehaviour
         if (elapsedTime > m_Duration.Value)
         {
             gameObject.SetActive(false);
+            elapsedTime = 0f;
+
         }
     }
     

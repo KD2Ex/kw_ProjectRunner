@@ -1,3 +1,4 @@
+using System.Security.Cryptography;
 using UnityEngine;
 
 public class ChunkSpawnManager : MonoBehaviour
@@ -11,6 +12,8 @@ public class ChunkSpawnManager : MonoBehaviour
     
     void Start()
     {
+        Debug.Log("Chunk Spawn Manager Start event");
+        
         ChunkRandomManager.InitializeChunks();
         
         chunkMovement = GameObject.FindGameObjectWithTag("ChunkParent").transform;

@@ -17,7 +17,7 @@ public class Coin : Collectable
 
     public override void Pickup(Player player)
     {
-        player.PickupCoin();
+        player.PickupCoin(1);
         gameObject.SetActive(false);
     }
     

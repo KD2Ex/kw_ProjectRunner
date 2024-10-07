@@ -393,10 +393,10 @@ public class Player : MonoBehaviour
         transform.Translate(direction * (force * Time.deltaTime));
     }
 
-    public void PickupCoin()
+    public void PickupCoin(int value)
     {
-        m_Coins.AddCoins(1);
-        AddDashEnergy(10);
+        m_Coins.AddCoins(value * CoinMultiplier.Value);
+        AddDashEnergy(value);
     }
 
     public void GetPowerUp(PowerUp powerUp)
@@ -413,9 +413,8 @@ public class Player : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D other)
     {
-        var tag = other.gameObject.tag;
 
-        Debug.Log(other.gameObject.name);
+        //Debug.Log(other.gameObject.name);
         other.TryGetComponent<Collectable>(out var collectable);
         if (collectable)
         {
