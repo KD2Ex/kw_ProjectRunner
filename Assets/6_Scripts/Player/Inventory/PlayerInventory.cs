@@ -5,6 +5,10 @@ using UnityEngine;
 public class PlayerInventory : MonoBehaviour
 {
     [field:SerializeField] public FoodInventory Food { get; private set; }
+
+    public GInventory FoodInv;
+    public GInventory CreaturesInv;
+    public GInventory SomethingInv;
     
     private void Awake()
     {

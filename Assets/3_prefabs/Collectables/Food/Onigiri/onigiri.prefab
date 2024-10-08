@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8319833716936589381}
   - component: {fileID: 5411861371857714998}
   - component: {fileID: 5760307857872263209}
-  - component: {fileID: 5716549201257255227}
+  - component: {fileID: 7274270425446341250}
   m_Layer: 0
   m_Name: onigiri
   m_TagString: Food
@@ -153,7 +153,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.48, y: 3.93}
   m_EdgeRadius: 0
---- !u!114 &5716549201257255227
+--- !u!114 &7274270425446341250
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -162,7 +162,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 3085506773085081114}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c102c6be35bcba41929469e6be9b012, type: 3}
+  m_Script: {fileID: 11500000, guid: cbaf507a49a6475795445dd55ad411c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Data>k__BackingField: {fileID: 11400000, guid: 8390a8301bb968a45ac0090b91a915e2, type: 2}
+  <Item>k__BackingField: {fileID: 11400000, guid: edd6d707950eb024ea0fabe935dc2cb9, type: 2}
+  <Inventory>k__BackingField: {fileID: 11400000, guid: 3dff8d1bf101ba545a8e8ba0c3f03c29, type: 2}

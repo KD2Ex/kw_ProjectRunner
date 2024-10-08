@@ -15,7 +15,6 @@ public class RandomBoosterPickup : RandomPickup<Collectable>
     protected override List<Collectable> Filter(List<Collectable> list)
     {
         return list;
-
-
     }
 }
+

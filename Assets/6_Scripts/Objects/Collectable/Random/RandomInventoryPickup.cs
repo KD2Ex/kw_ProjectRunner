@@ -10,8 +10,10 @@ public class RandomInventoryPickup<T> : RandomPickup<InventoryPickup<T>>
     protected override GameObject GetRandomPickup(Func<List<InventoryPickup<T>>, List<InventoryPickup<T>>> filter)
     {
         var list = filter(m_Pickups);
-        var index = Random.Range(0, list.Count);
 
+        if (list.Count == 0) return null;
+        
+        var index = Random.Range(0, list.Count);
         return list[index].gameObject;
     }
 

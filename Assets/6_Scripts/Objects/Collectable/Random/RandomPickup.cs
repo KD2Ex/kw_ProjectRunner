@@ -8,10 +8,10 @@ public abstract class RandomPickup<T> : MonoBehaviour
 
     private void OnEnable()
     {
-        var instance = 
-            Instantiate(
-                GetRandomPickup(Filter),
-                transform);
+        var goToInstantiate = GetRandomPickup(Filter);
+        if (goToInstantiate == null) return;
+        
+        Instantiate(goToInstantiate, transform);
     }
 
     protected abstract GameObject GetRandomPickup(Func<List<T>, List<T>> filter);
