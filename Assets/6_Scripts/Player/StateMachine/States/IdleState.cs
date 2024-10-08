@@ -11,6 +11,7 @@ public class IdleState : BaseState
         base.Enter();
         
         animator.SetBool(player.animHash_Idle, true);
+        player.transform.position = new Vector3(player.transform.position.x, -1.77f, 0f);
     }
 
     public override void Update()

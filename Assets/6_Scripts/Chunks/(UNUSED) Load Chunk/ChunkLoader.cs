@@ -10,13 +10,13 @@ public class ChunkLoader : MonoBehaviour
 
     private Transform parent;
     
-    private ChunkRandomizer randomizer = ChunkRandomizer.GetInstance();
+    //private ChunkRandomizer randomizer = ChunkRandomizer.GetInstance();
     
     public void GetAndLoad()
     {
-        var chunk = randomizer.GetRandomChunk(set.Items);
+        //var chunk = randomizer.GetRandomChunk(set.Items);
         
-        Load(chunk.Prefab);   
+        //Load(chunk.Prefab);   
     }
 
     public void LoadAll()

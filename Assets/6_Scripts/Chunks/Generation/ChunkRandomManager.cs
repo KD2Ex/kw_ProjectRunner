@@ -156,8 +156,28 @@ public class ChunkRandomManager : ScriptableObject
 
     private Chunk FindChunkByWeight(List<Chunk> list)
     {
-        var index = Random.Range(0, list.Count);
+        Chunk result = list[0];
+        
+        int sum = 0;
+        list.ForEach(chunk => sum += chunk.Weight);
 
+        var randomWeight = Random.Range(0, sum);
+        Debug.Log($"randomWeight {randomWeight}");
+
+        var weightCount = 0;
+        foreach (var chunk in list)
+        {
+            weightCount += chunk.Weight;
+            if (randomWeight <= weightCount)
+            {
+                result = chunk;
+                break;
+            }
+        }
+
+        return result;
+        
+        var index = Random.Range(0, list.Count);
         return list[index];
     }
 }

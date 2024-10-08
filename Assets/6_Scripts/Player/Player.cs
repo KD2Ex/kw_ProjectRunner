@@ -2,6 +2,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+public enum DeathType
+{
+    SLIDE,
+    RUN
+}
+
 [RequireComponent(typeof(SpeedController))]
 public class Player : MonoBehaviour
 {
@@ -38,8 +44,7 @@ public class Player : MonoBehaviour
     [SerializeField] private FloatVariable so_ChunksCurrentSpeed;
     [SerializeField] private FloatVariable so_JumpTime;
     [SerializeField] private FloatVariable so_DashEnergy;
-
-
+    
     #endregion
    
     #region Colliders
@@ -52,8 +57,7 @@ public class Player : MonoBehaviour
     [SerializeField] private Collider2D m_DashCollider;
 
     private List<Collider2D> m_Colliders = new();
-
-
+    
     #endregion
 
     #region Components
@@ -103,6 +107,7 @@ public class Player : MonoBehaviour
     #region Consts
 
     public static readonly float GroundLine = -1.77f; // replace with so data
+    public static readonly float SlideGroundLine = -4.2f; // replace with so data
     public static readonly float XPosition = -12.95f;
     private static readonly int c_LayerMaskDefault = 0;
     private static readonly int c_LayerMaskDash = 55;
@@ -141,7 +146,7 @@ public class Player : MonoBehaviour
     }
     public bool JumpInput => m_JumpInput;
 
-    public int m_DeathType { get; private set; }
+    public DeathType m_DeathType { get; private set; }
 
     private float m_ChunksCurrentSpeed => so_ChunksCurrentSpeed.Value;
 
@@ -499,7 +504,7 @@ public class Player : MonoBehaviour
 
     private void Die()
     {
-        m_DeathType = m_StateMachine.CurrentState.ToString() == "SlideState" ? 0 : 1;
+        m_DeathType = m_StateMachine.CurrentState.ToString() == "SlideState" ? DeathType.SLIDE : DeathType.RUN;
         m_IsDead = true;
 
         m_SpeedController.ResetSpeed();

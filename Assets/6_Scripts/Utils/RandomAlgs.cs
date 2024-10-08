@@ -1,24 +1,10 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class ChunkRandomizer
+public static class Randomizer
 {
-    private static ChunkRandomizer m_Instance;
-
-    public static ChunkRandomizer GetInstance()
+    public static int GetWeightedIndex()
     {
-        if (m_Instance == null)
-        {
-            m_Instance = new ChunkRandomizer();
-        }
-
-        return m_Instance;
-    }
-
-    public Chunk GetRandomChunk(List<Chunk> items)
-    {
-        var index = Random.Range(0, items.Count);
-
-        return items[index];
+        return 0;
     }
 }

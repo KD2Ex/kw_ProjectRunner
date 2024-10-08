@@ -9,7 +9,18 @@ public class DeathState : BaseState
     public override void Enter()
     {
         base.Enter();
-        var hash = player.m_DeathType == 0 ? player.animHash_DodgeDeath : player.animHash_RunJumpDeath;
+
+        int hash;
+        
+        if (player.m_DeathType == DeathType.SLIDE)
+        {
+            hash = player.animHash_DodgeDeath;
+        }
+        else
+        {
+            hash = player.animHash_RunJumpDeath;
+        }
+        
         
         animator.SetBool(hash, true);
     }
@@ -17,6 +28,16 @@ public class DeathState : BaseState
     public override void Update()
     {
         base.Update();
+
+        if (player.m_DeathType == DeathType.SLIDE)
+        {
+            if (player.transform.position.y > Player.SlideGroundLine)
+            {
+                player.ApplyGravity(15f, Vector2.down);
+            }
+
+            return;
+        }
         
         if (!player.Grounded) player.ApplyGravity();
     }
