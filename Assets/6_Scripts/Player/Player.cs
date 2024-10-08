@@ -68,6 +68,12 @@ public class Player : MonoBehaviour
     private Animator m_Animator;
 
     #endregion
+
+    #region Inventories
+
+    private PlayerInventory m_Inventory;
+
+    #endregion
     
     #region Animation Hashes
 
@@ -415,6 +421,17 @@ public class Player : MonoBehaviour
             powerUp.gameObject.SetActive(true);
         }
     }
+
+    public void PickupFood(FoodInventoryItem foodInventoryItem)
+    {
+        m_Inventory.Food.AddItem(foodInventoryItem);
+        //var type = foodData.Type;
+    }
+
+    public void PickupCreature( /*creature item*/)
+    {
+        // m_Inventory.Creature.AddItem(creatureItem);
+    }
     
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -549,5 +566,7 @@ public class Player : MonoBehaviour
         so_DashEnergy.Value = m_DashEnergy;
     }
 
+    
+    
     public bool Invincible => m_Dashing || m_Shield.gameObject.activeSelf;
 }
