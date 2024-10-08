@@ -167,7 +167,8 @@ public class Player : MonoBehaviour
         m_Colliders.Add(m_JumpCollider);
         m_Colliders.Add(m_SlideCollider);
         m_Colliders.Add(m_RunCollider);
-        
+
+        m_Inventory = GetComponent<PlayerInventory>();
         m_Coins = GetComponent<Coins>();
         m_SpeedController = GetComponent<SpeedController>();
         m_rigidbody = GetComponent<Rigidbody2D>();
