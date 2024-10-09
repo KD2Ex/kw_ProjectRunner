@@ -4,7 +4,7 @@ using Random = UnityEngine.Random;
 
 public class FoodUseManager : MonoBehaviour
 {
-    [SerializeField] private GInventory foodInventory;
+    [SerializeField] private Inventory foodInventory;
     
     public void Consume()
     {

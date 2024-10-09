@@ -73,10 +73,10 @@ public class ChunkRandomManager : ScriptableObject
             foreach (var chunk in chunkSet.List.Items)
             {
                 if (chunk.Available) continue;
-                var evalResult = chunk.RestoreCondition.Evaluate();
+                var evalResult = chunk.Condition.Evaluate();
                 if (evalResult)
                 {
-                    chunk.RestoreCondition.ResetTrigger();
+                    chunk.Condition.ResetTrigger();
                     chunk.Restore();
                 }
             }
@@ -90,7 +90,7 @@ public class ChunkRandomManager : ScriptableObject
         
         foreach (var chunk in chunks)
         {
-            if (chunk.Chunk.RemoveAfterSpawn) chunk.Chunk.Available = false;
+            if (chunk.Chunk.BecomeUnavailableAfterSpawn) chunk.Chunk.Available = false;
             SpawnQueue.Add(chunk);
         }
     }

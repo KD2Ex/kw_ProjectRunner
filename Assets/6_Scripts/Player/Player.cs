@@ -71,12 +71,6 @@ public class Player : MonoBehaviour
     private Animator m_Animator;
 
     #endregion
-
-    #region Inventories
-
-    private PlayerInventory m_Inventory;
-
-    #endregion
     
     #region Animation Hashes
 
@@ -170,7 +164,6 @@ public class Player : MonoBehaviour
         m_Colliders.Add(m_SlideCollider);
         m_Colliders.Add(m_RunCollider);
 
-        m_Inventory = GetComponent<PlayerInventory>();
         m_Coins = GetComponent<Coins>();
         m_SpeedController = GetComponent<SpeedController>();
         m_rigidbody = GetComponent<Rigidbody2D>();
@@ -416,27 +409,16 @@ public class Player : MonoBehaviour
         AddDashEnergy(value);
     }
 
-    public void GetPowerUp(PowerUp powerUp)
+    public void GetPowerUp(Booster booster)
     {
-        if (powerUp.gameObject.activeSelf)
+        if (booster.gameObject.activeSelf)
         {
-            powerUp.AddDuration();
+            booster.AddDuration();
         }
         else
         {
-            powerUp.gameObject.SetActive(true);
+            booster.gameObject.SetActive(true);
         }
-    }
-
-    public void PickupFood(FoodInventoryItem foodInventoryItem)
-    {
-        m_Inventory.Food.AddItem(foodInventoryItem);
-        //var type = foodData.Type;
-    }
-
-    public void PickupCreature( /*creature item*/)
-    {
-        // m_Inventory.Creature.AddItem(creatureItem);
     }
     
     private void OnTriggerEnter2D(Collider2D other)
@@ -452,14 +434,6 @@ public class Player : MonoBehaviour
         
         other.TryGetComponent<Obstacle>(out var obstacle);
         
-        /*switch (tag)
-        {
-            case "Coin":
-                other.gameObject.SetActive(false);
-
-                return;
-        }*/
-
         if (!other.CompareTag("Enemy")) return;
 
         
@@ -489,40 +463,6 @@ public class Player : MonoBehaviour
             Die();
         }
         
-    }
-
-    private void OnCollisionEnter2D(Collision2D other)
-    {
-        //Debug.Log(other.gameObject.name);
-
-        transform.position = new Vector3(XPosition, transform.position.y, 0f);
-        other.gameObject.TryGetComponent<Obstacle>(out var obstacle);
-
-        if (Invincible)
-        {
-            if (obstacle)
-            {
-                obstacle.GetDestroyed();
-            }
-            return;
-        }
-        
-        if (m_StateMachine.CurrentState.ToString() == "SlideState")
-        {
-            if (obstacle)
-            {
-                obstacle.GetDestroyed();
-            }
-            else
-            {
-                Die();
-            }
-        }
-        else
-        {
-            m_SpeedController.ResetSpeed();
-            Die();
-        }
     }
 
     private void Die()
@@ -572,7 +512,6 @@ public class Player : MonoBehaviour
         so_DashEnergy.Value = m_DashEnergy;
     }
 
-    
     
     public bool Invincible => m_Dashing || m_Shield.gameObject.activeSelf;
 }

@@ -5,9 +5,9 @@ using UnityEngine.UI;
 
 public class UIItemsManager : MonoBehaviour
 {
-    [SerializeField] private GInventory AllItems;
+    [SerializeField] private Inventory AllItems;
     private List<Image> images = new();
-    [SerializeField] private GInventory playerInventory;
+    [SerializeField] private Inventory playerInventory;
 
     private void Awake()
     {

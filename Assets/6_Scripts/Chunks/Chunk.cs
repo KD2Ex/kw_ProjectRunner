@@ -5,28 +5,28 @@ using UnityEngine;
 public class Chunk
 {
     [field: SerializeField] public GameObject Prefab { get; private set; }
-    [field: SerializeField] public string Label { get; private set; }
     [field: SerializeField] public int Weight { get; private set; }
-    [field: SerializeField] public bool RemoveAfterSpawn { get; private set; }
+    [Tooltip("Chunk will not be spawning again after it's first appearance")]
+    [field: SerializeField] public bool BecomeUnavailableAfterSpawn { get; private set; }
     public bool Available = true;
 
-    [field: SerializeField] public ScriptableCondition ScriptableCondition { get; private set; }
+    [field: SerializeField] public ScriptableCondition RestoreCondition { get; private set; }
 
-    public ChunkSpawnCondition RestoreCondition { get; private set; }
+    public ChunkSpawnCondition Condition { get; private set; }
     
     public void Initialize()
     {
         Available = true;
 
-        if (RemoveAfterSpawn && ScriptableCondition)
+        if (BecomeUnavailableAfterSpawn && RestoreCondition)
         {
-            RestoreCondition = ScriptableCondition.Init();
+            Condition = RestoreCondition.Init();
         } 
     }
     
     public void OnInstantiate()
     {
-        if (RemoveAfterSpawn)
+        if (BecomeUnavailableAfterSpawn)
         {
             Available = false;
         }

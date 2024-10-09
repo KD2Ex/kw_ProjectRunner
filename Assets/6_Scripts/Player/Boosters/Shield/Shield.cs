@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class Shield : PowerUp
+public class Shield : Booster
 {
     protected override void OnEnable()
     {

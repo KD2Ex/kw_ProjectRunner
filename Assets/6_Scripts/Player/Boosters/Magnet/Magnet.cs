@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class Magnet : PowerUp
+public class Magnet : Booster
 {
     protected override void OnEnable()
     {

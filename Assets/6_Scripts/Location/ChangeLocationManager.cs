@@ -3,8 +3,8 @@ using UnityEngine;
 public class ChangeLocationManager : MonoBehaviour
 {
     [Header("Player inventories")]
-    [SerializeField] private GInventory PlayerCreatures;
-    [SerializeField] private GInventory PlayerFood;
+    [SerializeField] private Inventory PlayerCreatures;
+    [SerializeField] private Inventory PlayerFood;
     
     public void CheckCondition()
     {
