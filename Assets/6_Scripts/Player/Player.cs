@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 
 public enum DeathType
 {
@@ -13,14 +14,16 @@ public class Player : MonoBehaviour
 {
     [SerializeField] private InputReader m_inputReader;
     [SerializeField] private PlayerBoostersParentController m_BoostersParentController;
+    [FormerlySerializedAs("m_FoodUse")] [SerializeField] private FoodUseManager mFoodUseManager;
+    public FoodUseManager FoodUseManager => mFoodUseManager;
     public PlayerBoostersParentController BoostersParentController => 
         m_BoostersParentController;
     
     [Header("Stats")]
     [Range(0, 3)]
     [SerializeField] private float m_JumpTime;
-
     [SerializeField] private float m_EnergyToDash;
+    
     private float m_DashEnergy = 0f;
     private bool m_DashEnergyFull => m_DashEnergy >= m_EnergyToDash;
     
@@ -85,8 +88,7 @@ public class Player : MonoBehaviour
     public int animHash_Idle => Animator.StringToHash("Idle");
     public int animHash_DodgeDeath => Animator.StringToHash("Dead0");
     public int animHash_RunJumpDeath => Animator.StringToHash("Dead1");
-
-
+    
     #endregion
 
     #region Input flags
@@ -185,6 +187,7 @@ public class Player : MonoBehaviour
         var airDashState = new AirDashState(this, m_Animator);
         dashState = new DashState(this, m_Animator);
         var deathState = new DeathState(this, m_Animator);
+        var foodUseState = new FoodUseState(this, m_Animator);
         
         At(sleepState, runState, new ActionPredicate(() => m_Running, () => OnStartRunning?.Invoke()));
         At(idleState, runState, new ActionPredicate(() => m_Running, () =>
@@ -197,7 +200,9 @@ public class Player : MonoBehaviour
             m_SpeedController.ResetSpeed();
             OnStopRunning?.Invoke();
         }));
-        At(runState, jumpState, 
+        /*At(idleState, foodUseState, new FuncPredicate(() => m_Inventory.Food.Items.Count > 0));
+        At(foodUseState, idleState, new FuncPredicate(() => ));*/
+        At(runState, jumpState,
             new ActionPredicate(
                 () => m_JumpInput && Grounded,
                 () =>

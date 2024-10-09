@@ -162,7 +162,6 @@ public class ChunkRandomManager : ScriptableObject
         list.ForEach(chunk => sum += chunk.Weight);
 
         var randomWeight = Random.Range(0, sum);
-        Debug.Log($"randomWeight {randomWeight}");
 
         var weightCount = 0;
         foreach (var chunk in list)

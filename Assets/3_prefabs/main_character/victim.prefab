@@ -519,6 +519,7 @@ GameObject:
   - component: {fileID: 7739528313030190183}
   - component: {fileID: 1626456211063237479}
   - component: {fileID: 4020531208338657311}
+  - component: {fileID: 8944000530487666777}
   m_Layer: 0
   m_Name: victim
   m_TagString: Player
@@ -919,6 +920,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Value: {fileID: 11400000, guid: d573596b5a8d7f144a0093c0b4c0fcdb, type: 2}
   m_ResetOnAwake: 1
+--- !u!114 &8944000530487666777
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3295700264019588206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65e0bb5132264fef902f57c37765c31b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Food>k__BackingField: {fileID: 11400000, guid: de9908ef821e14f418c4c954d3a0aa88, type: 2}
+  FoodInv: {fileID: 11400000, guid: 3dff8d1bf101ba545a8e8ba0c3f03c29, type: 2}
+  CreaturesInv: {fileID: 0}
+  SomethingInv: {fileID: 0}
 --- !u!1 &4953721996370351782
 GameObject:
   m_ObjectHideFlags: 0

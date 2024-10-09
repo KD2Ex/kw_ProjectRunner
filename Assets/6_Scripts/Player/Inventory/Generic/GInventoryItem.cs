@@ -6,6 +6,7 @@ public class GInventoryItem : ScriptableObject
     public GameObject UIObject;
     public string Label;
     public InventoryItemType Type;
+    public GameObject UseAnimation;
 
     public GInventory Inventory { get; private set; }
 

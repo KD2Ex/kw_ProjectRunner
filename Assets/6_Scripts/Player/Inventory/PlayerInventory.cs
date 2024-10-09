@@ -8,15 +8,11 @@ public class PlayerInventory : MonoBehaviour
 
     public GInventory FoodInv;
     public GInventory CreaturesInv;
-    public GInventory SomethingInv;
     
     private void Awake()
     {
 
     }
     
-    public bool IsPresent(FoodType food)
-    {
-        return Food.Items.Find(foodItem => foodItem.Item.Type == food);
-    }
+    
 }

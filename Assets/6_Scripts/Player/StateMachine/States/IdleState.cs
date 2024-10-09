@@ -6,12 +6,15 @@ public class IdleState : BaseState
     public IdleState(Player player, Animator animator) : base(player, animator)
     {
     }
+    
     public override void Enter()
     {
         base.Enter();
         
         animator.SetBool(player.animHash_Idle, true);
         player.transform.position = new Vector3(player.transform.position.x, -1.77f, 0f);
+        
+        player.FoodUseManager.Consume();
     }
 
     public override void Update()
