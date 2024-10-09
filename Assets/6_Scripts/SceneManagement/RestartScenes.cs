@@ -32,7 +32,7 @@ public class RestartScenes : MonoBehaviour
         PlayerLocator.instance.playerTransform.position = PlayerLocator.instance.DefaultPosition;
         player.Restart();*/
 
-        SceneManager.LoadScene("Test");
+        SceneManager.LoadScene("Main");
         m_Input.EnableGameplayInput();
         /*var async = SceneManager.UnloadSceneAsync("Test");
         StartCoroutine(Unloading(async, () => SceneManager.LoadScene("Test")));*/
