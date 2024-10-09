@@ -181,7 +181,7 @@ AudioSource:
   m_GameObject: {fileID: 3147189293904235279}
   m_Enabled: 0
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -1019888389712152819, guid: 8ee838e8ffbbdaa4a9559ffd3e6fc337, type: 2}
   m_audioClip: {fileID: 8300000, guid: 820b745ddf24844beb58cf2486d11210, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.549
@@ -281,6 +281,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Duration: {fileID: 11400000, guid: 7608dcf46900866409b4199cc2e6fea9, type: 2}
+  OnShieldDisable:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5923253643196886872}
+        m_TargetAssemblyTypeName: InvincibilityController, Assembly-CSharp
+        m_MethodName: Trigger
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &3268589507484647072
 GameObject:
   m_ObjectHideFlags: 0
@@ -398,7 +413,7 @@ AudioSource:
   m_GameObject: {fileID: 3268589507484647072}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -1019888389712152819, guid: 8ee838e8ffbbdaa4a9559ffd3e6fc337, type: 2}
   m_audioClip: {fileID: 8300000, guid: 7d30ecb67ab4e4568b707ee63e0474e6, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.27
@@ -519,6 +534,7 @@ GameObject:
   - component: {fileID: 7739528313030190183}
   - component: {fileID: 1626456211063237479}
   - component: {fileID: 4020531208338657311}
+  - component: {fileID: 5923253643196886872}
   m_Layer: 0
   m_Name: victim
   m_TagString: Player
@@ -642,7 +658,7 @@ MonoBehaviour:
   m_BoostersParentController: {fileID: 2484224800844390215}
   mFoodUseManager: {fileID: 5294413270300881546}
   m_JumpTime: 1.5
-  m_EnergyToDash: 500
+  so_EnergyToDash: {fileID: 11400000, guid: 602f00b616502aa46ab62d7bbddfff71, type: 2}
   m_Shield: {fileID: 5220983966587464286}
   m_Magnet: {fileID: 7030251536643839871}
   m_CoinMultiplier: {fileID: 4031315632370205393}
@@ -705,6 +721,21 @@ MonoBehaviour:
       - m_Target: {fileID: 11400000, guid: a32a6052a92f3ca4fa77d7bc7751d565, type: 2}
         m_TargetAssemblyTypeName: GameEvent, Assembly-CSharp
         m_MethodName: Raise
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnStopDashing:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5923253643196886872}
+        m_TargetAssemblyTypeName: InvincibilityController, Assembly-CSharp
+        m_MethodName: Trigger
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -921,6 +952,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Value: {fileID: 11400000, guid: d573596b5a8d7f144a0093c0b4c0fcdb, type: 2}
   m_ResetOnAwake: 1
+--- !u!114 &5923253643196886872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3295700264019588206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2cab4509602a599438143f6742780c05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Time>k__BackingField: 1.5
 --- !u!1 &4953721996370351782
 GameObject:
   m_ObjectHideFlags: 0
@@ -1134,7 +1178,7 @@ AudioSource:
   m_GameObject: {fileID: 5951533406130853861}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -1019888389712152819, guid: 8ee838e8ffbbdaa4a9559ffd3e6fc337, type: 2}
   m_audioClip: {fileID: 8300000, guid: 1488e7a374d2041b4b7101fed33dd5bd, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.386
@@ -1481,14 +1525,81 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4032553560522162722, guid: 741f034f6f6861846943ed628813355d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6828261369855649293}
+    - targetCorrespondingSourceObject: {fileID: 4032553560522162722, guid: 741f034f6f6861846943ed628813355d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 668675506240917899}
   m_SourcePrefab: {fileID: 100100000, guid: 741f034f6f6861846943ed628813355d, type: 3}
+--- !u!1 &5112931335822628106 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4032553560522162722, guid: 741f034f6f6861846943ed628813355d, type: 3}
+  m_PrefabInstance: {fileID: 8143147960180594472}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6828261369855649293
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5112931335822628106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c01f3b0278a4da4ae5a33bd5c4c76fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 769e2ec23c6aa914c893214bb9e0ae60, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5294413270300881546}
+        m_TargetAssemblyTypeName: FoodUseManager, Assembly-CSharp
+        m_MethodName: BlockConsuming
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &668675506240917899
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5112931335822628106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c01f3b0278a4da4ae5a33bd5c4c76fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 004d2bf62fcda3c41aa66cdc0391237c, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5294413270300881546}
+        m_TargetAssemblyTypeName: FoodUseManager, Assembly-CSharp
+        m_MethodName: UnblockConsuming
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &5294413270300881546 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4070072352525198754, guid: 741f034f6f6861846943ed628813355d, type: 3}
   m_PrefabInstance: {fileID: 8143147960180594472}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 5112931335822628106}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ed339661a3d2eb94894e298af7d23f32, type: 3}

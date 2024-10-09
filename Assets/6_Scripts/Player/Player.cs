@@ -470,6 +470,7 @@ public class Player : MonoBehaviour
         {
             obstacle.GetDestroyed();
             m_Coins.AddCoins(5);
+            AddDashEnergy(5f);
         }
     }
 

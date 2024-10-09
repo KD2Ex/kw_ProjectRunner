@@ -17,6 +17,7 @@ public class InputReader : ScriptableObject, PlayerInput.IGameplayActions, Playe
     public UnityAction DashAbilityTest;
     public UnityAction RestartScenesEvent;
     public UnityAction EscEvent;
+    public UnityAction InteractEvent;
     
     public bool RunTriggered =>_input.Gameplay.Run.triggered;
 
@@ -99,5 +100,11 @@ public class InputReader : ScriptableObject, PlayerInput.IGameplayActions, Playe
         if (!context.started) return;
         
         EscEvent?.Invoke();
+    }
+
+    public void OnInteract(InputAction.CallbackContext context)
+    {
+        if (!context.started) return;
+        InteractEvent?.Invoke();
     }
 }
