@@ -2073,7 +2073,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e7ec0452b9a80c4f95af1863eb41c12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dashEnergy: {fileID: 0}
+  maxEnergy: {fileID: 11400000, guid: 602f00b616502aa46ab62d7bbddfff71, type: 2}
+  currentDashEnergy: {fileID: 11400000, guid: a98efbcedc037584a9ff3ddbcbac39f6, type: 2}
 --- !u!1 &1488571711
 GameObject:
   m_ObjectHideFlags: 0
@@ -3395,6 +3396,10 @@ PrefabInstance:
       propertyPath: OutputAudioMixerGroup
       value: 
       objectReference: {fileID: -1019888389712152819, guid: 8ee838e8ffbbdaa4a9559ffd3e6fc337, type: 2}
+    - target: {fileID: 3387110282930873259, guid: fd201fd794d481744a6eaf6e75ce15cc, type: 3}
+      propertyPath: so_EnergyToDash
+      value: 
+      objectReference: {fileID: 11400000, guid: 602f00b616502aa46ab62d7bbddfff71, type: 2}
     - target: {fileID: 5097254238390115014, guid: fd201fd794d481744a6eaf6e75ce15cc, type: 3}
       propertyPath: OutputAudioMixerGroup
       value: 

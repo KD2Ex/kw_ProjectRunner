@@ -23,9 +23,9 @@ public class Player : MonoBehaviour
     [Range(0, 3)]
     [SerializeField] private float m_JumpTime;
     [SerializeField] private FloatVariable so_EnergyToDash;
-    private float m_EnergyToDash => so_DashEnergy.Value;
+    private float m_EnergyToDash => so_EnergyToDash.Value;
     
-    private float m_DashEnergy = 0f;
+    private float m_DashEnergy => so_DashEnergy.Value;
     private bool m_DashEnergyFull => m_DashEnergy >= m_EnergyToDash;
     
     public float JumpTime => m_JumpTime;
@@ -407,7 +407,7 @@ public class Player : MonoBehaviour
     public void PickupCoin(int value)
     {
         m_Coins.AddCoins(value * CoinMultiplier.Value);
-        AddDashEnergy(value);
+        AddDashEnergy(value * CoinMultiplier.Value);
     }
 
     public void GetPowerUp(Booster booster)
@@ -496,7 +496,6 @@ public class Player : MonoBehaviour
 
     public void SpendDashEnergy()
     {
-        m_DashEnergy -= m_EnergyToDash;
         so_DashEnergy.Value -= m_EnergyToDash;
         //m_rigidbody.excludeLayers = c_LayerMaskDash;
     }
@@ -505,12 +504,10 @@ public class Player : MonoBehaviour
     {
         if (m_DashEnergy + value >= m_EnergyToDash)
         {
-            m_DashEnergy = m_EnergyToDash;
             so_DashEnergy.Value = m_EnergyToDash;
             return;
         }
-        m_DashEnergy += value;
-        so_DashEnergy.Value = m_DashEnergy;
+        so_DashEnergy.Value += value;
     }
 
     
