@@ -12,9 +12,14 @@ public class FormatTimerData : MonoBehaviour
     [SerializeField] private FloatVariable minutes;
     [SerializeField] private FloatVariable concat;
 
-
     public UnityEvent OnFormat;
-    
+
+    private void Awake()
+    {
+        seconds.Value = 0f;
+        minutes.Value = 0f;
+    }
+
     public void Format()
     {
         int value = (int) timer.Value;

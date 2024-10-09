@@ -36,7 +36,7 @@ public class DigitsController : MonoBehaviour
         }
     }
 
-    private DigitObject CreateDigit(int value, int index)
+    public DigitObject CreateDigit(int value, int index)
     {
         var digit = Instantiate<DigitObject>(digitObject, spawnPoint);
 
@@ -50,7 +50,7 @@ public class DigitsController : MonoBehaviour
         return digit;
     }
 
-    private void Align()
+    public void Align()
     {
         spawnPoint.transform.SetParent(null);
         var length = digits.Count * .35f + (digits.Count - 1) * xGap;
@@ -64,8 +64,6 @@ public class DigitsController : MonoBehaviour
     void Start()
     {
         UpdateUI();
-        
-        
     }
 
     // Update is called once per frame

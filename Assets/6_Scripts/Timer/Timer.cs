@@ -14,7 +14,7 @@ public class Timer : MonoBehaviour
 
     private void Awake()
     {
-        //timerData.Value = 0f;
+        timerData.Value = 0f;
     }
 
     void Update()
