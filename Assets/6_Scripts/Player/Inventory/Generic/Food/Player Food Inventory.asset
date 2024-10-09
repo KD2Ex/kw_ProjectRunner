@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 10bdf0e0327048b8a067dd82a371d7c0, type: 3}
-  m_Name: Creatures Inventory
+  m_Name: Player Food Inventory
   m_EditorClassIdentifier: 
   Items:
-  - {fileID: 11400000, guid: 5803ef4e55469914080c36b1a30aa3d5, type: 2}
-  - {fileID: 11400000, guid: 82828f5cdb3efc94183f0987e83616e2, type: 2}
+  - {fileID: 11400000, guid: 475e135bda6f77943a1f80e37fad13b3, type: 2}
+  - {fileID: 11400000, guid: 8654d01e3e1aecc4ea5c146c714e99bc, type: 2}
   OnAddItem:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11400000, guid: 53303b04613544545be6f91d8104bc9f, type: 2}
+      - m_Target: {fileID: 11400000, guid: 294935e3eb01c5d45a7beb3cbf5d8f9e, type: 2}
         m_TargetAssemblyTypeName: GameEvent, Assembly-CSharp
         m_MethodName: Raise
         m_Mode: 1

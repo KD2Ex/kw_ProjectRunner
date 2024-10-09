@@ -5,5 +5,4 @@ using UnityEngine;
 public class ChunkList : ScriptableObject
 {
     public List<Chunk> Items;
-    public List<ScriptableCondition> Conditions;
 } 

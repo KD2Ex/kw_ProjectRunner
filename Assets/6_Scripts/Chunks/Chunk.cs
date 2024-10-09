@@ -12,7 +12,7 @@ public class Chunk
 
     [field: SerializeField] public ScriptableCondition ScriptableCondition { get; private set; }
 
-    public ChunkSpawnCondition RestoreCondition;
+    public ChunkSpawnCondition RestoreCondition { get; private set; }
     
     public void Initialize()
     {
