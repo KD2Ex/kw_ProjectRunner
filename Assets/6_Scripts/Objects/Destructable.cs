@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Obstacle : MonoBehaviour
+public class Destructable : MonoBehaviour
 {
     private Collider2D m_Collider;
     private Animator m_Animator;

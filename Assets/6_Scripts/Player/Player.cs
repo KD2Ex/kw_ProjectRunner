@@ -266,7 +266,8 @@ public class Player : MonoBehaviour
         AtAny(sleepState, new ActionPredicate(() => m_Restart, () => m_Restart = false));
 
         m_rigidbody.excludeLayers = 0;
-        
+        m_Sprite = GetComponent<SpriteRenderer>();
+
     }
 
     public void EnterDashState()
@@ -320,7 +321,6 @@ public class Player : MonoBehaviour
         //Time.timeScale = .5f;
         m_StateMachine.SetState(sleepState);
 
-        m_Sprite = GetComponent<SpriteRenderer>();
     }
 
     void Update()
@@ -436,7 +436,7 @@ public class Player : MonoBehaviour
             return;
         }
         
-        other.TryGetComponent<Obstacle>(out var obstacle);
+        other.TryGetComponent<Destructable>(out var obstacle);
         
         if (!other.CompareTag("Enemy")) return;
         
@@ -444,7 +444,7 @@ public class Player : MonoBehaviour
         {
             if (obstacle)
             {
-                obstacle.GetDestroyed();
+                CrushDestructable();
             }
             return;
         }
@@ -453,7 +453,7 @@ public class Player : MonoBehaviour
         {
             if (obstacle)
             {
-                obstacle.GetDestroyed();
+                CrushDestructable();
             }
             else
             {
@@ -465,7 +465,12 @@ public class Player : MonoBehaviour
             m_SpeedController.ResetSpeed();
             Die();
         }
-        
+
+        void CrushDestructable()
+        {
+            obstacle.GetDestroyed();
+            m_Coins.AddCoins(5);
+        }
     }
 
     private void Die()
