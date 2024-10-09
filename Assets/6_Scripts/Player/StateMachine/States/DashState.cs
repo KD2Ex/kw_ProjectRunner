@@ -23,7 +23,7 @@ public class DashState : BaseState
         base.Update();
         elapsedTime += Time.deltaTime;
 
-        if (elapsedTime > 5f)
+        if (elapsedTime > 6f)
         {
             player.DisableDash();
             elapsedTime = 0f;
@@ -84,7 +84,7 @@ public class DashState : BaseState
         base.Exit();
         elapsedTime = 0f;
         player.DisableDash();
-        
+        player.OnStopDashing?.Invoke();
         animator.SetBool(player.animHash_Dash, false);
     }
 

@@ -68,9 +68,10 @@ public class Player : MonoBehaviour
 
     private Coins m_Coins;
     private SpeedController m_SpeedController;
+    private InvincibilityController m_InvincibilityController;
     private Rigidbody2D m_rigidbody;
     private Animator m_Animator;
-
+    
     #endregion
     
     #region Animation Hashes
@@ -130,6 +131,7 @@ public class Player : MonoBehaviour
     public UnityEvent OnStartRunning;
     public UnityEvent OnStopRunning;
     public UnityEvent OnDeath;
+    public UnityEvent OnStopDashing;
 
     #endregion
 
@@ -167,6 +169,7 @@ public class Player : MonoBehaviour
 
         m_Coins = GetComponent<Coins>();
         m_SpeedController = GetComponent<SpeedController>();
+        m_InvincibilityController = GetComponent<InvincibilityController>();
         m_rigidbody = GetComponent<Rigidbody2D>();
         m_Animator = GetComponent<Animator>();
         
@@ -283,8 +286,8 @@ public class Player : MonoBehaviour
         EnableOnly(m_DashCollider);
     }
 
-    protected void At(IState from, IState to, IPredicate condition) => m_StateMachine.AddTransition(from, to, condition);
-    protected void AtAny(IState to, IPredicate condition) => m_StateMachine.AddAnyTransition(to, condition);
+    private void At(IState from, IState to, IPredicate condition) => m_StateMachine.AddTransition(from, to, condition);
+    private void AtAny(IState to, IPredicate condition) => m_StateMachine.AddAnyTransition(to, condition);
     
     private void OnEnable()
     {
@@ -306,7 +309,8 @@ public class Player : MonoBehaviour
         m_inputReader.DashAbilityTest -= OnDash;
     }
 
-    private SpriteRenderer sprite;
+    private SpriteRenderer m_Sprite;
+    public SpriteRenderer Sprite => m_Sprite;
     
     void Start()
     {
@@ -316,7 +320,7 @@ public class Player : MonoBehaviour
         //Time.timeScale = .5f;
         m_StateMachine.SetState(sleepState);
 
-        sprite = GetComponent<SpriteRenderer>();
+        m_Sprite = GetComponent<SpriteRenderer>();
     }
 
     void Update()
@@ -424,7 +428,6 @@ public class Player : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D other)
     {
-
         //Debug.Log(other.gameObject.name);
         other.TryGetComponent<Collectable>(out var collectable);
         if (collectable)
@@ -436,7 +439,6 @@ public class Player : MonoBehaviour
         other.TryGetComponent<Obstacle>(out var obstacle);
         
         if (!other.CompareTag("Enemy")) return;
-
         
         if (Invincible)
         {
@@ -510,6 +512,7 @@ public class Player : MonoBehaviour
         so_DashEnergy.Value += value;
     }
 
-    
-    public bool Invincible => m_Dashing || m_Shield.gameObject.activeSelf;
+    public bool Invincible => m_Dashing
+                              || m_Shield.gameObject.activeSelf
+                              || m_InvincibilityController.Invincible;
 }
