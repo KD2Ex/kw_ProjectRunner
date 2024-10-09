@@ -22,7 +22,8 @@ public class Player : MonoBehaviour
     [Header("Stats")]
     [Range(0, 3)]
     [SerializeField] private float m_JumpTime;
-    [SerializeField] private float m_EnergyToDash;
+    [SerializeField] private FloatVariable so_EnergyToDash;
+    private float m_EnergyToDash => so_DashEnergy.Value;
     
     private float m_DashEnergy = 0f;
     private bool m_DashEnergyFull => m_DashEnergy >= m_EnergyToDash;

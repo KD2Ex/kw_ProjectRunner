@@ -1869,6 +1869,7 @@ GameObject:
   - component: {fileID: 1463440054}
   - component: {fileID: 1463440052}
   - component: {fileID: 1463440055}
+  - component: {fileID: 1463440056}
   m_Layer: 0
   m_Name: dash_indicator
   m_TagString: Untagged
@@ -1937,11 +1938,11 @@ Transform:
   m_GameObject: {fileID: 1463440051}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -8.317001, y: 4.25, z: 10}
+  m_LocalPosition: {x: -16.747002, y: 4.27, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2071333452}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &1463440054
 Animator:
@@ -2060,6 +2061,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1463440056
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1463440051}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e7ec0452b9a80c4f95af1863eb41c12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dashEnergy: {fileID: 0}
 --- !u!1 &1488571711
 GameObject:
   m_ObjectHideFlags: 0
@@ -3221,8 +3235,7 @@ Transform:
   m_LocalPosition: {x: -8.43, y: 0.02, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1463440053}
+  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2071333453
@@ -3903,6 +3916,7 @@ SceneRoots:
   - {fileID: 8733150711340534952}
   - {fileID: 1316462821}
   - {fileID: 1389565128}
+  - {fileID: 1463440053}
   - {fileID: 5441033084111782249}
   - {fileID: 4699103856247890895}
   - {fileID: 1387259559}
