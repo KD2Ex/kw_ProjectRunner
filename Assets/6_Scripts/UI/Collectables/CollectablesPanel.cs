@@ -7,14 +7,14 @@ public class CollectablesPanel : MonoBehaviour
     
     private void OnEnable()
     {
-        FoodLine.SetActive(true);
+        //FoodLine.SetActive(true);
         input.DisableGameplayInput();
         Time.timeScale = 0f;
     }
 
     private void OnDisable()
     {
-        FoodLine.SetActive(false);
+        //FoodLine.SetActive(false);
         input.EnableGameplayInput();
         Time.timeScale = 1f;
     }
