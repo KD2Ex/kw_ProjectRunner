@@ -13,6 +13,7 @@ public class Store : MonoBehaviour
     public UnityEvent OnStoreLeave;
     
     private bool canBeOpened;
+    private bool approached;
     
     private void OnEnable()
     {
@@ -27,26 +28,42 @@ public class Store : MonoBehaviour
     private void TogglePanel()
     {
         if (!canBeOpened) return;
-        Panel.SetActive(!Panel.activeInHierarchy);
+
+        if (Panel.activeInHierarchy)
+        {
+            Panel.SetActive(false);
+            InteractUIButton.FadeIn();
+
+        }
+        else
+        {
+            Panel.SetActive(true);
+            InteractUIButton.FadeOut();
+
+        }
     }
     
-    private void OnTriggerEnter2D(Collider2D other)
+    public void OnApproaching()
     {
-        if (!other.gameObject.CompareTag("Player")) return;
+        if (approached) return;
+        
+        approached = true;
         OnStoreApproaching?.Invoke();
         
         StopUIButton.FadeIn();
     }
 
-    private void OnTriggerExit2D(Collider2D other)
+    public void OnLeaving()
     {
-        if (!other.gameObject.CompareTag("Player")) return;
         OnStoreLeave?.Invoke();
         
         InteractUIButton.FadeOut();
+        StopUIButton.FadeOut();
         canBeOpened = false;
+        
+        gameObject.SetActive(false);
     }
-
+    
     public void Open()
     {
         canBeOpened = true;
