@@ -1019,7 +1019,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 6945022462103189744}
   - {fileID: 4517065925067322463}
   - {fileID: 7735120366224630219}
   - {fileID: 2388122278433561303}
@@ -1055,11 +1054,11 @@ Transform:
   m_GameObject: {fileID: 3308492355179760456}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6.921, y: 4.29, z: 0}
+  m_LocalPosition: {x: -6.116246, y: 3.8802679, z: 0.0021566192}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1194525027111819541}
+  m_Father: {fileID: 4032462054963192189}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &885020568878734580
 SpriteRenderer:
@@ -1175,11 +1174,11 @@ Transform:
   m_GameObject: {fileID: 3501428041841839483}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6.991, y: 1.7520001, z: 0}
+  m_LocalPosition: {x: -6.186246, y: 1.3422681, z: 0.0021566192}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 32052001070532128}
+  m_Father: {fileID: 4032462054963192189}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &7713083574811455568
 SpriteRenderer:
@@ -2696,7 +2695,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &32052001070532128
 Transform:
   m_ObjectHideFlags: 0
@@ -2710,7 +2709,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 6868318899178036396}
+  - {fileID: 4032462054963192189}
   - {fileID: 2021581048949048094}
   - {fileID: 3835857016708700741}
   - {fileID: 4062349532392309450}
@@ -4613,3 +4612,36 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &8918899765890842513
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4032462054963192189}
+  m_Layer: 0
+  m_Name: Shield Upgrade
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4032462054963192189
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8918899765890842513}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.804754, y: 0.409732, z: -0.0021566192}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 6945022462103189744}
+  - {fileID: 6868318899178036396}
+  m_Father: {fileID: 32052001070532128}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

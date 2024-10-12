@@ -15,11 +15,12 @@ public class Coins : MonoBehaviour
         m_Value.Value += value;
     }
 
-    public void RemoveCoins(float value)
+    public bool RemoveCoins(float value)
     {
-        if (m_Value.Value - value < 0) return;
+        if (m_Value.Value - value < 0) return false;
 
         m_Value.Value -= value;
+        return true;
     }
 
     public void ResetValue()

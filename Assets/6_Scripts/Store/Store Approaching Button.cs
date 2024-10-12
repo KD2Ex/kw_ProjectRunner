@@ -1,15 +1,35 @@
+using System;
 using System.Collections;
+using UnityEditor;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class StoreApproachingButton : MonoBehaviour
 {
     [SerializeField] private float FadeRate;
-    
     private SpriteRenderer sprite;
+    private Image image;
+
+    private Color color;
+    private float colorAlpha = 0f;
 
     private void Awake()
     {
         sprite = GetComponent<SpriteRenderer>();
+        image = GetComponent<Image>();
+    }
+
+    private void Update()
+    {
+        if (image)
+        {
+            image.color = GetColor(image.color, colorAlpha);
+        }
+
+        if (sprite)
+        {
+            sprite.color = GetColor(sprite.color, colorAlpha);
+        }
     }
 
     public void FadeIn()
@@ -26,18 +46,21 @@ public class StoreApproachingButton : MonoBehaviour
 
     private IEnumerator Fade(float from, float to)
     {
-        if (Mathf.Approximately(to, sprite.color.a)) yield break;
+        if (sprite)
+        {
+            if (Mathf.Approximately(to, sprite.color.a)) yield break;
+        }
         if (from > to)
         {
             while (from > to)
             {
                 Down();
                 if (Mathf.Approximately(from, to)) yield break;
-                sprite.color = sprite.color = GetColor(sprite.color, from);
+                colorAlpha = from;
                 yield return null;
             }
 
-            sprite.color = GetColor(sprite.color, to);
+            colorAlpha = to;
             yield break;
         }
         
@@ -45,11 +68,11 @@ public class StoreApproachingButton : MonoBehaviour
         {
             Up();
             if (Mathf.Approximately(from, to)) yield break;
-            sprite.color = sprite.color = GetColor(sprite.color, from);
+            colorAlpha = from;
             yield return null;
         }
 
-        sprite.color = GetColor(sprite.color, to);
+        colorAlpha = to;
         yield break;
 
 
