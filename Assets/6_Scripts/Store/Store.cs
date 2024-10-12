@@ -64,10 +64,11 @@ public class Store : MonoBehaviour
     public void OnApproaching()
     {
         if (approached) return;
+
+        Debug.Log("Store Approaching");
         
         approached = true;
         OnStoreApproaching?.Invoke();
-        
         StopUIButton.FadeIn();
     }
 
