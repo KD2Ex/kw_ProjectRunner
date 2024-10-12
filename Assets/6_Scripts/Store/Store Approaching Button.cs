@@ -1,7 +1,5 @@
-using System;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.PlayerLoop;
 
 public class StoreApproachingButton : MonoBehaviour
 {
@@ -12,10 +10,6 @@ public class StoreApproachingButton : MonoBehaviour
     private void Awake()
     {
         sprite = GetComponent<SpriteRenderer>();
-    }
-
-    private void Start()
-    {
     }
 
     public void FadeIn()
@@ -39,9 +33,11 @@ public class StoreApproachingButton : MonoBehaviour
             {
                 Down();
                 if (Mathf.Approximately(from, to)) yield break;
-                sprite.color = new Color(sprite.color.r, sprite.color.g, sprite.color.b, from);
+                sprite.color = sprite.color = GetColor(sprite.color, from);
                 yield return null;
             }
+
+            sprite.color = GetColor(sprite.color, to);
             yield break;
         }
         
@@ -49,9 +45,11 @@ public class StoreApproachingButton : MonoBehaviour
         {
             Up();
             if (Mathf.Approximately(from, to)) yield break;
-            sprite.color = new Color(sprite.color.r, sprite.color.g, sprite.color.b, from);
+            sprite.color = sprite.color = GetColor(sprite.color, from);
             yield return null;
         }
+
+        sprite.color = GetColor(sprite.color, to);
         yield break;
 
 
@@ -64,5 +62,10 @@ public class StoreApproachingButton : MonoBehaviour
         {
             from -= Time.deltaTime * FadeRate;
         }
+    }
+
+    private Color GetColor(Color color, float alpha)
+    {
+        return new Color(color.r, color.g, color.b, alpha);
     }
 }

@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e8b5f4712cb44afae957655eec382c6, type: 3}
+  m_Name: Store Chunk
+  m_EditorClassIdentifier: 
+  Items:
+  - <Prefab>k__BackingField: {fileID: 6129794377455672165, guid: fd4f160110794d943845652b06fc5951, type: 3}
+    <Weight>k__BackingField: 1
+    <BecomeUnavailableAfterSpawn>k__BackingField: 0
+    Available: 1
+    <RestoreCondition>k__BackingField: {fileID: 11400000, guid: 515e311fba633604398477db5780543b, type: 2}

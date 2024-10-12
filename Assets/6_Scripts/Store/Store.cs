@@ -1,3 +1,5 @@
+using System;
+using System.Security.Principal;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -7,14 +9,22 @@ public class Store : MonoBehaviour
     
     [SerializeField] private StoreApproachingButton StopUIButton;
     [SerializeField] private StoreApproachingButton InteractUIButton;
-    [SerializeField] private GameObject Panel;
+    private GameObject Panel;
 
     public UnityEvent OnStoreApproaching;
     public UnityEvent OnStoreLeave;
     
     private bool canBeOpened;
     private bool approached;
-    
+
+    private void Awake()
+    {
+        var manager = GameObject.FindGameObjectWithTag("StorePanel").GetComponent<StorePanelManager>();
+        Panel = manager.Panel;
+
+        Debug.Log(Panel.name);
+    }
+
     private void OnEnable()
     {
         input.InteractEvent += OpenPanel;
@@ -27,6 +37,7 @@ public class Store : MonoBehaviour
     
     private void OpenPanel()
     {
+        if (!canBeOpened) return;
         if (!Panel.activeInHierarchy)
         {
             Panel.SetActive(true);

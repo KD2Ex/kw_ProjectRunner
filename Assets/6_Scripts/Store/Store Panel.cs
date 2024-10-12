@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 
 public enum Direction
@@ -10,11 +11,17 @@ public enum Direction
 public class StorePanel : MonoBehaviour
 {
     [SerializeField] private InputReader input;
-    [SerializeField] private List<UIBoosterUpgradeSelection> upgradeSelections;
+    [SerializeField] private UIBoosterUpgradeSelection shieldUpgrade;
+    [SerializeField] private UIBoosterUpgradeSelection magnetUpgrade;
+    [SerializeField] private UIBoosterUpgradeSelection x2Upgrade;
+    [SerializeField] private UIBoosterUpgradeSelection dashUpgrade;
     [SerializeField] private UIExitSelection exitSelection;
     [SerializeField] private UIAddHealthSelection healthSelection;
 
+    private bool isStoreNearby;
+
     private UICoord currentPos;
+    public UICoord CurrentPos => currentPos;
 
     private const int columns = 4;
     private const int rows = 2;
@@ -26,15 +33,13 @@ public class StorePanel : MonoBehaviour
         currentPos = new UICoord(3, 0);
         selections = new UISelection[rows, columns];
 
-        for (int i = 0; i < upgradeSelections.Count - 1; i++)
-        {
-            selections[0, i] = upgradeSelections[i];
-        }
-
+        selections[0, 0] = shieldUpgrade;
+        selections[0, 1] = magnetUpgrade;
+        selections[0, 2] = x2Upgrade;
         selections[0, 3] = exitSelection;
-        selections[1, 0] = healthSelection;
-        selections[1, 2] = upgradeSelections[3];
         
+        selections[1, 0] = healthSelection;
+        selections[1, 2] = dashUpgrade;
     }
 
     private void OnEnable()
@@ -43,6 +48,7 @@ public class StorePanel : MonoBehaviour
         input.InteractEvent += Press;
         input.UIXMoveEvent += XMove;
         input.UIYMoveEvent += YMove;
+        
     }
 
     private void OnDisable()
@@ -53,16 +59,32 @@ public class StorePanel : MonoBehaviour
         input.UIYMoveEvent -= YMove;
     }
 
-    private void Start()
-    {
-        selections[0, 3].Select(true);
-    }
-
     private void Press()
     {
-        Debug.Log(selections[currentPos.x, currentPos.y].name);
+        Debug.Log(selections[currentPos.y, currentPos.x].name);
+        selections[currentPos.y, currentPos.x].Press();
+        return;
+        Debug.Log(isStoreNearby);
+        Debug.Log(gameObject.activeInHierarchy);
         
-        selections[currentPos.x, currentPos.y].Press();
+        if (!gameObject.activeInHierarchy && isStoreNearby)
+        {
+            gameObject.SetActive(true);
+        }
+        else
+        {
+            
+        }
+    }
+
+    public void OnStoreApproaching()
+    {
+        isStoreNearby = true;
+    }
+
+    public void OnStoreLeave()
+    {
+        isStoreNearby = false;
     }
     
     public void Close()
