@@ -407,6 +407,24 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""YMove"",
+                    ""type"": ""Value"",
+                    ""id"": ""bc1e5f34-01af-4440-843b-a946d01d5946"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""XMove"",
+                    ""type"": ""Value"",
+                    ""id"": ""a9cd263d-e545-4af7-b6a8-a6161313d6c7"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -464,6 +482,72 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""action"": ""Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""1D Axis"",
+                    ""id"": ""fec97212-fc81-4d34-9c0c-5549ff058201"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": ""Invert"",
+                    ""groups"": """",
+                    ""action"": ""YMove"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""783c5add-2811-4527-814c-233295a379ce"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""MnK"",
+                    ""action"": ""YMove"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""0a6d733f-13ff-4aad-a6d9-26ad3aa27493"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""MnK"",
+                    ""action"": ""YMove"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""1D Axis"",
+                    ""id"": ""6654675f-b276-4df1-b88c-5819dc8ab50d"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""XMove"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""bee895c9-6a68-40af-ab0e-07be61d36a13"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""MnK"",
+                    ""action"": ""XMove"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""3c5f31de-e31c-4a9b-a95e-cd9d8a0f0148"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""MnK"",
+                    ""action"": ""XMove"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -497,6 +581,8 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Esc = m_UI.FindAction("Esc", throwIfNotFound: true);
         m_UI_Interact = m_UI.FindAction("Interact", throwIfNotFound: true);
+        m_UI_YMove = m_UI.FindAction("YMove", throwIfNotFound: true);
+        m_UI_XMove = m_UI.FindAction("XMove", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -700,12 +786,16 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private List<IUIActions> m_UIActionsCallbackInterfaces = new List<IUIActions>();
     private readonly InputAction m_UI_Esc;
     private readonly InputAction m_UI_Interact;
+    private readonly InputAction m_UI_YMove;
+    private readonly InputAction m_UI_XMove;
     public struct UIActions
     {
         private @PlayerInput m_Wrapper;
         public UIActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
         public InputAction @Esc => m_Wrapper.m_UI_Esc;
         public InputAction @Interact => m_Wrapper.m_UI_Interact;
+        public InputAction @YMove => m_Wrapper.m_UI_YMove;
+        public InputAction @XMove => m_Wrapper.m_UI_XMove;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -721,6 +811,12 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Interact.started += instance.OnInteract;
             @Interact.performed += instance.OnInteract;
             @Interact.canceled += instance.OnInteract;
+            @YMove.started += instance.OnYMove;
+            @YMove.performed += instance.OnYMove;
+            @YMove.canceled += instance.OnYMove;
+            @XMove.started += instance.OnXMove;
+            @XMove.performed += instance.OnXMove;
+            @XMove.canceled += instance.OnXMove;
         }
 
         private void UnregisterCallbacks(IUIActions instance)
@@ -731,6 +827,12 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Interact.started -= instance.OnInteract;
             @Interact.performed -= instance.OnInteract;
             @Interact.canceled -= instance.OnInteract;
+            @YMove.started -= instance.OnYMove;
+            @YMove.performed -= instance.OnYMove;
+            @YMove.canceled -= instance.OnYMove;
+            @XMove.started -= instance.OnXMove;
+            @XMove.performed -= instance.OnXMove;
+            @XMove.canceled -= instance.OnXMove;
         }
 
         public void RemoveCallbacks(IUIActions instance)
@@ -784,5 +886,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     {
         void OnEsc(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
+        void OnYMove(InputAction.CallbackContext context);
+        void OnXMove(InputAction.CallbackContext context);
     }
 }

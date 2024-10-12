@@ -18,9 +18,11 @@ public class InputReader : ScriptableObject, PlayerInput.IGameplayActions, Playe
     public UnityAction RestartScenesEvent;
     public UnityAction EscEvent;
     public UnityAction InteractEvent;
+
+    public UnityAction<int> UIXMoveEvent;
+    public UnityAction<int> UIYMoveEvent;
     
     public bool RunTriggered =>_input.Gameplay.Run.triggered;
-
     
     public void DisableGameplayInput()
     {
@@ -106,5 +108,17 @@ public class InputReader : ScriptableObject, PlayerInput.IGameplayActions, Playe
     {
         if (!context.started) return;
         InteractEvent?.Invoke();
+    }
+
+    public void OnYMove(InputAction.CallbackContext context)
+    {
+        if (!context.started) return;
+        UIYMoveEvent?.Invoke((int)context.ReadValue<float>());
+    }
+
+    public void OnXMove(InputAction.CallbackContext context)
+    {
+        if (!context.started) return;
+        UIXMoveEvent?.Invoke((int)context.ReadValue<float>());
     }
 }

@@ -385,6 +385,24 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "YMove",
+                    "type": "Value",
+                    "id": "bc1e5f34-01af-4440-843b-a946d01d5946",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "XMove",
+                    "type": "Value",
+                    "id": "a9cd263d-e545-4af7-b6a8-a6161313d6c7",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -442,6 +460,72 @@
                     "action": "Interact",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "1D Axis",
+                    "id": "fec97212-fc81-4d34-9c0c-5549ff058201",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "Invert",
+                    "groups": "",
+                    "action": "YMove",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "positive",
+                    "id": "783c5add-2811-4527-814c-233295a379ce",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "MnK",
+                    "action": "YMove",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "negative",
+                    "id": "0a6d733f-13ff-4aad-a6d9-26ad3aa27493",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "MnK",
+                    "action": "YMove",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "1D Axis",
+                    "id": "6654675f-b276-4df1-b88c-5819dc8ab50d",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "XMove",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "positive",
+                    "id": "bee895c9-6a68-40af-ab0e-07be61d36a13",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "MnK",
+                    "action": "XMove",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "negative",
+                    "id": "3c5f31de-e31c-4a9b-a95e-cd9d8a0f0148",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "MnK",
+                    "action": "XMove",
+                    "isComposite": false,
+                    "isPartOfComposite": true
                 }
             ]
         }

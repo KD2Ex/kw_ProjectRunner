@@ -17,14 +17,23 @@ public class Store : MonoBehaviour
     
     private void OnEnable()
     {
-        input.InteractEvent += TogglePanel;
+        input.InteractEvent += OpenPanel;
     }
 
     private void OnDisable()
     {
-        input.InteractEvent -= TogglePanel;
+        input.InteractEvent -= OpenPanel;
     }
-
+    
+    private void OpenPanel()
+    {
+        if (!Panel.activeInHierarchy)
+        {
+            Panel.SetActive(true);
+            InteractUIButton.FadeOut();
+        }
+    }
+    
     private void TogglePanel()
     {
         if (!canBeOpened) return;
@@ -33,13 +42,11 @@ public class Store : MonoBehaviour
         {
             Panel.SetActive(false);
             InteractUIButton.FadeIn();
-
         }
         else
         {
             Panel.SetActive(true);
             InteractUIButton.FadeOut();
-
         }
     }
     
