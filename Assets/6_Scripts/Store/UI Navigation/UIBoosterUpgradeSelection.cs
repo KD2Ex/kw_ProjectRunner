@@ -5,10 +5,10 @@ using UnityEngine;
 public struct UpgradeCost
 {
     [SerializeField] private int cost;
-    [SerializeField] private int duration;
+    [SerializeField] private float duration;
 
     public int Value => cost;
-    public int Duration => duration;
+    public float Duration => duration;
 }
 
 public class UIBoosterUpgradeSelection : UISelection
@@ -23,7 +23,6 @@ public class UIBoosterUpgradeSelection : UISelection
         
         var cost = data.Costs[level.Value + 1];
         if (!coins.RemoveCoins(cost.Value)) return;
-        
         level.Upgrade();
     }
 }

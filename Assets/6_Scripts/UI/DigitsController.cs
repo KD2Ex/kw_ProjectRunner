@@ -8,14 +8,27 @@ public class DigitsController : MonoBehaviour
     [SerializeField] private DigitObject digitObject;
     [SerializeField] private Transform spawnPoint;
 
+    [SerializeField] private int maxAmount;
+    
+    [SerializeField] private bool UseExternalData;
+    private float data;
+    
     private List<DigitObject> digits = new();
     
-    private float Value => Data.Value;
+    private float Value => UseExternalData ? data : Data.Value;
     
     public void UpdateUI()
     {
         int intValue = (int)Value;
         int index = 0;
+
+        if (intValue == 0)
+        {
+            foreach (var digit in digits)
+            {
+                digit.SetDigit(0);
+            }
+        }
         
         while (intValue > 0)
         {
@@ -33,6 +46,12 @@ public class DigitsController : MonoBehaviour
                 digits[index].SetDigit(digit);
             }
             index++;
+        }
+
+        for (int i = digits.Count; i < maxAmount; i++)
+        {
+            digits.Add(CreateDigit(0, i));
+            Align();
         }
     }
 
@@ -58,6 +77,11 @@ public class DigitsController : MonoBehaviour
 
         transform.position = new Vector3(center, transform.position.y, 0f);
         spawnPoint.transform.SetParent(transform);
+    }
+
+    public void SetData(float value)
+    {
+        data = value;
     }
     
     // Start is called before the first frame update

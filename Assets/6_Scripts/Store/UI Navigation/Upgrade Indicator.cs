@@ -3,8 +3,12 @@ using UnityEngine;
 public class UpgradeIndicator : MonoBehaviour
 {
     [SerializeField] private UpgradeLevel level;
-
+    [SerializeField] private Color color;
+    private Color origColor;
+    
     private Animator animator;
+    private SpriteRenderer sprite;
+    
 
     private int zero = Animator.StringToHash("indicator_zero");
     private int one = Animator.StringToHash("indicator_one");
@@ -17,12 +21,20 @@ public class UpgradeIndicator : MonoBehaviour
 
     private void Awake()
     {
+        sprite = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
-        anims = new[] {zero, one, two, three, four, five};
+        origColor = sprite.color;
+
+        anims = new[]
+        {
+            zero, one, two, three, four,
+            zero, one, two, three, four, five
+        };
     }
 
     private void Update()
     {
+        sprite.color = level.Value > 4 ? color : origColor;
         animator.Play(anims[level.Value]);
     }
 }
