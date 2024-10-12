@@ -5,6 +5,7 @@ public class DashState : BaseState
     private float elapsedTime;
     private bool upmove;
     private bool cancelUpMove = true;
+    private float duration;
     
     public DashState(Player player, Animator animator) : base(player, animator)
     {
@@ -23,7 +24,7 @@ public class DashState : BaseState
         base.Update();
         elapsedTime += Time.deltaTime;
 
-        if (elapsedTime > 6f)
+        if (elapsedTime > duration)
         {
             player.DisableDash();
             elapsedTime = 0f;
@@ -91,5 +92,10 @@ public class DashState : BaseState
     public void AddDuration(float value)
     {
         elapsedTime -= value;
+    }
+
+    public void SetDuration(float value)
+    {
+        duration = value;
     }
 }

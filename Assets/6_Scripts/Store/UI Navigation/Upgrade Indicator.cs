@@ -27,14 +27,14 @@ public class UpgradeIndicator : MonoBehaviour
 
         anims = new[]
         {
-            zero, one, two, three, four,
-            zero, one, two, three, four, five
+            zero, one, two, three, four, five,
+            one, two, three, four, five
         };
     }
 
     private void Update()
     {
-        sprite.color = level.Value > 4 ? color : origColor;
+        sprite.color = level.Value > 5 ? color : origColor;
         animator.Play(anims[level.Value]);
     }
 }

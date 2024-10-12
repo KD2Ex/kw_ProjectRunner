@@ -9,15 +9,12 @@ public class Booster : MonoBehaviour
     
     protected float elapsedTime = 0f;
 
-    private void Awake()
-    {
-        m_Duration.Value = m_LevelsData.Costs[m_CurrentLevel.Value].Duration;
-    }
-
     protected virtual void OnEnable()
     {
         // play sound
         // play animation
+        m_Duration.Value = m_LevelsData.Costs[m_CurrentLevel.Value].Duration;
+
     }
 
     protected virtual void OnDisable()

@@ -23,6 +23,7 @@ public class Player : MonoBehaviour
     [Range(0, 3)]
     [SerializeField] private float m_JumpTime;
     [SerializeField] private FloatVariable so_EnergyToDash;
+    [SerializeField] private FloatVariable m_DashDuration;
     private float m_EnergyToDash => so_EnergyToDash.Value;
     
     private float m_DashEnergy => so_DashEnergy.Value;
@@ -273,12 +274,13 @@ public class Player : MonoBehaviour
     public void EnterDashState()
     {
         OnDashStateEnter();
-        dashState.AddDuration(5f); // replace with so_DashPickupDuration
+        dashState.AddDuration(m_DashDuration.Value); // replace with so_DashPickupDuration
         m_StateMachine.ChangeState(dashState);
     }
     
     private void OnDashStateEnter()
     {
+        dashState.SetDuration(m_DashDuration.Value);
         m_SpeedController.ApplyMultiplier(DashSpeedMultiplier);
         OnDashEvent?.Invoke();
         m_Dashing = true;
@@ -326,6 +328,8 @@ public class Player : MonoBehaviour
     void Update()
     {
        m_StateMachine.Update();
+       
+       
     }
 
     private void FixedUpdate()
