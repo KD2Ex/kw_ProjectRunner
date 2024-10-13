@@ -1,8 +1,8 @@
-﻿using UnityEngine.Events;
+﻿using UnityEngine;
 
 public class Shield : Booster
 {
-    public UnityEvent OnShieldDisable;
+    [SerializeField] private InvincibilityController invincibilityController;    
     
     protected override void OnEnable()
     {
@@ -11,7 +11,7 @@ public class Shield : Booster
     
     protected override void OnDisable()
     {
-        OnShieldDisable?.Invoke();
+        invincibilityController.Trigger();
         //Debug.Log(gameObject.name);
     }
 }

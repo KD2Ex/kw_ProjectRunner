@@ -886,6 +886,17 @@ MonoBehaviour:
   m_CurrentLevel: {fileID: 11400000, guid: c3bf9662dc2b16f40bc5d391fd2a6eee, type: 2}
   m_LevelsData: {fileID: 11400000, guid: 6b2d6e1a2fc499e4fa9921b60885a105, type: 2}
   m_Duration: {fileID: 11400000, guid: 12f6a99b9ad27ec4e9d6345fc6cef46d, type: 2}
+--- !u!114 &530429309 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5923253643196886872, guid: fd201fd794d481744a6eaf6e75ce15cc, type: 3}
+  m_PrefabInstance: {fileID: 3932692420647759071}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 530429282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2cab4509602a599438143f6742780c05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &560156411 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5221802378769687685, guid: 69da3c49d95a689479e5fc6c8bda0e8b, type: 3}
@@ -3660,6 +3671,10 @@ PrefabInstance:
       propertyPath: m_DashDuration
       value: 
       objectReference: {fileID: 11400000, guid: 12f6a99b9ad27ec4e9d6345fc6cef46d, type: 2}
+    - target: {fileID: 3387110282930873259, guid: fd201fd794d481744a6eaf6e75ce15cc, type: 3}
+      propertyPath: m_CurrentHealths
+      value: 
+      objectReference: {fileID: 11400000, guid: 1b66553ff6fe1f84b9478e3a5f44cbc6, type: 2}
     - target: {fileID: 4020531208338657311, guid: fd201fd794d481744a6eaf6e75ce15cc, type: 3}
       propertyPath: m_ResetOnAwake
       value: 0
@@ -3680,6 +3695,10 @@ PrefabInstance:
       propertyPath: m_CurrentLevel
       value: 
       objectReference: {fileID: 11400000, guid: 73768283b3f5059429a1dfcc94978ca1, type: 2}
+    - target: {fileID: 5220983966587464286, guid: fd201fd794d481744a6eaf6e75ce15cc, type: 3}
+      propertyPath: invincibilityController
+      value: 
+      objectReference: {fileID: 530429309}
     - target: {fileID: 7030251536643839871, guid: fd201fd794d481744a6eaf6e75ce15cc, type: 3}
       propertyPath: m_LevelsData
       value: 

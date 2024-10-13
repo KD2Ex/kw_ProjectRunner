@@ -24,6 +24,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float m_JumpTime;
     [SerializeField] private FloatVariable so_EnergyToDash;
     [SerializeField] private FloatVariable m_DashDuration;
+    [SerializeField] private FloatVariable m_CurrentHealths; // replace with IntVar so
     private float m_EnergyToDash => so_EnergyToDash.Value;
     
     private float m_DashEnergy => so_DashEnergy.Value;
@@ -132,7 +133,6 @@ public class Player : MonoBehaviour
     public UnityEvent OnStartRunning;
     public UnityEvent OnStopRunning;
     public UnityEvent OnDeath;
-    public UnityEvent OnStopDashing;
 
     #endregion
 
@@ -185,7 +185,6 @@ public class Player : MonoBehaviour
         var airDashState = new AirDashState(this, m_Animator);
         dashState = new DashState(this, m_Animator);
         var deathState = new DeathState(this, m_Animator);
-        var foodUseState = new FoodUseState(this, m_Animator);
         
         At(sleepState, runState, new ActionPredicate(() => m_Running, () => OnStartRunning?.Invoke()));
         At(idleState, runState, new ActionPredicate(() => m_Running, () =>
@@ -198,8 +197,6 @@ public class Player : MonoBehaviour
             m_SpeedController.ResetSpeed();
             OnStopRunning?.Invoke();
         }));
-        /*At(idleState, foodUseState, new FuncPredicate(() => m_Inventory.Food.Items.Count > 0));
-        At(foodUseState, idleState, new FuncPredicate(() => ));*/
         At(runState, jumpState,
             new ActionPredicate(
                 () => m_JumpInput && Grounded,
@@ -271,10 +268,11 @@ public class Player : MonoBehaviour
 
     }
 
+    
     public void EnterDashState()
     {
         OnDashStateEnter();
-        dashState.AddDuration(m_DashDuration.Value); // replace with so_DashPickupDuration
+        dashState.AddDuration(m_DashDuration.Value);
         m_StateMachine.ChangeState(dashState);
     }
     
@@ -461,13 +459,12 @@ public class Player : MonoBehaviour
             }
             else
             {
-                Die();
+                CheckHealth();
             }
         }
         else
         {
-            m_SpeedController.ResetSpeed();
-            Die();
+            CheckHealth();
         }
 
         void CrushDestructable()
@@ -478,6 +475,18 @@ public class Player : MonoBehaviour
         }
     }
 
+    private void CheckHealth()
+    {
+        if (m_CurrentHealths.Value > 0)
+        {
+            m_CurrentHealths.Value--;
+            EnterDashState();
+            return;
+        }
+
+        Die();
+    }
+    
     private void Die()
     {
         m_DeathType = m_StateMachine.CurrentState.ToString() == "SlideState" ? DeathType.SLIDE : DeathType.RUN;
@@ -522,6 +531,11 @@ public class Player : MonoBehaviour
         so_DashEnergy.Value += value;
     }
 
+    public void BecomeInvincible()
+    {
+        m_InvincibilityController.Trigger();
+    }
+    
     public bool Invincible => m_Dashing
                               || m_Shield.gameObject.activeSelf
                               || m_InvincibilityController.Invincible;

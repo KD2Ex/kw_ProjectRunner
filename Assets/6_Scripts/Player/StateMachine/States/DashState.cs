@@ -85,7 +85,7 @@ public class DashState : BaseState
         base.Exit();
         elapsedTime = 0f;
         player.DisableDash();
-        player.OnStopDashing?.Invoke();
+        player.BecomeInvincible();
         animator.SetBool(player.animHash_Dash, false);
     }
 

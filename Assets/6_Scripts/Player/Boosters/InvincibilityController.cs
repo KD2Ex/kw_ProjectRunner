@@ -11,16 +11,13 @@ public class InvincibilityController : MonoBehaviour
     [field:SerializeField] public float Time { get; private set; }
     
     
-    
     private void Awake()
     {
         player = GetComponent<Player>();
         stateMachine = new StateMachine();
-        
     }
     
     private void At(IState from, IState to, IPredicate condition) => stateMachine.AddTransition(from, to, condition);
-
 
     private void Start()
     {
