@@ -34,8 +34,8 @@ public class SpeedController : MonoBehaviour
 
     void Start()
     {
-        m_AudioSource = SoundFXManager.instance.SpawnSound(m_RunSound, transform, 1f);
         so_Speed.Value = 0f;
+        m_AudioSource = SoundFXManager.instance.SpawnSound(m_RunSound, transform, 1f);
     }
 
     void Update()
@@ -48,12 +48,11 @@ public class SpeedController : MonoBehaviour
             {
                 m_AudioSource.Play();
             }
-            
-            m_AudioSource.UnPause();
         }
         else
         {
             m_AudioSource.Pause();
+            m_AudioSource.time = 0f;
         }
     }
 
