@@ -1,6 +1,8 @@
 using System;
 using UnityEngine;
 
+
+[RequireComponent(typeof(Player))]
 public class SpeedController : MonoBehaviour
 {
     [SerializeField] private InputReader m_InputReader;
@@ -10,7 +12,8 @@ public class SpeedController : MonoBehaviour
 
     [SerializeField] private AudioClip m_RunSound;
     private AudioSource m_AudioSource;
-    
+
+    private Player player;
     
     private bool m_Running;
     private float m_ElapsedTime;
@@ -20,6 +23,7 @@ public class SpeedController : MonoBehaviour
 
     private void Awake()
     {
+        player = GetComponent<Player>();
     }
 
     private void OnEnable()
@@ -40,6 +44,8 @@ public class SpeedController : MonoBehaviour
 
     void Update()
     {
+        if (player.CurrentState.ToString() == "DashState") return;
+        
         if (m_Running)
         {
             IncreaseSpeed();

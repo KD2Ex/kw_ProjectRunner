@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -171,6 +172,8 @@ public class Player : MonoBehaviour
     private StateMachine m_StateMachine;
     private IState sleepState;
     private DashState dashState;
+
+    public Type CurrentState => m_StateMachine.CurrentState;
     
     #endregion
 
@@ -192,6 +195,7 @@ public class Player : MonoBehaviour
     
     private void Awake()
     {
+
         m_Colliders.Add(m_AirDashCollider);
         m_Colliders.Add(m_DashCollider);
         m_Colliders.Add(m_JumpCollider);
