@@ -9,7 +9,7 @@ public class DeathState : BaseState
     public override void Enter()
     {
         base.Enter();
-
+        SoundFXManager.instance.PlayClipAtPoint(player.DeathSound, player.transform, 1f);
         int hash;
         
         if (player.m_DeathType == DeathType.SLIDE)

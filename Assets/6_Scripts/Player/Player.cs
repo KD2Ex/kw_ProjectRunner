@@ -12,6 +12,13 @@ public enum DeathType
 [RequireComponent(typeof(SpeedController))]
 public class Player : MonoBehaviour
 {
+    [Header("Sounds")] 
+    
+    public AudioClip StopSound;
+    public AudioClip DeathSound;
+    
+    [Space]
+    
     [SerializeField] private InputReader m_inputReader;
     [SerializeField] private PlayerBoostersParentController m_BoostersParentController;
     [FormerlySerializedAs("m_FoodUse")] [SerializeField] private FoodUseManager mFoodUseManager;

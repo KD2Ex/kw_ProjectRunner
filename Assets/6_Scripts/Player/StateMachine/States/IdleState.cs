@@ -14,6 +14,8 @@ public class IdleState : BaseState
         animator.SetBool(player.animHash_Idle, true);
         player.transform.position = new Vector3(player.transform.position.x, -1.77f, 0f);
         
+        SoundFXManager.instance.PlayClipAtPoint(player.StopSound, player.transform, 1f);
+        
         player.FoodUseManager.Consume();
     }
 
