@@ -9,19 +9,22 @@ public class DeathState : BaseState
     public override void Enter()
     {
         base.Enter();
-        SoundFXManager.instance.PlayClipAtPoint(player.DeathSound, player.transform, 1f);
         int hash;
+
+        AudioClip clip;
         
         if (player.m_DeathType == DeathType.SLIDE)
         {
             hash = player.animHash_DodgeDeath;
+            clip = player.SlideDeathSound;
         }
         else
         {
             hash = player.animHash_RunJumpDeath;
+            clip = player.DeathSound;
         }
         
-        
+        SoundFXManager.instance.PlayClipAtPoint(clip, player.transform, 1f);
         animator.SetBool(hash, true);
     }
 
