@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class SpeedController : MonoBehaviour
@@ -6,13 +7,21 @@ public class SpeedController : MonoBehaviour
     [SerializeField] private FloatVariable so_Speed;
     [SerializeField] private float m_AccelerationRate;
     [SerializeField] private float m_Diminishing;
+
+    [SerializeField] private AudioClip m_RunSound;
+    private AudioSource m_AudioSource;
+    
     
     private bool m_Running;
     private float m_ElapsedTime;
     private float m_Acceleration;
 
     private float m_SpeedMultiplier = 1f;
-    
+
+    private void Awake()
+    {
+    }
+
     private void OnEnable()
     {
         m_InputReader.RunEvent += OnMove;
@@ -25,6 +34,7 @@ public class SpeedController : MonoBehaviour
 
     void Start()
     {
+        m_AudioSource = SoundFXManager.instance.SpawnSound(m_RunSound, transform, 1f);
         so_Speed.Value = 0f;
     }
 
@@ -33,6 +43,17 @@ public class SpeedController : MonoBehaviour
         if (m_Running)
         {
             IncreaseSpeed();
+
+            if (!m_AudioSource.isPlaying)
+            {
+                m_AudioSource.Play();
+            }
+            
+            m_AudioSource.UnPause();
+        }
+        else
+        {
+            m_AudioSource.Pause();
         }
     }
 
@@ -67,4 +88,5 @@ public class SpeedController : MonoBehaviour
         m_SpeedMultiplier = value;
         so_Speed.Value = m_Acceleration * m_SpeedMultiplier;
     }
+
 }

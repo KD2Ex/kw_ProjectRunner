@@ -2,6 +2,7 @@
 
 public class RunState : BaseState
 {
+    
     public RunState(Player player, Animator animator) : base(player, animator)
     {
     }

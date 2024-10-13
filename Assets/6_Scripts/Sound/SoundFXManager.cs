@@ -6,7 +6,7 @@ public class SoundFXManager : MonoBehaviour
 
     [SerializeField] private AudioSource soundFXObject;
     [SerializeField] private AudioSource coinFX;
-    
+
     private void Awake()
     {
         if (instance == null)
@@ -26,6 +26,31 @@ public class SoundFXManager : MonoBehaviour
         Destroy(audioSource.gameObject, clipLength);
     }
 
+    public AudioSource SpawnSound(AudioClip clip, Transform spawnPoint, float volume)
+    {
+        var audioSource = Instantiate(soundFXObject, spawnPoint.position, Quaternion.identity);
+        audioSource.clip = clip;
+        audioSource.volume = volume;
+
+        return audioSource;
+    }
+
+    public AudioSource PlaySoundConstantly(AudioClip clip, Transform spawnPoint, float volume)
+    {
+        var audioSource = Instantiate(soundFXObject, spawnPoint.position, Quaternion.identity);
+        audioSource.clip = clip;
+        audioSource.volume = volume;
+        audioSource.loop = true;
+        audioSource.Play();
+
+        return audioSource;
+    }
+
+    public void DestroySource(AudioSource source)
+    {
+        Destroy(source);
+    } 
+    
     public void PlayCoinSound(AudioClip clip, float volume)
     {
         coinFX.clip = clip;

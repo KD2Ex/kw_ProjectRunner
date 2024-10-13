@@ -16,6 +16,9 @@ public class Player : MonoBehaviour
     
     public AudioClip StopSound;
     public AudioClip DeathSound;
+    public AudioClip JumpOnSound;
+    public AudioClip JumpSound;
+    public AudioClip JumpOffSound;
     
     [Space]
     
