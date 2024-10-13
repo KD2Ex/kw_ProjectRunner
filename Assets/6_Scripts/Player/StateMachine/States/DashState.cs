@@ -6,6 +6,8 @@ public class DashState : BaseState
     private bool upmove;
     private bool cancelUpMove = true;
     private float duration;
+
+    private AudioSource source;
     
     public DashState(Player player, Animator animator) : base(player, animator)
     {
@@ -17,6 +19,8 @@ public class DashState : BaseState
         elapsedTime = 0f;
         animator.SetBool(player.animHash_Dash, true);
         player.transform.position = new Vector3(player.transform.position.x, -1.8f, 0f);
+
+        source = SoundFXManager.instance.PlayLoopedSound(player.DashSound, player.transform, 1f);
     }
 
     public override void Update()
@@ -87,6 +91,8 @@ public class DashState : BaseState
         player.DisableDash();
         player.BecomeInvincible();
         animator.SetBool(player.animHash_Dash, false);
+        
+        SoundFXManager.instance.DestroySource(source);
     }
 
     public void AddDuration(float value)

@@ -35,6 +35,10 @@ public class Player : MonoBehaviour
     public AudioClip BounceOnSound;
     public AudioClip BounceSound;
     public AudioClip BounceOffSound;
+
+    [Space] 
+    
+    public AudioClip DashSound;
     
     [Space]
     
