@@ -6,8 +6,10 @@ public class Parallax : MonoBehaviour
     #region Serialize Fileds
     
     [SerializeField] private List<GameObject> m_Backgrounds;
-    [SerializeField] private bool instantiateFirstBackground;
+    [SerializeField] private Transform target;
     
+    [SerializeField] private bool instantiateFirstBackground;
+
     #endregion
 
     #region Compoonents
@@ -55,7 +57,7 @@ public class Parallax : MonoBehaviour
 
     void Update()
     {
-        var distanceToPlayer = m_Bounds.extents.x + currentBackground.transform.position.x - PlayerLocator.instance.transform.position.x;
+        var distanceToPlayer = m_Bounds.extents.x + currentBackground.transform.position.x - target.transform.position.x;
 
         AddBackgroundDependingOn(distanceToPlayer);
     }
@@ -76,7 +78,8 @@ public class Parallax : MonoBehaviour
         next.name = back.name;
         
         currentBackground.TryGetComponent<Animator>(out var animator);
-        
+        next.TryGetComponent<GetDestroyedIfFarBehindPlayer>(out var getDestroyed);
+        if (getDestroyed) getDestroyed.SetTarget(target);
         
         if (animator)
         {

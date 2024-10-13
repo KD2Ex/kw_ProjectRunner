@@ -35,7 +35,8 @@ public class ChunkSpawnManager : MonoBehaviour
     {
         var instance = Instantiate(chunk.Prefab, chunkMovement);
         //chunk.Condition = null; //
-        instance.AddComponent<GetDestroyedIfFarBehindPlayer>();
+        var getDestroyed = instance.AddComponent<GetDestroyedIfFarBehindPlayer>();
+        getDestroyed.SetTarget(playerTransform);
         if (CurrentChunk)
         {
             instance.transform.position = new Vector3(CurrentChunk.position.x + 36f, 0f, 0f);
