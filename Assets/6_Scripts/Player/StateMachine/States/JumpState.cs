@@ -39,7 +39,7 @@ public class JumpState : BaseState
 
         if (elapsedTime > player.JumpOnSound.length && !jumpSource)
         {
-            jumpSource = SoundFXManager.instance.PlaySoundConstantly(player.JumpSound, player.transform, 1f);
+            jumpSource = SoundFXManager.instance.PlayLoopedSound(player.JumpSound, player.transform, 1f);
         }
     }
 

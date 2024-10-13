@@ -35,7 +35,7 @@ public class SoundFXManager : MonoBehaviour
         return audioSource;
     }
 
-    public AudioSource PlaySoundConstantly(AudioClip clip, Transform spawnPoint, float volume)
+    public AudioSource PlayLoopedSound(AudioClip clip, Transform spawnPoint, float volume)
     {
         var audioSource = Instantiate(soundFXObject, spawnPoint.position, Quaternion.identity);
         audioSource.clip = clip;

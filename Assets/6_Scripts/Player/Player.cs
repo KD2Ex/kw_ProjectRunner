@@ -17,16 +17,24 @@ public class Player : MonoBehaviour
     public AudioClip StopSound;
     public AudioClip DeathSound;
     
-    [Header("Jump")] 
     [Space]
+
     public AudioClip JumpOnSound;
     public AudioClip JumpSound;
     public AudioClip JumpOffSound;
+    
     [Space]
+    
     public AudioClip SlideOnSound;
     public AudioClip SlideSound;
     public AudioClip SlideOffSound;
     public AudioClip SlideDeathSound;
+    
+    [Space]
+    
+    public AudioClip BounceOnSound;
+    public AudioClip BounceSound;
+    public AudioClip BounceOffSound;
     
     [Space]
     

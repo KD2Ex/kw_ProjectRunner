@@ -30,7 +30,7 @@ public class SlideState : BaseState
 
         if (elapsedTime > player.SlideOnSound.length && !source)
         {
-            source = SoundFXManager.instance.PlaySoundConstantly(player.SlideSound, player.transform, 1f);
+            source = SoundFXManager.instance.PlayLoopedSound(player.SlideSound, player.transform, 1f);
         }
     }
 
