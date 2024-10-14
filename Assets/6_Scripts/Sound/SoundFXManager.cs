@@ -31,7 +31,7 @@ public class SoundFXManager : MonoBehaviour
         var audioSource = Instantiate(soundFXObject, spawnPoint.position, Quaternion.identity);
         audioSource.clip = clip;
         audioSource.volume = volume;
-
+        //audioSource.transform.SetParent(transform);
         return audioSource;
     }
 
