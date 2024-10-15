@@ -3,11 +3,6 @@ using System.Collections.Generic;
 using System.Security.Cryptography;
 using UnityEngine;
 
-public enum Direction
-{
-    UP,DOWN
-}
-
 public class StorePanel : MonoBehaviour
 {
     [SerializeField] private InputReader input;
@@ -48,7 +43,6 @@ public class StorePanel : MonoBehaviour
         input.InteractEvent += Press;
         input.UIXMoveEvent += XMove;
         input.UIYMoveEvent += YMove;
-        
     }
 
     private void OnDisable()

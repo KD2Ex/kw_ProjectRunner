@@ -6,11 +6,13 @@ public class Shield : Booster
     
     protected override void OnEnable()
     {
+        base.OnEnable();
         //Debug.Log(gameObject.name);
     }
     
     protected override void OnDisable()
     {
+        base.OnDisable();
         invincibilityController.Trigger();
         //Debug.Log(gameObject.name);
     }

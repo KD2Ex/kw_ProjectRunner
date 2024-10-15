@@ -11,6 +11,10 @@ public abstract class UISelection : MonoBehaviour
     private void Awake()
     {
         animator = GetComponent<Animator>();
+
+        Debug.Log($"{animator}");
+        Debug.Log($"{gameObject.name} ");
+        Debug.Log($"{animSelect} ");
     }
 
     public virtual void Select(bool value)

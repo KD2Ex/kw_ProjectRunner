@@ -14,5 +14,10 @@ public class UpgradeLevel : ScriptableObject
         value++;
     }
 
+    public void SetLevel(int value)
+    {
+        this.value = value;
+    }
+
     public bool MaxLevel => Value == 10;
 }

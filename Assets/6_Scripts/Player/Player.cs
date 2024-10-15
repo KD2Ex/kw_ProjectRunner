@@ -56,6 +56,7 @@ public class Player : MonoBehaviour
     [SerializeField] private FloatVariable so_EnergyToDash;
     [SerializeField] private FloatVariable m_DashDuration;
     [SerializeField] private FloatVariable m_CurrentHealths; // replace with IntVar so
+    public int Healths => (int) m_CurrentHealths.Value;
     private float m_EnergyToDash => so_EnergyToDash.Value;
     
     private float m_DashEnergy => so_DashEnergy.Value;
@@ -573,4 +574,15 @@ public class Player : MonoBehaviour
     public bool Invincible => m_Dashing
                               || m_Shield.gameObject.activeSelf
                               || m_InvincibilityController.Invincible;
+
+    public void Save(ref IntSaveData data)
+    {
+        data.Value = Healths;
+    }
+
+    public void Load(IntSaveData data)
+    {
+        m_CurrentHealths.Value = data.Value;
+    }
+    
 }
