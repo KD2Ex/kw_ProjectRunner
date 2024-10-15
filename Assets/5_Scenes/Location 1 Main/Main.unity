@@ -4479,11 +4479,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5221802378769687685, guid: 69da3c49d95a689479e5fc6c8bda0e8b, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6830316853631357165, guid: 69da3c49d95a689479e5fc6c8bda0e8b, type: 3}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 530429294}
+    - target: {fileID: 6830316853631357165, guid: 69da3c49d95a689479e5fc6c8bda0e8b, type: 3}
       propertyPath: m_Backgrounds.Array.size
-      value: 2
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 6830316853631357165, guid: 69da3c49d95a689479e5fc6c8bda0e8b, type: 3}
       propertyPath: m_Backgrounds.Array.data[0]
@@ -4496,11 +4500,19 @@ PrefabInstance:
     - target: {fileID: 6830316853631357165, guid: 69da3c49d95a689479e5fc6c8bda0e8b, type: 3}
       propertyPath: m_Backgrounds.Array.data[2]
       value: 
-      objectReference: {fileID: 2824656032876551329, guid: 1a8e24d2c863b624e9d5dba091dc271a, type: 3}
+      objectReference: {fileID: 8450377768891357008, guid: c6e6939a5bc4bcd4eae9f9a0c8ce652b, type: 3}
     - target: {fileID: 6830316853631357165, guid: 69da3c49d95a689479e5fc6c8bda0e8b, type: 3}
       propertyPath: m_Backgrounds.Array.data[3]
       value: 
-      objectReference: {fileID: 3814646998195211, guid: 0241c23de828bd846af3915a709fd18d, type: 3}
+      objectReference: {fileID: 3057845905185247769, guid: 4789778f7cd011f47a32ab782205fa8b, type: 3}
+    - target: {fileID: 6830316853631357165, guid: 69da3c49d95a689479e5fc6c8bda0e8b, type: 3}
+      propertyPath: m_Backgrounds.Array.data[4]
+      value: 
+      objectReference: {fileID: 7944858564315911304, guid: 140c7c1a4da727447ab28900171bd705, type: 3}
+    - target: {fileID: 6830316853631357165, guid: 69da3c49d95a689479e5fc6c8bda0e8b, type: 3}
+      propertyPath: m_Backgrounds.Array.data[5]
+      value: 
+      objectReference: {fileID: 2048742189787559664, guid: b52fbe328f7f99d4c885112ebc4df11a, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4686,10 +4698,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Chunk Spawn Manager
       objectReference: {fileID: 0}
+    - target: {fileID: 3872893639963078119, guid: 9a17c9d16b9736042aa4a741f368d8ff, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4592588674817901652, guid: 9a17c9d16b9736042aa4a741f368d8ff, type: 3}
       propertyPath: ChunkRandomManager
       value: 
-      objectReference: {fileID: 11400000, guid: 9abd5d3c3b960384586c324c4387f9fa, type: 2}
+      objectReference: {fileID: 11400000, guid: 640dddb741bda1e44b8968932f2e1a8f, type: 2}
     - target: {fileID: 6378822272405041046, guid: 9a17c9d16b9736042aa4a741f368d8ff, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
