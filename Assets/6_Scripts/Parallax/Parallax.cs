@@ -1,11 +1,20 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Parallax : MonoBehaviour
 {
+    [Serializable]
+    public struct Background
+    {
+        public GameObject Prefab;
+        public SpriteRenderer Sprite;
+    }
+    
     #region Serialize Fileds
     
     [SerializeField] private List<GameObject> m_Backgrounds;
+    [SerializeField] private List<Background> Backgrounds;
     [SerializeField] private Transform target;
     
     [SerializeField] private bool instantiateFirstBackground;
@@ -47,12 +56,15 @@ public class Parallax : MonoBehaviour
 
         foreach (var go in m_Backgrounds)
         {
-            var spriteRenderer = go.GetComponent<SpriteRenderer>();
-            m_SpritesBounds.Add(go.name, spriteRenderer.bounds);
+            var compute = go.GetComponent<ComputeBounds>();
+            var bounds = compute.GetBounds();
+            
+            //var spriteRenderer = go.GetComponent<SpriteRenderer>();
+            m_SpritesBounds.Add(go.name, bounds);
         }
         
-        sprite = currentBackground.GetComponent<SpriteRenderer>();
-        SetNewBounds(sprite.bounds);
+        //sprite = currentBackground.GetComponent<SpriteRenderer>();
+        SetNewBounds(m_SpritesBounds[m_Backgrounds[0].name]);
     }
 
     void Update()
