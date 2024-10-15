@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class DigitsController : MonoBehaviour
@@ -48,11 +49,24 @@ public class DigitsController : MonoBehaviour
             index++;
         }
 
+        
+        if (digits.Count > index && maxAmount == 0)
+        {
+            for (int i = digits.Count - 1; i > index - 1; i--)
+            {
+                Debug.Log(digits[i].transform.position.x);
+                Destroy(digits[i].gameObject);
+                digits.Remove(digits[i]);
+            }
+        }
+        
         for (int i = digits.Count; i < maxAmount; i++)
         {
             digits.Add(CreateDigit(0, i));
             Align();
         }
+
+        
     }
 
     public DigitObject CreateDigit(int value, int index)

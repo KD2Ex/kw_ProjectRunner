@@ -8,8 +8,11 @@ public class DigitObject : MonoBehaviour
     private float elapsedTime = 0;
     private float index = 0;
 
+    public int Digit;
+
     public void SetDigit(int digit)
     {
+        Digit = digit;
         float time = digit / 10f;
         m_Animator.Play(clip.name, 0, time);
     }
