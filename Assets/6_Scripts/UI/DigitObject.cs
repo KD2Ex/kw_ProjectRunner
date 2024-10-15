@@ -14,6 +14,8 @@ public class DigitObject : MonoBehaviour
     {
         Digit = digit;
         float time = digit / 10f;
+
+        if (!m_Animator.enabled) return;
         m_Animator.Play(clip.name, 0, time);
     }
     
