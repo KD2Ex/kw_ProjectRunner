@@ -4,6 +4,8 @@ using UnityEngine;
 public class GetDestroyedIfFarBehindPlayer : MonoBehaviour
 {
     [SerializeField] private FloatVariable m_DistanceToDestroy;
+    [SerializeField] private bool PlayerAsTarget;
+
     private float Value = 30f;
 
     private Transform target;
@@ -15,6 +17,17 @@ public class GetDestroyedIfFarBehindPlayer : MonoBehaviour
     
     private void Awake()
     {
+    }
+
+    private void Start()
+    {
+        Value = m_DistanceToDestroy ? m_DistanceToDestroy.Value : 30f;
+        
+        if (PlayerAsTarget)
+        {
+            if (!PlayerLocator.instance) return;
+            target = PlayerLocator.instance.playerTransform;
+        }
     }
 
     //private Vector3 PlayerPosition => PlayerLocator.instance.playerTransform.position;

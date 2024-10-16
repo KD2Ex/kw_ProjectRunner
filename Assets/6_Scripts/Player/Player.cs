@@ -528,7 +528,6 @@ public class Player : MonoBehaviour
         m_IsDead = true;
 
         m_SpeedController.ResetSpeed();
-        m_Coins.ResetValue();
         DisableInput();
         OnDeath?.Invoke();
     }

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Parallax : MonoBehaviour
 {
@@ -14,10 +15,13 @@ public class Parallax : MonoBehaviour
     #region Serialize Fileds
     
     [SerializeField] private List<GameObject> m_Backgrounds;
-    [SerializeField] private List<Background> Backgrounds;
+    //[SerializeField] private List<Background> Backgrounds;
     [SerializeField] private Transform target;
+    [SerializeField] private float minOffset;
+    [SerializeField] private float maxOffset;
     
     [SerializeField] private bool instantiateFirstBackground;
+    [SerializeField] private bool random;
 
     #endregion
 
@@ -56,8 +60,18 @@ public class Parallax : MonoBehaviour
 
         foreach (var go in m_Backgrounds)
         {
-            var compute = go.GetComponent<ComputeBounds>();
-            var bounds = compute.GetBounds();
+            go.TryGetComponent<ComputeBounds>(out var compute);
+
+            Bounds bounds;
+            if (compute)
+            {
+                bounds = compute.GetBounds();
+            }
+            else
+            {
+                bounds = go.GetComponent<SpriteRenderer>().bounds;
+            }
+            
             
             //var spriteRenderer = go.GetComponent<SpriteRenderer>();
             m_SpritesBounds.Add(go.name, bounds);
@@ -76,9 +90,15 @@ public class Parallax : MonoBehaviour
 
     private void AddBackgroundDependingOn(float distanceToPlayer)
     {
-        if (distanceToPlayer < screenSize + 2f )
+        if (distanceToPlayer < screenSize + 2f)
         {
             if (index == m_Backgrounds.Count) index = 0;
+
+            if (random)
+            {
+                index = Random.Range(0, m_Backgrounds.Count);
+            }
+            
             DuplicateBackground(m_Backgrounds[index]);
             index++;
         }
@@ -102,8 +122,9 @@ public class Parallax : MonoBehaviour
         m_SpritesBounds.TryGetValue(next.name, out var newBounds);
 
         var offset = m_Bounds.extents.x + newBounds.extents.x;
+        var randomOffset = Random.Range(minOffset, maxOffset);
 
-        m_xOffset += offset;
+        m_xOffset += offset + randomOffset;
         
         SetNewBounds(newBounds);
 

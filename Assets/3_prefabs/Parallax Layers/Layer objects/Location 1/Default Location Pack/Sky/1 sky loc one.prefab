@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3274753672723444523}
   - component: {fileID: 3768562482804218749}
   - component: {fileID: 5870383840513914181}
+  - component: {fileID: 2129206997776543664}
   m_Layer: 0
   m_Name: 1 sky loc one
   m_TagString: Untagged
@@ -120,3 +121,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_AnimationName: Sky1
+--- !u!114 &2129206997776543664
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 970867790391728349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52e3cbadd2bd11141b70ae6cbe77148c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_DistanceToDestroy: {fileID: 11400000, guid: 52135a3dedce51b4b88823d66789426e, type: 2}
+  PlayerAsTarget: 0
