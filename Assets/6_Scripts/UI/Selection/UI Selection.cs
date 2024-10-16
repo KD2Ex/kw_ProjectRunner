@@ -19,6 +19,7 @@ public abstract class UISelection : MonoBehaviour
 
     public virtual void Select(bool value)
     {
+        if (!animator) return;
         animator.SetBool(animSelect, value);
 
         if (tipButton)

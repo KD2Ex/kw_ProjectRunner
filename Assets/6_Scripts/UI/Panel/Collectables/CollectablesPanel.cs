@@ -3,27 +3,13 @@ using UnityEngine;
 
 public class CollectablesPanel : PanelNavigation
 {
-    [SerializeField] private InputReader input;
+    [SerializeField] private UIBackToGame backToGame;
+    [SerializeField] private UIOpenNemoPanel openNemo;
     [SerializeField] private ExitToMenuSelection exit;
+    
     private void Awake()
     {
-        currentPos = new UICoord(0, 0);
-        
-        selections = new UISelection[,] { {exit} };
-    }
-
-    private void OnEnable()
-    {
-        input.DisableGameplayInput();
-        input.InteractEvent += Press;
-        Time.timeScale = 0f;
-    }
-
-    private void OnDisable()
-    {
-        input.EnableGameplayInput();
-        input.InteractEvent -= Press;
-        Time.timeScale = 1f;
+        selections = new UISelection[,] { {backToGame, openNemo, exit } };
     }
 
     private void Start()
@@ -38,11 +24,17 @@ public class CollectablesPanel : PanelNavigation
 
     protected override void YMove(int value)
     {
+        var pos = new UICoord(currentPos.x + value, 0);
+
+        if (!IsValid(pos)) return;
         
+        selections[0, currentPos.x].Select(false);
+        currentPos = pos;
+        selections[0, currentPos.x].Select(true);
     }
 
-    protected override void IsValid(UICoord coord)
+    protected override bool IsValid(UICoord coord)
     {
-        
+        return coord.x is >= 0 and < 3;
     }
 }

@@ -16,18 +16,6 @@ public struct UICoord
         this._y = y;
     }
 
-    public void MoveX()
-    {
-        _x += x;
-        //_x = dir == Direction.DOWN ? _x - 1 : _x + 1;
-    }
-
-    public void MoveY()
-    {
-        _y = y;
-        //_y = dir == Direction.UP ? _y - 1 : _y + 1;
-    }
-
     public bool CoordEquals(UICoord coords)
     {
         try
