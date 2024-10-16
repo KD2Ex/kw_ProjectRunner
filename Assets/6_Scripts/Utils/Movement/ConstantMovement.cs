@@ -4,7 +4,7 @@ public class ConstantMovement : MonoBehaviour
 {
     [SerializeField] private FloatVariable so_Speed;
     
-    [Range(0,1)]
+    [Range(0, 2)]
     [SerializeField] private float m_Multiplier;
     [SerializeField] private bool m_AutoMoveLeft;
     private float m_Speed => so_Speed.Value;

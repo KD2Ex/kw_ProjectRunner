@@ -124,7 +124,7 @@ public class Parallax : MonoBehaviour
         var offset = m_Bounds.extents.x + newBounds.extents.x;
         var randomOffset = Random.Range(minOffset, maxOffset);
 
-        m_xOffset += offset + randomOffset;
+        m_xOffset += offset + randomOffset - .01f;
         
         SetNewBounds(newBounds);
 
