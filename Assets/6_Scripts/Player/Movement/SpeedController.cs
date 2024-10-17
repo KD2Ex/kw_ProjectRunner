@@ -1,6 +1,4 @@
-using System;
 using UnityEngine;
-
 
 [RequireComponent(typeof(Player))]
 public class SpeedController : MonoBehaviour
@@ -45,6 +43,7 @@ public class SpeedController : MonoBehaviour
     {
         if (player.CurrentState.ToString() == "DashState") return;
         
+        
         if (m_Running)
         {
             IncreaseSpeed();
@@ -54,7 +53,15 @@ public class SpeedController : MonoBehaviour
                 m_AudioSource = SoundFXManager.instance.SpawnSound(m_RunSound, transform, 1f);
             }
 
-            if (m_AudioSource.isPlaying) return;
+            if (m_AudioSource.isPlaying)
+            {
+                if (player.CurrentState.ToString() == "RunState") return;
+                
+                m_AudioSource.Pause();
+                m_AudioSource.time = 0f;
+
+                return;
+            }
             
             m_AudioSource.Play();
         }
@@ -69,12 +76,6 @@ public class SpeedController : MonoBehaviour
     private void OnMove(bool value)
     {
         m_Running = value;
-    }
-
-    private void Stop()
-    {
-        m_Running = false;
-        ResetSpeed();
     }
 
     private void IncreaseSpeed()
