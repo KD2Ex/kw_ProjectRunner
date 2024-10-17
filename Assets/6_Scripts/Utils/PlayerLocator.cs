@@ -4,6 +4,7 @@ public class PlayerLocator : MonoBehaviour
 {
     public static PlayerLocator instance;
     public Transform playerTransform { get; private set; }
+    public Player player { get; private set; }
     public Vector3 DefaultPosition;
     
     private void Awake()
@@ -18,7 +19,9 @@ public class PlayerLocator : MonoBehaviour
             Destroy(gameObject);
         }
 
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+        
         DefaultPosition = playerTransform.position;
     }
 }

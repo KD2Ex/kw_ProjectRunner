@@ -32,7 +32,8 @@ public class DeathState : BaseState
     {
         base.Update();
 
-        if (player.m_DeathType == DeathType.SLIDE)
+        if (player.m_DeathType == DeathType.SLIDE 
+            || animator.GetCurrentAnimatorStateInfo(0).IsName("dodge_off"))
         {
             if (player.transform.position.y > Player.SlideGroundLine)
             {
@@ -43,6 +44,12 @@ public class DeathState : BaseState
         }
         
         if (!player.Grounded) player.ApplyGravity();
+
+        if (player.transform.position.y < -1.77f)
+        {
+            player.transform.position = new Vector3(player.transform.position.x, -1.77f, 0f);
+        }
+        
     }
 
     public override void FixedUpdate()

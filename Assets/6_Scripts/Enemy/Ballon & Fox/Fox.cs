@@ -1,14 +1,17 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 
 public class Fox : MonoBehaviour
 {
     [SerializeField] private FloatVariable speed;
+
+    private Vector2 target;
     
     private Transform player;
     private Rigidbody2D rb;
 
-    private float offset = 5f;
+    private float offset = 4f;
     
     private void Awake()
     {
@@ -58,7 +61,7 @@ public class Fox : MonoBehaviour
             
             rb.MovePosition(transform.position + Vector3.Normalize(dir) * (30f * Time.deltaTime));
             dir = (to.position - transform.position) - new Vector3(offset, 0f, 0f);
-            yield return null;
+            yield return new WaitForFixedUpdate();
         }
     }
 }
