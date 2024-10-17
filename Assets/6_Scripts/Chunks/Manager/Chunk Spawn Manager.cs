@@ -4,7 +4,7 @@ using UnityEngine;
 public class ChunkSpawnManager : MonoBehaviour
 {
     [SerializeField] private ChunkRandomManager ChunkRandomManager;
-    
+    [SerializeField] private Chunk FirstChunk;
     private Transform chunkMovement;
     private Transform playerTransform;
 
@@ -19,6 +19,7 @@ public class ChunkSpawnManager : MonoBehaviour
         chunkMovement = GameObject.FindGameObjectWithTag("ChunkParent").transform;
         playerTransform = PlayerLocator.instance.playerTransform;
         
+        CreateChunk(FirstChunk);
         CreateChunk(ChunkRandomManager.Pop().Chunk);
     }
 

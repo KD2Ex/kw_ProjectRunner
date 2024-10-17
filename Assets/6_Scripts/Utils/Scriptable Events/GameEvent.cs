@@ -8,8 +8,6 @@ public class GameEvent : ScriptableObject
 
     public void AddListener(GameEventListener listener)
     {
-        Debug.Log($"Listeners: {listeners}");
-        Debug.Log($"Listener: {listener}");
 
         if (listeners.Contains(listener)) return;
         listeners.Add(listener);
