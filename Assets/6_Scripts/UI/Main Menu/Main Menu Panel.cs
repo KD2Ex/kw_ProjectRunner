@@ -40,11 +40,12 @@ public class MainMenuPanel : PanelNavigation
 
         if (!IsValid(pos)) return;
 
-        hint.position = hintPos[currentPos.x].position;
         
         selections[0, currentPos.x].Select(false);
         currentPos = pos;
         selections[0, currentPos.x].Select(true);
+        hint.position = hintPos[currentPos.x].position;
+
     }
 
     protected override bool IsValid(UICoord coord)
