@@ -8,7 +8,7 @@ public class Fox : MonoBehaviour
     private Transform player;
     private Rigidbody2D rb;
 
-    private float offset = 6f;
+    private float offset = 5f;
     
     private void Awake()
     {
