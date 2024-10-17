@@ -11,10 +11,11 @@ GameObject:
   - component: {fileID: 7402848184498271707}
   - component: {fileID: 9087471269806288419}
   - component: {fileID: 3972452464124583424}
-  - component: {fileID: 6045405572428613525}
+  - component: {fileID: 3564834868195069046}
+  - component: {fileID: 6106045556657652774}
   m_Layer: 0
   m_Name: 'balloon_one '
-  m_TagString: Enemy
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -107,8 +108,8 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!61 &6045405572428613525
-BoxCollider2D:
+--- !u!70 &3564834868195069046
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -139,16 +140,23 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.00000029802322, y: 1.9404608}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 3.22, y: 7.25}
-    newSize: {x: 3.22, y: 7.25}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.99081683, y: 2.1553028}
-  m_EdgeRadius: 0
+  m_Offset: {x: 0.051110845, y: -0.19930884}
+  m_Size: {x: 1.7684529, y: 6.8513827}
+  m_Direction: 0
+--- !u!114 &6106045556657652774
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6582616968342121582}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfe56ff10de94fd468791d79b8fdd4fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fox: {fileID: 0}
+  clips:
+  - {fileID: 8300000, guid: 213f912524a3041189f1974e206aa629, type: 3}
+  - {fileID: 8300000, guid: 86a37eb4be2734c2fa518fd44fe81d3d, type: 3}
+  - {fileID: 8300000, guid: 85131cd9d06b44db5ab55643b841886f, type: 3}
