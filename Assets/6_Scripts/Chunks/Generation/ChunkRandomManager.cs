@@ -73,6 +73,7 @@ public class ChunkRandomManager : ScriptableObject
             foreach (var chunk in chunkSet.List.Items)
             {
                 if (chunk.Available) continue;
+                if (chunk.Condition == null) continue;
                 var evalResult = chunk.Condition.Evaluate();
                 if (evalResult)
                 {
