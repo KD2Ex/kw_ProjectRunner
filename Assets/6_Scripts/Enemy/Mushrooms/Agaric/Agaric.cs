@@ -25,7 +25,6 @@ public class Agaric : MonoBehaviour
     void Update()
     {
         var currDist = (player.position - transform.position).magnitude;
-        Debug.Log(currDist);
 
         if (currDist < idleSound.maxDistance && !idleSound.isPlaying)
         {
@@ -35,7 +34,6 @@ public class Agaric : MonoBehaviour
         if (currDist > distance) return;
         if (attacked) return;
         
-        Debug.Log(attacked);
         attacked = true;
 
         attackSound.enabled = true;
