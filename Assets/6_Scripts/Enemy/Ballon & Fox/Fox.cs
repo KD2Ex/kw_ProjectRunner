@@ -6,6 +6,8 @@ public class Fox : MonoBehaviour
 {
     [SerializeField] private FloatVariable speed;
 
+    private FoodUseManager foodUse;
+    
     private Vector2 target;
     
     private Transform player;
@@ -17,6 +19,7 @@ public class Fox : MonoBehaviour
     {
         player = PlayerLocator.instance.playerTransform;
         rb = GetComponent<Rigidbody2D>();
+        foodUse = FindObjectOfType<FoodUseManager>();
     }
 
     private void OnEnable()
@@ -24,6 +27,13 @@ public class Fox : MonoBehaviour
         StartCoroutine(Move(player, offset));
         transform.SetParent(null);
         offset -= 1f;
+        
+        foodUse.BlockConsuming();
+    }
+
+    private void OnDisable()
+    {
+        foodUse.UnblockConsuming();
     }
 
     private void Update()
