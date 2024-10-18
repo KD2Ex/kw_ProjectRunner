@@ -217,6 +217,9 @@ public class Player : MonoBehaviour
         var jumpState = new JumpState(this, m_Animator);
         var fallingState = new FallingState(this, m_Animator);
         var slideState = new SlideState(this, m_Animator);
+
+        var slideOffState = new SlideOffState(this, m_Animator);
+        
         var airDashState = new AirDashState(this, m_Animator);
         dashState = new DashState(this, m_Animator);
         var deathState = new DeathState(this, m_Animator);
@@ -253,10 +256,11 @@ public class Player : MonoBehaviour
         At(runState, slideState, new ActionPredicate(() => m_SlideInput && Grounded,
             () =>
             {
-                EnableOnly(m_SlideCollider);
             })
         );
         
+        //At(slideState, slideOffState, new FuncPredicate(() => !m_SlideInput));
+        //At(slideOffState, );
         At(slideState, runState, new ActionPredicate(() => !m_SlideInput,
             () =>
             {
@@ -303,6 +307,19 @@ public class Player : MonoBehaviour
 
     }
 
+    private bool slideOff = false;
+    
+    public void SlideOff()
+    {
+        slideOff = true;
+    }
+    
+    public void DroppedInSlide()
+    {
+        EnableOnly(m_SlideCollider);
+    }
+
+    public bool SlideColliderActive => m_SlideCollider.enabled;
     
     public void EnterDashState()
     {

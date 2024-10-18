@@ -25,7 +25,11 @@ public class SlideState : BaseState
         {
             player.ApplyGravity(14f, Vector2.down);
         }
-
+        else if (!player.SlideColliderActive)
+        {
+            player.DroppedInSlide();
+        }
+        
         elapsedTime += Time.deltaTime;
 
         if (elapsedTime > player.SlideOnSound.length && !source)
