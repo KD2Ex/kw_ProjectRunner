@@ -23,6 +23,7 @@ public class InputReader : ScriptableObject, PlayerInput.IGameplayActions, Playe
     public UnityAction<int> UIYMoveEvent;
     
     public bool RunTriggered =>_input.Gameplay.Run.triggered;
+    public float XMoveValue => _input.UI.XMove.ReadValue<float>();
     
     public void DisableGameplayInput()
     {
