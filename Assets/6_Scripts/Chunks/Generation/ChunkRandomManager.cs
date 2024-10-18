@@ -43,6 +43,7 @@ public class ChunkRandomManager : ScriptableObject
             
             foreach (var chunk in set.List.Items)
             {
+                if (set.List.RestoreOnEnable) chunk.Restore();
                 chunk.Initialize();
             }
         }

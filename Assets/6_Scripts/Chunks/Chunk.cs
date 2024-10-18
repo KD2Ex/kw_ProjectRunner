@@ -18,8 +18,6 @@ public class Chunk
     
     public void Initialize()
     {
-        Available = true;
-
         if (BecomeUnavailableAfterSpawn && RestoreCondition)
         {
             Condition = RestoreCondition.Init();
