@@ -5,7 +5,7 @@ public class GetDestroyedIfFarBehindPlayer : MonoBehaviour
 {
     [SerializeField] private FloatVariable m_DistanceToDestroy;
     [SerializeField] private bool PlayerAsTarget;
-
+    
     private float Value = 30f;
 
     private Transform target;
