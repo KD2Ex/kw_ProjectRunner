@@ -10,8 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e1d114b9d888431896a8ee02d717a87b, type: 3}
-  m_Name: Chunk Set Boosters
+  m_Name: Store
   m_EditorClassIdentifier: 
-  List: {fileID: 11400000, guid: 582bc893dd0263d4ebb6204b460bb622, type: 2}
-  SpawnCondition: {fileID: 11400000, guid: cf7a613f8a5674540853ba646a1a62ca, type: 2}
-  Priority: 3
+  List: {fileID: 11400000, guid: 137e67437c92e8e409fd61ce89bd804b, type: 2}
+  SpawnCondition:
+  - {fileID: 11400000, guid: d77f29c1c7602314f8d31920ef6374c0, type: 2}
+  Priority: 10
