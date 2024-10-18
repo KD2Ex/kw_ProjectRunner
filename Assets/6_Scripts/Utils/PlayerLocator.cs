@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class PlayerLocator : MonoBehaviour
 {
@@ -24,4 +25,10 @@ public class PlayerLocator : MonoBehaviour
         
         DefaultPosition = playerTransform.position;
     }
+
+    public float DistanceToPlayer(Transform origin)
+    {
+        return origin.position.x - playerTransform.position.x;
+    }
+
 }

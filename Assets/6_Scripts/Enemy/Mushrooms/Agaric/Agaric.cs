@@ -28,7 +28,10 @@ public class Agaric : MonoBehaviour
 
         if (currDist < idleSound.maxDistance && !idleSound.isPlaying)
         {
-            idleSound.Play();
+            if (idleSound.enabled)
+            {
+                idleSound.Play();
+            }
         }
         
         if (currDist > distance) return;

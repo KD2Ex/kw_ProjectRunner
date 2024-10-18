@@ -467,9 +467,16 @@ public class Player : MonoBehaviour
     {
         //Debug.Log(other.gameObject.name);
         other.TryGetComponent<Collectable>(out var collectable);
+        var collectableInParent = other.GetComponentInParent<Collectable>();
         if (collectable)
         {
             collectable.Pickup(this);
+            return;
+        }
+
+        if (collectableInParent)
+        {
+            collectableInParent.Pickup(this);
             return;
         }
         

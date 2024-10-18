@@ -1,16 +1,40 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 [CreateAssetMenu(fileName = "Chunk Set", menuName = "Scriptable Objects/Chunks/Set")]
 public class ChunkSet : ScriptableObject
 {
     public ChunkList List;
-    public ScriptableCondition SpawnCondition;
+    public List<ScriptableCondition> SpawnCondition;
     public int Priority;
-    
-    public ChunkSpawnCondition Condition;
+
+    private List<ChunkSpawnCondition> Conditions = new();
 
     public void InitCondition()
     {
-        Condition = SpawnCondition.Init();
+        Conditions.Clear();
+        foreach (var condition in SpawnCondition)
+        {
+            Conditions.Add(condition.Init());
+        }
+    }
+
+    public bool EvaluateAll()
+    {
+        var result = true;
+        foreach (var condition in Conditions)
+        {
+            result = result && condition.Evaluate();
+        }
+
+        return result;
+    }
+
+    public void ResetAll()
+    {
+        foreach (var condition in Conditions)
+        {
+            condition.ResetTrigger();
+        }
     }
 }

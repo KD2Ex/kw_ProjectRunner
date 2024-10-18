@@ -33,7 +33,7 @@ public class Milkcup : MonoBehaviour
         {
             var to = (point.position - cap.position).magnitude < .01f ? capPoint : point;
 
-            Debug.Log($"Milkcap mag: {(point.position - cap.position).magnitude}");
+            //Debug.Log($"Milkcap mag: {(point.position - cap.position).magnitude}");
             moving = StartCoroutine(Move(to));
         }
     }
@@ -74,7 +74,7 @@ public class Milkcup : MonoBehaviour
         for (int i = 0; i < 4; i++)
         {
             randomPool.Add(Random.Range(0, 2));
-            Debug.Log(randomPool[i]);
+            //Debug.Log(randomPool[i]);
         }
     }
 }

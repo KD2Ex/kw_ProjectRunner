@@ -8,7 +8,6 @@ public class GameEventListener : MonoBehaviour
 
     private void OnEnable()
     {
-        Debug.Log(gameEvent.name);
         gameEvent.AddListener(this);
     }
 
