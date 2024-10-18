@@ -1,0 +1,130 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &3290307659608193241
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2791669588806289063, guid: 8f5dd41ad0a87a44bbb9057c8d29b236, type: 3}
+      propertyPath: m_Name
+      value: pizza Air Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 6194031157442946476, guid: 8f5dd41ad0a87a44bbb9057c8d29b236, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6194031157442946476, guid: 8f5dd41ad0a87a44bbb9057c8d29b236, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6194031157442946476, guid: 8f5dd41ad0a87a44bbb9057c8d29b236, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6194031157442946476, guid: 8f5dd41ad0a87a44bbb9057c8d29b236, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6194031157442946476, guid: 8f5dd41ad0a87a44bbb9057c8d29b236, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6194031157442946476, guid: 8f5dd41ad0a87a44bbb9057c8d29b236, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6194031157442946476, guid: 8f5dd41ad0a87a44bbb9057c8d29b236, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6194031157442946476, guid: 8f5dd41ad0a87a44bbb9057c8d29b236, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6194031157442946476, guid: 8f5dd41ad0a87a44bbb9057c8d29b236, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6194031157442946476, guid: 8f5dd41ad0a87a44bbb9057c8d29b236, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6735268621641424614, guid: 8f5dd41ad0a87a44bbb9057c8d29b236, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 9c1a0d1721c3545af9fdbe0e7a6e8c41, type: 2}
+    - target: {fileID: 7097745390466156880, guid: 8f5dd41ad0a87a44bbb9057c8d29b236, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 2.84
+      objectReference: {fileID: 0}
+    - target: {fileID: 7312580143753517203, guid: 8f5dd41ad0a87a44bbb9057c8d29b236, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: c5e5b4200028a4b94877f9ef11d61f03, type: 3}
+    m_RemovedComponents:
+    - {fileID: 7097745390466156880, guid: 8f5dd41ad0a87a44bbb9057c8d29b236, type: 3}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2791669588806289063, guid: 8f5dd41ad0a87a44bbb9057c8d29b236, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8326702226401854082}
+  m_SourcePrefab: {fileID: 100100000, guid: 8f5dd41ad0a87a44bbb9057c8d29b236, type: 3}
+--- !u!1 &799254591840337534 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2791669588806289063, guid: 8f5dd41ad0a87a44bbb9057c8d29b236, type: 3}
+  m_PrefabInstance: {fileID: 3290307659608193241}
+  m_PrefabAsset: {fileID: 0}
+--- !u!60 &8326702226401854082
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 799254591840337534}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2.48, y: 2.84}
+    newSize: {x: 2.48, y: 4.24}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.25462532, y: 1.1716247}
+      - {x: 0.6196903, y: 1.3106196}
+      - {x: 0.6268171, y: -0.47409225}
+      - {x: 0.35597408, y: -1.0760797}
+      - {x: -1.0271882, y: 0.7619479}
+  m_UseDelaunayMesh: 0
