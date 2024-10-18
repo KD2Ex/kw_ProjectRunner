@@ -268,7 +268,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1129024780676819575
 Transform:
   m_ObjectHideFlags: 0
@@ -371,6 +371,7 @@ Transform:
   - {fileID: 5716721526359443909}
   - {fileID: 304028145809200481}
   - {fileID: 3141482426861327747}
+  - {fileID: 1574790995515890565}
   - {fileID: 6038495788947600113}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -542,6 +543,68 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2303465084520234740, guid: d7bbcfcd4dc5dab45a858caa224804a6, type: 3}
   m_PrefabInstance: {fileID: 3778314294985517943}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &4837970641852525581
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1300656578935125489}
+    m_Modifications:
+    - target: {fileID: 1541905584791881978, guid: 1e853c270f8ecda48ba8371bfda3f782, type: 3}
+      propertyPath: m_Name
+      value: Random Air Booster
+      objectReference: {fileID: 0}
+    - target: {fileID: 6267080744696690568, guid: 1e853c270f8ecda48ba8371bfda3f782, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.68
+      objectReference: {fileID: 0}
+    - target: {fileID: 6267080744696690568, guid: 1e853c270f8ecda48ba8371bfda3f782, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 6267080744696690568, guid: 1e853c270f8ecda48ba8371bfda3f782, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6267080744696690568, guid: 1e853c270f8ecda48ba8371bfda3f782, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6267080744696690568, guid: 1e853c270f8ecda48ba8371bfda3f782, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6267080744696690568, guid: 1e853c270f8ecda48ba8371bfda3f782, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6267080744696690568, guid: 1e853c270f8ecda48ba8371bfda3f782, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6267080744696690568, guid: 1e853c270f8ecda48ba8371bfda3f782, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6267080744696690568, guid: 1e853c270f8ecda48ba8371bfda3f782, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6267080744696690568, guid: 1e853c270f8ecda48ba8371bfda3f782, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1e853c270f8ecda48ba8371bfda3f782, type: 3}
+--- !u!4 &1574790995515890565 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6267080744696690568, guid: 1e853c270f8ecda48ba8371bfda3f782, type: 3}
+  m_PrefabInstance: {fileID: 4837970641852525581}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7402944765817800848
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -593,6 +656,10 @@ PrefabInstance:
     - target: {fileID: 4957291450671609164, guid: 86a6350277a265e499cf4384008b2184, type: 3}
       propertyPath: m_Name
       value: air_shield
+      objectReference: {fileID: 0}
+    - target: {fileID: 4957291450671609164, guid: 86a6350277a265e499cf4384008b2184, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

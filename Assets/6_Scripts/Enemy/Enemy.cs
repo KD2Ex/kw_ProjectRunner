@@ -2,9 +2,10 @@
 
 public class Enemy : MonoBehaviour
 {
-    private Animator animator;
+    protected Animator animator;
 
     private void Awake()
     {
+        animator = GetComponent<Animator>();
     }
 }

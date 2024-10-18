@@ -53,15 +53,17 @@ public class SpeedController : MonoBehaviour
                 m_AudioSource = SoundFXManager.instance.SpawnSound(m_RunSound, transform, 1f);
             }
 
-            if (m_AudioSource.isPlaying)
+            if (player.CurrentState.ToString() != "RunState")
             {
-                if (player.CurrentState.ToString() == "RunState") return;
-                
-                m_AudioSource.Pause();
-                m_AudioSource.time = 0f;
-
+                if (m_AudioSource.isPlaying)
+                {
+                    m_AudioSource.Pause();
+                    m_AudioSource.time = 0f;
+                }
                 return;
             }
+
+            if (m_AudioSource.isPlaying) return;
             
             m_AudioSource.Play();
         }
