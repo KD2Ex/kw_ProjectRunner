@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Security.Cryptography;
 using UnityEngine;
 
@@ -34,16 +35,41 @@ public class ChunkSpawnManager : MonoBehaviour
 
     private void CreateChunk(Chunk chunk)
     {
-        var instance = Instantiate(chunk.Prefab, chunkMovement);
-        //chunk.Condition = null; //
-        var getDestroyed = instance.AddComponent<GetDestroyedIfFarBehindPlayer>();
-        getDestroyed.SetTarget(playerTransform);
-        if (CurrentChunk)
+
+        if (chunk.Prefabs.Count == 0)
         {
-            instance.transform.position = new Vector3(CurrentChunk.position.x + 36f, 0f, 0f);
-        }
+            var instance = Instantiate(chunk.Prefab, chunkMovement);
+            
+            var getDestroyed = instance.AddComponent<GetDestroyedIfFarBehindPlayer>();
+            getDestroyed.SetTarget(playerTransform);
+            if (CurrentChunk)
+            {
+                instance.transform.position = new Vector3(CurrentChunk.position.x + 36f, 0f, 0f);
+            }
         
-        CurrentChunk = instance.transform;
+            CurrentChunk = instance.transform;
+        }
+        else
+        {
+            List<GameObject> instances = new();
+            
+            foreach (var prefab in chunk.Prefabs)
+            {
+                var inst = Instantiate(prefab, chunkMovement);
+                instances.Add(inst);
+                var getDestroyed = inst.AddComponent<GetDestroyedIfFarBehindPlayer>();
+                getDestroyed.SetTarget(playerTransform);
+                
+                if (CurrentChunk)
+                {
+                    inst.transform.position = new Vector3(CurrentChunk.position.x + 36f, 0f, 0f);
+                }
+                CurrentChunk = inst.transform;
+            }
+        } 
+
+        //chunk.Condition = null; //
+        
     }
 
     public void ClearQueue()
