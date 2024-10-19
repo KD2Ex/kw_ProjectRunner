@@ -18,6 +18,12 @@ public class RunState : BaseState
     {
         base.Update();
 
+
+    }
+
+    public override void FixedUpdate()
+    {
+        base.FixedUpdate();
         if (!player.Grounded)
         {
             player.ApplyGravity();
@@ -26,11 +32,6 @@ public class RunState : BaseState
         {
             player.ApplyGravity(14f, Vector2.up);
         }
-    }
-
-    public override void FixedUpdate()
-    {
-        base.FixedUpdate();
     }
 
     public override void Exit()

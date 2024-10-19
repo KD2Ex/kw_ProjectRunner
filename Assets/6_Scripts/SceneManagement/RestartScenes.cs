@@ -13,19 +13,22 @@ public class RestartScenes : MonoBehaviour
     private void Awake()
     {
         //DontDestroyOnLoad(gameObject);
+
     }
 
     private void OnEnable()
     {
+        if (!m_Input) return;
         m_Input.RestartScenesEvent += Execute;
     }
 
     private void OnDisable()
     {
+        if (!m_Input) return;
         m_Input.RestartScenesEvent -= Execute;
     }
 
-    private void Execute()
+    public void Execute()
     {
         Debug.Log("reset");
         /*player = PlayerLocator.instance.playerTransform.GetComponent<Player>();
@@ -33,7 +36,7 @@ public class RestartScenes : MonoBehaviour
         player.Restart();*/
 
         SceneManager.LoadScene("Main");
-        m_Input.EnableGameplayInput();
+        m_Input?.EnableGameplayInput();
         /*var async = SceneManager.UnloadSceneAsync("Test");
         StartCoroutine(Unloading(async, () => SceneManager.LoadScene("Test")));*/
     }

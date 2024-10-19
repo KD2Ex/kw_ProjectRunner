@@ -11,6 +11,7 @@ public class InputReader : ScriptableObject, PlayerInput.IGameplayActions, Playe
     public UnityAction<bool> RunEvent;
     public UnityAction<bool> StopEvent;
     public UnityAction<bool> JumpEvent;
+    public UnityAction<Vector2> TouchJumpEvent;
     public UnityAction<bool> SlideEvent;
     public UnityAction<bool> AirDashEvent;
     public UnityAction<float> AirDashMovementEvent;
@@ -90,6 +91,14 @@ public class InputReader : ScriptableObject, PlayerInput.IGameplayActions, Playe
         if (!context.started) return;
         
         DashAbilityTest?.Invoke();
+    }
+
+    public void OnTouchJump(InputAction.CallbackContext context)
+    {
+        Debug.Log(Touchscreen.current.primaryTouch.IsPressed());
+        
+        var pos = Touchscreen.current.primaryTouch.IsPressed() ? context.ReadValue<Vector2>() : Vector2.zero;
+        TouchJumpEvent?.Invoke(context.ReadValue<Vector2>());
     }
 
     public void OnRestartScenes(InputAction.CallbackContext context)

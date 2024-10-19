@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Serialization;
+using Touch = UnityEngine.InputSystem.EnhancedTouch.Touch;
 
 public enum DeathType
 {
@@ -346,6 +347,7 @@ public class Player : MonoBehaviour
     {
         m_inputReader.RunEvent += OnRun;
         m_inputReader.JumpEvent += OnJump;
+        m_inputReader.TouchJumpEvent += OnTouchJump;
         m_inputReader.SlideEvent += OnSlide;
         m_inputReader.StopEvent += OnStop;
         m_inputReader.AirDashEvent += OnAirDash;
@@ -356,6 +358,7 @@ public class Player : MonoBehaviour
     {
         m_inputReader.RunEvent -= OnRun;
         m_inputReader.JumpEvent -= OnJump;
+        m_inputReader.TouchJumpEvent -= OnTouchJump;
         m_inputReader.SlideEvent -= OnSlide;
         m_inputReader.StopEvent -= OnStop;
         m_inputReader.AirDashEvent -= OnAirDash;
@@ -390,6 +393,18 @@ public class Player : MonoBehaviour
     private void OnRun(bool value) => m_RunInput = value;
     private void OnStop(bool value) => m_StopInput = value;
     private void OnJump(bool value) => m_JumpInput = value;
+    private void OnTouchJump(Vector2 value)
+    {
+        
+        Debug.Log(value);
+        m_JumpInput = value.x < 800 && value.y > 800;
+        m_SlideInput = value.x < 800 && value.y <= 800;
+        m_RunInput = value.x > 1200;
+
+        Debug.Log(value.x);
+        Debug.Log(m_RunInput);
+    }
+
     private void OnSlide(bool value) => m_SlideInput = value;
     private void OnAirDash(bool value) => m_AirDashInput = value;
     private void OnDash()

@@ -27,11 +27,13 @@ public class SpeedController : MonoBehaviour
     private void OnEnable()
     {
         m_InputReader.RunEvent += OnMove;
+        m_InputReader.TouchJumpEvent += OnMove;
     }
 
     private void OnDisable()
     {
         m_InputReader.RunEvent -= OnMove;
+        m_InputReader.TouchJumpEvent -= OnMove;
     }
 
     void Start()
@@ -78,6 +80,10 @@ public class SpeedController : MonoBehaviour
     private void OnMove(bool value)
     {
         m_Running = value;
+    }    
+    private void OnMove(Vector2 value)
+    {
+        m_Running = value.x > 1200;
     }
 
     private void IncreaseSpeed()

@@ -89,6 +89,15 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""TouchJump"",
+                    ""type"": ""Value"",
+                    ""id"": ""711d39db-94c3-4515-9d2a-8a43efafa72e"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -355,6 +364,17 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""action"": ""DashAbilityTest"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1d5a530f-2442-4033-920a-b984f764dea5"",
+                    ""path"": ""<Touchscreen>/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Mobile"",
+                    ""action"": ""TouchJump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -562,6 +582,17 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             ""name"": ""Gamepad"",
             ""bindingGroup"": ""Gamepad"",
             ""devices"": []
+        },
+        {
+            ""name"": ""Mobile"",
+            ""bindingGroup"": ""Mobile"",
+            ""devices"": [
+                {
+                    ""devicePath"": ""<Sensor>"",
+                    ""isOptional"": true,
+                    ""isOR"": false
+                }
+            ]
         }
     ]
 }");
@@ -574,6 +605,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_Gameplay_AirDash = m_Gameplay.FindAction("AirDash", throwIfNotFound: true);
         m_Gameplay_AirDashMovement = m_Gameplay.FindAction("AirDashMovement", throwIfNotFound: true);
         m_Gameplay_DashAbilityTest = m_Gameplay.FindAction("DashAbilityTest", throwIfNotFound: true);
+        m_Gameplay_TouchJump = m_Gameplay.FindAction("TouchJump", throwIfNotFound: true);
         // Dev
         m_Dev = asset.FindActionMap("Dev", throwIfNotFound: true);
         m_Dev_RestartScenes = m_Dev.FindAction("RestartScenes", throwIfNotFound: true);
@@ -651,6 +683,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_AirDash;
     private readonly InputAction m_Gameplay_AirDashMovement;
     private readonly InputAction m_Gameplay_DashAbilityTest;
+    private readonly InputAction m_Gameplay_TouchJump;
     public struct GameplayActions
     {
         private @PlayerInput m_Wrapper;
@@ -662,6 +695,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         public InputAction @AirDash => m_Wrapper.m_Gameplay_AirDash;
         public InputAction @AirDashMovement => m_Wrapper.m_Gameplay_AirDashMovement;
         public InputAction @DashAbilityTest => m_Wrapper.m_Gameplay_DashAbilityTest;
+        public InputAction @TouchJump => m_Wrapper.m_Gameplay_TouchJump;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -692,6 +726,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @DashAbilityTest.started += instance.OnDashAbilityTest;
             @DashAbilityTest.performed += instance.OnDashAbilityTest;
             @DashAbilityTest.canceled += instance.OnDashAbilityTest;
+            @TouchJump.started += instance.OnTouchJump;
+            @TouchJump.performed += instance.OnTouchJump;
+            @TouchJump.canceled += instance.OnTouchJump;
         }
 
         private void UnregisterCallbacks(IGameplayActions instance)
@@ -717,6 +754,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @DashAbilityTest.started -= instance.OnDashAbilityTest;
             @DashAbilityTest.performed -= instance.OnDashAbilityTest;
             @DashAbilityTest.canceled -= instance.OnDashAbilityTest;
+            @TouchJump.started -= instance.OnTouchJump;
+            @TouchJump.performed -= instance.OnTouchJump;
+            @TouchJump.canceled -= instance.OnTouchJump;
         }
 
         public void RemoveCallbacks(IGameplayActions instance)
@@ -868,6 +908,15 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             return asset.controlSchemes[m_GamepadSchemeIndex];
         }
     }
+    private int m_MobileSchemeIndex = -1;
+    public InputControlScheme MobileScheme
+    {
+        get
+        {
+            if (m_MobileSchemeIndex == -1) m_MobileSchemeIndex = asset.FindControlSchemeIndex("Mobile");
+            return asset.controlSchemes[m_MobileSchemeIndex];
+        }
+    }
     public interface IGameplayActions
     {
         void OnRun(InputAction.CallbackContext context);
@@ -877,6 +926,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         void OnAirDash(InputAction.CallbackContext context);
         void OnAirDashMovement(InputAction.CallbackContext context);
         void OnDashAbilityTest(InputAction.CallbackContext context);
+        void OnTouchJump(InputAction.CallbackContext context);
     }
     public interface IDevActions
     {
