@@ -13,7 +13,7 @@ public class ChunkSpawnManager : MonoBehaviour
     
     void Start()
     {
-        Debug.Log("Chunk Spawn Manager Start event");
+        //Debug.Log("Chunk Spawn Manager Start event");
         
         ChunkRandomManager.InitializeChunks();
         

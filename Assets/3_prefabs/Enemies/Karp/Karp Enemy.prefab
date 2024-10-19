@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 8402326167239567028}
   m_Layer: 0
   m_Name: karp
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -401,7 +401,7 @@ CapsuleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 2.4703355, y: -0.22702122}
@@ -581,7 +581,7 @@ PrefabInstance:
       addedObject: {fileID: 1430423661218298748}
     - targetCorrespondingSourceObject: {fileID: 933536938452538945, guid: 012e724a20c074b4590729faa16efd9e, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 6994742192826517463}
+      addedObject: {fileID: 777071860122251262}
   m_SourcePrefab: {fileID: 100100000, guid: 012e724a20c074b4590729faa16efd9e, type: 3}
 --- !u!1 &3791669643808581728 stripped
 GameObject:
@@ -602,8 +602,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_DistanceToDestroy: {fileID: 11400000, guid: 712db327ce9fc7d41b30f02835d831d7, type: 2}
   PlayerAsTarget: 1
---- !u!70 &6994742192826517463
-CapsuleCollider2D:
+--- !u!60 &777071860122251262
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -631,12 +631,53 @@ CapsuleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.0000000133969, y: -0.112381354}
-  m_Size: {x: 9.910003, y: 1.3394545}
-  m_Direction: 1
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 9.91, y: 1.91}
+    newSize: {x: 9.91, y: 1.91}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 2.3521614, y: -0.09319782}
+      - {x: 2.9826822, y: -0.03644967}
+      - {x: 3.7844858, y: -0.15878701}
+      - {x: 4.1946044, y: -0.08828759}
+      - {x: 4.708222, y: 0.23620677}
+      - {x: 4.1015334, y: 0.04280901}
+      - {x: 3.862121, y: -0.0043320656}
+      - {x: 3.0175734, y: 0.45302653}
+      - {x: 2.3500533, y: 0.20895267}
+      - {x: 1.6256227, y: 0.26718664}
+      - {x: 1.0762486, y: 0.42995858}
+      - {x: 0.7768855, y: 0.52970886}
+      - {x: 0.071231246, y: 0.54701024}
+      - {x: -0.36851072, y: 0.32848096}
+      - {x: -1.0318213, y: 0.4468975}
+      - {x: -1.6962078, y: 0.45571852}
+      - {x: -2.5754397, y: 0.31583786}
+      - {x: -3.5200841, y: 0.30615282}
+      - {x: -4.460732, y: -0.05191326}
+      - {x: -4.8936477, y: -0.21210527}
+      - {x: -4.0074773, y: -0.27537084}
+      - {x: -3.5668926, y: -0.4101007}
+      - {x: -3.386875, y: -0.5304427}
+      - {x: -2.954599, y: -0.62106156}
+      - {x: -2.4479537, y: -0.6546829}
+      - {x: -2.0768268, y: -0.52055}
+      - {x: -1.8181562, y: -0.58076096}
+      - {x: -0.98036456, y: -0.78469694}
+      - {x: -0.496984, y: -0.65942955}
+      - {x: 0.20290565, y: -0.7806393}
+      - {x: 1.0733874, y: -0.54285735}
+  m_UseDelaunayMesh: 0
 --- !u!114 &3896547023415099179 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1042989353715876106, guid: 012e724a20c074b4590729faa16efd9e, type: 3}

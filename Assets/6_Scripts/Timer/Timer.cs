@@ -40,7 +40,7 @@ public class Timer : MonoBehaviour
 
     public void Run()
     {
-        Debug.Log("RUn");
+        //Debug.Log("RUn");
         isRunning = true;
     }
 }

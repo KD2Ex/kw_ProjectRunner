@@ -1,5 +1,4 @@
-﻿using UnityEngine;
-
+﻿
 public class RepeatableSpawnCondition : ChunkSpawnCondition
 {
     private readonly RepeatableTimeCondition data;
@@ -21,7 +20,7 @@ public class RepeatableSpawnCondition : ChunkSpawnCondition
 
     public void Init()
     {
-        Debug.Log("Repeatable cond init");
+        //Debug.Log("Repeatable cond init");
         
         triggered = false;
         count = 0;
@@ -31,19 +30,19 @@ public class RepeatableSpawnCondition : ChunkSpawnCondition
     public override bool Evaluate()
     {
         int timeValue = TimerValue;
-        Debug.Log($"time {timeValue}, offset {Offset}, {timeValue - Offset}");
+        //Debug.Log($"time {timeValue}, offset {Offset}, {timeValue - Offset}");
         
         if (timeValue - Offset < 0) return false;
 
-        Debug.Log($"{triggered}");
+        //Debug.Log($"{triggered}");
         
         if (triggered) return true;
         
         int div = timeValue - timeOfTrigger;
         var condition = div >= Every;
 
-        Debug.Log($"timeOfTrigger {timeOfTrigger}");
-        Debug.Log($"div {div}");
+        //Debug.Log($"timeOfTrigger {timeOfTrigger}");
+        //Debug.Log($"div {div}");
         
         if (condition)
         {
@@ -52,13 +51,13 @@ public class RepeatableSpawnCondition : ChunkSpawnCondition
         }
         
         var result = triggered || condition;
-        Debug.Log($"rsc result: {result}");
+        //Debug.Log($"rsc result: {result}");
         return result;
     }
 
     public override void ResetTrigger()
     {
-        Debug.Log("Reset trigger");
+        //Debug.Log("Reset trigger");
         
         triggered = false;
         timeOfTrigger = TimerValue;

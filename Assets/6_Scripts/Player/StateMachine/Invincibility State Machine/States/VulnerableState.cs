@@ -7,7 +7,7 @@ public class VulnerableState : InvincibilityBaseState
     {
         base.Enter();
         setter.Invoke(false);
-        Debug.Log($"Invincible {controller.Invincible}");
+        //Debug.Log($"Invincible {controller.Invincible}");
         controller.SetPlayerOpacity(1f);
     }
 

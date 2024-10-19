@@ -367,8 +367,8 @@ public class Player : MonoBehaviour
     
     void Start()
     {
-        QualitySettings.vSyncCount = 0;
-        Application.targetFrameRate = 60;
+        /*QualitySettings.vSyncCount = 0;
+        Application.targetFrameRate = 60;*/
 
         //Time.timeScale = .5f;
         m_StateMachine.SetState(sleepState);
