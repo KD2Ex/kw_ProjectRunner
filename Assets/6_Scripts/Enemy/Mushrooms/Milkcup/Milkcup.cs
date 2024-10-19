@@ -2,9 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
+public struct ClampedValue<T>
+{
+    [Range(0, 10)]
+    public T min;
+    [Range(0, 10)]
+    public T max;
+}
+
 public class Milkcup : MonoBehaviour
 {
-
+    [SerializeField] private ClampedValue<float> beforeDelay;
+    [SerializeField] private ClampedValue<float> afterDelay;
+    
     [SerializeField] private float speed;
     [SerializeField] private float speedDeviation;
     
@@ -41,7 +52,7 @@ public class Milkcup : MonoBehaviour
     private IEnumerator Move(Transform to)
     {
         var elapsed = 0f;
-        var time = Random.Range(0f, .5f);
+        var time = Random.Range(beforeDelay.min, beforeDelay.max);
         while (elapsed < time)
         {
             elapsed += Time.deltaTime;
@@ -58,7 +69,7 @@ public class Milkcup : MonoBehaviour
         }
 
         elapsed = 0f;
-        time = Random.Range(0f, .5f);
+        time = Random.Range(afterDelay.min, afterDelay.max);
         while (elapsed < time)
         {
             elapsed += Time.deltaTime;
