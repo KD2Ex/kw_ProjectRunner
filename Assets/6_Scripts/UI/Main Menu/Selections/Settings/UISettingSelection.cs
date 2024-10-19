@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,6 +9,8 @@ public class UISettingSelection : UISelection
     [SerializeField] private List<GameObject> bars;
     [SerializeField] private ColorData selectionColor;
 
+    [SerializeField] private bool disablePrevBars;
+    
     private Image image;
     private Color origColor;
     
@@ -44,6 +47,8 @@ public class UISettingSelection : UISelection
 
         Debug.Log(currentLevel);
     }
+    
+
 
     private void ChangeLevel(int value)
     {
@@ -58,6 +63,7 @@ public class UISettingSelection : UISelection
                 }
                 
                 bars[currentLevel - 1].SetActive(true);
+                if (disablePrevBars) bars[currentLevel - 2].SetActive(false);
                 break;
             case < 0:
                 currentLevel--;
@@ -68,6 +74,7 @@ public class UISettingSelection : UISelection
                 }
                 
                 bars[currentLevel].SetActive(false);
+                if (disablePrevBars) bars[currentLevel - 1].SetActive(true);
                 break;
         }
     }
@@ -81,6 +88,17 @@ public class UISettingSelection : UISelection
 
     private void ShowLevelBars()
     {
+        if (disablePrevBars)
+        {
+            for (int i = 0; i < bars.Count; i++)
+            {
+                bars[i].SetActive(false);
+            }
+            
+            bars[currentLevel - 1].SetActive(true);
+            return;
+        }
+        
         for (int i = 0; i < bars.Count; i++)
         {
             bars[i].SetActive(i < currentLevel);
@@ -89,6 +107,6 @@ public class UISettingSelection : UISelection
 
     private bool IsValid()
     {
-        return currentLevel is > 0 and < 6;
+        return currentLevel > 0 && currentLevel < bars.Count + 1;
     }
 }
