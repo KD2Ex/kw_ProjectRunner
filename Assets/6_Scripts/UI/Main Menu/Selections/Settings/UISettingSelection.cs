@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,8 +7,10 @@ public class UISettingSelection : UISelection
     [SerializeField] private InputReader input;
     [SerializeField] private List<GameObject> bars;
     [SerializeField] private ColorData selectionColor;
-
+    
     [SerializeField] private bool disablePrevBars;
+
+    [SerializeField] private Setting setting;
     
     private Image image;
     private Color origColor;
@@ -48,8 +49,7 @@ public class UISettingSelection : UISelection
         Debug.Log(currentLevel);
     }
     
-
-
+    
     private void ChangeLevel(int value)
     {
         switch (value)
@@ -77,6 +77,9 @@ public class UISettingSelection : UISelection
                 if (disablePrevBars) bars[currentLevel - 1].SetActive(true);
                 break;
         }
+        
+        setting.SetLevel(currentLevel);
+        
     }
     
     private void Update()
