@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 [System.Serializable]
 public struct ClampedValue<T>
@@ -79,7 +78,7 @@ public class Milkcup : MonoBehaviour
         source.Play();
         //SoundFXManager.instance.PlayClipAtPoint(clip, transform, 1f);
 
-        var speed = Random.Range(this.speed - speedDeviation, this.speed);
+        var speed = Random.Range(this.speed - speedDeviation, this.speed + speedDeviation);
         var dir = (to.position - cap.position);
         while (dir.magnitude > .01f)
         {

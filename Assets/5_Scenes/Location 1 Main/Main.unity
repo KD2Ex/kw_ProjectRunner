@@ -378,6 +378,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collectables:
   - {fileID: 4809460602183833369, guid: bef01b0148633834fb5d65cec44f5c96, type: 3}
+  clips: []
 --- !u!1 &115612592 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8899585322762794104, guid: 31f83f615c6be9c449a4a5795cdd220b, type: 3}
@@ -1371,6 +1372,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collectables:
   - {fileID: 2353548905128942286, guid: 6486af1df7708af4eb8604ef20af4514, type: 3}
+  clips: []
 --- !u!1 &476147075 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4855492655620125591, guid: 31f83f615c6be9c449a4a5795cdd220b, type: 3}
@@ -1704,6 +1706,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collectables:
   - {fileID: 101179244809917400, guid: 28011daa0376fad44a41d42214eb881b, type: 3}
+  clips: []
 --- !u!1 &707620308 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 254044905092597535, guid: 31f83f615c6be9c449a4a5795cdd220b, type: 3}
@@ -5264,6 +5267,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collectables:
   - {fileID: 2859809430912139634, guid: 067e98558da45354e8c61722ad0b6626, type: 3}
+  clips: []
 --- !u!1 &2048420277 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 283613490653901795, guid: 60f476be610f11747a9ce17ba2adf608, type: 3}
@@ -6143,8 +6147,32 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6586124211441583977, guid: 008752805ae3ecc46b83a4919adc9ca3, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7391236173457611159, guid: 008752805ae3ecc46b83a4919adc9ca3, type: 3}
+      propertyPath: clips.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7391236173457611159, guid: 008752805ae3ecc46b83a4919adc9ca3, type: 3}
+      propertyPath: clips.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 94472fcbfc4c449799b03fe67bf6d451, type: 3}
+    - target: {fileID: 7391236173457611159, guid: 008752805ae3ecc46b83a4919adc9ca3, type: 3}
+      propertyPath: clips.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 694847b9f27ef438ea87b8d8ca91a947, type: 3}
+    - target: {fileID: 7391236173457611159, guid: 008752805ae3ecc46b83a4919adc9ca3, type: 3}
+      propertyPath: clips.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: 6761a2458620b4cdfac6fffe1eb36421, type: 3}
+    - target: {fileID: 7391236173457611159, guid: 008752805ae3ecc46b83a4919adc9ca3, type: 3}
+      propertyPath: clips.Array.data[3]
+      value: 
+      objectReference: {fileID: 8300000, guid: 4ec2085e1d8f4440195a68aedf7c9e74, type: 3}
+    - target: {fileID: 7391236173457611159, guid: 008752805ae3ecc46b83a4919adc9ca3, type: 3}
+      propertyPath: clips.Array.data[4]
+      value: 
+      objectReference: {fileID: 8300000, guid: 0607c04cdaaca4bb88924a39e6873b36, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

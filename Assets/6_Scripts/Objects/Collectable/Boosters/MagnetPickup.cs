@@ -5,5 +5,6 @@ public class MagnetPickup : Collectable
     {
         player.GetPowerUp(player.Magnet);
         gameObject.SetActive(false);
+        SoundFXManager.instance.PlayClipAtPoint(clip, transform, 1f);
     }
 }
