@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 [System.Serializable]
 public struct ClampedValue<T>
@@ -13,6 +14,8 @@ public struct ClampedValue<T>
 
 public class Milkcup : MonoBehaviour
 {
+    
+    
     [SerializeField] private ClampedValue<float> beforeDelay;
     [SerializeField] private ClampedValue<float> afterDelay;
     
@@ -20,8 +23,13 @@ public class Milkcup : MonoBehaviour
     [SerializeField] private float speedDeviation;
     
     [SerializeField] private Transform cap;
-    [SerializeField] private Transform capPoint;
-    [SerializeField] private Transform point;
+    [SerializeField] private Transform originPoint;
+    [SerializeField] private Transform topPoint;
+
+    [SerializeField] private AudioClip up;
+    [SerializeField] private AudioClip down;   
+    [SerializeField] private AudioSource sourceUp;
+    [SerializeField] private AudioSource sourceDown;
     
     private Transform player => PlayerLocator.instance.playerTransform;
 
@@ -34,7 +42,6 @@ public class Milkcup : MonoBehaviour
     void Start()
     {
         RefillPool();
-        
     }
 
     // Update is called once per frame
@@ -42,23 +49,36 @@ public class Milkcup : MonoBehaviour
     {
         if (moving == null)
         {
-            var to = (point.position - cap.position).magnitude < .01f ? capPoint : point;
+            if ((topPoint.position - cap.position).magnitude < .01f)
+            {
+                moving = StartCoroutine(Move(originPoint, afterDelay, sourceDown));
+            }
+            else
+            {
+                moving = StartCoroutine(Move(topPoint, beforeDelay, sourceUp));
+
+            }
+            //var to =  ? originPoint : topPoint;
+
 
             //Debug.Log($"Milkcap mag: {(point.position - cap.position).magnitude}");
-            moving = StartCoroutine(Move(to));
         }
     }
 
-    private IEnumerator Move(Transform to)
+    private IEnumerator Move(Transform to, ClampedValue<float> delay, AudioSource source)
     {
         var elapsed = 0f;
-        var time = Random.Range(beforeDelay.min, beforeDelay.max);
+        var time = Random.Range(delay.min, delay.max);
+
         while (elapsed < time)
         {
             elapsed += Time.deltaTime;
             yield return null;
         }
         
+        source.Play();
+        //SoundFXManager.instance.PlayClipAtPoint(clip, transform, 1f);
+
         var speed = Random.Range(this.speed - speedDeviation, this.speed);
         var dir = (to.position - cap.position);
         while (dir.magnitude > .01f)
@@ -68,6 +88,7 @@ public class Milkcup : MonoBehaviour
             yield return null;
         }
 
+        /*
         elapsed = 0f;
         time = Random.Range(afterDelay.min, afterDelay.max);
         while (elapsed < time)
@@ -75,6 +96,8 @@ public class Milkcup : MonoBehaviour
             elapsed += Time.deltaTime;
             yield return null;
         }
+        */
+        
 
         moving = null;
     }

@@ -17,14 +17,32 @@ public class SoundFXManager : MonoBehaviour
 
     public void PlayClipAtPoint(AudioClip clip, Transform spawnPoint, float volume)
     {
+        /*var audioSource = Instantiate(soundFXObject, spawnPoint.position, Quaternion.identity);
+        audioSource.clip = clip;
+        audioSource.volume = volume;
+        audioSource.Play();
+
+        var clipLength = audioSource.clip.length;*/
+        var audioSource = InstantiateClip(clip, spawnPoint, volume);
+        Destroy(audioSource.gameObject, audioSource.clip.length);
+    }
+
+    public void PlayClipAtPoint(AudioClip clip, Transform spawnPoint, float volume, float time)
+    {
+        var audioSource = InstantiateClip(clip, spawnPoint, volume);
+        Destroy(audioSource.gameObject, time);
+    }
+    
+    private AudioSource InstantiateClip(AudioClip clip, Transform spawnPoint, float volume)
+    {
         var audioSource = Instantiate(soundFXObject, spawnPoint.position, Quaternion.identity);
         audioSource.clip = clip;
         audioSource.volume = volume;
         audioSource.Play();
 
-        var clipLength = audioSource.clip.length;
-        Destroy(audioSource.gameObject, clipLength);
+        return audioSource;
     }
+    
 
     public AudioSource SpawnSound(AudioClip clip, Transform spawnPoint, float volume)
     {
