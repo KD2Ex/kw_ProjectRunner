@@ -1445,6 +1445,7 @@ MonoBehaviour:
   - {fileID: 262483375}
   - {fileID: 272015309}
   - {fileID: 223683102}
+  selectionColor: {fileID: 11400000, guid: fcb2134ec66bbde4187a7b91e341f599, type: 2}
 --- !u!95 &377572797
 Animator:
   serializedVersion: 5
@@ -2107,6 +2108,7 @@ MonoBehaviour:
   - {fileID: 1326512981}
   - {fileID: 1258802099}
   - {fileID: 1753872179}
+  selectionColor: {fileID: 11400000, guid: fcb2134ec66bbde4187a7b91e341f599, type: 2}
 --- !u!1 &704064445
 GameObject:
   m_ObjectHideFlags: 0
@@ -2316,6 +2318,7 @@ MonoBehaviour:
   - {fileID: 704064445}
   - {fileID: 147886688}
   - {fileID: 1712058803}
+  selectionColor: {fileID: 11400000, guid: fcb2134ec66bbde4187a7b91e341f599, type: 2}
 --- !u!95 &718020541
 Animator:
   serializedVersion: 5
@@ -2393,7 +2396,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &718723465
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3465,6 +3468,7 @@ MonoBehaviour:
   - {fileID: 1321694319}
   - {fileID: 1194008169}
   - {fileID: 1299427290}
+  selectionColor: {fileID: 11400000, guid: fcb2134ec66bbde4187a7b91e341f599, type: 2}
 --- !u!1 &1032922689
 GameObject:
   m_ObjectHideFlags: 0
@@ -4853,7 +4857,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1505134489
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4886,7 +4890,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1505134488}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -5405,6 +5409,7 @@ MonoBehaviour:
   - {fileID: 1753838733}
   - {fileID: 705246728}
   - {fileID: 837127470}
+  selectionColor: {fileID: 11400000, guid: fcb2134ec66bbde4187a7b91e341f599, type: 2}
 --- !u!1 &1585297022
 GameObject:
   m_ObjectHideFlags: 0
@@ -6272,9 +6277,9 @@ RectTransform:
   - {fileID: 262159312}
   m_Father: {fileID: 1505134489}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 1}
-  m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -295, y: -177}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -293, y: 369}
   m_SizeDelta: {x: 249, y: 249}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2070456453

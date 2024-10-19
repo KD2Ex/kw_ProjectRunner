@@ -1,14 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UISettingSelection : UISelection
 {
     [SerializeField] private InputReader input;
     [SerializeField] private List<GameObject> bars;
+    [SerializeField] private ColorData selectionColor;
 
+    private Image image;
+    private Color origColor;
+    
     private int currentLevel = 1;
     private bool chosen;
+
+    protected override void Awake()
+    {
+        base.Awake();
+
+        image = GetComponent<Image>();
+        origColor = image.color;
+    }
 
     private void OnEnable()
     {
@@ -18,15 +30,26 @@ public class UISettingSelection : UISelection
     public override void Press()
     {
         chosen = !chosen;
+
+        if (chosen)
+        {
+            input.UIXMoveEvent += ChangeLevel;
+            image.color = selectionColor.color;
+        }
+        else
+        {
+            input.UIXMoveEvent -= ChangeLevel;
+            image.color = origColor;
+        }
+
+        Debug.Log(currentLevel);
     }
 
-    private void Update()
+    private void ChangeLevel(int value)
     {
-        if (!chosen) return;
-        
-        switch (input.XMoveValue)
+        switch (value)
         {
-            case > 0f:
+            case > 0:
                 currentLevel++;
                 if (!IsValid())
                 {
@@ -36,7 +59,7 @@ public class UISettingSelection : UISelection
                 
                 bars[currentLevel - 1].SetActive(true);
                 break;
-            case < 0f:
+            case < 0:
                 currentLevel--;
                 if (!IsValid())
                 {
@@ -44,16 +67,23 @@ public class UISettingSelection : UISelection
                     break;
                 }
                 
-                bars[currentLevel - 1].SetActive(false);
+                bars[currentLevel].SetActive(false);
                 break;
         }
+    }
+    
+    private void Update()
+    {
+        if (!chosen) return;
+        
+        
     }
 
     private void ShowLevelBars()
     {
         for (int i = 0; i < bars.Count; i++)
         {
-            bars[i].SetActive(i != currentLevel - 1);
+            bars[i].SetActive(i < currentLevel);
         }
     }
 

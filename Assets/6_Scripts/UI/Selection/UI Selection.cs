@@ -8,7 +8,7 @@ public abstract class UISelection : MonoBehaviour
 
     [SerializeField] private GameObject tipButton;
 
-    private void Awake()
+    protected virtual void Awake()
     {
         animator = GetComponent<Animator>();
 
