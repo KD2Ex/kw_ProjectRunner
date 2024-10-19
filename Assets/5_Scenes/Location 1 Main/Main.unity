@@ -378,7 +378,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collectables:
   - {fileID: 4809460602183833369, guid: bef01b0148633834fb5d65cec44f5c96, type: 3}
-  clips: []
+  soundList: {fileID: 0}
 --- !u!1 &115612592 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8899585322762794104, guid: 31f83f615c6be9c449a4a5795cdd220b, type: 3}
@@ -1321,6 +1321,7 @@ MonoBehaviour:
   - {fileID: 7669698819236113978, guid: 249e3c9ba22103e4ca06c14cbba2de27, type: 3}
   - {fileID: 222750980431727686, guid: d66159e16e7a12346b5c2ee71636d1cb, type: 3}
   Inventory: {fileID: 11400000, guid: 393ed18efc8c01942a8daa883188be48, type: 2}
+  soundList: {fileID: 0}
 --- !u!1 &426332863 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 9041100891909424646, guid: 31f83f615c6be9c449a4a5795cdd220b, type: 3}
@@ -1372,7 +1373,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collectables:
   - {fileID: 2353548905128942286, guid: 6486af1df7708af4eb8604ef20af4514, type: 3}
-  clips: []
+  soundList: {fileID: 0}
 --- !u!1 &476147075 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4855492655620125591, guid: 31f83f615c6be9c449a4a5795cdd220b, type: 3}
@@ -1706,7 +1707,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collectables:
   - {fileID: 101179244809917400, guid: 28011daa0376fad44a41d42214eb881b, type: 3}
-  clips: []
+  soundList: {fileID: 0}
 --- !u!1 &707620308 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 254044905092597535, guid: 31f83f615c6be9c449a4a5795cdd220b, type: 3}
@@ -4475,6 +4476,7 @@ MonoBehaviour:
   - {fileID: 3733946834241408484, guid: 4f309fc722631db4892017eb083ac5d0, type: 3}
   - {fileID: 789857184756152465, guid: 0d7c64ca4b5683b43b31ca63434f2f05, type: 3}
   Inventory: {fileID: 11400000, guid: 3dff8d1bf101ba545a8e8ba0c3f03c29, type: 2}
+  soundList: {fileID: 0}
 --- !u!1 &1770354029 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6943807757096657459, guid: 31f83f615c6be9c449a4a5795cdd220b, type: 3}
@@ -5267,7 +5269,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collectables:
   - {fileID: 2859809430912139634, guid: 067e98558da45354e8c61722ad0b6626, type: 3}
-  clips: []
+  soundList: {fileID: 0}
 --- !u!1 &2048420277 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 283613490653901795, guid: 60f476be610f11747a9ce17ba2adf608, type: 3}
@@ -5922,7 +5924,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5681410108571548635, guid: 6d044959ab2413f44ab1d64094c6386c, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5768307828054419914, guid: 6d044959ab2413f44ab1d64094c6386c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6149,6 +6151,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7391236173457611159, guid: 008752805ae3ecc46b83a4919adc9ca3, type: 3}
+      propertyPath: soundList
+      value: 
+      objectReference: {fileID: 11400000, guid: 56d9e4c493fccc24f85529030134e54b, type: 2}
     - target: {fileID: 7391236173457611159, guid: 008752805ae3ecc46b83a4919adc9ca3, type: 3}
       propertyPath: clips.Array.size
       value: 5

@@ -12,7 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10bdf0e0327048b8a067dd82a371d7c0, type: 3}
   m_Name: Player Food Inventory
   m_EditorClassIdentifier: 
-  Items: []
+  Items:
+  - {fileID: 11400000, guid: 8654d01e3e1aecc4ea5c146c714e99bc, type: 2}
+  - {fileID: 11400000, guid: 475e135bda6f77943a1f80e37fad13b3, type: 2}
+  - {fileID: 11400000, guid: edd6d707950eb024ea0fabe935dc2cb9, type: 2}
+  - {fileID: 11400000, guid: cc08ab3fb95e8624ab0c717708e90086, type: 2}
   OnAddItem:
     m_PersistentCalls:
       m_Calls:

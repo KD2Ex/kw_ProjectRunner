@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class InventoryCollectable : Collectable
 {
@@ -9,6 +8,6 @@ public class InventoryCollectable : Collectable
     public override void Pickup(Player player)
     {
         Inventory.AddItem(Item);
-        gameObject.SetActive(false);
+        base.Pickup(player);
     }
 }
