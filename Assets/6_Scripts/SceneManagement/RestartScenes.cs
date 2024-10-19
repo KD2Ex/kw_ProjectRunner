@@ -36,7 +36,7 @@ public class RestartScenes : MonoBehaviour
         player.Restart();*/
 
         SceneManager.LoadScene("Main");
-        m_Input?.EnableGameplayInput();
+        m_Input.EnableGameplayInput();
         /*var async = SceneManager.UnloadSceneAsync("Test");
         StartCoroutine(Unloading(async, () => SceneManager.LoadScene("Test")));*/
     }
