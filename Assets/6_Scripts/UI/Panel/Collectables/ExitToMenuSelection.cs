@@ -6,6 +6,7 @@ public class ExitToMenuSelection : UISelection
     {
         SoundFXManager.instance.PlayClipAsChild(sounds.GetRandom(), SoundFXManager.instance.transform, 1f);
         SaveSystem.Save();
-        SceneManager.LoadSceneAsync("Main Menu");
+        var async = SceneManager.LoadSceneAsync("Main Menu");
+        GameManager.instance.OpenLoadingScreen(async);
     }
 }
