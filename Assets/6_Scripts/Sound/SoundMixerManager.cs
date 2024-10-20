@@ -7,7 +7,8 @@ public class SoundMixerManager : MonoBehaviour
 
     public void SetMasterVolume(float level)
     {
-        mixer.SetFloat("masterLevel", Mathf.Log10(level) * 20);
+        //mixer.SetFloat("masterLevel", Mathf.Log10(level) * 20);
+        mixer.SetFloat("masterVolume", level);
     }
     public void SetSoundFXVolume(float level)
     {
@@ -16,6 +17,7 @@ public class SoundMixerManager : MonoBehaviour
     }
     public void SetMusicVolume(float level)
     {
-        mixer.SetFloat("musicVolume", Mathf.Log10(level) * 20);
+        //mixer.SetFloat("musicVolume", Mathf.Log10(level) * 20);
+        mixer.SetFloat("musicVolume", level);
     }
 }

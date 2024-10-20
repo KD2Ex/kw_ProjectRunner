@@ -1,43 +1,21 @@
-﻿using UnityEngine;
+using UnityEngine;
 
-public class SoundFXSetting : Setting
+public class MasterSetting : Setting
 {
     [SerializeField] private SoundMixerManager manager;
-    
+
     public override void SetLevel(int level)
     {
-        manager.SetSoundFXVolume(GetValue(level));
-        config.Data.SoundFX = level;
+        manager.SetMasterVolume(GetValue(level));
+        config.Data.Master = level;
     }
-
 
     public override void LoadLevelValue(ref int value)
     {
-        value = config.Data.SoundFX;
+        value = config.Data.Master;
         SetLevel(value);
     }
-
-    /*private float GetValue(int level)
-    {
-        switch (level)
-        {
-            case 0:
-                return .0001f;
-            case 1:
-                return .001f;
-            case 2:
-                return .02f;
-            case 3:
-                return .1f;
-            case 4:
-                return .5f;
-            case 5:
-                return 1f;
-        }
-
-        return 1f;
-    }*/
-
+    
     private float GetValue(int level)
     {
         switch (level)

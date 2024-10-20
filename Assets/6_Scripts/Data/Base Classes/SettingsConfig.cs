@@ -28,7 +28,7 @@ public class SettingsSaveData
    [Range(1, 5)]
    public int SoundFX;
    [Range(1, 5)]
-   public int Volume;
+   public int Music;
    [Range(1, 4)]
    public int Quality;
 }
