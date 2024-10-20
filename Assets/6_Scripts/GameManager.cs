@@ -6,6 +6,9 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
 
     [SerializeField] private BrightnessSetting brightnessSetting;
+    [SerializeField] private SoundFXSetting soundFXSetting;
+    [SerializeField] private MusicSetting musicSetting;
+    [SerializeField] private MasterSetting masterSetting;
     
     public SettingsConfig Config;
      
@@ -33,5 +36,8 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         brightnessSetting.SetLevel(Config.Data.Brightness);
+        soundFXSetting.SetLevel(Config.Data.SoundFX);
+        musicSetting.SetLevel(Config.Data.Music);
+        masterSetting.SetLevel(Config.Data.Master);
     }
 }
