@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 public class DigitsController : MonoBehaviour
@@ -20,6 +19,8 @@ public class DigitsController : MonoBehaviour
     
     public void UpdateUI()
     {
+        Debug.Log($"{Data.name} : {Value}");
+        
         int intValue = (int)Value;
         int index = 0;
 

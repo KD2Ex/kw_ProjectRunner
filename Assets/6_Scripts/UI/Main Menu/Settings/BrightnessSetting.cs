@@ -20,12 +20,8 @@ public class BrightnessSetting : Setting
 
     public override void SetLevel(int level)
     {
-        Debug.Log(exposure);
-        
         exposure.keyValue.value = GetBrightnessValue(level);
         config.Data.Brightness = level;
-
-        Debug.Log("Setting class  " + level);
     }
 
     private float GetBrightnessValue(int level)
