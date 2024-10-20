@@ -27,8 +27,6 @@ public class DeathState : BaseState
             clip = player.DeathSound;
         }
         
-        
-        
         SoundFXManager.instance.PlayClipAtPoint(clip, player.transform, 1f);
         animator.SetBool(hash, true);
     }
@@ -45,20 +43,9 @@ public class DeathState : BaseState
             animator.SetBool(player.animHash_RunJumpDeath, true);
         }*/
         
-        if (hash == player.animHash_DodgeDeath)
-        {
-            if (player.transform.position.y > Player.SlideGroundLine)
-            {
-                player.ApplyGravity(15f, Vector2.down);
-            }
-        }
-        else
-        {
-            if (!player.Grounded)
-            {
-                player.ApplyGravity(15f, Vector2.down);
-            }
-        }
+      
+        
+        
         
         /*if (player.m_DeathType == DeathType.SLIDE 
             || animator.GetCurrentAnimatorStateInfo(0).IsName("dodge_off"))
@@ -86,6 +73,21 @@ public class DeathState : BaseState
     public override void FixedUpdate()
     {
         base.FixedUpdate();
+        if (hash == player.animHash_DodgeDeath)
+        {
+            if (player.transform.position.y > Player.SlideGroundLine)
+            {
+                player.ApplyGravity(15f, Vector2.down);
+            }
+        }
+        else
+        {
+            if (!player.Grounded)
+            {
+                player.ApplyGravity(15f, Vector2.down);
+            }
+        }
+        
     }
 
     public override void Exit()

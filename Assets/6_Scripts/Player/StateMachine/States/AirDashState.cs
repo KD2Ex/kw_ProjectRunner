@@ -15,6 +15,8 @@ public class AirDashState : BaseState
         animator.SetBool(player.animHash_Bounce, true);
         player.SwitchControlsToAirDash();
         player.BoostersParentController.ChangeParent(Align.Top);
+
+        
         
         SoundFXManager.instance.PlayClipAtPoint(player.BounceOnSound, player.transform, 1f);
     }
