@@ -54,6 +54,8 @@ public class AirDashState : BaseState
         elapsedTime = 0f;
         
         SoundFXManager.instance.PlayClipAtPoint(player.BounceOffSound, player.transform, 1f);
+
+        
         SoundFXManager.instance.DestroySource(source);
         source = null;
         

@@ -82,7 +82,8 @@ public class SoundFXManager : MonoBehaviour
 
     public void DestroySource(AudioSource source)
     {
-        Destroy(source);
+        if (!source) return;
+        Destroy(source.gameObject);
     } 
     
     public void PlayCoinSound(AudioClip clip, float volume)

@@ -197,7 +197,6 @@ public class Player : MonoBehaviour
     
     private void Awake()
     {
-
         m_Colliders.Add(m_AirDashCollider);
         m_Colliders.Add(m_DashCollider);
         m_Colliders.Add(m_JumpCollider);
@@ -373,8 +372,8 @@ public class Player : MonoBehaviour
         Application.targetFrameRate = 60;*/
 
         //Time.timeScale = .5f;
+        SaveSystem.Load();
         m_StateMachine.SetState(sleepState);
-
     }
 
     void Update()
