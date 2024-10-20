@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
 {
@@ -18,7 +19,7 @@ public class GameManager : MonoBehaviour
 
     [Space] [Header("Loading Screen")] [SerializeField]
     private SoundList loadingSound;
-    public GameObject loadingScreen;
+    public Animator loadingScreen;
     
     public Player Player { get; private set; }
     public Coins Coins;
@@ -57,16 +58,16 @@ public class GameManager : MonoBehaviour
     private IEnumerator Loading(AsyncOperation async, Action before = null, Action after = null)
     {
         var source = SoundFXManager.instance.PlayLoopedSound(loadingSound.GetRandom(), GameManager.instance.transform, 1f);
-
         
         before?.Invoke();
-        instance.loadingScreen.SetActive(true);
+        loadingScreen.gameObject.SetActive(true);
+        loadingScreen.Play($"Dev{Random.Range(1, 4)}");
         
         if (after != null)
         {
             async.completed += (asyncOp) => after.Invoke();
         }
-        async.completed += (asyncOp) => instance.loadingScreen.SetActive(false);
+        async.completed += (asyncOp) => loadingScreen.gameObject.SetActive(false);
         
         while (!async.isDone)
         {
