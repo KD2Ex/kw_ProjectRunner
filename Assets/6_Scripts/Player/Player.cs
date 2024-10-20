@@ -152,7 +152,7 @@ public class Player : MonoBehaviour
     public bool Grounded => transform.position.y - .01f <= GroundLine;
     public float JumpSpeed => 10f;
     public float GravityForce => 10f;
-    public float AirDashMovementSpeed => 7f * Mathf.Log10(so_ChunksCurrentSpeed.Value);
+    public float AirDashMovementSpeed => 6.5f * Mathf.Log10(so_ChunksCurrentSpeed.Value);
     public float UpperAirDashBound => 1.5f; 
     public float LowerAirDashBound => -6.6f;
     public float DashSpeedMultiplier => 1.5f;
