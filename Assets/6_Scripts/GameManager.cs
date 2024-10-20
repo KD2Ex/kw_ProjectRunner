@@ -1,16 +1,12 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Android;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
-    
-    
     [Header("Settings")]
     
     [SerializeField] private BrightnessSetting brightnessSetting;
@@ -21,7 +17,7 @@ public class GameManager : MonoBehaviour
     public SettingsConfig Config;
 
     [Space] [Header("Loading Screen")] [SerializeField]
-    private AudioClip loadingSound;
+    private SoundList loadingSound;
     public GameObject loadingScreen;
     
     public Player Player { get; private set; }
@@ -60,7 +56,7 @@ public class GameManager : MonoBehaviour
     
     private IEnumerator Loading(AsyncOperation async, Action before = null, Action after = null)
     {
-        var source = SoundFXManager.instance.PlayLoopedSound(loadingSound, GameManager.instance.transform, 1f);
+        var source = SoundFXManager.instance.PlayLoopedSound(loadingSound.GetRandom(), GameManager.instance.transform, 1f);
 
         
         before?.Invoke();
