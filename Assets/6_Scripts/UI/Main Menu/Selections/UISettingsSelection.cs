@@ -7,6 +7,7 @@ public class UISettingsSelection : UISelection
     
     public override void Press()
     {
+        base.Press();
         mainMenu.SetActive(false);
         settings.SetActive(true);
     }

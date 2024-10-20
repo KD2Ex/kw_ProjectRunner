@@ -6,6 +6,7 @@ public class UIBackToGame : UISelection
     
     public override void Press()
     {
+        base.Press();
         panel.gameObject.SetActive(false);
     }
 }

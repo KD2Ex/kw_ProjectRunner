@@ -860,16 +860,6 @@ MonoBehaviour:
     _prefab: Assets/3_prefabs/Collectables/Random Collectable Pickup.prefab
   - _gameObject: {fileID: 1170428481}
     _prefab: Assets/3_prefabs/Collectables/Coins/Coin.prefab
-  - _gameObject: {fileID: 880365006}
-    _prefab: Assets/3_prefabs/UI/Timer.prefab
-  - _gameObject: {fileID: 388512809}
-    _prefab: Assets/3_prefabs/UI/Digits/digits.prefab
-  - _gameObject: {fileID: 866670054}
-    _prefab: Assets/3_prefabs/UI/Digits/digits.prefab
-  - _gameObject: {fileID: 182096634}
-    _prefab: Assets/3_prefabs/Persistent/Restart.prefab
-  - _gameObject: {fileID: 1330260280}
-    _prefab: Assets/3_prefabs/Persistent/Player Locator.prefab
   - _gameObject: {fileID: 2010213463}
     _prefab: Assets/3_prefabs/UI/StorePanel/store_panel.prefab
   - _gameObject: {fileID: 618495729}
@@ -924,6 +914,16 @@ MonoBehaviour:
     _prefab: Assets/3_prefabs/UI/Collectables/Creature/18_creature Nose.prefab
   - _gameObject: {fileID: 115612592}
     _prefab: Assets/3_prefabs/UI/Collectables/Creature/19_creature Bee.prefab
+  - _gameObject: {fileID: 880365006}
+    _prefab: Assets/3_prefabs/UI/Timer.prefab
+  - _gameObject: {fileID: 388512809}
+    _prefab: Assets/3_prefabs/UI/Digits/digits.prefab
+  - _gameObject: {fileID: 866670054}
+    _prefab: Assets/3_prefabs/UI/Digits/digits.prefab
+  - _gameObject: {fileID: 182096634}
+    _prefab: Assets/3_prefabs/Persistent/Restart.prefab
+  - _gameObject: {fileID: 1330260280}
+    _prefab: Assets/3_prefabs/Persistent/Player Locator.prefab
   - _gameObject: {fileID: 1553156979}
     _prefab: Assets/3_prefabs/Persistent/Chunk Spawn Manager.prefab
   - _gameObject: {fileID: 2048420277}
@@ -2003,6 +2003,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tipButton: {fileID: 0}
+  sounds: {fileID: 11400000, guid: efc1ac44b9b477f4ab8d3fe23e1f0ab9, type: 2}
 --- !u!1 &837990526
 GameObject:
   m_ObjectHideFlags: 0
@@ -2360,6 +2361,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2058486547535527469, guid: 31f83f615c6be9c449a4a5795cdd220b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2337702898686795478, guid: 31f83f615c6be9c449a4a5795cdd220b, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -2454,7 +2459,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3331394680344341266, guid: 31f83f615c6be9c449a4a5795cdd220b, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4333344213666335526, guid: 31f83f615c6be9c449a4a5795cdd220b, type: 3}
       propertyPath: m_IsActive
@@ -3993,6 +3998,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tipButton: {fileID: 0}
+  sounds: {fileID: 11400000, guid: efc1ac44b9b477f4ab8d3fe23e1f0ab9, type: 2}
 --- !u!95 &1526187884
 Animator:
   serializedVersion: 5
@@ -4090,6 +4096,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tipButton: {fileID: 0}
+  sounds: {fileID: 11400000, guid: efc1ac44b9b477f4ab8d3fe23e1f0ab9, type: 2}
   panel: {fileID: 896971180}
 --- !u!1 &1578989712 stripped
 GameObject:
@@ -4542,7 +4549,7 @@ GameObject:
   - component: {fileID: 1966092597}
   - component: {fileID: 1966092596}
   m_Layer: 0
-  m_Name: UI Manger
+  m_Name: Collectable panel manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6173,6 +6180,8 @@ SceneRoots:
   - {fileID: 300887991}
   - {fileID: 1316462821}
   - {fileID: 1389565128}
+  - {fileID: 274189342}
+  - {fileID: 1966092597}
   - {fileID: 1463440053}
   - {fileID: 1410194434}
   - {fileID: 1096217303}
@@ -6180,8 +6189,6 @@ SceneRoots:
   - {fileID: 1171228693}
   - {fileID: 6565513413702657272}
   - {fileID: 4655669702538126974}
-  - {fileID: 274189342}
-  - {fileID: 1966092597}
   - {fileID: 3752164375630225007}
   - {fileID: 837990527}
   - {fileID: 860807920}

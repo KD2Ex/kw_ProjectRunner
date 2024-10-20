@@ -1,4 +1,3 @@
-using System.Resources;
 using UnityEngine;
 
 public abstract class UISelection : MonoBehaviour
@@ -7,6 +6,7 @@ public abstract class UISelection : MonoBehaviour
     private readonly int animSelect = Animator.StringToHash("Select");
 
     [SerializeField] private GameObject tipButton;
+    [SerializeField] protected SoundList sounds;
 
     protected virtual void Awake()
     {
@@ -27,5 +27,9 @@ public abstract class UISelection : MonoBehaviour
             tipButton.SetActive(value);
         }
     }
-    public abstract void Press();
+
+    public virtual void Press()
+    {
+        SoundFXManager.instance.PlayClipAtPoint(sounds.GetRandom(), transform, 1f);
+    }
 }

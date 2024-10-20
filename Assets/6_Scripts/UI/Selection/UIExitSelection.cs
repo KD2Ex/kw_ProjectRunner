@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Events;
 
 public class UIExitSelection : UISelection
@@ -13,6 +12,7 @@ public class UIExitSelection : UISelection
 
     public override void Press()
     {
+        base.Press();
         Debug.Log("Exit");
         OnExit?.Invoke();
     }

@@ -7,6 +7,7 @@ public class UIBackToMenuSelection : UISelection
 
     public override void Press()
     {
+        base.Press();
         mainMenu.SetActive(true);
         settings.SetActive(false);
     }
