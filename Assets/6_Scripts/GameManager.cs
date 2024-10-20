@@ -26,7 +26,6 @@ public class GameManager : MonoBehaviour
             if (scene.name == "Main")
             {
                 Player = FindObjectOfType<Player>();
-                Coins = FindObjectOfType<Coins>();
             }
         };
     }

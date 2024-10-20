@@ -12,6 +12,8 @@ public class UISettingSelection : UISelection
 
     [SerializeField] private Setting setting;
     [SerializeField] private int minLevel;
+
+    [SerializeField] private AudioClip clip;
     
     private Image image;
     private Color origColor;
@@ -65,6 +67,7 @@ public class UISettingSelection : UISelection
                     break;
                 }
                 
+                
                 bars[currentLevel - 1].SetActive(true);
                 if (disablePrevBars) bars[currentLevel - 2].SetActive(false);
                 break;
@@ -81,8 +84,9 @@ public class UISettingSelection : UISelection
                 break;
         }
         
-        setting?.SetLevel(currentLevel);
+        SoundFXManager.instance.PlayClipAtPoint(clip, transform, 1f);
         
+        setting?.SetLevel(currentLevel);
     }
     
     private void Update()

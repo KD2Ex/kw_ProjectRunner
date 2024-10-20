@@ -4,7 +4,6 @@ using UnityEngine.Rendering.PostProcessing;
 public class BrightnessSetting : Setting
 {
     [SerializeField] private PostProcessProfile brightness;
-    [SerializeField] private SettingsConfig config;
     
     private AutoExposure exposure;
     
