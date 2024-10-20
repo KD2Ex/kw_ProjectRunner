@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d835e088339cea4c8d30de6e75c612b, type: 3}
-  m_Name: CollectedCoins
+  m_Script: {fileID: 11500000, guid: 3532c67d19bfcc04383dced9493936af, type: 3}
+  m_Name: Coins Wallet
   m_EditorClassIdentifier: 
-  Value: 15243
-  ResetOnEnable: 0
+  m_Value: {fileID: 11400000, guid: d573596b5a8d7f144a0093c0b4c0fcdb, type: 2}
+  m_ResetOnAwake: 0

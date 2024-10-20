@@ -101,7 +101,7 @@ public class Player : MonoBehaviour
 
     #region Components
 
-    private Coins m_Coins;
+    [SerializeField] private Coins m_Coins;
     private SpeedController m_SpeedController;
     private InvincibilityController m_InvincibilityController;
     private Rigidbody2D m_rigidbody;
@@ -204,7 +204,6 @@ public class Player : MonoBehaviour
         m_Colliders.Add(m_SlideCollider);
         m_Colliders.Add(m_RunCollider);
 
-        m_Coins = GetComponent<Coins>();
         m_SpeedController = GetComponent<SpeedController>();
         m_InvincibilityController = GetComponent<InvincibilityController>();
         m_rigidbody = GetComponent<Rigidbody2D>();

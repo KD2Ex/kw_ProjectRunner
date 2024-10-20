@@ -469,9 +469,17 @@ PrefabInstance:
       value: ---PERSISTENCE---
       objectReference: {fileID: 0}
     - target: {fileID: 1959848586970887799, guid: 60f476be610f11747a9ce17ba2adf608, type: 3}
+      propertyPath: Coins
+      value: 
+      objectReference: {fileID: 11400000, guid: 93d2cd16956b2e5469e68b9781adf222, type: 2}
+    - target: {fileID: 1959848586970887799, guid: 60f476be610f11747a9ce17ba2adf608, type: 3}
       propertyPath: Config
       value: 
       objectReference: {fileID: 11400000, guid: 77a6163ad96d9b048a57b22a0e9d995c, type: 2}
+    - target: {fileID: 1959848586970887799, guid: 60f476be610f11747a9ce17ba2adf608, type: 3}
+      propertyPath: brightnessSetting
+      value: 
+      objectReference: {fileID: 1363776481}
     - target: {fileID: 3141135106473041580, guid: 60f476be610f11747a9ce17ba2adf608, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1459,6 +1467,7 @@ MonoBehaviour:
   - {fileID: 223683102}
   selectionColor: {fileID: 11400000, guid: fcb2134ec66bbde4187a7b91e341f599, type: 2}
   disablePrevBars: 1
+  setting: {fileID: 0}
 --- !u!95 &377572797
 Animator:
   serializedVersion: 5
@@ -2123,6 +2132,7 @@ MonoBehaviour:
   - {fileID: 1753872179}
   selectionColor: {fileID: 11400000, guid: fcb2134ec66bbde4187a7b91e341f599, type: 2}
   disablePrevBars: 0
+  setting: {fileID: 0}
 --- !u!1 &704064445
 GameObject:
   m_ObjectHideFlags: 0
@@ -2334,6 +2344,7 @@ MonoBehaviour:
   - {fileID: 1712058803}
   selectionColor: {fileID: 11400000, guid: fcb2134ec66bbde4187a7b91e341f599, type: 2}
   disablePrevBars: 0
+  setting: {fileID: 0}
 --- !u!95 &718020541
 Animator:
   serializedVersion: 5
@@ -3378,7 +3389,6 @@ GameObject:
   - component: {fileID: 907900386}
   - component: {fileID: 907900385}
   - component: {fileID: 907900388}
-  - component: {fileID: 907900389}
   m_Layer: 5
   m_Name: 'selection_indicator_three '
   m_TagString: Untagged
@@ -3486,21 +3496,7 @@ MonoBehaviour:
   - {fileID: 1299427290}
   selectionColor: {fileID: 11400000, guid: fcb2134ec66bbde4187a7b91e341f599, type: 2}
   disablePrevBars: 0
---- !u!114 &907900389
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 907900383}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6db2e16927174a2aa379454913ccf79b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxLevel: 5
-  brightness: {fileID: 11400000, guid: e7ea8e187f87d634ab6685e239cb9e72, type: 2}
-  config: {fileID: 11400000, guid: 77a6163ad96d9b048a57b22a0e9d995c, type: 2}
+  setting: {fileID: 1363776481}
 --- !u!1 &1032922689
 GameObject:
   m_ObjectHideFlags: 0
@@ -4592,6 +4588,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1363776479}
   - component: {fileID: 1363776480}
+  - component: {fileID: 1363776481}
   m_Layer: 3
   m_Name: Brightness
   m_TagString: Untagged
@@ -4635,6 +4632,21 @@ MonoBehaviour:
   blendDistance: 0
   weight: 1
   priority: 0
+--- !u!114 &1363776481
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1363776478}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6db2e16927174a2aa379454913ccf79b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxLevel: 5
+  brightness: {fileID: 11400000, guid: e7ea8e187f87d634ab6685e239cb9e72, type: 2}
+  config: {fileID: 11400000, guid: 77a6163ad96d9b048a57b22a0e9d995c, type: 2}
 --- !u!1 &1463211880
 GameObject:
   m_ObjectHideFlags: 0
@@ -5496,6 +5508,7 @@ MonoBehaviour:
   - {fileID: 837127470}
   selectionColor: {fileID: 11400000, guid: fcb2134ec66bbde4187a7b91e341f599, type: 2}
   disablePrevBars: 0
+  setting: {fileID: 0}
 --- !u!1 &1585297022
 GameObject:
   m_ObjectHideFlags: 0

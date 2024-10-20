@@ -13,7 +13,9 @@ public class SettingsConfig : ScriptableObject
    public void Load(SettingsSaveData data)
    {
       Data = data;
+      Debug.Log(Data.Brightness);
    }
+
 }
 
 [System.Serializable]

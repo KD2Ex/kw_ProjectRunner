@@ -1,14 +1,17 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
-    public SettingsConfig Config;
+    [SerializeField] private BrightnessSetting brightnessSetting;
     
+    public SettingsConfig Config;
+     
     public Player Player { get; private set; }
-    public Coins Coins { get; private set; }
+    public Coins Coins;
 
     private void Awake()
     {
@@ -27,5 +30,10 @@ public class GameManager : MonoBehaviour
                 Coins = FindObjectOfType<Coins>();
             }
         };
+    }
+
+    private void Start()
+    {
+        brightnessSetting.SetLevel(Config.Data.Brightness);
     }
 }

@@ -11,7 +11,7 @@ public class UISettingSelection : UISelection
     
     [SerializeField] private bool disablePrevBars;
 
-    private Setting setting;
+    [SerializeField] private Setting setting;
     
     private Image image;
     private Color origColor;
@@ -22,20 +22,13 @@ public class UISettingSelection : UISelection
     protected override void Awake()
     {
         base.Awake();
-        setting = GetComponent<Setting>();
         image = GetComponent<Image>();
         origColor = image.color;
     }
 
-    private void OnEnable()
-    {
-        setting?.LoadLevelValue(ref currentLevel);
-        Debug.Log(currentLevel);
-        
-    }
-
     private void Start()
     {
+        setting?.LoadLevelValue(ref currentLevel);
         ShowLevelBars();
     }
 

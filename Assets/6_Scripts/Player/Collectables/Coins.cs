@@ -1,6 +1,7 @@
 using UnityEngine;
 
-public class Coins : MonoBehaviour
+[CreateAssetMenu(fileName = "Coins Wallet")]
+public class Coins : ScriptableObject
 {
     [SerializeField] private FloatVariable m_Value;
     [SerializeField] private bool m_ResetOnAwake;

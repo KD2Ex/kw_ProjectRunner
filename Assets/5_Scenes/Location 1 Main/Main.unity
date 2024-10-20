@@ -1402,43 +1402,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7522077933425619329, guid: fd201fd794d481744a6eaf6e75ce15cc, type: 3}
   m_PrefabInstance: {fileID: 3932692420647759071}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &530429296 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4020531208338657311, guid: fd201fd794d481744a6eaf6e75ce15cc, type: 3}
-  m_PrefabInstance: {fileID: 3932692420647759071}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 530429282}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3532c67d19bfcc04383dced9493936af, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &530429308
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 530429282}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a704cbb4c77d5c645be45c3c91851bc6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_CurrentLevel: {fileID: 11400000, guid: c3bf9662dc2b16f40bc5d391fd2a6eee, type: 2}
-  m_LevelsData: {fileID: 11400000, guid: 6b2d6e1a2fc499e4fa9921b60885a105, type: 2}
-  m_Duration: {fileID: 11400000, guid: 12f6a99b9ad27ec4e9d6345fc6cef46d, type: 2}
---- !u!114 &530429309 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5923253643196886872, guid: fd201fd794d481744a6eaf6e75ce15cc, type: 3}
-  m_PrefabInstance: {fileID: 3932692420647759071}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 530429282}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2cab4509602a599438143f6742780c05, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &568819605
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5057,11 +5020,11 @@ PrefabInstance:
     - target: {fileID: 4123014605484477374, guid: 584593a3c0567664c834066653840b13, type: 3}
       propertyPath: coins
       value: 
-      objectReference: {fileID: 530429296}
+      objectReference: {fileID: 0}
     - target: {fileID: 4833692376922146808, guid: 584593a3c0567664c834066653840b13, type: 3}
       propertyPath: coins
       value: 
-      objectReference: {fileID: 530429296}
+      objectReference: {fileID: 0}
     - target: {fileID: 5398778497357882390, guid: 584593a3c0567664c834066653840b13, type: 3}
       propertyPath: m_Name
       value: store_panel
@@ -5073,7 +5036,7 @@ PrefabInstance:
     - target: {fileID: 5862286579136027835, guid: 584593a3c0567664c834066653840b13, type: 3}
       propertyPath: coins
       value: 
-      objectReference: {fileID: 530429296}
+      objectReference: {fileID: 0}
     - target: {fileID: 6375356188518500251, guid: 584593a3c0567664c834066653840b13, type: 3}
       propertyPath: m_SortingOrder
       value: 1
@@ -5081,7 +5044,7 @@ PrefabInstance:
     - target: {fileID: 7372380903860380905, guid: 584593a3c0567664c834066653840b13, type: 3}
       propertyPath: coins
       value: 
-      objectReference: {fileID: 530429296}
+      objectReference: {fileID: 0}
     - target: {fileID: 7482232702712859360, guid: 584593a3c0567664c834066653840b13, type: 3}
       propertyPath: data
       value: 
@@ -5089,7 +5052,7 @@ PrefabInstance:
     - target: {fileID: 7482232702712859360, guid: 584593a3c0567664c834066653840b13, type: 3}
       propertyPath: coins
       value: 
-      objectReference: {fileID: 530429296}
+      objectReference: {fileID: 0}
     - target: {fileID: 7482232702712859360, guid: 584593a3c0567664c834066653840b13, type: 3}
       propertyPath: currentHealths
       value: 
@@ -5618,114 +5581,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: victim
       objectReference: {fileID: 0}
-    - target: {fileID: 3387110282930873259, guid: fd201fd794d481744a6eaf6e75ce15cc, type: 3}
-      propertyPath: Stop
-      value: 
-      objectReference: {fileID: 8300000, guid: 2c9ef609956f84609befb61ab94f4c7c, type: 3}
-    - target: {fileID: 3387110282930873259, guid: fd201fd794d481744a6eaf6e75ce15cc, type: 3}
-      propertyPath: RunSound
-      value: 
-      objectReference: {fileID: 8300000, guid: 13b3fc8acfc184a95930a262399e70e9, type: 3}
-    - target: {fileID: 3387110282930873259, guid: fd201fd794d481744a6eaf6e75ce15cc, type: 3}
-      propertyPath: DashSound
-      value: 
-      objectReference: {fileID: 8300000, guid: 92ae23debeab7449399af8fe57ed7192, type: 3}
-    - target: {fileID: 3387110282930873259, guid: fd201fd794d481744a6eaf6e75ce15cc, type: 3}
-      propertyPath: JumpSound
-      value: 
-      objectReference: {fileID: 8300000, guid: d0cb76488799a48c39c5a9e47703e12e, type: 3}
-    - target: {fileID: 3387110282930873259, guid: fd201fd794d481744a6eaf6e75ce15cc, type: 3}
-      propertyPath: StopSound
-      value: 
-      objectReference: {fileID: 8300000, guid: 2c9ef609956f84609befb61ab94f4c7c, type: 3}
-    - target: {fileID: 3387110282930873259, guid: fd201fd794d481744a6eaf6e75ce15cc, type: 3}
-      propertyPath: DeathSound
-      value: 
-      objectReference: {fileID: 8300000, guid: 19d845894840a4db6827040118034c05, type: 3}
-    - target: {fileID: 3387110282930873259, guid: fd201fd794d481744a6eaf6e75ce15cc, type: 3}
-      propertyPath: SlideSound
-      value: 
-      objectReference: {fileID: 8300000, guid: 7fc5569172a9c41288e1b743e5029d4e, type: 3}
-    - target: {fileID: 3387110282930873259, guid: fd201fd794d481744a6eaf6e75ce15cc, type: 3}
-      propertyPath: BounceSound
-      value: 
-      objectReference: {fileID: 8300000, guid: cd27192d87aa44ba4ab6f1e43addb7f8, type: 3}
-    - target: {fileID: 3387110282930873259, guid: fd201fd794d481744a6eaf6e75ce15cc, type: 3}
-      propertyPath: JumpOnSound
-      value: 
-      objectReference: {fileID: 8300000, guid: 4faf7f06e30a14019a173923aacb7c39, type: 3}
-    - target: {fileID: 3387110282930873259, guid: fd201fd794d481744a6eaf6e75ce15cc, type: 3}
-      propertyPath: JumpOffSound
-      value: 
-      objectReference: {fileID: 8300000, guid: adf85a466336d4bcc89eab0a1cf81537, type: 3}
-    - target: {fileID: 3387110282930873259, guid: fd201fd794d481744a6eaf6e75ce15cc, type: 3}
-      propertyPath: SlideOnSound
-      value: 
-      objectReference: {fileID: 8300000, guid: e5960fb61fc27445e88f2d8f61bd6e30, type: 3}
-    - target: {fileID: 3387110282930873259, guid: fd201fd794d481744a6eaf6e75ce15cc, type: 3}
-      propertyPath: BounceOnSound
-      value: 
-      objectReference: {fileID: 8300000, guid: e8b93966a58fc497aa80c7ec0d050273, type: 3}
-    - target: {fileID: 3387110282930873259, guid: fd201fd794d481744a6eaf6e75ce15cc, type: 3}
-      propertyPath: SlideOffSound
-      value: 
-      objectReference: {fileID: 8300000, guid: c26a42ebb94c341819a80611996375fd, type: 3}
-    - target: {fileID: 3387110282930873259, guid: fd201fd794d481744a6eaf6e75ce15cc, type: 3}
-      propertyPath: BounceOffSound
-      value: 
-      objectReference: {fileID: 8300000, guid: eba510cffac124a85b21d9afb14a99fe, type: 3}
-    - target: {fileID: 3387110282930873259, guid: fd201fd794d481744a6eaf6e75ce15cc, type: 3}
-      propertyPath: m_DashDuration
-      value: 
-      objectReference: {fileID: 11400000, guid: 12f6a99b9ad27ec4e9d6345fc6cef46d, type: 2}
-    - target: {fileID: 3387110282930873259, guid: fd201fd794d481744a6eaf6e75ce15cc, type: 3}
-      propertyPath: SlideDeathSound
-      value: 
-      objectReference: {fileID: 8300000, guid: ebc7d9285ed3f48a9987e0b2a1e12e1d, type: 3}
-    - target: {fileID: 3387110282930873259, guid: fd201fd794d481744a6eaf6e75ce15cc, type: 3}
-      propertyPath: m_CurrentHealths
-      value: 
-      objectReference: {fileID: 11400000, guid: 1b66553ff6fe1f84b9478e3a5f44cbc6, type: 2}
-    - target: {fileID: 4020531208338657311, guid: fd201fd794d481744a6eaf6e75ce15cc, type: 3}
-      propertyPath: m_ResetOnAwake
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4031315632370205393, guid: fd201fd794d481744a6eaf6e75ce15cc, type: 3}
-      propertyPath: m_LevelsData
-      value: 
-      objectReference: {fileID: 11400000, guid: ad083f1af7b43004d9db2482822e4f51, type: 2}
-    - target: {fileID: 4031315632370205393, guid: fd201fd794d481744a6eaf6e75ce15cc, type: 3}
-      propertyPath: m_CurrentLevel
-      value: 
-      objectReference: {fileID: 11400000, guid: c23b82a4554af53428b5ec667f268370, type: 2}
-    - target: {fileID: 5097254238390115014, guid: fd201fd794d481744a6eaf6e75ce15cc, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5220983966587464286, guid: fd201fd794d481744a6eaf6e75ce15cc, type: 3}
-      propertyPath: m_LevelsData
-      value: 
-      objectReference: {fileID: 11400000, guid: 6743304975a08ec42bec3bc3fbd5bd48, type: 2}
-    - target: {fileID: 5220983966587464286, guid: fd201fd794d481744a6eaf6e75ce15cc, type: 3}
-      propertyPath: m_CurrentLevel
-      value: 
-      objectReference: {fileID: 11400000, guid: 73768283b3f5059429a1dfcc94978ca1, type: 2}
-    - target: {fileID: 5220983966587464286, guid: fd201fd794d481744a6eaf6e75ce15cc, type: 3}
-      propertyPath: invincibilityController
-      value: 
-      objectReference: {fileID: 530429309}
-    - target: {fileID: 6057032323218788224, guid: fd201fd794d481744a6eaf6e75ce15cc, type: 3}
-      propertyPath: m_RunSound
-      value: 
-      objectReference: {fileID: 8300000, guid: 13b3fc8acfc184a95930a262399e70e9, type: 3}
-    - target: {fileID: 7030251536643839871, guid: fd201fd794d481744a6eaf6e75ce15cc, type: 3}
-      propertyPath: m_LevelsData
-      value: 
-      objectReference: {fileID: 11400000, guid: ad083f1af7b43004d9db2482822e4f51, type: 2}
-    - target: {fileID: 7030251536643839871, guid: fd201fd794d481744a6eaf6e75ce15cc, type: 3}
-      propertyPath: m_CurrentLevel
-      value: 
-      objectReference: {fileID: 11400000, guid: c23b82a4554af53428b5ec667f268370, type: 2}
     - target: {fileID: 7522077933425619329, guid: fd201fd794d481744a6eaf6e75ce15cc, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.67000103
@@ -5769,10 +5624,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 3295700264019588206, guid: fd201fd794d481744a6eaf6e75ce15cc, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 530429308}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fd201fd794d481744a6eaf6e75ce15cc, type: 3}
 --- !u!1001 &4655669702538126974
 PrefabInstance:

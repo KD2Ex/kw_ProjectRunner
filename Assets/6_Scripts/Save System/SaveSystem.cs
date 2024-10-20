@@ -4,6 +4,10 @@ using UnityEngine;
 public class SaveSystem
 {
     private static SaveData saveData;
+    private static SettingsSaveData settingsData;
+
+    private const string PlayerProgress = "save";
+    private const string Settings = "settings";
     
     [System.Serializable]
     public struct SaveData
@@ -13,13 +17,11 @@ public class SaveSystem
         public IntSaveData Magnet;
         public IntSaveData X2;
         public IntSaveData Healths;
-
-        public SettingsSaveData Settings;
     }
 
-    private static string SaveFileName()
+    private static string SaveFileName(string name)
     {
-        string saveFile = Application.persistentDataPath + "/save" + ".save";
+        string saveFile = Application.persistentDataPath + $"/{name}" + ".save";
         return saveFile;
     }
     
@@ -28,7 +30,7 @@ public class SaveSystem
         HandleSaveData();
 
         File.WriteAllText(
-            SaveFileName(),
+            SaveFileName(PlayerProgress),
             JsonUtility.ToJson(saveData, true)
             );
         
@@ -38,15 +40,16 @@ public class SaveSystem
     {
         HandleSaveSettings();
 
+        
         File.WriteAllText(
-            SaveFileName(),
-            JsonUtility.ToJson(saveData, true)
+            SaveFileName(Settings),
+            JsonUtility.ToJson(settingsData, true)
         );
     }
 
     private static void HandleSaveSettings()
     { 
-        GameManager.instance.Config.Save(ref saveData.Settings);
+        GameManager.instance.Config.Save(ref settingsData);
     }
 
     private static void HandleSaveData()
@@ -67,7 +70,7 @@ public class SaveSystem
 
     public static void Load()
     {
-        var saveContent = File.ReadAllText(SaveFileName());
+        var saveContent = File.ReadAllText(SaveFileName(PlayerProgress));
         saveData = JsonUtility.FromJson<SaveData>(saveContent);
         
         HandleLoadData();
@@ -75,16 +78,15 @@ public class SaveSystem
     
     public static void LoadSettings()
     {
-        var saveContent = File.ReadAllText(SaveFileName());
-        saveData = JsonUtility.FromJson<SaveData>(saveContent);
+        var saveContent = File.ReadAllText(SaveFileName(Settings));
+        settingsData = JsonUtility.FromJson<SettingsSaveData>(saveContent);
         
         HandleLoadSettingsData();
     }
 
     private static void HandleLoadSettingsData()
     {
-
-        GameManager.instance.Config.Load(saveData.Settings);
+        GameManager.instance.Config.Load(settingsData);
     }
     
     private static void HandleLoadData()
@@ -94,7 +96,6 @@ public class SaveSystem
         GameManager.instance.Player.Magnet.Load(saveData.Magnet);
         GameManager.instance.Player.CoinMultiplier.Load(saveData.X2);
         GameManager.instance.Player.Load(saveData.Healths);
-        GameManager.instance.Config.Load(saveData.Settings);
     }
     
 }

@@ -25,6 +25,8 @@ public class BrightnessSetting : Setting
         
         exposure.keyValue.value = GetBrightnessValue(level);
         config.Data.Brightness = level;
+
+        Debug.Log("Setting class  " + level);
     }
 
     private float GetBrightnessValue(int level)
