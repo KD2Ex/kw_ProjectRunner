@@ -25,17 +25,18 @@ public class SettingsPanel : PanelNavigation
         selections[0, 0].Select(true);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     protected override void OnEnable()
     {
         base.OnEnable();
 
         Time.timeScale = 1f;
+    }
+
+    protected override void OnDisable()
+    {
+        base.OnDisable();
+        
+        SaveSystem.SaveSettings();
     }
 
     protected override void Press()

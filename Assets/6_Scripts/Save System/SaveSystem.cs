@@ -13,9 +13,11 @@ public class SaveSystem
         public IntSaveData Magnet;
         public IntSaveData X2;
         public IntSaveData Healths;
+
+        public SettingsSaveData Settings;
     }
 
-    public static string SaveFileName()
+    private static string SaveFileName()
     {
         string saveFile = Application.persistentDataPath + "/save" + ".save";
         return saveFile;
@@ -32,9 +34,29 @@ public class SaveSystem
         
     }
 
+    public static void SaveSettings()
+    {
+        HandleSaveSettings();
+
+        File.WriteAllText(
+            SaveFileName(),
+            JsonUtility.ToJson(saveData, true)
+        );
+    }
+
+    private static void HandleSaveSettings()
+    { 
+        GameManager.instance.Config.Save(ref saveData.Settings);
+    }
+
     private static void HandleSaveData()
     {
         // get coins
+
+        Debug.Log(GameManager.instance);
+        Debug.Log(GameManager.instance.Coins);
+        Debug.Log(saveData);
+        Debug.Log(saveData.CoinsData);
         
         GameManager.instance.Coins.Save(ref saveData.CoinsData);
         GameManager.instance.Player.Shield.Save(ref saveData.Shield);
@@ -50,7 +72,21 @@ public class SaveSystem
         
         HandleLoadData();
     }
+    
+    public static void LoadSettings()
+    {
+        var saveContent = File.ReadAllText(SaveFileName());
+        saveData = JsonUtility.FromJson<SaveData>(saveContent);
+        
+        HandleLoadSettingsData();
+    }
 
+    private static void HandleLoadSettingsData()
+    {
+
+        GameManager.instance.Config.Load(saveData.Settings);
+    }
+    
     private static void HandleLoadData()
     {
         GameManager.instance.Coins.Load(saveData.CoinsData);        
@@ -58,6 +94,7 @@ public class SaveSystem
         GameManager.instance.Player.Magnet.Load(saveData.Magnet);
         GameManager.instance.Player.CoinMultiplier.Load(saveData.X2);
         GameManager.instance.Player.Load(saveData.Healths);
+        GameManager.instance.Config.Load(saveData.Settings);
     }
     
 }

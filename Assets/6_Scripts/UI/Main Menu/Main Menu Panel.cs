@@ -20,7 +20,7 @@ public class MainMenuPanel : PanelNavigation
     protected override void OnEnable()
     {
         base.OnEnable();
-
+        
         Time.timeScale = 1f;
     }
 

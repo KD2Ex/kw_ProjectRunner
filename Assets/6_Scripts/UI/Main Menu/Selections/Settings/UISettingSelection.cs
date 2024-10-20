@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,23 +11,30 @@ public class UISettingSelection : UISelection
     
     [SerializeField] private bool disablePrevBars;
 
-    [SerializeField] private Setting setting;
+    private Setting setting;
     
     private Image image;
     private Color origColor;
     
     private int currentLevel = 1;
     private bool chosen;
-
+    
     protected override void Awake()
     {
         base.Awake();
-
+        setting = GetComponent<Setting>();
         image = GetComponent<Image>();
         origColor = image.color;
     }
 
     private void OnEnable()
+    {
+        setting?.LoadLevelValue(ref currentLevel);
+        Debug.Log(currentLevel);
+        
+    }
+
+    private void Start()
     {
         ShowLevelBars();
     }
@@ -91,6 +99,8 @@ public class UISettingSelection : UISelection
 
     private void ShowLevelBars()
     {
+        Debug.Log(currentLevel);
+        
         if (disablePrevBars)
         {
             for (int i = 0; i < bars.Count; i++)
@@ -104,6 +114,7 @@ public class UISettingSelection : UISelection
         
         for (int i = 0; i < bars.Count; i++)
         {
+            Debug.Log(i < currentLevel);
             bars[i].SetActive(i < currentLevel);
         }
     }
