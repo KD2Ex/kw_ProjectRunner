@@ -70,6 +70,12 @@ public class SaveSystem
 
     public static void Load()
     {
+        if (!File.Exists(SaveFileName(PlayerProgress)))
+        {
+            Debug.Log(saveData);
+            Save();
+        }
+        
         var saveContent = File.ReadAllText(SaveFileName(PlayerProgress));
         saveData = JsonUtility.FromJson<SaveData>(saveContent);
         
@@ -78,6 +84,17 @@ public class SaveSystem
     
     public static void LoadSettings()
     {
+        if (!File.Exists(SaveFileName(Settings)))
+        {
+            if (settingsData == null)
+            {
+                settingsData = new SettingsSaveData();
+            }
+            
+            File.WriteAllText(SaveFileName(Settings), JsonUtility.ToJson(settingsData, true));
+            Debug.Log("File doesn't exists");
+            Debug.Log(settingsData);
+        }
         var saveContent = File.ReadAllText(SaveFileName(Settings));
         settingsData = JsonUtility.FromJson<SettingsSaveData>(saveContent);
         

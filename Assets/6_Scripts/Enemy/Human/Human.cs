@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class Human : Enemy
 {
-    [SerializeField] private float distance;
     [SerializeField] private float speed;
 
     private void Start()
