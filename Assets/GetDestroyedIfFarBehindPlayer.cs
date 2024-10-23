@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class GetDestroyedIfFarBehindPlayer : MonoBehaviour
@@ -9,6 +10,9 @@ public class GetDestroyedIfFarBehindPlayer : MonoBehaviour
 
     private Transform target;
 
+    public Action destroyAction;
+    [HideInInspector] public float DistanceToRemove;
+    
     public void SetTarget(Transform target)
     {
         this.target = target;
@@ -37,6 +41,19 @@ public class GetDestroyedIfFarBehindPlayer : MonoBehaviour
         if (!target) return;
         
         var distance = (Pos - transform.position).magnitude;
-        if (distance > Value && Pos.x > transform.position.x) gameObject.SetActive(false);
+        if (distance > Value && Pos.x > transform.position.x)
+        {
+            gameObject.SetActive(false);
+        }
+        
+        if (distance >= DistanceToRemove && Pos.x > transform.position.x)
+        {
+            RemoveRuntimeItem();
+        }
+    }
+
+    private void RemoveRuntimeItem()
+    {
+        destroyAction?.Invoke();
     }
 }

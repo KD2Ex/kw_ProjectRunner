@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
+    [SerializeField] public ChunkSpawnManager ChunkSpawnManager;
+    
     [Header("Settings")]
     
     [SerializeField] private BrightnessSetting brightnessSetting;
@@ -44,10 +46,42 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        
         brightnessSetting.SetLevel(Config.Data.Brightness);
         soundFXSetting.SetLevel(Config.Data.SoundFX);
         musicSetting.SetLevel(Config.Data.Music);
         masterSetting.SetLevel(Config.Data.Master);
+    }
+
+    private float lastWidth = 1920;
+    private float lastHeight = 1080;
+    
+    private void Update()
+    {
+        
+    }
+
+    private void Resize()
+    {
+        Debug.Log($"Height: {Screen.height}, Width: {Screen.width}");
+        float width = Screen.width;
+        float height = Screen.height;
+        float ratio = width / height;
+        
+        Debug.Log(ratio);
+        Debug.Log(16f / 9f);
+
+        if (!Mathf.Approximately(ratio, 16f / 9f))
+        {
+            Debug.Log("Resolution set");
+            Screen.SetResolution((int) lastWidth, (int) lastHeight, false);
+        }
+        else
+        {
+            lastWidth = width;
+            lastHeight = height;
+            Debug.Log($"W {lastWidth} H {lastHeight}");
+        }
     }
 
     public void OpenLoadingScreen(AsyncOperation async, Action before = null, Action after = null)

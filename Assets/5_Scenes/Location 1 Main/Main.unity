@@ -380,6 +380,14 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 530429294}
+    - target: {fileID: 1959848586970887799, guid: 60f476be610f11747a9ce17ba2adf608, type: 3}
+      propertyPath: loadingScreen
+      value: 
+      objectReference: {fileID: 733026394}
+    - target: {fileID: 1959848586970887799, guid: 60f476be610f11747a9ce17ba2adf608, type: 3}
+      propertyPath: ChunkSpawnManager
+      value: 
+      objectReference: {fileID: 1553156981}
     - target: {fileID: 2405616591261993883, guid: 60f476be610f11747a9ce17ba2adf608, type: 3}
       propertyPath: target
       value: 
@@ -1378,6 +1386,11 @@ MonoBehaviour:
 GameObject:
   m_CorrespondingSourceObject: {fileID: 254044905092597535, guid: 31f83f615c6be9c449a4a5795cdd220b, type: 3}
   m_PrefabInstance: {fileID: 896971177}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &733026394 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 193325230808168736, guid: 60f476be610f11747a9ce17ba2adf608, type: 3}
+  m_PrefabInstance: {fileID: 129869344}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &740448975 stripped
 GameObject:
@@ -3146,6 +3159,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3872893639963078119, guid: 9a17c9d16b9736042aa4a741f368d8ff, type: 3}
   m_PrefabInstance: {fileID: 3752164375630225007}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1553156981 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4592588674817901652, guid: 9a17c9d16b9736042aa4a741f368d8ff, type: 3}
+  m_PrefabInstance: {fileID: 3752164375630225007}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1553156979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bddc715d6e2e9004285d183eba58cab4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1578989712 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7309020511352720843, guid: 31f83f615c6be9c449a4a5795cdd220b, type: 3}
@@ -4712,6 +4736,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4592588674817901652, guid: 9a17c9d16b9736042aa4a741f368d8ff, type: 3}
+      propertyPath: RuntimeSet
+      value: 
+      objectReference: {fileID: 11400000, guid: c9a8bc39c462b6741aa40f89e68e10c9, type: 2}
     - target: {fileID: 4592588674817901652, guid: 9a17c9d16b9736042aa4a741f368d8ff, type: 3}
       propertyPath: ChunkRandomManager
       value: 

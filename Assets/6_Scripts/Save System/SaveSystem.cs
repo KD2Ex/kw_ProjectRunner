@@ -17,6 +17,8 @@ public class SaveSystem
         public IntSaveData Magnet;
         public IntSaveData X2;
         public IntSaveData Healths;
+
+        public ChunkSaveData Chunks;
     }
 
     private static string SaveFileName(string name)
@@ -66,6 +68,8 @@ public class SaveSystem
         GameManager.instance.Player.Magnet.Save(ref saveData.Magnet);
         GameManager.instance.Player.CoinMultiplier.Save(ref saveData.X2);
         GameManager.instance.Player.Save(ref saveData.Healths);
+        
+        GameManager.instance.ChunkSpawnManager.Save(ref saveData.Chunks);
     }
 
     public static void Load()

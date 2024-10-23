@@ -53,7 +53,7 @@ public class ChunkRandomManager : ScriptableObject
     {
         if (SpawnQueue.Count == 0)
         {
-            AddChunkToQueue();
+            AddRandomChunkToQueue();
         }
         
         var result = SpawnQueue[0];
@@ -84,8 +84,15 @@ public class ChunkRandomManager : ScriptableObject
             }
         }
     }
+
+    public void AddChunkToQueue(GameObject prefab, int priority = 1)
+    {
+        Chunk chunk = new Chunk(prefab);
+        var pch = new PriorityChunk(chunk, 1);
+        SpawnQueue.Add(pch);
+    }
     
-    public void AddChunkToQueue()
+    public void AddRandomChunkToQueue()
     {
         var chunks = GetNextChunks();
         chunks.Sort(CompareByPriority);
