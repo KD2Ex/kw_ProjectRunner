@@ -196,7 +196,6 @@ public class Player : MonoBehaviour
     
     private void Awake()
     {
-       
         so_DashEnergy.Value = 0f;
         
         m_Colliders.Add(m_AirDashCollider);

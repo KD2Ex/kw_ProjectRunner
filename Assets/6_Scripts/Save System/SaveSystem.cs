@@ -1,5 +1,6 @@
 ﻿using System.IO;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class SaveSystem
 {
@@ -18,7 +19,8 @@ public class SaveSystem
         public IntSaveData X2;
         public IntSaveData Healths;
 
-        public ChunkSaveData Chunks;
+        [FormerlySerializedAs("Chunks")] public LoadedChunkNames Chunks;
+        public ChunkPositionData Position;
     }
 
     private static string SaveFileName(string name)
@@ -70,6 +72,7 @@ public class SaveSystem
         GameManager.instance.Player.Save(ref saveData.Healths);
         
         GameManager.instance.ChunkSpawnManager.Save(ref saveData.Chunks);
+        GameManager.instance.ChunkSpawnManager.ChunksPosition.Save(ref saveData.Position);
     }
 
     public static void Load()
@@ -117,6 +120,9 @@ public class SaveSystem
         GameManager.instance.Player.Magnet.Load(saveData.Magnet);
         GameManager.instance.Player.CoinMultiplier.Load(saveData.X2);
         GameManager.instance.Player.Load(saveData.Healths);
+        
+        GameManager.instance.ChunkSpawnManager.Load(saveData.Chunks);
+        GameManager.instance.ChunkSpawnManager.ChunksPosition.Load(saveData.Position);
     }
     
 }

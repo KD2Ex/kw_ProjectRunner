@@ -1,23 +1,33 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
+using UnityEditor;
 using UnityEngine;
 
 public class ChunkSpawnManager : MonoBehaviour
 {
     [SerializeField] private ChunkRandomManager ChunkRandomManager;
     [SerializeField] private ChunkRuntimeSet RuntimeSet;
+    [SerializeField] private ChunkMovement chunkMoveComponent;
     [SerializeField] private Chunk FirstChunk;
     private Transform chunkMovement;
     private Transform playerTransform;
 
     public Transform CurrentChunk { get; private set; }
 
-    private ChunkSaveData chunkData;
+    private LoadedChunkNames _loadedChunkData;
+
+    public ChunkMovement ChunksPosition => chunkMoveComponent;
 
     private void Awake()
     {
         //Save(ref chunkData);
         //Debug.Log(chunkData.loadedChunks.Count);
+    }
+
+    private void OnEnable()
+    {
+        RuntimeSet.Items.Clear();
     }
 
     void Start()
@@ -28,19 +38,32 @@ public class ChunkSpawnManager : MonoBehaviour
         
         chunkMovement = GameObject.FindGameObjectWithTag("ChunkParent").transform;
         playerTransform = PlayerLocator.instance.playerTransform;
-        
-        CreateChunk(FirstChunk);
+
+        Debug.Log(ChunkRandomManager.IsQueueEmpty);
+        //CreateChunk(FirstChunk);
         //Load(chunkData);
-        CreateChunk(ChunkRandomManager.Pop().Chunk);
+        //CreateChunk(ChunkRandomManager.Pop().Chunk);
     }
 
     void Update()
     {
+        if (!CurrentChunk)
+        {
+            ChunkRandomManager.RestoreAvailability();
+            CreateChunk(ChunkRandomManager.Pop().Chunk);
+            return;
+        }
+        
         if (CurrentChunk.position.x - playerTransform.position.x < 20f)
         {
             ChunkRandomManager.RestoreAvailability();
             CreateChunk(ChunkRandomManager.Pop().Chunk);
         }
+    }
+
+    private void OnDisable()
+    {
+        
     }
 
     private void CreateChunk(Chunk chunk)
@@ -67,8 +90,10 @@ public class ChunkSpawnManager : MonoBehaviour
             
             foreach (var prefab in chunk.Prefabs)
             {
+                Debug.Log(prefab.name);
+                Debug.Log(chunk.Prefabs.Count);
                 InstantiateChunk(prefab);
-                return;
+                continue;
                 var inst = Instantiate(prefab, chunkMovement);
                 var getDestroyed = inst.AddComponent<GetDestroyedIfFarBehindPlayer>();
                 getDestroyed.SetTarget(playerTransform);
@@ -94,6 +119,7 @@ public class ChunkSpawnManager : MonoBehaviour
         var runtimeItem = new RuntimeChunk();
         runtimeItem.runtimeSet = RuntimeSet;
         runtimeItem.chunk = prefab;
+        runtimeItem.instance = instance;
         runtimeItem.Initialize();
 
         getDestroyed.destroyAction += runtimeItem.Destroy;
@@ -103,8 +129,8 @@ public class ChunkSpawnManager : MonoBehaviour
             instance.transform.position = new Vector3(CurrentChunk.position.x + 36f, 0f, 0f);
         }
         
+        runtimeItem.x = instance.transform.localPosition.x;
         CurrentChunk = instance.transform;
-        
     }
 
     public void ClearQueue()
@@ -112,9 +138,18 @@ public class ChunkSpawnManager : MonoBehaviour
         ChunkRandomManager.ClearQueue();
     }
 
-    public void Save(ref ChunkSaveData data)
+    public void Save(ref LoadedChunkNames data)
     {
-        data.loadedChunks = GetGOList();
+        data.Items = GetGOList();
+
+        var go = RuntimeSet.Items[0].instance;
+        
+        if (!Directory.Exists("Assets/Prefabs"))
+            AssetDatabase.CreateFolder("Assets", "Prefabs");
+        PrefabUtility.SaveAsPrefabAsset(
+            go,
+            "Assets/Resources/CurrentSavedChunk/" + go.name + DateTime.Now.Millisecond + ".prefab" 
+        );
         
         List<string> GetGOList()
         {
@@ -128,13 +163,23 @@ public class ChunkSpawnManager : MonoBehaviour
             return result;
         }
         
-        RuntimeSet.Items.Clear();
     }
     
-    public void Load(ChunkSaveData data)
+    public void Load(LoadedChunkNames data)
     {
-        foreach (var chunkPrefab in data.loadedChunks)
+        var path = data.Items[0];
+        
+        var currentChunk = Resources.Load<GameObject>($"CurrentSavedChunk/{path}");
+        
+        if (!currentChunk) return;
+        
+        Debug.Log(currentChunk.name);
+        ChunkRandomManager.AddChunkToQueue(currentChunk);
+        
+        foreach (var chunkPrefab in data.Items)
         {
+            Debug.Log(chunkPrefab);
+            
             // find prefab in Resources by name
             //ChunkRandomManager.AddChunkToQueue();
         }

@@ -5,6 +5,8 @@ using UnityEngine;
 public class RuntimeChunk
 {
     public GameObject chunk;
+    public float x = 0f;
+    public GameObject instance;
     [HideInInspector] public ChunkRuntimeSet runtimeSet;
 
     public void Initialize()
@@ -20,7 +22,7 @@ public class RuntimeChunk
 
 
 [System.Serializable]
-public struct ChunkSaveData
+public struct LoadedChunkNames
 {
-    public List<string> loadedChunks;
+    public List<string> Items;
 }

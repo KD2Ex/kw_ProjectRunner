@@ -8,7 +8,6 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
-    [SerializeField] public ChunkSpawnManager ChunkSpawnManager;
     
     [Header("Settings")]
     
@@ -24,6 +23,7 @@ public class GameManager : MonoBehaviour
     public Animator loadingScreen;
     
     public Player Player { get; private set; }
+    public ChunkSpawnManager ChunkSpawnManager { get; private set; }
     public Coins Coins;
 
     private void Awake()
@@ -40,6 +40,7 @@ public class GameManager : MonoBehaviour
             if (scene.name == "Main")
             {
                 Player = FindObjectOfType<Player>();
+                ChunkSpawnManager = FindObjectOfType<ChunkSpawnManager>();
             }
         };
     }

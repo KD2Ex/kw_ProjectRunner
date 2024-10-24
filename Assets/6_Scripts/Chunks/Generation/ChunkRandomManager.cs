@@ -24,6 +24,7 @@ public class ChunkRandomManager : ScriptableObject
     [SerializeField] private List<PriorityChunk> SpawnQueue;
 
     public List<ChunkSet> Sets => chunkSets;
+    public bool IsQueueEmpty => SpawnQueue.Count == 0;
     
     private void OnEnable()
     {

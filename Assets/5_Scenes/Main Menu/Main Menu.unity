@@ -574,6 +574,10 @@ PrefabInstance:
       propertyPath: m_PixelsPerUnitMultiplier
       value: 4.12
       objectReference: {fileID: 0}
+    - target: {fileID: 7634527744376531808, guid: 60f476be610f11747a9ce17ba2adf608, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8235447917693901831, guid: 60f476be610f11747a9ce17ba2adf608, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -607,7 +611,8 @@ PrefabInstance:
       value: 1080
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 7634527744376531808, guid: 60f476be610f11747a9ce17ba2adf608, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 60f476be610f11747a9ce17ba2adf608, type: 3}
