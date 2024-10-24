@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.IO;
 using System.Resources;
 using UnityEngine;
@@ -8,6 +9,7 @@ public class ChunkSpawnManager : MonoBehaviour
 {
     [SerializeField] private ChunkRandomManager ChunkRandomManager;
     [SerializeField] private ChunkRuntimeSet RuntimeSet;
+    [SerializeField] private CollectablesRuntimeSet CollectablesRuntimeSet;
     [SerializeField] private ChunkMovement chunkMoveComponent;
     [SerializeField] private Chunk FirstChunk;
     private Transform chunkMovement;
@@ -41,7 +43,12 @@ public class ChunkSpawnManager : MonoBehaviour
         playerTransform = PlayerLocator.instance.playerTransform;
 
         Debug.Log(ChunkRandomManager.IsQueueEmpty);
-        //CreateChunk(FirstChunk);
+
+        if (ChunkRandomManager.IsQueueEmpty)
+        {
+            CreateChunk(FirstChunk);
+        }
+        
         //Load(chunkData);
         //CreateChunk(ChunkRandomManager.Pop().Chunk);
     }
@@ -146,6 +153,7 @@ public class ChunkSpawnManager : MonoBehaviour
             data.Items = new();
             return;
         }
+        SaveCurrentChunk(ref data.CurrentChunk);
         
         data.Items = GetGOList();
         
@@ -167,6 +175,7 @@ public class ChunkSpawnManager : MonoBehaviour
 
             foreach (var item in RuntimeSet.Items)
             {
+                if (item == RuntimeSet.Items[0]) continue;
                 result.Add(item.chunk);
             }
 
@@ -204,7 +213,7 @@ public class ChunkSpawnManager : MonoBehaviour
         */
         
         
-        
+        LoadCurrentChunk(data.CurrentChunk);
         foreach (var chunkPrefab in data.Items)
         {
             Debug.Log(chunkPrefab);
@@ -214,11 +223,55 @@ public class ChunkSpawnManager : MonoBehaviour
         }
         
     }
+    
+    public void SaveCurrentChunk(ref CurrentChunkData data)
+    {
+        List<ItemInChunk> result = new();
+        
+        foreach (var item in CollectablesRuntimeSet.Items)
+        {
+            result.Add(new ItemInChunk()
+            {
+                Prefab = item.prefab,
+                Position = item.transform.position
+            });
+        }
+
+        data.Items = result.ToArray();
+        data.Prefab = RuntimeSet.Items[0].chunk;
+
+    }
+    
+    public void LoadCurrentChunk(CurrentChunkData data)
+    {
+        foreach (var item in data.Items)
+        {
+            var inst = Instantiate(item.Prefab, item.Position, Quaternion.identity,
+                GameManager.instance.ChunkSpawnManager.ChunksPosition.transform);
+        }
+    }   
 }
 
 
 [System.Serializable]
 public struct LoadedChunkNames
 {
+    public CurrentChunkData CurrentChunk;
     public List<GameObject> Items;
+}
+
+
+[Serializable]
+public struct CurrentChunkData
+{
+    public GameObject Prefab;
+    public ItemInChunk[] Items;
+}
+
+
+[Serializable]
+public struct ItemInChunk
+{
+    public GameObject Prefab;
+    public Vector2 Position;
 }
