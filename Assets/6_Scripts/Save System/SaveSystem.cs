@@ -19,7 +19,7 @@ public class SaveSystem
         public IntSaveData X2;
         public IntSaveData Healths;
 
-        [FormerlySerializedAs("Chunks")] public LoadedChunkNames Chunks;
+        public LoadedChunkNames Chunks;
         public ChunkPositionData Position;
     }
 
@@ -43,7 +43,6 @@ public class SaveSystem
     public static void SaveSettings()
     {
         HandleSaveSettings();
-
         
         File.WriteAllText(
             SaveFileName(Settings),
@@ -51,6 +50,8 @@ public class SaveSystem
         );
     }
 
+    
+    
     private static void HandleSaveSettings()
     { 
         GameManager.instance.Config.Save(ref settingsData);

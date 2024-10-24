@@ -6,7 +6,13 @@ public class ChunkMovement : MonoBehaviour
     
     public void Save(ref ChunkPositionData data)
     {
-        data.xPosition = transform.position.x - chunks.Items[0].x;
+        if (GameManager.instance.Player.Dead)
+        {
+            data.xPosition = 0f;
+            return;
+        }
+        
+        data.xPosition = transform.position.x + chunks.Items[0].x;
         Debug.Log(data.xPosition);
     }
 

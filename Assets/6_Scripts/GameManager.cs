@@ -7,7 +7,6 @@ using Random = UnityEngine.Random;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-
     
     [Header("Settings")]
     
@@ -22,8 +21,8 @@ public class GameManager : MonoBehaviour
     private SoundList loadingSound;
     public Animator loadingScreen;
     
-    public Player Player { get; private set; }
-    public ChunkSpawnManager ChunkSpawnManager { get; private set; }
+    public Player Player { get; set; }
+    public ChunkSpawnManager ChunkSpawnManager { get; set; }
     public Coins Coins;
 
     private void Awake()
@@ -37,11 +36,7 @@ public class GameManager : MonoBehaviour
         
         SceneManager.sceneLoaded += (scene, mode) =>
         {
-            if (scene.name == "Main")
-            {
-                Player = FindObjectOfType<Player>();
-                ChunkSpawnManager = FindObjectOfType<ChunkSpawnManager>();
-            }
+
         };
     }
 

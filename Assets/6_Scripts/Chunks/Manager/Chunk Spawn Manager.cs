@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using UnityEditor;
+using System.Resources;
 using UnityEngine;
 
 public class ChunkSpawnManager : MonoBehaviour
@@ -23,6 +23,7 @@ public class ChunkSpawnManager : MonoBehaviour
     {
         //Save(ref chunkData);
         //Debug.Log(chunkData.loadedChunks.Count);
+        GameManager.instance.ChunkSpawnManager = this;
     }
 
     private void OnEnable()
@@ -114,7 +115,7 @@ public class ChunkSpawnManager : MonoBehaviour
             
         var getDestroyed = instance.AddComponent<GetDestroyedIfFarBehindPlayer>();
         getDestroyed.SetTarget(playerTransform);
-        getDestroyed.DistanceToRemove = 18f;
+        getDestroyed.DistanceToRemove = 15f;
         
         var runtimeItem = new RuntimeChunk();
         runtimeItem.runtimeSet = RuntimeSet;
@@ -140,18 +141,41 @@ public class ChunkSpawnManager : MonoBehaviour
 
     public void Save(ref LoadedChunkNames data)
     {
+        if (GameManager.instance.Player.Dead)
+        {
+            data.Items = new();
+            return;
+        }
+        
         data.Items = GetGOList();
-
-        var go = RuntimeSet.Items[0].instance;
         
+        /*
         if (!Directory.Exists("Assets/Prefabs"))
-            AssetDatabase.CreateFolder("Assets", "Prefabs");
-        PrefabUtility.SaveAsPrefabAsset(
+            AssetDatabase.CreateFolder("Assets", "Prefabs");*/
+        /*PrefabUtility.SaveAsPrefabAsset(
             go,
-            "Assets/Resources/CurrentSavedChunk/" + go.name + DateTime.Now.Millisecond + ".prefab" 
-        );
+            "Assets/Resources/CurrentSavedChunk/" + name + ".prefab" 
+        );*/
+        /*var go = RuntimeSet.Items[0].instance;
+        string name = go.name + DateTime.Now.Second;
+
+        data.Items[0] = name; */
         
-        List<string> GetGOList()
+        List<GameObject> GetGOList()
+        {
+            List<GameObject> result = new();
+
+            foreach (var item in RuntimeSet.Items)
+            {
+                result.Add(item.chunk);
+            }
+
+            return result;
+        }
+        
+        
+                
+        List<string> GetNamesList()
         {
             List<string> result = new();
 
@@ -162,27 +186,39 @@ public class ChunkSpawnManager : MonoBehaviour
 
             return result;
         }
-        
     }
     
     public void Load(LoadedChunkNames data)
     {
-        var path = data.Items[0];
-        
-        var currentChunk = Resources.Load<GameObject>($"CurrentSavedChunk/{path}");
+        /*
+        var chunkName = data.Items[0];
+        var path = $"CurrentSavedChunk/{chunkName}";
+        var currentChunk = Resources.Load<GameObject>(path);
         
         if (!currentChunk) return;
         
         Debug.Log(currentChunk.name);
+        currentChunk.transform.localPosition = Vector3.zero;
         ChunkRandomManager.AddChunkToQueue(currentChunk);
+        AssetDatabase.DeleteAsset("Resources/" + path);
+        */
+        
+        
         
         foreach (var chunkPrefab in data.Items)
         {
             Debug.Log(chunkPrefab);
             
             // find prefab in Resources by name
-            //ChunkRandomManager.AddChunkToQueue();
+            ChunkRandomManager.AddChunkToQueue(chunkPrefab);
         }
         
     }
+}
+
+
+[System.Serializable]
+public struct LoadedChunkNames
+{
+    public List<GameObject> Items;
 }

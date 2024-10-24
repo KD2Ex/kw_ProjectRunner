@@ -140,6 +140,8 @@ public class Player : MonoBehaviour
     private bool m_Restart;
     private bool m_Running => m_ChunksCurrentSpeed > 0;
 
+    public bool Dead => m_IsDead;
+
     #endregion
 
     #region Consts
@@ -196,6 +198,8 @@ public class Player : MonoBehaviour
     
     private void Awake()
     {
+        GameManager.instance.Player = this;
+        
         so_DashEnergy.Value = 0f;
         
         m_Colliders.Add(m_AirDashCollider);

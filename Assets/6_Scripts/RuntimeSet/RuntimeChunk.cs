@@ -19,10 +19,3 @@ public class RuntimeChunk
         runtimeSet.Remove(this);
     }
 }
-
-
-[System.Serializable]
-public struct LoadedChunkNames
-{
-    public List<string> Items;
-}
