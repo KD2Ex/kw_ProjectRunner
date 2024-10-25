@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -14,6 +13,7 @@ public class Timer : MonoBehaviour
 
     private void Awake()
     {
+        GameManager.instance.Timer = this;
         timerData.Value = 0f;
     }
 
@@ -42,5 +42,21 @@ public class Timer : MonoBehaviour
     {
         //Debug.Log("RUn");
         isRunning = true;
+    }
+
+    public void Save(ref IntSaveData data)
+    {
+        if (GameManager.instance.Player.Dead)
+        {
+            data.Value = 0;
+            return;
+        }
+        data.Value = (int) m_ElapsedTime;
+    }
+
+    public void Load(IntSaveData data)
+    {
+        timerData.Value = data.Value;
+        m_ElapsedTime = data.Value;
     }
 }

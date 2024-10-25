@@ -12,6 +12,8 @@ public class UIDigitsTimer : MonoBehaviour
 
     private void Awake()
     {
+        GameManager.instance.UITimer = this;
+        
         foreach (var point in spawnPoints)
         {
             var instance = Instantiate(digit, point.transform);
@@ -30,5 +32,11 @@ public class UIDigitsTimer : MonoBehaviour
         digits[1].SetDigit((int)(minutes.Value % 10));
         digits[2].SetDigit((int)(seconds.Value / 10));
         digits[3].SetDigit((int)(seconds.Value % 10));
+    }
+    
+    public void Load(IntSaveData data)
+    {
+        minutes.Value = data.Value / 60;
+        seconds.Value = data.Value % 60;
     }
 }

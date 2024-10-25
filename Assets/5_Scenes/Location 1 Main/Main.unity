@@ -4341,6 +4341,7 @@ GameObject:
   - component: {fileID: 2071333451}
   - component: {fileID: 2071333453}
   - component: {fileID: 2071333454}
+  - component: {fileID: 2071333455}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -4495,6 +4496,20 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2071333455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2071333449}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e186e1ad520c4a5484674591ffb38b5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  start: 0
+  duration: 0.6
 --- !u!1 &2080308936 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3176854319383707153, guid: 31f83f615c6be9c449a4a5795cdd220b, type: 3}
@@ -4787,7 +4802,7 @@ PrefabInstance:
     - target: {fileID: 4592588674817901652, guid: 9a17c9d16b9736042aa4a741f368d8ff, type: 3}
       propertyPath: ChunkRandomManager
       value: 
-      objectReference: {fileID: 11400000, guid: 6e958737900f1834b978d58238641d00, type: 2}
+      objectReference: {fileID: 11400000, guid: 640dddb741bda1e44b8968932f2e1a8f, type: 2}
     - target: {fileID: 4592588674817901652, guid: 9a17c9d16b9736042aa4a741f368d8ff, type: 3}
       propertyPath: chunkMoveComponent
       value: 

@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Persistence : MonoBehaviour
 {
-    public static Persistence instance;
+    private static Persistence instance;
 
     private void Awake()
     {

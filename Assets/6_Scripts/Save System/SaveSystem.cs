@@ -17,6 +17,7 @@ public class SaveSystem
         public IntSaveData Magnet;
         public IntSaveData X2;
         public IntSaveData Healths;
+        public IntSaveData Timer;
 
         public LoadedChunkNames Chunks;
         public ChunkPositionData Position;
@@ -71,9 +72,12 @@ public class SaveSystem
         GameManager.instance.Player.CoinMultiplier.Save(ref saveData.X2);
         GameManager.instance.Player.Save(ref saveData.Healths);
         
+        GameManager.instance.Timer.Save(ref saveData.Timer);
+        
         GameManager.instance.ChunkSpawnManager.Save(ref saveData.Chunks);
         GameManager.instance.ChunkSpawnManager.ChunksPosition.Save(ref saveData.Position);
     }
+
 
     public static void Load()
     {
@@ -120,6 +124,9 @@ public class SaveSystem
         GameManager.instance.Player.Magnet.Load(saveData.Magnet);
         GameManager.instance.Player.CoinMultiplier.Load(saveData.X2);
         GameManager.instance.Player.Load(saveData.Healths);
+        
+        GameManager.instance.Timer.Load(saveData.Timer);
+        GameManager.instance.UITimer.Load(saveData.Timer);
         
         GameManager.instance.ChunkSpawnManager.Load(saveData.Chunks);
         GameManager.instance.ChunkSpawnManager.ChunksPosition.Load(saveData.Position);

@@ -24,6 +24,8 @@ public class GameManager : MonoBehaviour
     public Player Player { get; set; }
     public ChunkSpawnManager ChunkSpawnManager { get; set; }
     public Coins Coins;
+    public Timer Timer;
+    public UIDigitsTimer UITimer;
 
     private void Awake()
     {

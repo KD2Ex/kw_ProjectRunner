@@ -151,6 +151,7 @@ public class ChunkSpawnManager : MonoBehaviour
         if (GameManager.instance.Player.Dead)
         {
             data.Items = new();
+            data.CurrentChunk.Prefab = null;
             return;
         }
         SaveCurrentChunk(ref data.CurrentChunk);
@@ -244,6 +245,10 @@ public class ChunkSpawnManager : MonoBehaviour
     
     public void LoadCurrentChunk(CurrentChunkData data)
     {
+        if (data.Prefab == null) return;
+        
+        ChunkRandomManager.AddChunkToQueue(data.Prefab);
+        
         foreach (var item in data.Items)
         {
             var inst = Instantiate(item.Prefab, item.Position, Quaternion.identity,
