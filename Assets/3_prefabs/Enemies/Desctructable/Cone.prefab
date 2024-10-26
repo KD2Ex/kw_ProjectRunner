@@ -202,8 +202,8 @@ GameObject:
   - component: {fileID: 7765627979918044820}
   - component: {fileID: 3902146665611816581}
   - component: {fileID: 8178466961594448696}
-  - component: {fileID: 3553049694607757606}
   - component: {fileID: -3792072103861542738}
+  - component: {fileID: 601401600961233209}
   m_Layer: 8
   m_Name: Cone
   m_TagString: Enemy
@@ -300,8 +300,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!61 &3553049694607757606
-BoxCollider2D:
+--- !u!114 &-3792072103861542738
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3436901836227386126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01a8d9388bac3174ab66b0e66e9cbc6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  source: {fileID: 1930564620044390300}
+--- !u!68 &601401600961233209
+EdgeCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -332,29 +345,18 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -1.7177626, y: -0.3784901}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 6.243902, y: 4.5}
-    newSize: {x: 6.24, y: 4.5}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1.833987, y: 2.423157}
+  m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
---- !u!114 &-3792072103861542738
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3436901836227386126}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 01a8d9388bac3174ab66b0e66e9cbc6b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  source: {fileID: 1930564620044390300}
+  m_Points:
+  - {x: -2.8438249, y: -1.2881622}
+  - {x: -1.7918038, y: -1.6601036}
+  - {x: -0.6963358, y: -1.4199061}
+  - {x: -0.9591806, y: -0.45976806}
+  - {x: -1.4356084, y: 0.7212441}
+  - {x: -1.6626749, y: 0.81447697}
+  - {x: -1.8834085, y: 0.7232156}
+  - {x: -2.8504386, y: -1.2735245}
+  m_AdjacentStartPoint: {x: 0, y: 0}
+  m_AdjacentEndPoint: {x: 0, y: 0}
+  m_UseAdjacentStartPoint: 0
+  m_UseAdjacentEndPoint: 0

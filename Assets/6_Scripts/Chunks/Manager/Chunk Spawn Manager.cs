@@ -73,7 +73,7 @@ public class ChunkSpawnManager : MonoBehaviour
     private void CreateChunk(Chunk chunk)
     {
 
-        if (chunk.Prefabs.Count == 0)
+        if (chunk.Prefabs.Count == 0 && !chunk.Linked)
         {
             InstantiateChunk(chunk.Prefab);
             return;
@@ -91,8 +91,8 @@ public class ChunkSpawnManager : MonoBehaviour
         }
         else
         {
-            
-            foreach (var prefab in chunk.Prefabs)
+            var list = chunk.Linked ? chunk.Linked.Items : chunk.Prefabs.ToArray();
+            foreach (var prefab in list)
             {
                 //Debug.Log(prefab.name);
                 //Debug.Log(chunk.Prefabs.Count);
