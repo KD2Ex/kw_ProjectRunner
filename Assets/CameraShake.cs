@@ -17,6 +17,11 @@ public class CameraShake : MonoBehaviour
         }
     }
 
+    public void Execute()
+    {
+        StartCoroutine(Shaking());
+    }
+
     private IEnumerator Shaking()
     {
         var startPos = transform.position;

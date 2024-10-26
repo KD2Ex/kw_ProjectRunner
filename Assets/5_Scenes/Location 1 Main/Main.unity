@@ -376,10 +376,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: ---PERSISTENCE---
       objectReference: {fileID: 0}
-    - target: {fileID: 1959848586970887799, guid: 60f476be610f11747a9ce17ba2adf608, type: 3}
-      propertyPath: ChunkSpawnManager
-      value: 
-      objectReference: {fileID: 1553156981}
     - target: {fileID: 3141135106473041580, guid: 60f476be610f11747a9ce17ba2adf608, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -421,8 +417,7 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects:
-    - {fileID: 7634527744376531808, guid: 60f476be610f11747a9ce17ba2adf608, type: 3}
+    m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 60f476be610f11747a9ce17ba2adf608, type: 3}
@@ -3181,17 +3176,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3872893639963078119, guid: 9a17c9d16b9736042aa4a741f368d8ff, type: 3}
   m_PrefabInstance: {fileID: 3752164375630225007}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1553156981 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4592588674817901652, guid: 9a17c9d16b9736042aa4a741f368d8ff, type: 3}
-  m_PrefabInstance: {fileID: 3752164375630225007}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1553156979}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bddc715d6e2e9004285d183eba58cab4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1578989712 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7309020511352720843, guid: 31f83f615c6be9c449a4a5795cdd220b, type: 3}
@@ -4522,10 +4506,19 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
-      time: 0.14217
-      value: 0.41920638
+      time: 0.23120776
+      value: 0.7758612
       inSlope: 1.0957365
       outSlope: 1.0957365
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.68318975
+      value: 0.54398507
+      inSlope: -1.4884936
+      outSlope: -1.4884936
       tangentMode: 0
       weightedMode: 0
       inWeight: 0.33333334
@@ -4835,7 +4828,7 @@ PrefabInstance:
     - target: {fileID: 4592588674817901652, guid: 9a17c9d16b9736042aa4a741f368d8ff, type: 3}
       propertyPath: ChunkRandomManager
       value: 
-      objectReference: {fileID: 11400000, guid: 640dddb741bda1e44b8968932f2e1a8f, type: 2}
+      objectReference: {fileID: 11400000, guid: 6e958737900f1834b978d58238641d00, type: 2}
     - target: {fileID: 4592588674817901652, guid: 9a17c9d16b9736042aa4a741f368d8ff, type: 3}
       propertyPath: chunkMoveComponent
       value: 
@@ -4847,7 +4840,7 @@ PrefabInstance:
     - target: {fileID: 4592588674817901652, guid: 9a17c9d16b9736042aa4a741f368d8ff, type: 3}
       propertyPath: FirstChunk.<Prefab>k__BackingField
       value: 
-      objectReference: {fileID: 1860303815645366282, guid: 9333fe8cac5152c4aac819b1a7936525, type: 3}
+      objectReference: {fileID: 2666378354467586991, guid: 178a2d0c5262dd741a2639924ce42aef, type: 3}
     - target: {fileID: 6378822272405041046, guid: 9a17c9d16b9736042aa4a741f368d8ff, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

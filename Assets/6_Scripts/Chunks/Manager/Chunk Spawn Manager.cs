@@ -6,8 +6,6 @@ public class ChunkSpawnManager : MonoBehaviour
 {
     [SerializeField] private ChunkRandomManager ChunkRandomManager;
     [SerializeField] private ChunkRuntimeSet RuntimeSet;
-    [SerializeField] private CollectablesRuntimeSet CollectablesRuntimeSet;
-    [SerializeField] private ChunkMovement chunkMoveComponent;
     [SerializeField] private Chunk FirstChunk;
 
 
@@ -18,7 +16,6 @@ public class ChunkSpawnManager : MonoBehaviour
 
     private LoadedChunkNames _loadedChunkData;
 
-    public ChunkMovement ChunksPosition => chunkMoveComponent;
 
     private void Awake()
     {
@@ -236,6 +233,7 @@ public class ChunkSpawnManager : MonoBehaviour
     {
         List<ItemInChunk> result = new();
         
+        /*
         foreach (var item in CollectablesRuntimeSet.Items)
         {
             result.Add(new ItemInChunk()
@@ -244,6 +242,7 @@ public class ChunkSpawnManager : MonoBehaviour
                 Position = item.transform.position
             });
         }
+        */
 
         data.Items = result.ToArray();
         data.Prefab = RuntimeSet.Items[0].chunk;
@@ -258,8 +257,8 @@ public class ChunkSpawnManager : MonoBehaviour
         
         foreach (var item in data.Items)
         {
-            var inst = Instantiate(item.Prefab, item.Position, Quaternion.identity,
-                GameManager.instance.ChunkSpawnManager.ChunksPosition.transform);
+            //var inst = Instantiate(item.Prefab, item.Position, Quaternion.identity,
+            //    GameManager.instance.ChunkSpawnManager.ChunksPosition.transform);
         }
     }   
 }
