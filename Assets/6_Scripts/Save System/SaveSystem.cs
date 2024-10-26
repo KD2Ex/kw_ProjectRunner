@@ -1,5 +1,6 @@
 ﻿using System.IO;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class SaveSystem
 {
@@ -12,15 +13,15 @@ public class SaveSystem
     [System.Serializable]
     public struct SaveData
     {
-        public IntSaveData CoinsData;
+        [FormerlySerializedAs("CoinsData")] public IntSaveData Coins;
         public IntSaveData Shield;
         public IntSaveData Magnet;
         public IntSaveData X2;
         public IntSaveData Healths;
         public IntSaveData Timer;
 
-        public LoadedChunkNames Chunks;
-        public ChunkPositionData Position;
+        //public LoadedChunkNames Chunks;
+        //public ChunkPositionData Position;
     }
 
     private static string SaveFileName(string name)
@@ -29,15 +30,16 @@ public class SaveSystem
         return saveFile;
     }
     
-    public static void Save()
+    public static void Save(bool withRunProgress = false)
     {
         HandleSaveData();
 
+        if (withRunProgress) HandleSaveRun();
+        
         File.WriteAllText(
             SaveFileName(PlayerProgress),
             JsonUtility.ToJson(saveData, true)
             );
-        
     }
 
     public static void SaveSettings()
@@ -49,8 +51,6 @@ public class SaveSystem
             JsonUtility.ToJson(settingsData, true)
         );
     }
-
-    
     
     private static void HandleSaveSettings()
     { 
@@ -64,21 +64,21 @@ public class SaveSystem
         Debug.Log(GameManager.instance);
         Debug.Log(GameManager.instance.Coins);
         Debug.Log(saveData);
-        Debug.Log(saveData.CoinsData);
+        Debug.Log(saveData.Coins);
         
-        GameManager.instance.Coins.Save(ref saveData.CoinsData);
+        GameManager.instance.Coins.Save(ref saveData.Coins);
         GameManager.instance.Player.Shield.Save(ref saveData.Shield);
         GameManager.instance.Player.Magnet.Save(ref saveData.Magnet);
         GameManager.instance.Player.CoinMultiplier.Save(ref saveData.X2);
         GameManager.instance.Player.Save(ref saveData.Healths);
         
-        GameManager.instance.Timer.Save(ref saveData.Timer);
-        
-        GameManager.instance.ChunkSpawnManager.Save(ref saveData.Chunks);
-        GameManager.instance.ChunkSpawnManager.ChunksPosition.Save(ref saveData.Position);
     }
 
-
+    private static void HandleSaveRun()
+    {
+        GameManager.instance.Timer.Save(ref saveData.Timer);
+    }
+    
     public static void Load()
     {
         if (!File.Exists(SaveFileName(PlayerProgress)))
@@ -119,7 +119,7 @@ public class SaveSystem
     
     private static void HandleLoadData()
     {
-        GameManager.instance.Coins.Load(saveData.CoinsData);        
+        GameManager.instance.Coins.Load(saveData.Coins);        
         GameManager.instance.Player.Shield.Load(saveData.Shield);
         GameManager.instance.Player.Magnet.Load(saveData.Magnet);
         GameManager.instance.Player.CoinMultiplier.Load(saveData.X2);
@@ -127,9 +127,12 @@ public class SaveSystem
         
         GameManager.instance.Timer.Load(saveData.Timer);
         GameManager.instance.UITimer.Load(saveData.Timer);
-        
-        GameManager.instance.ChunkSpawnManager.Load(saveData.Chunks);
-        GameManager.instance.ChunkSpawnManager.ChunksPosition.Load(saveData.Position);
+        GameManager.instance.ChunkSpawnManager.Load(saveData.Timer);
     }
-    
+
+    private static void HandleLoadRun()
+    {
+
+        //GameManager.instance.ChunkSpawnManager.ChunksPosition.Load(saveData.Position);
+    }
 }

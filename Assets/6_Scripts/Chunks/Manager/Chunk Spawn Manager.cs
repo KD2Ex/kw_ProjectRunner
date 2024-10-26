@@ -1,8 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Data;
-using System.IO;
-using System.Resources;
 using UnityEngine;
 
 public class ChunkSpawnManager : MonoBehaviour
@@ -12,9 +9,11 @@ public class ChunkSpawnManager : MonoBehaviour
     [SerializeField] private CollectablesRuntimeSet CollectablesRuntimeSet;
     [SerializeField] private ChunkMovement chunkMoveComponent;
     [SerializeField] private Chunk FirstChunk;
+
+
+    [Space] [SerializeField] private GameObject CheckPointChunk;
     private Transform chunkMovement;
     private Transform playerTransform;
-
     public Transform CurrentChunk { get; private set; }
 
     private LoadedChunkNames _loadedChunkData;
@@ -197,6 +196,14 @@ public class ChunkSpawnManager : MonoBehaviour
             return result;
         }
     }
+
+    public void Load(IntSaveData data)
+    {
+        if (data.Value > 0)
+        {
+            ChunkRandomManager.AddChunkToQueue(CheckPointChunk);
+        }
+    }
     
     public void Load(LoadedChunkNames data)
     {
@@ -258,7 +265,7 @@ public class ChunkSpawnManager : MonoBehaviour
 }
 
 
-[System.Serializable]
+[Serializable]
 public struct LoadedChunkNames
 {
     public CurrentChunkData CurrentChunk;
