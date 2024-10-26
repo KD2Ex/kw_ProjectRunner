@@ -6,10 +6,12 @@ public class BrightnessSetting : Setting
     [SerializeField] private PostProcessProfile brightness;
     
     private AutoExposure exposure;
+    private ColorGrading colorGrading;
     
     private void Awake()
     {
         brightness.TryGetSettings(out exposure);
+        brightness.TryGetSettings(out colorGrading);
     }
 
     public override void LoadLevelValue(ref int value)
@@ -20,7 +22,8 @@ public class BrightnessSetting : Setting
 
     public override void SetLevel(int level)
     {
-        exposure.keyValue.value = GetBrightnessValue(level);
+        //exposure.keyValue.value = GetBrightnessValue(level);
+        colorGrading.contrast.value = GetContrastValue(level);
         config.Data.Brightness = level;
     }
 
@@ -38,6 +41,25 @@ public class BrightnessSetting : Setting
                 return 2.5f;
             case 5:
                 return 4f;
+        }
+
+        return 1f;
+    }
+
+    private float GetContrastValue(int level)
+    {
+        switch (level)
+        {
+            case 1:
+                return -30;
+            case 2:
+                return -15;
+            case 3:
+                return 0;
+            case 4:
+                return 15;
+            case 5:
+                return 30;
         }
 
         return 1f;
