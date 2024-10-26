@@ -24,6 +24,7 @@ public class Human : Enemy
         }
         
         SoundFXManager.instance.PlayClipAtPoint(appearClip, transform, 1f);
+        GameManager.instance.SceneMusic.SetVolume(.15f);
     }
 
     private IEnumerator WaitForTriggerShake()
@@ -40,8 +41,18 @@ public class Human : Enemy
     {
         if (PlayerLocator.instance.DistanceToPlayer(transform) < distance)
         {
-            transform.Translate(Vector3.left * (speed * Time.deltaTime));
+            Attack();
         }
         
+    }
+
+    private void OnDisable()
+    {
+        GameManager.instance.SceneMusic.SetVolume(1f);
+    }
+
+    private void Attack()
+    {
+        transform.Translate(Vector3.left * (speed * Time.deltaTime));
     }
 }

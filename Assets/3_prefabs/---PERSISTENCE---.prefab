@@ -105,6 +105,8 @@ MonoBehaviour:
   Coins: {fileID: 11400000, guid: 93d2cd16956b2e5469e68b9781adf222, type: 2}
   Timer: {fileID: 0}
   UITimer: {fileID: 0}
+  CameraShake: {fileID: 0}
+  MusicManager: {fileID: 0}
 --- !u!1 &1390183441368213076
 GameObject:
   m_ObjectHideFlags: 0
@@ -652,7 +654,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7700545638677803018
 Transform:
   m_ObjectHideFlags: 0
@@ -678,7 +680,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -2946390698685724857, guid: 8ee838e8ffbbdaa4a9559ffd3e6fc337, type: 2}
-  m_audioClip: {fileID: 8300000, guid: c8a742653f5f94facbc92fac9939a06c, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -777,5 +779,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   source: {fileID: 5187947766496979116}
+  sourcePrefab: {fileID: 6329527359030219655, guid: 3009f729ae563ad4e939287b312d5b9d, type: 3}
   mainMenuTheme: {fileID: 8300000, guid: 519ac540d2e474ffd86f825b9a50920f, type: 3}
   locationOneTheme: {fileID: 8300000, guid: c8a742653f5f94facbc92fac9939a06c, type: 3}

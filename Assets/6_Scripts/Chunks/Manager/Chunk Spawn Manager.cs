@@ -94,8 +94,8 @@ public class ChunkSpawnManager : MonoBehaviour
             
             foreach (var prefab in chunk.Prefabs)
             {
-                Debug.Log(prefab.name);
-                Debug.Log(chunk.Prefabs.Count);
+                //Debug.Log(prefab.name);
+                //Debug.Log(chunk.Prefabs.Count);
                 InstantiateChunk(prefab);
                 continue;
                 var inst = Instantiate(prefab, chunkMovement);

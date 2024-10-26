@@ -28,6 +28,8 @@ public class GameManager : MonoBehaviour
     public UIDigitsTimer UITimer;
     public CameraShake CameraShake;
 
+    public Music SceneMusic;
+    
     private void Awake()
     {
         if (instance == null)

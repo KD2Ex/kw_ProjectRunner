@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2528600097805123045}
   - component: {fileID: 1209787225137790297}
   - component: {fileID: 5190617912671438220}
+  - component: {fileID: 9128834253256894921}
   m_Layer: 0
   m_Name: human
   m_TagString: Enemy
@@ -311,3 +312,18 @@ MonoBehaviour:
   triggerAppearMusicDist: 110
   speed: 40
   appearClip: {fileID: 8300000, guid: 6b4fc7988246a47e3a7b27f918833209, type: 3}
+--- !u!114 &9128834253256894921
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 560115481051198458}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52e3cbadd2bd11141b70ae6cbe77148c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_DistanceToDestroy: {fileID: 11400000, guid: 52135a3dedce51b4b88823d66789426e, type: 2}
+  PlayerAsTarget: 0
+  DistanceToRemove: 0
