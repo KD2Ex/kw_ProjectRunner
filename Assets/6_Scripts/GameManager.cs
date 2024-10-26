@@ -29,6 +29,8 @@ public class GameManager : MonoBehaviour
     public CameraShake CameraShake;
 
     public Music SceneMusic;
+
+    public bool IsEventChunkRunning;
     
     private void Awake()
     {
