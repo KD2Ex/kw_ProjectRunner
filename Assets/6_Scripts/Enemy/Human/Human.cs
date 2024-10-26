@@ -33,7 +33,7 @@ public class Human : Enemy
             yield return null;
         }
         
-        Camera.main.GetComponent<CameraShake>().Execute();
+        GameManager.instance.CameraShake.Execute();
     }
 
     private void Update()

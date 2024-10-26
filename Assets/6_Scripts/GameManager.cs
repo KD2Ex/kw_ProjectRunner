@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
     public Coins Coins;
     public Timer Timer;
     public UIDigitsTimer UITimer;
+    public CameraShake CameraShake;
 
     private void Awake()
     {
