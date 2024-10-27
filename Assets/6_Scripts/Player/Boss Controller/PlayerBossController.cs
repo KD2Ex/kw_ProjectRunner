@@ -11,11 +11,22 @@ public class PlayerBossController : MonoBehaviour
     [SerializeField] private GameObject middleLine;
     [SerializeField] private GameObject rightLine;
 
+    [Header("Components")]
+    
+    [SerializeField] private Animator animator;
+    
     private Dictionary<int, GameObject> lines = new();
     private int currentLine = 1;
+
+    private readonly int animDeathLeft = Animator.StringToHash("LeftDeath");
+    private readonly int animDeathRight = Animator.StringToHash("RightDeath");
+    
+    public bool Dead { get; private set; }
     
     private void Awake()
     {
+        GameManager.instance.PlayerBossController = this;
+        
         lines[0] = leftLine;
         lines[1] = middleLine;
         lines[2] = rightLine;
@@ -28,19 +39,7 @@ public class PlayerBossController : MonoBehaviour
 
     private void OnDisable()
     {
-        input.PlayerBossMoveEvent += OnMove;
-    }
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        input.PlayerBossMoveEvent -= OnMove;
     }
 
     private void OnMove(int value)
@@ -56,5 +55,13 @@ public class PlayerBossController : MonoBehaviour
     private void MoveOnLine(GameObject line)
     {
         transform.position = line.transform.position;
+    }
+
+    public void Die()
+    {
+        var hash = currentLine > 0 ? animDeathRight : animDeathLeft;
+        animator.Play(hash);
+        input.PlayerBossMoveEvent -= OnMove;
+        Dead = true;
     }
 }

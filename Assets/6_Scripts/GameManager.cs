@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
     public Animator loadingScreen;
     
     public Player Player { get; set; }
+    public PlayerBossController PlayerBossController;
     public ChunkSpawnManager ChunkSpawnManager { get; set; }
     public Coins Coins;
     public Timer Timer;
