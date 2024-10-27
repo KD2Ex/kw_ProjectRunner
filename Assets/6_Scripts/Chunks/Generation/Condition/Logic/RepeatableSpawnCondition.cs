@@ -1,4 +1,6 @@
 ﻿
+using UnityEngine;
+
 public class RepeatableSpawnCondition : ChunkSpawnCondition
 {
     private readonly RepeatableTimeCondition data;
@@ -24,7 +26,8 @@ public class RepeatableSpawnCondition : ChunkSpawnCondition
         
         triggered = false;
         count = 0;
-        timeOfTrigger = 0;
+        timeOfTrigger = (int) GameManager.instance.Timer.m_ElapsedTime;
+        Debug.Log(timeOfTrigger);
     }
 
     public override bool Evaluate()

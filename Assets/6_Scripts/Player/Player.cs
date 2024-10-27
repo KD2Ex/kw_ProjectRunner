@@ -355,6 +355,9 @@ public class Player : MonoBehaviour
         m_inputReader.StopEvent += OnStop;
         m_inputReader.AirDashEvent += OnAirDash;
         m_inputReader.DashAbilityTest += OnDash;
+        
+        SaveSystem.Load();
+
     }
 
     private void OnDisable()
@@ -377,7 +380,6 @@ public class Player : MonoBehaviour
         Application.targetFrameRate = 60;*/
 
         //Time.timeScale = .5f;
-        SaveSystem.Load();
         m_StateMachine.SetState(sleepState);
     }
 

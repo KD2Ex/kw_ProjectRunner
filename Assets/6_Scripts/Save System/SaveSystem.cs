@@ -126,7 +126,7 @@ public class SaveSystem
         GameManager.instance.Player.Load(saveData.Healths);
         
         GameManager.instance.Timer.Load(saveData.Timer);
-        GameManager.instance.UITimer.Load(saveData.Timer);
+        GameManager.instance.UITimer?.Load(saveData.Timer);
         GameManager.instance.ChunkSpawnManager.Load(saveData.Timer);
     }
 
