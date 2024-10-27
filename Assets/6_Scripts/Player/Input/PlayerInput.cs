@@ -570,6 +570,56 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 }
             ]
+        },
+        {
+            ""name"": ""PlayerBoss"",
+            ""id"": ""68156e45-c79b-40fe-8bc9-4806909c4f34"",
+            ""actions"": [
+                {
+                    ""name"": ""Move"",
+                    ""type"": ""Value"",
+                    ""id"": ""c30b4fb1-0732-48ac-babe-69744469b69c"",
+                    ""expectedControlType"": ""Analog"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": ""1D Axis"",
+                    ""id"": ""0f6a8db0-b020-4c58-9217-81f63ef25601"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""8e6b40ca-5776-4504-a826-868cfacba3e8"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""MnK"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""d3cf395e-df4c-44f8-a14b-2f546ef1bc6d"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""MnK"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -615,6 +665,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_UI_Interact = m_UI.FindAction("Interact", throwIfNotFound: true);
         m_UI_YMove = m_UI.FindAction("YMove", throwIfNotFound: true);
         m_UI_XMove = m_UI.FindAction("XMove", throwIfNotFound: true);
+        // PlayerBoss
+        m_PlayerBoss = asset.FindActionMap("PlayerBoss", throwIfNotFound: true);
+        m_PlayerBoss_Move = m_PlayerBoss.FindAction("Move", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -890,6 +943,52 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         }
     }
     public UIActions @UI => new UIActions(this);
+
+    // PlayerBoss
+    private readonly InputActionMap m_PlayerBoss;
+    private List<IPlayerBossActions> m_PlayerBossActionsCallbackInterfaces = new List<IPlayerBossActions>();
+    private readonly InputAction m_PlayerBoss_Move;
+    public struct PlayerBossActions
+    {
+        private @PlayerInput m_Wrapper;
+        public PlayerBossActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Move => m_Wrapper.m_PlayerBoss_Move;
+        public InputActionMap Get() { return m_Wrapper.m_PlayerBoss; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(PlayerBossActions set) { return set.Get(); }
+        public void AddCallbacks(IPlayerBossActions instance)
+        {
+            if (instance == null || m_Wrapper.m_PlayerBossActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_PlayerBossActionsCallbackInterfaces.Add(instance);
+            @Move.started += instance.OnMove;
+            @Move.performed += instance.OnMove;
+            @Move.canceled += instance.OnMove;
+        }
+
+        private void UnregisterCallbacks(IPlayerBossActions instance)
+        {
+            @Move.started -= instance.OnMove;
+            @Move.performed -= instance.OnMove;
+            @Move.canceled -= instance.OnMove;
+        }
+
+        public void RemoveCallbacks(IPlayerBossActions instance)
+        {
+            if (m_Wrapper.m_PlayerBossActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IPlayerBossActions instance)
+        {
+            foreach (var item in m_Wrapper.m_PlayerBossActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_PlayerBossActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public PlayerBossActions @PlayerBoss => new PlayerBossActions(this);
     private int m_MnKSchemeIndex = -1;
     public InputControlScheme MnKScheme
     {
@@ -938,5 +1037,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         void OnInteract(InputAction.CallbackContext context);
         void OnYMove(InputAction.CallbackContext context);
         void OnXMove(InputAction.CallbackContext context);
+    }
+    public interface IPlayerBossActions
+    {
+        void OnMove(InputAction.CallbackContext context);
     }
 }

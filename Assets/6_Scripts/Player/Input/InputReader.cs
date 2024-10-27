@@ -1,10 +1,13 @@
-using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 [CreateAssetMenu(fileName = "Input Reader", menuName = "Scriptable Objects/Player/Input")]
-public class InputReader : ScriptableObject, PlayerInput.IGameplayActions, PlayerInput.IDevActions, PlayerInput.IUIActions
+public class InputReader : ScriptableObject, 
+    PlayerInput.IGameplayActions, 
+    PlayerInput.IDevActions, 
+    PlayerInput.IUIActions,
+    PlayerInput.IPlayerBossActions
 {
     private PlayerInput _input;
 
@@ -20,6 +23,8 @@ public class InputReader : ScriptableObject, PlayerInput.IGameplayActions, Playe
     public UnityAction EscEvent;
     public UnityAction InteractEvent;
 
+    public UnityAction<int> PlayerBossMoveEvent;
+    
     public UnityAction<int> UIXMoveEvent;
     public UnityAction<int> UIYMoveEvent;
     
@@ -44,6 +49,8 @@ public class InputReader : ScriptableObject, PlayerInput.IGameplayActions, Playe
             _input.Dev.SetCallbacks(this);
             _input.Gameplay.SetCallbacks(this);
             _input.UI.SetCallbacks(this);
+            
+            _input.PlayerBoss.SetCallbacks(this);
         }
         
         _input.Enable();
@@ -130,5 +137,11 @@ public class InputReader : ScriptableObject, PlayerInput.IGameplayActions, Playe
     {
         if (!context.started) return;
         UIXMoveEvent?.Invoke((int)context.ReadValue<float>());
+    }
+
+    public void OnMove(InputAction.CallbackContext context)
+    {
+        if (!context.started) return;
+        PlayerBossMoveEvent?.Invoke(Mathf.RoundToInt(context.ReadValue<float>()));
     }
 }
