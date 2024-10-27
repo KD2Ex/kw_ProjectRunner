@@ -5,11 +5,19 @@ public class BossController : MonoBehaviour
     [SerializeField] private BossAttack[] attacks;
     
     public bool Attacking;
+
+    private PooledRandom pooledRandom;
     
     private PlayerBossController Player => GameManager.instance.PlayerBossController;
+
+    private void Awake()
+    {
+        pooledRandom = new PooledRandom(100, 0, 2);
+    }
+
     void Update()
     {
-        Debug.Log($"Boss attacking: {Attacking}");
+        //Debug.Log($"Boss attacking: {Attacking}");
         
         if (Player.Dead) enabled = false;
 
@@ -21,8 +29,8 @@ public class BossController : MonoBehaviour
     private void Attack()
     {
         Attacking = true;
-        
-        var index = Random.Range(0, attacks.Length);
+
+        var index = pooledRandom.GetRandomInt();
         attacks[index].gameObject.SetActive(true);
     }
     
