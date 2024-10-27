@@ -18,6 +18,17 @@ public class RestartScene : MonoBehaviour
 
     private void Restart()
     {
-        SceneManager.LoadScene(sceneName);
+        var names = sceneName.Split(' ');
+        
+        if (names[0] == "Boss")
+        {
+            LoadBossScene();
+        } 
+    }
+
+    private void LoadBossScene()
+    {
+        SceneManager.LoadSceneAsync("Boss Persistence");
+        SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
     }
 }

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerBossController : MonoBehaviour
 {
@@ -22,6 +23,8 @@ public class PlayerBossController : MonoBehaviour
     private readonly int animDeathRight = Animator.StringToHash("RightDeath");
     
     public bool Dead { get; private set; }
+
+    public UnityEvent OnDeath;
     
     private void Awake()
     {
@@ -63,5 +66,7 @@ public class PlayerBossController : MonoBehaviour
         animator.Play(hash);
         input.PlayerBossMoveEvent -= OnMove;
         Dead = true;
+        
+        OnDeath?.Invoke();
     }
 }

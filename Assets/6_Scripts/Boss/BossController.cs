@@ -1,7 +1,9 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class BossController : MonoBehaviour
 {
+    [SerializeField] private AudioClip clip;
     [SerializeField] private BossAttack[] attacks;
     
     public bool Attacking;
@@ -13,6 +15,18 @@ public class BossController : MonoBehaviour
     private void Awake()
     {
         pooledRandom = new PooledRandom(100, 0, 2);
+    }
+
+    private void Start()
+    {
+        //StartCoroutine(Coroutines.WaitFor(clip.length, null, Finish));
+    }
+
+    private void Finish()
+    {
+        // open score panel
+
+        SceneManager.LoadScene("Main");
     }
 
     void Update()
