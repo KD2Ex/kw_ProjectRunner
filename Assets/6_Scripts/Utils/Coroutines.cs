@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Coroutines
 {
@@ -42,5 +43,19 @@ public class Coroutines
         {
             return (to.position - Pos).magnitude;
         }
+    }
+
+    public static IEnumerator FadeUIImage(float from, float to, Image image, float rate)
+    {
+        var direction = to - from;
+        direction = Mathf.Sign(direction);
+
+        while (Mathf.Abs(to - from) > .01f)
+        {
+            from += Time.deltaTime * rate * direction;
+            image.color = MathUtils.GetColorWithAlpha(image.color, from);
+            yield return null;
+        }
+        
     }
 }
