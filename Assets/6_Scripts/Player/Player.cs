@@ -169,6 +169,7 @@ public class Player : MonoBehaviour
     public UnityEvent OnStartRunning;
     public UnityEvent OnStopRunning;
     public UnityEvent OnDeath;
+    public UnityEvent OnLoseLife;
 
     #endregion
 
@@ -560,6 +561,7 @@ public class Player : MonoBehaviour
         if (m_CurrentHealths.Value > 0)
         {
             m_CurrentHealths.Value--;
+            OnLoseLife?.Invoke();
             EnterDashState();
             return;
         }

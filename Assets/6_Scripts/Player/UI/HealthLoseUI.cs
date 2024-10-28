@@ -12,48 +12,51 @@ public class HealthLoseUI : MonoBehaviour
     [SerializeField] private int maxCount;
 
     private List<Image> HealthImages = new();
+
+    private Coroutine coroutine;
+
+    private int healthCount => (int) healths.Value + 1;
     
     public void ExecuteAnimation()
     {
         Debug.Log("exeucte");
         
-        for (int i = 0; i < healths.Value; i++)
+        for (int i = 0; i < healthCount; i++)
         {
             Debug.Log(HealthImages[i].rectTransform.anchoredPosition.x);
             
             HealthImages[i].gameObject.SetActive(true);
-            StartCoroutine(Coroutines.FadeUIImage(0f, 1f, HealthImages[i], 1f));
+            FadeIn(HealthImages[i]);
         }
 
-        StartCoroutine(
+        coroutine = StartCoroutine(
             Coroutines
                 .WaitFor(
                     1f / rate + 1f,
+                    before: () =>
+                    {
+                        Debug.Log($"Before coroutine log: {coroutine}");
+                        
+                    },
                     after: () => After()
                 ));
 
         void After()
         {
-            FadeOut(HealthImages[(int) healths.Value - 1]);
-            healths.Value--;
+            FadeOut(HealthImages[healthCount - 1]);
+            coroutine = null;
             StartCoroutine(Coroutines.WaitFor(1f, after: FadeOutAll));
         }
 
         void FadeOutAll()
         {
-            for (int i = (int) healths.Value - 1; i >= 0; i--)
+            for (int i = healthCount - 2; i >= 0; i--)
             {
                 Debug.Log(HealthImages[i].rectTransform.anchoredPosition.x);
             
                 StartCoroutine(Coroutines.FadeUIImage(1f, 0f, HealthImages[i], 1f));
             }
         }
-    }
-    
-    
-
-    private void LoseLifeAnimation()
-    {
     }
     
     private void Awake()
@@ -71,39 +74,20 @@ public class HealthLoseUI : MonoBehaviour
             originPos.x += -100f;
         }
     }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
-
-    // Update is called once per frame
+    
     void Update()
     {
-        
-    }
-
-    public void AddHealth() 
-    {
-        
+        Debug.Log($"Coroutine: {coroutine}");
     }
     
-    public void FadeIn(Image image)
+    private void FadeIn(Image image)
     {
         StartCoroutine(Coroutines.FadeUIImage(image.color.a, 1f, image, rate));
     }
     
-    public void FadeOut(Image image)
+    private void FadeOut(Image image)
     {
         StartCoroutine(Coroutines.FadeUIImage(image.color.a, 0f, image, rate));
-    }
-
-    public void FadeOutCurrentHealth()
-    {
-        var img = HealthImages[(int) healths.Value - 1];
-        Debug.Log(img.rectTransform.anchoredPosition.x);
-        StartCoroutine(Coroutines.FadeUIImage(img.color.a, 0f, img, rate));
-
     }
 }
 
@@ -123,17 +107,6 @@ public class HealthLoseUIInspector : Editor
         if (GUILayout.Button("Execute Animation"))
         {
             ui.ExecuteAnimation();
-        }
-
-        
-        if (GUILayout.Button("Fade In"))
-        {
-            //ui.FadeIn();
-        }
-        
-        if (GUILayout.Button("Fade Out"))
-        {
-            ui.FadeOutCurrentHealth();
         }
     }
 }

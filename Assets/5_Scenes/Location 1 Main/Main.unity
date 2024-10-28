@@ -603,7 +603,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healths: {fileID: 11400000, guid: 1b66553ff6fe1f84b9478e3a5f44cbc6, type: 2}
-  image: {fileID: 1661323503}
   rate: 3
   uiPrefab: {fileID: 3322807358805548253, guid: a9c9e85149be78f4cbc66ae615b7ce28, type: 3}
   maxCount: 12
@@ -4096,17 +4095,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5880474463974915792, guid: a9c9e85149be78f4cbc66ae615b7ce28, type: 3}
   m_PrefabInstance: {fileID: 5216409637844586274}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1661323503 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3322807358805548253, guid: a9c9e85149be78f4cbc66ae615b7ce28, type: 3}
-  m_PrefabInstance: {fileID: 5216409637844586274}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1661323501}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1682314011 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 278856685549873260, guid: 31f83f615c6be9c449a4a5795cdd220b, type: 3}
@@ -5690,6 +5678,34 @@ PrefabInstance:
     - target: {fileID: 3295700264019588206, guid: fd201fd794d481744a6eaf6e75ce15cc, type: 3}
       propertyPath: m_Name
       value: victim
+      objectReference: {fileID: 0}
+    - target: {fileID: 3387110282930873259, guid: fd201fd794d481744a6eaf6e75ce15cc, type: 3}
+      propertyPath: OnLoseLife.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3387110282930873259, guid: fd201fd794d481744a6eaf6e75ce15cc, type: 3}
+      propertyPath: OnLoseLife.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3387110282930873259, guid: fd201fd794d481744a6eaf6e75ce15cc, type: 3}
+      propertyPath: OnLoseLife.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 275482114}
+    - target: {fileID: 3387110282930873259, guid: fd201fd794d481744a6eaf6e75ce15cc, type: 3}
+      propertyPath: OnLoseLife.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3387110282930873259, guid: fd201fd794d481744a6eaf6e75ce15cc, type: 3}
+      propertyPath: OnLoseLife.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ExecuteAnimation
+      objectReference: {fileID: 0}
+    - target: {fileID: 3387110282930873259, guid: fd201fd794d481744a6eaf6e75ce15cc, type: 3}
+      propertyPath: OnLoseLife.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: HealthLoseUI, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3387110282930873259, guid: fd201fd794d481744a6eaf6e75ce15cc, type: 3}
+      propertyPath: OnLoseLife.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 7522077933425619329, guid: fd201fd794d481744a6eaf6e75ce15cc, type: 3}
       propertyPath: m_LocalPosition.x
