@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
 
 public enum DeathType
@@ -387,7 +389,6 @@ public class Player : MonoBehaviour
     {
        m_StateMachine.Update();
        
-       
     }
 
     private void FixedUpdate()
@@ -629,5 +630,27 @@ public class Player : MonoBehaviour
     {
         m_CurrentHealths.Value = data.Value;
     }
-    
 }
+
+#if UNITY_EDITOR
+
+[CustomEditor(typeof(Player))]
+public class PlayerCustomInspector : Editor
+{
+    
+    public override void OnInspectorGUI()
+    {
+        EditorGUILayout.LabelField("Stuff");
+
+        Player player = target as Player;
+
+        if (GUILayout.Button("Activate Dash"))
+        {
+            player.EnterDashState();
+        }
+        
+        base.OnInspectorGUI();
+    }
+}
+
+#endif
