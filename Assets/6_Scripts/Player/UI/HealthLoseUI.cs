@@ -13,8 +13,6 @@ public class HealthLoseUI : MonoBehaviour
 
     private List<Image> HealthImages = new();
 
-    private Coroutine coroutine;
-
     private int healthCount => (int) healths.Value + 1;
     
     public void ExecuteAnimation()
@@ -29,22 +27,16 @@ public class HealthLoseUI : MonoBehaviour
             FadeIn(HealthImages[i]);
         }
 
-        coroutine = StartCoroutine(
+        StartCoroutine(
             Coroutines
                 .WaitFor(
                     1f / rate + 1f,
-                    before: () =>
-                    {
-                        Debug.Log($"Before coroutine log: {coroutine}");
-                        
-                    },
                     after: () => After()
                 ));
 
         void After()
         {
             FadeOut(HealthImages[healthCount - 1]);
-            coroutine = null;
             StartCoroutine(Coroutines.WaitFor(1f, after: FadeOutAll));
         }
 
@@ -73,11 +65,6 @@ public class HealthLoseUI : MonoBehaviour
             HealthImages.Add(inst);
             originPos.x += -100f;
         }
-    }
-    
-    void Update()
-    {
-        Debug.Log($"Coroutine: {coroutine}");
     }
     
     private void FadeIn(Image image)
