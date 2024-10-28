@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class ChunkSpawnManager : MonoBehaviour
 {
@@ -9,7 +10,7 @@ public class ChunkSpawnManager : MonoBehaviour
     [SerializeField] private Chunk FirstChunk;
 
 
-    [Space] [SerializeField] private GameObject CheckPointChunk;
+    [FormerlySerializedAs("CheckPointChunk")] [Space] [SerializeField] private GameObject SaveChunk;
     private Transform chunkMovement;
     private Transform playerTransform;
     public Transform CurrentChunk { get; private set; }
@@ -42,9 +43,9 @@ public class ChunkSpawnManager : MonoBehaviour
 
         if (ChunkRandomManager.IsQueueEmpty)
         {
-            CreateChunk(FirstChunk);
         }
-        
+        CreateChunk(FirstChunk);
+
         //Load(chunkData);
         //CreateChunk(ChunkRandomManager.Pop().Chunk);
     }
@@ -76,18 +77,6 @@ public class ChunkSpawnManager : MonoBehaviour
         if (chunk.Prefabs.Count == 0 && !chunk.Linked)
         {
             InstantiateChunk(chunk.Prefab);
-            return;
-            
-            var instance = Instantiate(chunk.Prefab, chunkMovement);
-            
-            var getDestroyed = instance.AddComponent<GetDestroyedIfFarBehindPlayer>();
-            getDestroyed.SetTarget(playerTransform);
-            if (CurrentChunk)
-            {
-                instance.transform.position = new Vector3(CurrentChunk.position.x + 36f, 0f, 0f);
-            }
-        
-            CurrentChunk = instance.transform;
         }
         else
         {
@@ -97,25 +86,18 @@ public class ChunkSpawnManager : MonoBehaviour
                 //Debug.Log(prefab.name);
                 //Debug.Log(chunk.Prefabs.Count);
                 InstantiateChunk(prefab);
-                continue;
-                var inst = Instantiate(prefab, chunkMovement);
-                var getDestroyed = inst.AddComponent<GetDestroyedIfFarBehindPlayer>();
-                getDestroyed.SetTarget(playerTransform);
-                
-                if (CurrentChunk)
-                {
-                    inst.transform.position = new Vector3(CurrentChunk.position.x + 36f, 0f, 0f);
-                }
-                CurrentChunk = inst.transform;
             }
         } 
         //chunk.Condition = null; //
     }
 
-    private void InstantiateChunk(GameObject prefab)
+    private void InstantiateChunk(GameObject prefab, float xOffset = 0f)
     {
         var instance = Instantiate(prefab, chunkMovement);
-            
+
+        var instPos = instance.transform.position;
+        instance.transform.position = new Vector3(instPos.x + xOffset, instPos.y, 0f);
+
         var getDestroyed = instance.AddComponent<GetDestroyedIfFarBehindPlayer>();
         getDestroyed.SetTarget(playerTransform);
         getDestroyed.DistanceToRemove = 15f;
@@ -198,7 +180,9 @@ public class ChunkSpawnManager : MonoBehaviour
     {
         if (data.Value > 0)
         {
-            ChunkRandomManager.AddChunkToQueue(CheckPointChunk);
+            
+            InstantiateChunk(SaveChunk, -12f);
+            //ChunkRandomManager.AddChunkToQueue(SaveChunk);
         }
     }
     
