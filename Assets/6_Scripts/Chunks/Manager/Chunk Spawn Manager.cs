@@ -80,7 +80,9 @@ public class ChunkSpawnManager : MonoBehaviour
         }
         else
         {
-            var list = chunk.Linked ? chunk.Linked.Items : chunk.Prefabs.ToArray();
+            var list = chunk.Linked 
+                ? chunk.Linked.Shuffle ? chunk.Linked.ShuffleItems() : chunk.Linked.Items 
+                : chunk.Prefabs.ToArray();
             foreach (var prefab in list)
             {
                 //Debug.Log(prefab.name);
