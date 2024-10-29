@@ -9,6 +9,9 @@ public class SaveTrigger : MonoBehaviour
         if (!other.CompareTag("Player")) return;
 
         Debug.Log($"Progress saved");
+        // play sound
+        
+        GameManager.instance.Player.FoodUseManager.BlockConsuming();
         
         SaveSystem.Save(true);
         sign.UpdateSpeed();

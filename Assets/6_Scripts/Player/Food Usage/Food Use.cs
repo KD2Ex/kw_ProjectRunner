@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class FoodUse : MonoBehaviour
@@ -23,14 +22,4 @@ public class FoodUse : MonoBehaviour
         }
     }
 
-    public void StartAnimation()
-    {
-        input.DisableGameplayInput();
-    }
-
-    public void StopAnimation()
-    {
-        input.EnableGameplayInput();
-        Destroy(this);
-    }
 }

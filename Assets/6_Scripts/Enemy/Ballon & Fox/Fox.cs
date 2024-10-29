@@ -27,6 +27,8 @@ public class Fox : MonoBehaviour
         StartCoroutine(Move(player, offset));
         transform.SetParent(null);
         offset -= 1f;
+
+        Debug.Log("fox enabled");
         
         foodUse.BlockConsuming();
     }
