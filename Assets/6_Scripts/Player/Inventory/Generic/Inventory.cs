@@ -21,4 +21,22 @@ public class Inventory : ScriptableObject
         if (!Items.Contains(item)) return;
         Items.Remove(item);
     }
+
+    public void Save(ref InventorySaveData data)
+    {
+        data.Items = Items;
+    }
+
+    public void Load(InventorySaveData data)
+    {
+        Items = data.Items;
+    }
+    
+}
+
+
+[System.Serializable]
+public struct InventorySaveData
+{
+    public List<InventoryItem> Items;
 }

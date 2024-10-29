@@ -7,6 +7,13 @@ using Random = UnityEngine.Random;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
+
+    [Header("Inventories")]
+    
+    public Inventory Food;
+    public Inventory Creatures;
+    
+    [Space]
     
     [Header("Settings")]
     

@@ -20,6 +20,8 @@ public class SaveSystem
         public IntSaveData Healths;
         public IntSaveData Timer;
 
+        public InventorySaveData CreaturesInv;
+        public InventorySaveData FoodInv;
         //public LoadedChunkNames Chunks;
         //public ChunkPositionData Position;
     }
@@ -71,7 +73,9 @@ public class SaveSystem
         GameManager.instance.Player.Magnet.Save(ref saveData.Magnet);
         GameManager.instance.Player.CoinMultiplier.Save(ref saveData.X2);
         GameManager.instance.Player.Save(ref saveData.Healths);
-        
+
+        GameManager.instance.Creatures.Save(ref saveData.CreaturesInv);
+        GameManager.instance.Food.Save(ref saveData.FoodInv);
     }
 
     private static void HandleSaveRun()
@@ -128,6 +132,9 @@ public class SaveSystem
         GameManager.instance.Timer.Load(saveData.Timer);
         GameManager.instance.UITimer?.Load(saveData.Timer);
         GameManager.instance.ChunkSpawnManager.Load(saveData.Timer);
+        
+        GameManager.instance.Creatures.Load(saveData.CreaturesInv);
+        GameManager.instance.Food.Load(saveData.FoodInv);
     }
 
     private static void HandleLoadRun()
