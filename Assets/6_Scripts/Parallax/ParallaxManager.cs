@@ -1,12 +1,10 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class ParallaxManager : MonoBehaviour
 {
     public static ParallaxManager instance;
 
     public Parallax DefaultParallax;
-    public Parallax CarnavalParallax;
     
     private void Awake()
     {

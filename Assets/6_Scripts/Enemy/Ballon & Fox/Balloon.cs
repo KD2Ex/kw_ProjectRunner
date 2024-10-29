@@ -8,12 +8,7 @@ public class Balloon : MonoBehaviour
     [SerializeField] private Fox fox;
     [SerializeField] private List<AudioClip> clips;
 
-    private Player player;
-    
-    private void Awake()
-    {
-        player = PlayerLocator.instance.player;
-    }
+    private Player player => GameManager.instance.Player;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
