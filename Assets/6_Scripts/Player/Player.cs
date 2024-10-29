@@ -13,7 +13,7 @@ public enum DeathType
 }
 
 [RequireComponent(typeof(SpeedController))]
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour, IInvincible
 {
     [Header("Sounds")] 
     
@@ -375,8 +375,11 @@ public class Player : MonoBehaviour
     }
 
     private SpriteRenderer m_Sprite;
-    public SpriteRenderer Sprite => m_Sprite;
-    
+    public bool IsInvincible()
+    {
+        return Invincible;
+    }
+
     void Start()
     {
         /*QualitySettings.vSyncCount = 0;
@@ -632,6 +635,8 @@ public class Player : MonoBehaviour
     {
         m_CurrentHealths.Value = data.Value;
     }
+
+    SpriteRenderer IInvincible.Sprite { get => m_Sprite; set => m_Sprite = value; }
 }
 
 #if UNITY_EDITOR

@@ -28,7 +28,7 @@ public class BossAttack : MonoBehaviour
     {
         if (!other.CompareTag("Player")) return;
 
-        GameManager.instance.PlayerBossController.Die();
+        GameManager.instance.PlayerBossController.CheckHealth();
     }
 
 }

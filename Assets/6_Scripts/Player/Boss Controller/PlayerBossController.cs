@@ -2,9 +2,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class PlayerBossController : MonoBehaviour
+public class PlayerBossController : MonoBehaviour, IInvincible
 {
     [SerializeField] private InputReader input;
+    [SerializeField] private FloatVariable healths;
     
     [Header("Lines")]
     
@@ -15,6 +16,7 @@ public class PlayerBossController : MonoBehaviour
     [Header("Components")]
     
     [SerializeField] private Animator animator;
+    [SerializeField] private InvincibilityController invincibilityController;
     
     private Dictionary<int, GameObject> lines = new();
     private int currentLine = 1;
@@ -24,10 +26,12 @@ public class PlayerBossController : MonoBehaviour
     
     public bool Dead { get; private set; }
 
+    public UnityEvent OnLoseHeath;
     public UnityEvent OnDeath;
     
     private void Awake()
     {
+        Sprite = GetComponent<SpriteRenderer>();
         GameManager.instance.PlayerBossController = this;
         
         lines[0] = leftLine;
@@ -68,5 +72,24 @@ public class PlayerBossController : MonoBehaviour
         Dead = true;
         
         OnDeath?.Invoke();
+    }
+
+    public void CheckHealth()
+    {
+        if (healths.Value > 0)
+        {
+            healths.Value--;
+            invincibilityController.Trigger();
+            OnLoseHeath?.Invoke();
+            return;
+        }
+        
+        Die();
+    }
+
+    public SpriteRenderer Sprite { get; set; }
+    public bool IsInvincible()
+    {
+        return false;
     }
 }

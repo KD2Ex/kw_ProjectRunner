@@ -18,6 +18,8 @@ public class HealthLoseUI : MonoBehaviour
     public void ExecuteAnimation()
     {
         Debug.Log("exeucte");
+        HideAllHearts();
+        StopAllCoroutines();
         
         for (int i = 0; i < healthCount; i++)
         {
@@ -48,6 +50,14 @@ public class HealthLoseUI : MonoBehaviour
             
                 StartCoroutine(Coroutines.FadeUIImage(1f, 0f, HealthImages[i], 1f));
             }
+        }
+    }
+
+    private void HideAllHearts()
+    {
+        foreach (var healthImage in HealthImages)
+        {
+            healthImage.color = MathUtils.GetColorWithAlpha(healthImage.color, 0f);
         }
     }
     

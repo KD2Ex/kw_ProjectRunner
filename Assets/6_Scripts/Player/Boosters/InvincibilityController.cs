@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class InvincibilityController : MonoBehaviour
 {
-    private Player player;
+    private IInvincible target;
     private StateMachine stateMachine;
     private bool triggered;
     public bool Invincible { get; private set; }
@@ -13,7 +13,9 @@ public class InvincibilityController : MonoBehaviour
     
     private void Awake()
     {
-        player = GetComponent<Player>();
+        //player = GetComponent<Player>();
+        target = GetComponent<IInvincible>();
+        Debug.Log($"Target: {target}");
         stateMachine = new StateMachine();
     }
     
@@ -25,7 +27,7 @@ public class InvincibilityController : MonoBehaviour
         var defaultState = new VulnerableState(this, SetValue);
         var invincibleState = new InvincibleState(this, SetValue);
         
-        At(defaultState, invincibleState, new FuncPredicate(() => triggered && !player.Invincible));
+        At(defaultState, invincibleState, new FuncPredicate(() => triggered && !target.IsInvincible()));
         At(invincibleState, defaultState, new FuncPredicate(() => !triggered));
         stateMachine.SetState(defaultState);
 
@@ -58,7 +60,7 @@ public class InvincibilityController : MonoBehaviour
 
     public void SetPlayerOpacity(float alpha)
     {
-        var color = player.Sprite.color;
-        player.Sprite.color = new Color(color.r, color.b, color.g, alpha);
+        var color = target.Sprite.color;
+        target.Sprite.color = new Color(color.r, color.b, color.g, alpha);
     }
 }
