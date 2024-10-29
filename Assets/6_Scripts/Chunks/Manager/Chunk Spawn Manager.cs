@@ -127,7 +127,7 @@ public class ChunkSpawnManager : MonoBehaviour
             var offset = bounds ? rightOffset + Mathf.Abs(bounds.LeftExtentLocalX) : 36f;
             instance.transform.position = new Vector3(CurrentChunk.position.x + offset, 0f, 0f);
 
-            Debug.Log($"{CurrentChunk.gameObject.name} {CurrentChunk.position}");
+            //Debug.Log($"{CurrentChunk.gameObject.name} {CurrentChunk.position}");
         }
         
         runtimeItem.x = instance.transform.localPosition.x;

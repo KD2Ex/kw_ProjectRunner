@@ -14,7 +14,7 @@ public class Parallax : MonoBehaviour
     
     #region Serialize Fileds
     
-    [SerializeField] private List<GameObject> m_Backgrounds;
+    [SerializeField] public List<GameObject> m_Backgrounds;
     //[SerializeField] private List<Background> Backgrounds;
     [SerializeField] private Transform target;
     [SerializeField] private float minOffset;
@@ -28,7 +28,7 @@ public class Parallax : MonoBehaviour
     #region Compoonents
     
     private SpriteRenderer sprite;
-    private GameObject currentBackground;
+    public GameObject CurrentBackground { get; private set; }
     private GameObject nextBackground;
     
     #endregion
@@ -50,11 +50,18 @@ public class Parallax : MonoBehaviour
     
     #endregion
 
+    public bool Stop { get; set; }
+    
     private void Awake()
     {
         if (instantiateFirstBackground)
         {
-            currentBackground = Instantiate(m_Backgrounds[0], transform);
+            CurrentBackground = Instantiate(m_Backgrounds[0], transform);
+            index++;
+        }
+        else
+        {
+            CurrentBackground = transform.GetChild(0).gameObject;
             index++;
         }
 
@@ -81,13 +88,54 @@ public class Parallax : MonoBehaviour
         SetNewBounds(m_SpritesBounds[m_Backgrounds[0].name]);
     }
 
+    public void CalculateBounds()
+    {
+        m_SpritesBounds.Clear();
+        
+        foreach (var go in m_Backgrounds)
+        {
+            go.TryGetComponent<ComputeBounds>(out var compute);
+
+            Bounds bounds;
+            if (compute)
+            {
+                bounds = compute.GetBounds();
+            }
+            else
+            {
+                bounds = go.GetComponent<SpriteRenderer>().bounds;
+            }
+            
+            
+            //var spriteRenderer = go.GetComponent<SpriteRenderer>();
+            m_SpritesBounds.TryAdd(go.name, bounds);
+        }
+
+        SetNewBounds(m_SpritesBounds[m_Backgrounds[0].name]);
+    }
+    
     void Update()
     {
-        var distanceToPlayer = m_Bounds.extents.x + currentBackground.transform.position.x - target.transform.position.x;
+        if (Stop) return;
+        var distanceToPlayer = m_Bounds.extents.x + CurrentBackground.transform.position.x - target.transform.position.x;
 
+        //Debug.Log($"bounds x: " + m_Bounds.extents.x);
+        
         AddBackgroundDependingOn(distanceToPlayer);
     }
 
+    public void Pause()
+    {
+        Stop = true;
+    }
+
+    public void Resume(Vector3 pos, Vector3 offset)
+    {
+        SetNewBounds(new Bounds(pos, offset));
+        CurrentBackground.transform.position = pos;
+        Stop = false;
+    }
+    
     private void AddBackgroundDependingOn(float distanceToPlayer)
     {
         if (distanceToPlayer < screenSize + 2f)
@@ -109,7 +157,7 @@ public class Parallax : MonoBehaviour
         var next = Instantiate(back, transform);
         next.name = back.name;
         
-        currentBackground.TryGetComponent<Animator>(out var animator);
+        CurrentBackground.TryGetComponent<Animator>(out var animator);
         next.TryGetComponent<GetDestroyedIfFarBehindPlayer>(out var getDestroyed);
         if (getDestroyed) getDestroyed.SetTarget(target);
         
@@ -129,7 +177,7 @@ public class Parallax : MonoBehaviour
         SetNewBounds(newBounds);
 
         next.transform.position += new Vector3(m_xOffset, 0, 0);
-        currentBackground = next;
+        CurrentBackground = next;
     }
     
     private void SetNewBounds(Bounds bounds)

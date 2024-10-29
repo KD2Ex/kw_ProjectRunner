@@ -7,12 +7,15 @@ public class LinkedChunks : ScriptableObject
 {
     public GameObject[] Items;
     [FormerlySerializedAs("Random")] public bool Shuffle;
-
-    public System.Random rand = new System.Random();
+    [SerializeField] private bool AddTriggers;
+    [SerializeField] private GameObject[] Triggers;
     
     public GameObject[] ShuffleItems()
     {
         Items.Shuffle();
+        
         return Items;
     }
+    
+    
 }
