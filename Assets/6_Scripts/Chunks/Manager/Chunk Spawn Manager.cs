@@ -121,7 +121,6 @@ public class ChunkSpawnManager : MonoBehaviour
                 ? currentChunkBounds.RightExtentLocalX 
                 : 18f;
 
-            //Debug.Log($"rOff {rightOffset} lOFf {Mathf.Abs(bounds.LeftExtentLocalX)}");
             
             var offset = bounds ? rightOffset + Mathf.Abs(bounds.LeftExtentLocalX) : 36f;
             instance.transform.position = new Vector3(CurrentChunk.position.x + offset, 0f, 0f);

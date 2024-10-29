@@ -9,8 +9,11 @@ public class CameraShake : MonoBehaviour
     [SerializeField] private AnimationCurve curve;
     [SerializeField] private float duration;
 
+    private Vector3 originPos;
+    
     private void Awake()
     {
+        originPos = transform.position;
         GameManager.instance.CameraShake = this;
     }
 
@@ -30,7 +33,7 @@ public class CameraShake : MonoBehaviour
 
     private IEnumerator Shaking()
     {
-        var startPos = transform.position;
+        var startPos = originPos;
         var elapsed = 0f;
 
         while (elapsed < duration)

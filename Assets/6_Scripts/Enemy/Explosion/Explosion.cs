@@ -36,4 +36,9 @@ public class Explosion : MonoBehaviour
         SoundFXManager.instance.PlayClipAtPoint(clip, transform, .7f);
         exploded = true;
     }
+
+    public void ScreenShake()
+    {
+        GameManager.instance.CameraShake.Execute();
+    }
 }
