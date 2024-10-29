@@ -17,7 +17,7 @@ public class Explosion : MonoBehaviour
     {
         if (exploded) return;
 
-        if (PlayerLocator.instance.player.CurrentState.ToString() == "DeathState"
+        if (GameManager.instance.Player.CurrentState.ToString() == "DeathState"
             && PlayerLocator.instance.DistanceToPlayer(transform) <= distanceToExplode * 2)
         {
             Explode();

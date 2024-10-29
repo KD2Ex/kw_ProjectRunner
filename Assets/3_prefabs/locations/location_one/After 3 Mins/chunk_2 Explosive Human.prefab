@@ -93,6 +93,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 507131310910661826}
+  - component: {fileID: 8718693371071147654}
   m_Layer: 0
   m_Name: chunk_2 Explosive Human
   m_TagString: Untagged
@@ -121,7 +122,54 @@ Transform:
   - {fileID: 8819566480532824203}
   - {fileID: 6217988062731912477}
   - {fileID: 4225636536144958399}
+  - {fileID: 8926200701353883828}
+  - {fileID: 5599618524041003395}
   m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8718693371071147654
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1329422427835000970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b22d94c54c74b829d5fe227bf89dfdb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LeftExtent: {fileID: 8926200701353883828}
+  RightExtent: {fileID: 5599618524041003395}
+--- !u!1 &2047867253058326794
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5599618524041003395}
+  m_Layer: 0
+  m_Name: Right Extent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5599618524041003395
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2047867253058326794}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 39.96, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 507131310910661826}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3348956897501747720
 GameObject:
@@ -408,6 +456,37 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &6305953472786030449
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8926200701353883828}
+  m_Layer: 0
+  m_Name: Left Extent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8926200701353883828
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6305953472786030449}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -18, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 507131310910661826}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6549075763113286882
 GameObject:
   m_ObjectHideFlags: 0
@@ -824,7 +903,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &277394767668223398
 Transform:
   m_ObjectHideFlags: 0
@@ -1028,6 +1107,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: human (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 560115481051198458, guid: d80957b043462cb43b40da5577c8ae91, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 1977976666509721851, guid: d80957b043462cb43b40da5577c8ae91, type: 3}
       propertyPath: m_FlipX
       value: 0
@@ -1050,7 +1133,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3010039102690957992, guid: d80957b043462cb43b40da5577c8ae91, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 19.7
+      value: 39.82
       objectReference: {fileID: 0}
     - target: {fileID: 3010039102690957992, guid: d80957b043462cb43b40da5577c8ae91, type: 3}
       propertyPath: m_LocalPosition.y

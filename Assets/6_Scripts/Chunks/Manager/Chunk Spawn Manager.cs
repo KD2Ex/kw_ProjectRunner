@@ -14,10 +14,10 @@ public class ChunkSpawnManager : MonoBehaviour
     private Transform chunkMovement;
     private Transform playerTransform;
     public Transform CurrentChunk { get; private set; }
-
+    private CustomSizeChunk customSize;
     private LoadedChunkNames _loadedChunkData;
 
-
+    private float RightExtentX => customSize ? customSize.RightExtentX : CurrentChunk.position.x;
     private void Awake()
     {
         //Save(ref chunkData);
@@ -59,7 +59,7 @@ public class ChunkSpawnManager : MonoBehaviour
             return;
         }
         
-        if (CurrentChunk.position.x - playerTransform.position.x < 20f)
+        if (RightExtentX - playerTransform.position.x < 20f)
         {
             ChunkRandomManager.RestoreAvailability();
             CreateChunk(ChunkRandomManager.Pop().Chunk);
@@ -94,7 +94,8 @@ public class ChunkSpawnManager : MonoBehaviour
     private void InstantiateChunk(GameObject prefab, float xOffset = 0f)
     {
         var instance = Instantiate(prefab, chunkMovement);
-
+        
+        
         var instPos = instance.transform.position;
         instance.transform.position = new Vector3(instPos.x + xOffset, instPos.y, 0f);
 
@@ -112,7 +113,20 @@ public class ChunkSpawnManager : MonoBehaviour
         
         if (CurrentChunk)
         {
-            instance.transform.position = new Vector3(CurrentChunk.position.x + 36f, 0f, 0f);
+            CurrentChunk.TryGetComponent<CustomSizeChunk>(out var currentChunkBounds);
+            instance.TryGetComponent<CustomSizeChunk>(out var bounds);
+
+            customSize = bounds ? bounds : null;
+            var rightOffset = currentChunkBounds 
+                ? currentChunkBounds.RightExtentLocalX 
+                : 18f;
+
+            //Debug.Log($"rOff {rightOffset} lOFf {Mathf.Abs(bounds.LeftExtentLocalX)}");
+            
+            var offset = bounds ? rightOffset + Mathf.Abs(bounds.LeftExtentLocalX) : 36f;
+            instance.transform.position = new Vector3(CurrentChunk.position.x + offset, 0f, 0f);
+
+            Debug.Log($"{CurrentChunk.gameObject.name} {CurrentChunk.position}");
         }
         
         runtimeItem.x = instance.transform.localPosition.x;
