@@ -12,7 +12,6 @@ public class FoodUseManager : MonoBehaviour
         get => _blocked;
         set
         {
-            Debug.Log($"blocked value: {value}");
             _blocked = value;
         }
     }

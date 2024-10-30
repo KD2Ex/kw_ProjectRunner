@@ -11,7 +11,6 @@ public class RepeatableSpawnCondition : ChunkSpawnCondition
     private int Every => data.Every;
     
     private bool triggered;
-    private int count = 0;
     private int timeOfTrigger = 0;
     
     public RepeatableSpawnCondition(RepeatableTimeCondition data)
@@ -25,7 +24,6 @@ public class RepeatableSpawnCondition : ChunkSpawnCondition
         //Debug.Log("Repeatable cond init");
         
         triggered = false;
-        count = 0;
         timeOfTrigger = (int) GameManager.instance.Timer.m_ElapsedTime;
         Debug.Log(timeOfTrigger);
     }
@@ -49,7 +47,6 @@ public class RepeatableSpawnCondition : ChunkSpawnCondition
         
         if (condition)
         {
-            count++;
             triggered = true;
         }
         
