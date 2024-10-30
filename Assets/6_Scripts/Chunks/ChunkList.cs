@@ -5,5 +5,6 @@ using UnityEngine;
 public class ChunkList : ScriptableObject
 {
     public List<Chunk> Items;
+    [SerializeField] public List<ChunkSOData> TestItems;
     public bool RestoreOnEnable;
 } 

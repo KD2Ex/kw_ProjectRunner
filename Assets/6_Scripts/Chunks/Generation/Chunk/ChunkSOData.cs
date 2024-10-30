@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using UnityEditorInternal;
 using UnityEngine;
 
-[Serializable]
-public class Chunk : IChunk
+[CreateAssetMenu(fileName = "Chunk", menuName = "Scriptable Objects/Chunks/Chunk Data")]
+public class ChunkSOData : ScriptableObject, IChunk
 {
     [field: SerializeField] public GameObject Prefab { get; set; }
     [field: SerializeField] public List<GameObject> Prefabs { get; set; } = new();
@@ -11,16 +11,12 @@ public class Chunk : IChunk
     [field: SerializeField] public int Weight { get; set; }
     [Tooltip("Chunk will not be spawning again after it's first appearance")]
     [field: SerializeField] public bool BecomeUnavailableAfterSpawn { get; set; }
+    
     //public bool Available = true;
 
     [field: SerializeField] public ScriptableCondition RestoreCondition { get; private set; }
 
     public ChunkSpawnCondition Condition { get; private set; }
-
-    public Chunk(GameObject prefab)
-    {
-        Prefab = prefab;
-    }
     
     public void Initialize()
     {
@@ -43,5 +39,5 @@ public class Chunk : IChunk
         Available = true;
     }
 
-    public bool Available { get; set; } = true;
+    [field: SerializeField] public bool Available { get; set; } = true;
 }

@@ -7,12 +7,14 @@ using Random = UnityEngine.Random;
 [Serializable]
 public class PriorityChunk
 {
-    public  Chunk Chunk;
+    //public  Chunk Chunk;
+    public  IChunk ChunkSO;
     public  int Priority;
     
-    public PriorityChunk(Chunk chunk, int priority)
+    public PriorityChunk(/*Chunk chunk, */IChunk chunksSo, int priority)
     {
-        Chunk = chunk;
+        //Chunk = chunk;
+        ChunkSO = chunksSo;
         Priority = priority;
     }
 }
@@ -21,7 +23,7 @@ public class PriorityChunk
 public class ChunkRandomManager : ScriptableObject
 {
     [SerializeField] private List<ChunkSet> chunkSets;
-    [SerializeField] private List<PriorityChunk> SpawnQueue;
+    [SerializeField] private List<IChunk> SpawnQueue = new(); // replace with List<GameObjects>
 
     public List<ChunkSet> Sets => chunkSets;
     public bool IsQueueEmpty => SpawnQueue.Count == 0;
@@ -42,15 +44,16 @@ public class ChunkRandomManager : ScriptableObject
         {
             set.InitCondition();
             
-            foreach (var chunk in set.List.Items)
+            foreach (var chunk in set.List.TestItems) // set.List.Items
             {
                 if (set.List.RestoreOnEnable) chunk.Restore();
+                Debug.Log(chunk);
                 chunk.Initialize();
             }
         }
     }
     
-    public PriorityChunk Pop()
+    public IChunk Pop()
     {
         if (SpawnQueue.Count == 0)
         {
@@ -72,7 +75,7 @@ public class ChunkRandomManager : ScriptableObject
     {
         foreach (var chunkSet in chunkSets)
         {
-            foreach (var chunk in chunkSet.List.Items)
+            foreach (var chunk in chunkSet.List.TestItems) // chunkSet.List.Items
             {
                 if (chunk.Available) continue;
                 if (chunk.Condition == null) continue;
@@ -89,19 +92,21 @@ public class ChunkRandomManager : ScriptableObject
     public void AddChunkToQueue(GameObject prefab, int priority = 1)
     {
         Chunk chunk = new Chunk(prefab);
-        var pch = new PriorityChunk(chunk, 1);
-        SpawnQueue.Add(pch);
+        //var pch = new PriorityChunk(chunk, 1);
+        SpawnQueue.Add(chunk);
     }
     
     public void AddRandomChunkToQueue()
     {
         var chunks = GetNextChunks();
         chunks.Sort(CompareByPriority);
+
+        Debug.Log(chunks.Count);
         
         foreach (var chunk in chunks)
         {
-            if (chunk.Chunk.BecomeUnavailableAfterSpawn) chunk.Chunk.Available = false;
-            SpawnQueue.Add(chunk);
+            if (chunk.ChunkSO.BecomeUnavailableAfterSpawn) chunk.ChunkSO.Available = false;
+            SpawnQueue.Add(chunk.ChunkSO); // chunks.Chunk.Prefab
         }
     }
     
@@ -115,7 +120,7 @@ public class ChunkRandomManager : ScriptableObject
         {
             //set.Conditions.ResetTrigger();
             set.ResetAll();
-            var nextChunk = GetChunkFromList(set.List.Items, FindChunkByWeight);
+            var nextChunk = GetChunkFromSOData(set.List.TestItems, FindChunkByWeight); // chunkSet.List.Items
             
             result.Add(new PriorityChunk(nextChunk, set.Priority));
         }
@@ -133,7 +138,7 @@ public class ChunkRandomManager : ScriptableObject
             //var conditionSatisfied = set.Conditions.Evaluate();
             if (conditionSatisfied)
             {
-                var availableChunkPresent = set.List.Items.FirstOrDefault(chunk => chunk.Available);
+                var availableChunkPresent = set.List.TestItems.FirstOrDefault(chunk => chunk.Available);
                 if (availableChunkPresent != default) result.Add(set);
             }
         }
@@ -159,16 +164,23 @@ public class ChunkRandomManager : ScriptableObject
         return result;
     }
 
-    private Chunk GetChunkFromList(List<Chunk> list, Func<List<Chunk>, Chunk> randomAlg)
+    private IChunk GetChunkFromList(List<IChunk> list, Func<List<IChunk>, IChunk> randomAlg)
+    {
+        var readyChunks = list.Where(chunk => chunk.Available).ToList();
+        
+        return randomAlg(readyChunks);
+    }
+    
+    private IChunk GetChunkFromSOData(List<ChunkSOData> list, Func<List<ChunkSOData>, IChunk> randomAlg)
     {
         var readyChunks = list.Where(chunk => chunk.Available).ToList();
         
         return randomAlg(readyChunks);
     }
 
-    private Chunk FindChunkByWeight(List<Chunk> list)
+    private IChunk FindChunkByWeight(List<ChunkSOData> list)
     {
-        Chunk result = list[0];
+        IChunk result = list[0];
         
         int sum = 0;
         list.ForEach(chunk => sum += chunk.Weight);

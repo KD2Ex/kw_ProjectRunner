@@ -17,6 +17,10 @@ public class WithinTimeCondition : ChunkSpawnCondition
     {
         this.data = data;
 
+    }
+
+    private void RunTests()
+    {
         var inFirstMinute = 0;
         var beforePity = 0;
         var AtPity = 0;
@@ -49,6 +53,7 @@ public class WithinTimeCondition : ChunkSpawnCondition
         
         Debug.Log($"In first minute: {inFirstMinute} Before Pity: {beforePity} With Pity: {AtPity}");
         Debug.Log($"Without Pity: {withoutPity}, Probability: {(float)withoutPity / (float)AtPity}");
+
     }
 
     private int[] Test(int index)

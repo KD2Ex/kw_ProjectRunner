@@ -56,14 +56,14 @@ public class ChunkSpawnManager : MonoBehaviour
         if (!CurrentChunk)
         {
             ChunkRandomManager.RestoreAvailability();
-            CreateChunk(ChunkRandomManager.Pop().Chunk);
+            CreateChunk(ChunkRandomManager.Pop());
             return;
         }
         
         if (RightExtentX - playerTransform.position.x < 20f)
         {
             ChunkRandomManager.RestoreAvailability();
-            CreateChunk(ChunkRandomManager.Pop().Chunk);
+            CreateChunk(ChunkRandomManager.Pop());
         }
     }
 
@@ -72,7 +72,7 @@ public class ChunkSpawnManager : MonoBehaviour
         
     }
 
-    private void CreateChunk(Chunk chunk)
+    private void CreateChunk(IChunk chunk)
     {
 
         if (chunk.Prefabs.Count == 0 && !chunk.Linked)
