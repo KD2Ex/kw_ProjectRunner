@@ -16,18 +16,74 @@ public class WithinTimeCondition : ChunkSpawnCondition
     public WithinTimeCondition(WithinTimeConditionData data)
     {
         this.data = data;
+
+        var inFirstMinute = 0;
+        var beforePity = 0;
+        var AtPity = 0;
         
+        for (int i = 0; i < 1000; i++)
+        {
+            var timings = Test(i);
+
+            foreach (var timing in timings)
+            {
+                if (timing < 60)
+                {
+                    inFirstMinute++;
+                    continue;
+                }
+
+                if (timing < 90)
+                {
+                    beforePity++;
+                    continue;
+                }
+
+                AtPity++;
+            }
+        }
+
+        if (AtPity == 0) AtPity = 1;
+        
+        var withoutPity = inFirstMinute + beforePity;
+        
+        Debug.Log($"In first minute: {inFirstMinute} Before Pity: {beforePity} With Pity: {AtPity}");
+        Debug.Log($"Without Pity: {withoutPity}, Probability: {(float)withoutPity / (float)AtPity}");
+    }
+
+    private int[] Test(int index)
+    {
+        Debug.Log($"Test number: {index}");
+
+        int[] timings = new int[2];
+        
+        var count = 0;        
+        for (int i = 0; i < 120; i += 3)
+        {
+            var res = EvaluateAtTime(i);
+
+            if (res)
+            {
+                timings[count] = i;
+                count++;
+                Debug.Log($"True at time {i}");
+            }
+            
+            if (count == 2) break;
+        }
+
+        return timings;
     }
 
     public override bool Evaluate()
     {
-        
         float floatTime = data.Time;
-        
-        currentP = (100 / floatTime) * (data.Timer.Value % (floatTime + 1));
-        Debug.Log($"Probability: {currentP}");
-        Debug.Log($"Count: {counter}");
-        
+
+        var currentTime = data.Timer.Value % (floatTime + 1);
+        currentP = (100 / floatTime) * currentTime;
+        //Debug.Log($"Probability: {currentP}");
+        //Debug.Log($"Count: {counter}");
+
         if (counter == data.Count)
         {
             if (currentP < lastProb)
@@ -36,8 +92,14 @@ public class WithinTimeCondition : ChunkSpawnCondition
             }
             return false;
         }
+
+        var intWeight = 8;//Convert.ToInt32(currentP * 10);
+
+        if (currentTime > 90)
+        {
+            intWeight += Convert.ToInt32((currentTime - 90) * 33);
+        }
         
-        var intWeight = Convert.ToInt32(currentP * 10);
         var randValue = Random.Range(0, 1001);
 
         Debug.Log($"Weight: {intWeight} Rand: {randValue}");
@@ -60,5 +122,20 @@ public class WithinTimeCondition : ChunkSpawnCondition
     {
         evaluated = false;
 
+    }
+
+    private bool EvaluateAtTime(float time)
+    {
+        var intWeight = 25;//Convert.ToInt32(currentP * 10);
+
+        if (time > 90)
+        {
+            intWeight += Convert.ToInt32((time - 90) * 33);
+        }
+        
+        var randValue = Random.Range(0, 1001);
+        
+        var result = randValue <= intWeight;
+        return result;
     }
 }

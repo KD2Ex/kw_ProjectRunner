@@ -39,6 +39,7 @@ public class ChunkSpawnManager : MonoBehaviour
         chunkMovement = GameObject.FindGameObjectWithTag("ChunkParent").transform;
         playerTransform = PlayerLocator.instance.playerTransform;
 
+
         Debug.Log(ChunkRandomManager.IsQueueEmpty);
 
         if (ChunkRandomManager.IsQueueEmpty)
