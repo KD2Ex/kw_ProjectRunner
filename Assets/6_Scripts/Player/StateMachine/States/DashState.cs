@@ -28,6 +28,11 @@ public class DashState : BaseState
         base.Update();
         elapsedTime += Time.deltaTime;
 
+        if (duration - elapsedTime < .07f)
+        {
+            player.BecomeInvincible();
+        }
+        
         if (elapsedTime > duration)
         {
             player.DisableDash();

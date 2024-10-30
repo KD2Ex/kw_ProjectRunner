@@ -93,7 +93,7 @@ public class WithinTimeCondition : ChunkSpawnCondition
             return false;
         }
 
-        var intWeight = 8;//Convert.ToInt32(currentP * 10);
+        var intWeight = 25;//Convert.ToInt32(currentP * 10);
 
         if (currentTime > 90)
         {
