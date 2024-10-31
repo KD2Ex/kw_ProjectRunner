@@ -682,7 +682,7 @@ GameObject:
   - component: {fileID: 8509798603610193232}
   m_Layer: 0
   m_Name: 1_wing_two
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -788,7 +788,7 @@ GameObject:
   - component: {fileID: 2418250787529745325}
   m_Layer: 0
   m_Name: 1_wing_one
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -895,7 +895,7 @@ GameObject:
   - component: {fileID: 1773577667633920704}
   m_Layer: 0
   m_Name: bee_two (1)
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1171,7 +1171,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -1757,7 +1757,7 @@ GameObject:
   - component: {fileID: 38332365317471638}
   m_Layer: 0
   m_Name: bee_three
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2230,7 +2230,7 @@ GameObject:
   - component: {fileID: 6725478524737970107}
   m_Layer: 0
   m_Name: bee_four
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2379,7 +2379,7 @@ AudioSource:
   m_GameObject: {fileID: 8967961440827309324}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -1019888389712152819, guid: 8ee838e8ffbbdaa4a9559ffd3e6fc337, type: 2}
   m_audioClip: {fileID: 8300000, guid: be10affbcf8ae42b9b772f89d9cbe35c, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -2625,6 +2625,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: bee (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 5341362115008272637, guid: 3a1eb7392c8ba2645afea24bce27ad9b, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: -1019888389712152819, guid: 8ee838e8ffbbdaa4a9559ffd3e6fc337, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2765,6 +2769,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: bee (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 5341362115008272637, guid: 3a1eb7392c8ba2645afea24bce27ad9b, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: -1019888389712152819, guid: 8ee838e8ffbbdaa4a9559ffd3e6fc337, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
