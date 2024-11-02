@@ -55,6 +55,9 @@ public class Player : MonoBehaviour, IInvincible
     [Header("Stats")]
     [Range(0, 3)]
     [SerializeField] private float m_JumpTime;
+
+    [Range(6f, 7f)]
+    [SerializeField] private float m_BounceBaseSpeed;
     [SerializeField] private FloatVariable so_EnergyToDash;
     [SerializeField] private FloatVariable m_DashDuration;
     [SerializeField] private FloatVariable m_CurrentHealths; // replace with IntVar so
@@ -156,7 +159,7 @@ public class Player : MonoBehaviour, IInvincible
     public bool Grounded => transform.position.y - .01f <= GroundLine;
     public float JumpSpeed => 10f;
     public float GravityForce => 10f;
-    public float AirDashMovementSpeed => 6.5f * Mathf.Log10(so_ChunksCurrentSpeed.Value);
+    public float AirDashMovementSpeed => m_BounceBaseSpeed * Mathf.Log10(so_ChunksCurrentSpeed.Value);
     public float UpperAirDashBound => 1.5f; 
     public float LowerAirDashBound => -6.6f;
     public float DashSpeedMultiplier => 1.5f;

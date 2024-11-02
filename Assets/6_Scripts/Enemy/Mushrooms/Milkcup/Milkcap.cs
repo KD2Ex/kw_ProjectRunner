@@ -1,6 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
+using Random = UnityEngine.Random;
 
 [System.Serializable]
 public struct ClampedValue<T>
@@ -11,25 +14,26 @@ public struct ClampedValue<T>
     public T max;
 }
 
-public class Milkcup : MonoBehaviour
+public class Milkcap : MonoBehaviour
 {
-    
-    
     [SerializeField] private ClampedValue<float> beforeDelay;
     [SerializeField] private ClampedValue<float> afterDelay;
-    
+
     [SerializeField] private float speed;
     [SerializeField] private float speedDeviation;
-    
+
     [SerializeField] private Transform cap;
     [SerializeField] private Transform originPoint;
     [SerializeField] private Transform topPoint;
 
-    [SerializeField] private AudioClip up;
-    [SerializeField] private AudioClip down;   
     [SerializeField] private AudioSource sourceUp;
     [SerializeField] private AudioSource sourceDown;
-    
+
+    [FormerlySerializedAs("capCollider")]
+    [Space] 
+    [Header("Colliders")]
+    [SerializeField] private Collider2D capTipCollider;
+
     private Transform player => PlayerLocator.instance.playerTransform;
 
     private float distance => (transform.position - player.position).magnitude;
@@ -48,14 +52,15 @@ public class Milkcup : MonoBehaviour
     {
         if (moving == null)
         {
-            if ((topPoint.position - cap.position).magnitude < .01f)
+            bool atTop = (topPoint.position - cap.position).magnitude < .01f;
+            if (atTop)
             {
-                moving = StartCoroutine(Move(originPoint, afterDelay, sourceDown));
+                Action after = () => capTipCollider.enabled = false;
+                moving = StartCoroutine(MoveTo(originPoint, afterDelay, sourceDown, after: after));
             }
             else
             {
-                moving = StartCoroutine(Move(topPoint, beforeDelay, sourceUp));
-
+                moving = StartCoroutine(MoveTo(topPoint, beforeDelay, sourceUp, before: () => capTipCollider.enabled = true));
             }
             //var to =  ? originPoint : topPoint;
 
@@ -64,7 +69,7 @@ public class Milkcup : MonoBehaviour
         }
     }
 
-    private IEnumerator Move(Transform to, ClampedValue<float> delay, AudioSource source)
+    private IEnumerator MoveTo(Transform to, ClampedValue<float> delay, AudioSource source, Action before = null, Action after = null)
     {
         var elapsed = 0f;
         var time = Random.Range(delay.min, delay.max);
@@ -74,7 +79,7 @@ public class Milkcup : MonoBehaviour
             elapsed += Time.deltaTime;
             yield return null;
         }
-        
+        before?.Invoke();
         source.Play();
         //SoundFXManager.instance.PlayClipAtPoint(clip, transform, 1f);
 
@@ -96,8 +101,7 @@ public class Milkcup : MonoBehaviour
             yield return null;
         }
         */
-        
-
+        after?.Invoke();
         moving = null;
     }
 

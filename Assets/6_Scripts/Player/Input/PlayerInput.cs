@@ -403,6 +403,17 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""action"": ""RestartScenes"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f07d0691-a11c-4dd1-95fe-4b5804f4bbf9"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RestartScenes"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },

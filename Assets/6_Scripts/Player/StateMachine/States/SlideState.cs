@@ -21,7 +21,7 @@ public class SlideState : BaseState
     public override void Update()
     {
         base.Update();
-        if (player.transform.position.y > -4.25f)
+        if (player.transform.position.y > -4.5f)
         {
             player.ApplyGravity(14f, Vector2.down);
         }
