@@ -4,12 +4,14 @@ using UnityEngine;
 public class CatAppear : MonoBehaviour
 {
     [SerializeField] private SpriteRenderer sprite;
-
-    private Color SpriteColor => sprite.color;
+    [SerializeField] private Cats cats;
     
-    private void OnEnable()
+    private Color SpriteColor => sprite.color;
+
+    private void Start()
     {
         StartCoroutine(FadeIn());
+        //transform.SetParent(null);
     }
 
     private IEnumerator FadeIn()
@@ -24,15 +26,24 @@ public class CatAppear : MonoBehaviour
         }
     }
 
-    // Start is called before the first frame update
-    void Start()
+    public void Disappear()
     {
-        
+        StartCoroutine(FadeOut());
     }
 
-    // Update is called once per frame
-    void Update()
+    private IEnumerator FadeOut()
     {
+        var alpha = sprite.color.a;
+
+        while (alpha > 0f)
+        {
+            alpha -= Time.deltaTime;
+            sprite.color = MathUtils.GetColorWithAlpha(sprite.color, alpha);
+            yield return null;
+        }
         
+        Destroy(gameObject);
+        Destroy(cats.gameObject);
     }
+    
 }

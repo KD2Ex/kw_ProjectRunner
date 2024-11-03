@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class BossChunk : MonoBehaviour
@@ -12,17 +11,18 @@ public class BossChunk : MonoBehaviour
     private void OnEnable()
     {
         input.InteractEvent += Accept;
+        
     }
 
     private void OnDisable()
     {
-        
         input.InteractEvent -= Accept;
+        
     }
 
     private void Start()
     {
-        boss.transform.position = GameManager.instance.Player.transform.position;
+        //boss.transform.position = GameManager.instance.Player.transform.position;
     }
 
     private void Accept()

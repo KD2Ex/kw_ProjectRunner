@@ -102,9 +102,17 @@ public class ChunkSpawnManager : MonoBehaviour
         var instPos = instance.transform.position;
         instance.transform.position = new Vector3(instPos.x + xOffset, instPos.y, 0f);
 
-        var getDestroyed = instance.AddComponent<GetDestroyedIfFarBehindPlayer>();
-        getDestroyed.SetTarget(playerTransform);
-        getDestroyed.DistanceToRemove = 15f;
+        instance.TryGetComponent<GetDestroyedIfFarBehindPlayer>(out var getDestroyed);
+
+        bool existed = true;
+        
+        if (!getDestroyed)
+        {
+            existed = false;
+            getDestroyed = instance.AddComponent<GetDestroyedIfFarBehindPlayer>();
+            getDestroyed.SetTarget(playerTransform);
+            getDestroyed.DistanceToRemove = 15f;
+        }
         
         var runtimeItem = new RuntimeChunk();
         runtimeItem.runtimeSet = RuntimeSet;
@@ -113,7 +121,7 @@ public class ChunkSpawnManager : MonoBehaviour
         runtimeItem.Initialize();
 
         getDestroyed.destroyAction += runtimeItem.Destroy;
-        
+
         if (CurrentChunk)
         {
             CurrentChunk.TryGetComponent<CustomSizeChunk>(out var currentChunkBounds);
@@ -128,7 +136,12 @@ public class ChunkSpawnManager : MonoBehaviour
             var offset = bounds ? rightOffset + Mathf.Abs(bounds.LeftExtentLocalX) : rightOffset + 18f;
             instance.transform.position = new Vector3(CurrentChunk.position.x + offset, 0f, 0f);
 
-            getDestroyed.Value = 30f + rightOffset;
+            if (!existed)
+            {
+                getDestroyed.Value = 30f + rightOffset;
+            }
+            
+            Debug.Log($"Right Offset: {rightOffset}, getdestroyedvalue: {getDestroyed.Value}");
             //Debug.Log($"{CurrentChunk.gameObject.name} {CurrentChunk.position}");
         }
         
