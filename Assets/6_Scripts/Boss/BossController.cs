@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -5,6 +6,8 @@ public class BossController : MonoBehaviour
 {
     [SerializeField] private AudioClip clip;
     [SerializeField] private BossAttack[] attacks;
+
+    private bool CanAttack;
     
     public bool Attacking;
 
@@ -20,6 +23,17 @@ public class BossController : MonoBehaviour
     private void Start()
     {
         //StartCoroutine(Coroutines.WaitFor(clip.length, null, Finish));
+
+        StartCoroutine(WaitUntil());
+    }
+
+    private IEnumerator WaitUntil()
+    {
+        CanAttack = false;
+        yield return new WaitUntil(() => SceneManager.loadedSceneCount == 2);
+        Debug.Log("All Scenes Loaded");
+        yield return new WaitForSeconds(2f);
+        CanAttack = true;
     }
 
     private void Finish()
@@ -32,7 +46,7 @@ public class BossController : MonoBehaviour
     void Update()
     {
         //Debug.Log($"Boss attacking: {Attacking}");
-        
+        if (!CanAttack) return;
         if (Player.Dead) enabled = false;
 
         if (Attacking) return;
