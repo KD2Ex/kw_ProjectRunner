@@ -13,8 +13,6 @@ public class Balloon : MonoBehaviour
     {
         if (!other.gameObject.CompareTag("Player")) return;
 
-        GameManager.instance.CarnavalCrashedBalloons++;
-        
         SoundFXManager.instance.PlayClipAtPoint(clips[Random.Range(0, clips.Count)], transform, 1f);
         gameObject.SetActive(false);
 

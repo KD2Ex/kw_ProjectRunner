@@ -18,8 +18,6 @@ public class CarnavalChunk : MonoBehaviour
        
         if (set.Items.Count == 0)
         {
-            GameManager.instance.CarnavalCrashedBalloons = 0;
-            
             set.originBacks = defaultPar.m_Backgrounds;
             defaultPar.m_Backgrounds = carnavalBacks;
             defaultPar.CalculateBounds();

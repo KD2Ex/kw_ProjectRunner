@@ -36,8 +36,6 @@ public class GameManager : MonoBehaviour
     public UIDigitsTimer UITimer;
     public CameraShake CameraShake;
     
-    public int CarnavalCrashedBalloons;
-    
     public Music SceneMusic;
    
     public bool IsEventChunkRunning;
