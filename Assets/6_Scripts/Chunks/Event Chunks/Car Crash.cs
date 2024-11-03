@@ -13,6 +13,7 @@ public class CarCrash : Enemy
 
     private void OnDisable()
     {
+        input.EnableGameplayInput();
         input.InteractEvent -= Skip;
         GameManager.instance.IsEventChunkRunning = false;
     }
@@ -32,6 +33,7 @@ public class CarCrash : Enemy
             anim.transform.SetParent(null);
             anim.transform.position = new Vector3(-8.3f, -1.6f, 0f);
             anim.gameObject.SetActive(true);
+            input.DisableGameplayInput();
         }       
     }
 }

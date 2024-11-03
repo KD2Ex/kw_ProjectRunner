@@ -268,6 +268,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6163793793207189398}
   - component: {fileID: 5215438748771179646}
+  - component: {fileID: 2046944018741914977}
   m_Layer: 0
   m_Name: carnaval_chunk_two
   m_TagString: Untagged
@@ -296,6 +297,8 @@ Transform:
   - {fileID: 922173144760447724}
   - {fileID: 2155906282281684192}
   - {fileID: 6547817351264911784}
+  - {fileID: 6766957334454676009}
+  - {fileID: 8388722028426764242}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5215438748771179646
@@ -311,6 +314,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   set: {fileID: 11400000, guid: a41706115c6f27b47b1217c908a79c20, type: 2}
+--- !u!114 &2046944018741914977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1317795477741085894}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b22d94c54c74b829d5fe227bf89dfdb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LeftExtent: {fileID: 6766957334454676009}
+  RightExtent: {fileID: 8388722028426764242}
 --- !u!1 &1495111881251253677
 GameObject:
   m_ObjectHideFlags: 0
@@ -615,6 +632,37 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.0364895, y: 2.0352635}
   m_EdgeRadius: 0
+--- !u!1 &2258603964260046232
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6766957334454676009}
+  m_Layer: 0
+  m_Name: Left
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6766957334454676009
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2258603964260046232}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -18.04, y: -2.0972245, z: -0.017586995}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6163793793207189398}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2463043028202289186
 GameObject:
   m_ObjectHideFlags: 0
@@ -873,6 +921,37 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.9594237, y: 2.1380162}
   m_EdgeRadius: 0
+--- !u!1 &2941905292374587245
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8388722028426764242}
+  m_Layer: 0
+  m_Name: Right
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8388722028426764242
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2941905292374587245}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 39.23, y: -2.0972245, z: -0.017586995}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6163793793207189398}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3161217092919605295
 GameObject:
   m_ObjectHideFlags: 0
@@ -2401,7 +2480,7 @@ Transform:
   m_GameObject: {fileID: 7258558507302332987}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 10.23, y: 0.3, z: 0}
+  m_LocalPosition: {x: 32.3, y: 0.3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3364,9 +3443,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: deer (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1509741628861814269, guid: e6a994921bf801743b5eb33abf5e9d3e, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 2701417639202159935, guid: e6a994921bf801743b5eb33abf5e9d3e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -8.46
+      value: -4.7
       objectReference: {fileID: 0}
     - target: {fileID: 2701417639202159935, guid: e6a994921bf801743b5eb33abf5e9d3e, type: 3}
       propertyPath: m_LocalPosition.y

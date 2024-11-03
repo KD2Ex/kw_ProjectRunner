@@ -118,7 +118,7 @@ GameObject:
   - component: {fileID: 3372932448920192139}
   m_Layer: 0
   m_Name: Horn (1)
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -167,7 +167,7 @@ CapsuleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.42915556, y: 0.096115865}
@@ -185,6 +185,8 @@ GameObject:
   - component: {fileID: 8766527915930514314}
   - component: {fileID: 5760987737144458520}
   - component: {fileID: 1405029915693823499}
+  - component: {fileID: 1635832037743532169}
+  - component: {fileID: 2367574602326114404}
   m_Layer: 0
   m_Name: deer
   m_TagString: Untagged
@@ -424,6 +426,35 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1635832037743532169
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1509741628861814269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c3e952238ff00e41beb6dfc2a959cc7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  so_Speed: {fileID: 11400000, guid: b1c856669e9b5de4b9f4bc17e8bd801f, type: 2}
+  m_Multiplier: 0.8
+  m_AutoMoveLeft: 1
+--- !u!114 &2367574602326114404
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1509741628861814269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20775b68ba45529439a8426edb96d426, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  distance: 0
+  movement: {fileID: 1635832037743532169}
 --- !u!1 &2191886762975671048
 GameObject:
   m_ObjectHideFlags: 0
@@ -504,7 +535,7 @@ GameObject:
   - component: {fileID: 1967429405482812829}
   m_Layer: 0
   m_Name: Head
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -553,7 +584,7 @@ CapsuleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.35618663, y: -0.48763275}
@@ -571,7 +602,7 @@ GameObject:
   - component: {fileID: 8401042031690063209}
   m_Layer: 0
   m_Name: Head
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -620,7 +651,7 @@ CapsuleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.35618663, y: -0.48763275}
@@ -638,7 +669,7 @@ GameObject:
   - component: {fileID: 1249860714918516018}
   m_Layer: 0
   m_Name: Horn (1)
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -687,7 +718,7 @@ CapsuleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.42915556, y: 0.096115865}
@@ -705,7 +736,7 @@ GameObject:
   - component: {fileID: 8350636102393704144}
   m_Layer: 0
   m_Name: Horn
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -754,7 +785,7 @@ CapsuleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.42915556, y: 0.096115865}
@@ -772,7 +803,7 @@ GameObject:
   - component: {fileID: 2878410713197584327}
   m_Layer: 0
   m_Name: Horn
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -821,7 +852,7 @@ CapsuleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.42915556, y: 0.096115865}

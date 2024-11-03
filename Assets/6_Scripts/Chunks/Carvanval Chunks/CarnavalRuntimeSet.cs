@@ -6,7 +6,6 @@ using UnityEngine;
 public class CarnavalRuntimeSet : RuntimeSet<CarnavalChunk>
 {
     public int maxCount;
-
     public List<GameObject> backs;
 
     [HideInInspector] public List<GameObject> originBacks;

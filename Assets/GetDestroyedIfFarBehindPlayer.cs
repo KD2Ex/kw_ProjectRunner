@@ -6,8 +6,8 @@ public class GetDestroyedIfFarBehindPlayer : MonoBehaviour
     [SerializeField] private FloatVariable m_DistanceToDestroy;
     [SerializeField] private bool PlayerAsTarget;
     
-    private float Value = 30f;
-
+    private float value = 30f;
+    public float Value;
     private Transform target;
 
     public Action destroyAction;
@@ -24,8 +24,10 @@ public class GetDestroyedIfFarBehindPlayer : MonoBehaviour
 
     private void Start()
     {
-        Value = m_DistanceToDestroy ? m_DistanceToDestroy.Value : 30f;
         
+        value = m_DistanceToDestroy ? m_DistanceToDestroy.Value : Value;
+        Debug.Log($"Dist value {value}");
+
         if (PlayerAsTarget)
         {
             if (!PlayerLocator.instance) return;
@@ -41,7 +43,7 @@ public class GetDestroyedIfFarBehindPlayer : MonoBehaviour
         if (!target) return;
         
         var distance = (Pos - transform.position).magnitude;
-        if (distance > Value && Pos.x > transform.position.x)
+        if (distance > value && Pos.x > transform.position.x)
         {
             gameObject.SetActive(false);
         }
