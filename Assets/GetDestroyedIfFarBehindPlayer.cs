@@ -26,7 +26,6 @@ public class GetDestroyedIfFarBehindPlayer : MonoBehaviour
     {
         
         value = m_DistanceToDestroy ? m_DistanceToDestroy.Value : Value;
-        Debug.Log($"Dist value {value}");
 
         if (PlayerAsTarget)
         {

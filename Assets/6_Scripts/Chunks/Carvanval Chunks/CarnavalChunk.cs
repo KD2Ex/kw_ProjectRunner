@@ -15,11 +15,11 @@ public class CarnavalChunk : MonoBehaviour
 
     private void OnEnable()
     {
-        Debug.Log(set.Items.Count);
-        
+       
         if (set.Items.Count == 0)
         {
-
+            GameManager.instance.CarnavalCrashedBalloons = 0;
+            
             set.originBacks = defaultPar.m_Backgrounds;
             defaultPar.m_Backgrounds = carnavalBacks;
             defaultPar.CalculateBounds();
@@ -43,8 +43,6 @@ public class CarnavalChunk : MonoBehaviour
     {
         if (!lastChunk) return;
         
-        Debug.Log(DistToPlayer);
-        Debug.Log(transform.position.x);
         StartCoroutine(WaitForPlayer());
         
         set.Items.Clear();

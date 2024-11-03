@@ -35,7 +35,9 @@ public class GameManager : MonoBehaviour
     public Timer Timer;
     public UIDigitsTimer UITimer;
     public CameraShake CameraShake;
-
+    
+    public int CarnavalCrashedBalloons;
+    
     public Music SceneMusic;
    
     public bool IsEventChunkRunning;
@@ -57,7 +59,6 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        
         brightnessSetting.SetLevel(Config.Data.Brightness);
         soundFXSetting.SetLevel(Config.Data.SoundFX);
         musicSetting.SetLevel(Config.Data.Music);
