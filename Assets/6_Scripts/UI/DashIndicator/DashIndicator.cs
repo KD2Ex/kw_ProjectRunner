@@ -6,11 +6,19 @@ public class DashIndicator : MonoBehaviour
     [SerializeField] private FloatVariable currentDashEnergy;
     private Animator animator;
 
+    /*
     private int Zero = Animator.StringToHash("dash_indicator_zero");
     private int One= Animator.StringToHash("dash_indicator_one");
     private int Three = Animator.StringToHash("dash_indicator_three");
     private int Four = Animator.StringToHash("dash_indicator_four");
     private int Five = Animator.StringToHash("dash_indicator_five");
+    */
+    
+    private int Zero = Animator.StringToHash("Canvas_DashIndicator_1");
+    private int One= Animator.StringToHash("Canvas_DashIndicator_2");
+    private int Three = Animator.StringToHash("Canvas_DashIndicator_3");
+    private int Four = Animator.StringToHash("Canvas_DashIndicator_4");
+    private int Five = Animator.StringToHash("Canvas_DashIndicator_5");
 
     private int[] hashes;
     
