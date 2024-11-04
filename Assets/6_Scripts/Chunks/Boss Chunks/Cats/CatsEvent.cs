@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 
-public class Cats : BossAppearance
+public class CatsEvent : EventAppearance
 {
-    public List<CatAppear> heads = new();
+    public List<CatOnLocation> heads = new();
     
     public override void Appear()
     {

@@ -1,10 +1,11 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Serialization;
 
-public class CatAppear : MonoBehaviour
+public class CatOnLocation : MonoBehaviour
 {
     [SerializeField] private SpriteRenderer sprite;
-    [SerializeField] private Cats cats;
+    [FormerlySerializedAs("cats")] [SerializeField] private CatsEvent catsEvent;
     
     private Color SpriteColor => sprite.color;
 
@@ -43,7 +44,7 @@ public class CatAppear : MonoBehaviour
         }
         
         Destroy(gameObject);
-        Destroy(cats.gameObject);
+        Destroy(catsEvent.gameObject);
     }
     
 }

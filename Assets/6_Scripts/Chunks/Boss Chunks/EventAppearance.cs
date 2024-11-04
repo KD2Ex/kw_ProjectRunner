@@ -1,21 +1,19 @@
 ﻿using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEngine.Events;
 
-public class BossAppearance : MonoBehaviour
+public class EventAppearance : MonoBehaviour
 {
     [SerializeField] private InputReader input;
-    [SerializeField] private string bossSceneName;
-
     [SerializeField] private GameObject UIButton;
+    
+    public UnityEvent OnInteract;
+
     
     protected float DistanceToPlayer => PlayerLocator.instance.DistanceToPlayer(transform);
     
     private void Accept()
     {
-        SceneManager.LoadScene("Boss Persistence");
-        var async = SceneManager.LoadSceneAsync(bossSceneName, LoadSceneMode.Additive);
-        
-        GameManager.instance.OpenLoadingScreen(async);
+        OnInteract?.Invoke();
     }
     
     private bool start;
