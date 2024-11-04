@@ -30,6 +30,16 @@ public class InputReader : ScriptableObject,
     
     public bool RunTriggered =>_input.Gameplay.Run.triggered;
     public float XMoveValue => _input.UI.XMove.ReadValue<float>();
+
+    public void DisableBossGameplayInput()
+    {
+        _input.PlayerBoss.Disable();
+    }
+
+    public void EnableBossGameplayInput()
+    {
+        _input.PlayerBoss.Enable();
+    }
     
     public void DisableGameplayInput()
     {
