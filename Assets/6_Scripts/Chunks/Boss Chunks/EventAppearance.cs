@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -10,9 +11,10 @@ public class EventAppearance : MonoBehaviour
     [SerializeField] private AudioSource eventMusic;
     
     public UnityEvent OnInteract;
-
     
     protected float DistanceToPlayer => PlayerLocator.instance.DistanceToPlayer(transform);
+
+    private AudioSource LocationTheme => GameManager.instance.SceneMusic.Source;
     
     private void Accept()
     {
@@ -37,7 +39,15 @@ public class EventAppearance : MonoBehaviour
         input.InteractEvent += Accept;
         UIButton.SetActive(true);
 
-        StartCoroutine(ChangeMusicClip(GameManager.instance.SceneMusic.Source, eventMusic));
+        if (!eventMusic)
+        {
+            StartCoroutine(FadeMusic(
+                LocationTheme,
+                () => LocationTheme.volume > .01f,
+                value => value - Time.deltaTime));
+            return;
+        }
+        StartCoroutine(ChangeMusicClip(LocationTheme, eventMusic));
     }
 
     public virtual void Disappear()
@@ -45,10 +55,19 @@ public class EventAppearance : MonoBehaviour
         input.InteractEvent -= Accept;
         Destroy(UIButton.gameObject);
         
-        StartCoroutine(ChangeMusicClip(eventMusic, GameManager.instance.SceneMusic.Source));
+        if (!eventMusic)
+        {
+            StartCoroutine(FadeMusic(
+                LocationTheme,
+                () => LocationTheme.volume < 1f,
+                value => value + Time.deltaTime));
+            return;
+        }
+        
+        StartCoroutine(ChangeMusicClip(eventMusic, LocationTheme));
     }
 
-    private IEnumerator ChangeMusicClip(AudioSource from, AudioSource to)
+    private IEnumerator ChangeMusicClip(AudioSource from, AudioSource to = null)
     {
         while (from.volume > .1f)
         {
@@ -57,32 +76,22 @@ public class EventAppearance : MonoBehaviour
         }
 
         from.Pause();
+
+        if (!to) yield break;
         
-        /*
-        if (toOriginal)
-        {
-            music.RevertClip();
-            
-            newSource.enabled = false;
-            newSource = music.Source;
-            music.Source.UnPause();
-        }
-        else
-        {
-            music.Source.Pause();
-            newSource = music.gameObject.AddComponent<AudioSource>();
-            newSource.volume = 0f;
-            newSource.clip = clip;
-
-
-            newSource.Play();
-            //music.SetClip(clip);
-        }*/
-
         to.Play();
         while (to.volume < 1f)
         {
             to.volume += Time.deltaTime;
+            yield return null;
+        }
+    }
+
+    private IEnumerator FadeMusic(AudioSource musicSource, Func<bool> predicate, Func<float, float> op)
+    {
+        while (predicate.Invoke())
+        {
+            musicSource.volume = op(musicSource.volume);
             yield return null;
         }
     }
