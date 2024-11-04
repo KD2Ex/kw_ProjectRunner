@@ -36,9 +36,14 @@ public class GodOnLocation : MonoBehaviour
     private IEnumerator MoveBack()
     {
         float dist;
+        var orig = new Vector3(transform.position.x - 7f, transform.position.y, 0f);
+        
         do
         {
-            dist = (transform.position - origin).magnitude;
+            dist = (transform.position - orig).magnitude;
+
+            Debug.Log(dist);
+            
             transform.Translate(Vector2.left * (5f * Time.fixedDeltaTime));
             yield return waiter;
         } while (dist > .1f);

@@ -4,7 +4,6 @@ using UnityEngine.SceneManagement;
 
 public class BossController : MonoBehaviour
 {
-    [SerializeField] private AudioClip clip;
     [SerializeField] private BossAttack[] attacks;
 
     private bool CanAttack;
