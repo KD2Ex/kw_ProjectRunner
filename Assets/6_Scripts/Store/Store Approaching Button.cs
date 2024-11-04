@@ -1,10 +1,8 @@
-using System;
 using System.Collections;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class StoreApproachingButton : MonoBehaviour
+public class ApproachingButton : MonoBehaviour
 {
     [SerializeField] private float FadeRate;
     private SpriteRenderer sprite;

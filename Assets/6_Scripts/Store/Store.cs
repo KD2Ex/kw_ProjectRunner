@@ -2,13 +2,14 @@ using System;
 using System.Security.Principal;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 
 public class Store : MonoBehaviour
 {
     [SerializeField] private InputReader input;
     
-    [SerializeField] private StoreApproachingButton StopUIButton;
-    [SerializeField] private StoreApproachingButton InteractUIButton;
+    [FormerlySerializedAs("StopUIButton")] [SerializeField] private ApproachingButton approachingUIButton;
+    [SerializeField] private ApproachingButton InteractUIButton;
     private GameObject Panel;
 
     public UnityEvent OnStoreApproaching;
@@ -69,7 +70,7 @@ public class Store : MonoBehaviour
         
         approached = true;
         OnStoreApproaching?.Invoke();
-        StopUIButton.FadeIn();
+        approachingUIButton.FadeIn();
     }
 
     public void OnLeaving()
@@ -77,7 +78,7 @@ public class Store : MonoBehaviour
         OnStoreLeave?.Invoke();
         
         InteractUIButton.FadeOut();
-        StopUIButton.FadeOut();
+        approachingUIButton.FadeOut();
         canBeOpened = false;
         
         gameObject.SetActive(false);
@@ -87,13 +88,13 @@ public class Store : MonoBehaviour
     {
         canBeOpened = true;
         InteractUIButton.FadeIn();
-        StopUIButton.FadeOut();
+        approachingUIButton.FadeOut();
     }
 
     public void Close()
     {
         canBeOpened = false;
         InteractUIButton.FadeOut();
-        StopUIButton.FadeIn();
+        approachingUIButton.FadeIn();
     }
 }

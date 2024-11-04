@@ -6,6 +6,8 @@ public class ConstantMovement : MonoBehaviour
     
     [Range(0, 2)]
     [SerializeField] private float m_Multiplier;
+
+    [SerializeField] private FloatVariable Multiplier;
     [SerializeField] private bool m_AutoMoveLeft;
     private float m_Speed => so_Speed.Value;
     
@@ -18,6 +20,9 @@ public class ConstantMovement : MonoBehaviour
 
     public void Move(Vector2 direction)
     {
-        transform.Translate(direction * (m_Speed * m_Multiplier * Time.deltaTime));
+        var speed = Multiplier ? Multiplier.Value : m_Multiplier;
+        speed *= m_Speed;
+        
+        transform.Translate(direction * (speed * Time.deltaTime));
     }
 }
