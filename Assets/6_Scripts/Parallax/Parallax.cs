@@ -165,6 +165,10 @@ public class Parallax : MonoBehaviour
         {
             var time = animator.GetCurrentAnimatorStateInfo(0).normalizedTime;
             next.GetComponent<SyncAnimation>().Sync(time);
+
+            Debug.Log(time);
+            Debug.Log(next.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).normalizedTime);
+
         }
 
         m_SpritesBounds.TryGetValue(next.name, out var newBounds);
