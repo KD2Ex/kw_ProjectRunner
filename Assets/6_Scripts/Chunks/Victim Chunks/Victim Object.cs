@@ -8,6 +8,7 @@ public class VictimObject : Enemy
     
     [SerializeField] private ApproachingButton stopButton;
 
+    /*
     private void OnEnable()
     {
         input.InteractEvent += Interact;
@@ -17,6 +18,7 @@ public class VictimObject : Enemy
     {
         input.InteractEvent -= Interact;
     }
+    */
 
     private void Update()
     {
