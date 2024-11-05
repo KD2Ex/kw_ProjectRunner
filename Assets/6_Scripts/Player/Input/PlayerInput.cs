@@ -390,6 +390,15 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SlowTime"",
+                    ""type"": ""Button"",
+                    ""id"": ""f2b6b1ec-dcee-4401-8974-6b10731d7c9c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -412,6 +421,17 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""RestartScenes"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fc74c9b4-90c8-4a2d-9392-9201877d0d84"",
+                    ""path"": ""<Keyboard>/t"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""MnK"",
+                    ""action"": ""SlowTime"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -670,6 +690,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         // Dev
         m_Dev = asset.FindActionMap("Dev", throwIfNotFound: true);
         m_Dev_RestartScenes = m_Dev.FindAction("RestartScenes", throwIfNotFound: true);
+        m_Dev_SlowTime = m_Dev.FindAction("SlowTime", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Esc = m_UI.FindAction("Esc", throwIfNotFound: true);
@@ -843,11 +864,13 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Dev;
     private List<IDevActions> m_DevActionsCallbackInterfaces = new List<IDevActions>();
     private readonly InputAction m_Dev_RestartScenes;
+    private readonly InputAction m_Dev_SlowTime;
     public struct DevActions
     {
         private @PlayerInput m_Wrapper;
         public DevActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
         public InputAction @RestartScenes => m_Wrapper.m_Dev_RestartScenes;
+        public InputAction @SlowTime => m_Wrapper.m_Dev_SlowTime;
         public InputActionMap Get() { return m_Wrapper.m_Dev; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -860,6 +883,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @RestartScenes.started += instance.OnRestartScenes;
             @RestartScenes.performed += instance.OnRestartScenes;
             @RestartScenes.canceled += instance.OnRestartScenes;
+            @SlowTime.started += instance.OnSlowTime;
+            @SlowTime.performed += instance.OnSlowTime;
+            @SlowTime.canceled += instance.OnSlowTime;
         }
 
         private void UnregisterCallbacks(IDevActions instance)
@@ -867,6 +893,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @RestartScenes.started -= instance.OnRestartScenes;
             @RestartScenes.performed -= instance.OnRestartScenes;
             @RestartScenes.canceled -= instance.OnRestartScenes;
+            @SlowTime.started -= instance.OnSlowTime;
+            @SlowTime.performed -= instance.OnSlowTime;
+            @SlowTime.canceled -= instance.OnSlowTime;
         }
 
         public void RemoveCallbacks(IDevActions instance)
@@ -1041,6 +1070,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     public interface IDevActions
     {
         void OnRestartScenes(InputAction.CallbackContext context);
+        void OnSlowTime(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

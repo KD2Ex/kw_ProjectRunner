@@ -10,7 +10,7 @@ public class CutsceneUIManager : MonoBehaviour
 
     private float Dist => Utils.DistanceToPlayer(transform);
     
-    private bool playerNearby => Dist < 14f && Dist > -6f;
+    private bool playerNearby => Dist < 20f && Dist > -6f;
     
     private void OnEnable()
     {
@@ -18,17 +18,21 @@ public class CutsceneUIManager : MonoBehaviour
         
         input.StopEvent += OnStop;
         input.RunEvent += OnMove;
+        
+        input.InteractEvent += HideButton;
     }
 
     private void OnDisable()
     {
         input.StopEvent -= OnStop;
         input.RunEvent -= OnMove;
+        
+        input.InteractEvent -= HideButton;
     }
 
     private IEnumerator Start()
     {
-        yield return new WaitUntil(() => Dist < 14f);
+        yield return new WaitUntil(() => Dist < 20f);
         
         stopButton.FadeIn();
         cutSceneManager.gameObject.SetActive(true);
@@ -57,5 +61,10 @@ public class CutsceneUIManager : MonoBehaviour
         if (!playerNearby) return;
         
         stopButton.FadeIn();
+    }
+
+    private void HideButton()
+    {
+        interactButton.gameObject.SetActive(false);
     }
 }

@@ -67,7 +67,7 @@ public class Coroutines
 
         while (Mathf.Abs(to - from) > .01f)
         {
-            from += Time.deltaTime * rate * direction;
+            from += Time.unscaledDeltaTime * rate * direction;
             setter?.Invoke(from);
             yield return null;
         }

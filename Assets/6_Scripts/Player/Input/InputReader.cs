@@ -22,6 +22,7 @@ public class InputReader : ScriptableObject,
     public UnityAction RestartScenesEvent;
     public UnityAction EscEvent;
     public UnityAction InteractEvent;
+    public UnityAction SlowTimeEvent;
 
     public UnityAction<int> PlayerBossMoveEvent;
     
@@ -122,6 +123,13 @@ public class InputReader : ScriptableObject,
     {
         if (!context.started) return;
         RestartScenesEvent?.Invoke();
+    }
+
+    public void OnSlowTime(InputAction.CallbackContext context)
+    {
+        if (!context.started) return;
+        
+        SlowTimeEvent?.Invoke();
     }
 
     public void OnEsc(InputAction.CallbackContext context)
