@@ -1,37 +1,45 @@
+using System.Collections;
 using UnityEngine;
 
 public class VictimObject : Enemy
 {
     [SerializeField] private InputReader input;
-
-    [SerializeField] private GameObject vod;
-    
+    [SerializeField] private GameObject cutSceneManager;
     [SerializeField] private ApproachingButton stopButton;
-
-    /*
+    
     private void OnEnable()
     {
-        input.InteractEvent += Interact;
+        cutSceneManager.SetActive(false);
+        
+        input.StopEvent += OnStop;
     }
 
     private void OnDisable()
     {
-        input.InteractEvent -= Interact;
+        input.StopEvent -= OnStop;
     }
-    */
+
+    private IEnumerator Start()
+    {
+        yield return new WaitUntil(() => DistanceToPlayer < 14f);
+        
+        stopButton.FadeIn();
+        cutSceneManager.SetActive(true);
+        
+        yield return new WaitUntil(() => DistanceToPlayer < -14f);
+        
+        stopButton.FadeOut();
+        cutSceneManager.SetActive(true);
+    }
 
     private void Update()
     {
-        if (DistanceToPlayer < 14f)
-        {
-            stopButton.FadeIn();
-        }
+        Debug.Log(DistanceToPlayer);
     }
 
-    private void Interact()
+    private void OnStop(bool value)
     {
-        if (vod.activeInHierarchy) return;
-        
-        vod.SetActive(true);
+        Debug.Log(value);
+        stopButton.FadeOut();
     }
 }

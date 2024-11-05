@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Video;
@@ -15,6 +16,8 @@ public class CutScene : MonoBehaviour
     
     public UnityEvent OnEnd;
 
+    private bool canPlay;
+    
     private void Awake()
     {
         for (int i = 0; i < vods.Length; i++)
@@ -45,8 +48,15 @@ public class CutScene : MonoBehaviour
         input.InteractEvent -= Play;
     }
 
+    private void Update()
+    {
+        canPlay = GameManager.instance.MovementSpeed.Value < .0001f;
+    }
+
     public void Play()
     {
+        if (!canPlay) return;
+        
         Debug.Log("Play");
         
         if (currentVod == 0)

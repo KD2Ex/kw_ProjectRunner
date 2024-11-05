@@ -95,6 +95,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9810e1c0a56d4773b228cad8a3259049, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Food: {fileID: 11400000, guid: 3dff8d1bf101ba545a8e8ba0c3f03c29, type: 2}
+  Creatures: {fileID: 11400000, guid: 393ed18efc8c01942a8daa883188be48, type: 2}
   brightnessSetting: {fileID: 8795793631131732192}
   soundFXSetting: {fileID: 6344344657386061257}
   musicSetting: {fileID: 3130114495000698928}
@@ -102,11 +104,14 @@ MonoBehaviour:
   Config: {fileID: 11400000, guid: 77a6163ad96d9b048a57b22a0e9d995c, type: 2}
   loadingSound: {fileID: 11400000, guid: d1bf65b8e96945e46a705d94df57ed4b, type: 2}
   loadingScreen: {fileID: 193325230808168736}
+  <MovementSpeed>k__BackingField: {fileID: 11400000, guid: b1c856669e9b5de4b9f4bc17e8bd801f, type: 2}
+  PlayerBossController: {fileID: 0}
   Coins: {fileID: 11400000, guid: 93d2cd16956b2e5469e68b9781adf222, type: 2}
   Timer: {fileID: 0}
   UITimer: {fileID: 0}
   CameraShake: {fileID: 0}
-  MusicManager: {fileID: 0}
+  SceneMusic: {fileID: 0}
+  IsEventChunkRunning: 0
 --- !u!1 &1390183441368213076
 GameObject:
   m_ObjectHideFlags: 0

@@ -56,6 +56,5 @@ public class Coroutines
             image.color = MathUtils.GetColorWithAlpha(image.color, from);
             yield return null;
         }
-        
     }
 }

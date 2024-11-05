@@ -376,14 +376,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: ---PERSISTENCE---
       objectReference: {fileID: 0}
-    - target: {fileID: 1959848586970887799, guid: 60f476be610f11747a9ce17ba2adf608, type: 3}
-      propertyPath: Food
-      value: 
-      objectReference: {fileID: 11400000, guid: 3dff8d1bf101ba545a8e8ba0c3f03c29, type: 2}
-    - target: {fileID: 1959848586970887799, guid: 60f476be610f11747a9ce17ba2adf608, type: 3}
-      propertyPath: Creatures
-      value: 
-      objectReference: {fileID: 11400000, guid: 393ed18efc8c01942a8daa883188be48, type: 2}
     - target: {fileID: 3141135106473041580, guid: 60f476be610f11747a9ce17ba2adf608, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.37
@@ -5137,6 +5129,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee2e7c77ba7e546458aec0ea6d4852f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cutScene: {fileID: 0}
   video: {fileID: 1769577205}
 --- !u!1 &2080308936 stripped
 GameObject:

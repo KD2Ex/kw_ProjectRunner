@@ -4,22 +4,24 @@ using UnityEngine.UI;
 
 public class ApproachingButton : MonoBehaviour
 {
-    [SerializeField] private float FadeRate;
+    [SerializeField] private float fadeRate;
     private SpriteRenderer sprite;
     private Image image;
 
     private Color color;
     private float colorAlpha = 0f;
-
+    
     private void Awake()
     {
         sprite = GetComponent<SpriteRenderer>();
         image = GetComponent<Image>();
+
+        image.color = MathUtils.GetColorWithAlpha(image.color, 0f);
     }
 
     private void Update()
     {
-        if (image)
+        /*if (image)
         {
             image.color = GetColor(image.color, colorAlpha);
         }
@@ -27,19 +29,21 @@ public class ApproachingButton : MonoBehaviour
         if (sprite)
         {
             sprite.color = GetColor(sprite.color, colorAlpha);
-        }
+        }*/
     }
 
     public void FadeIn()
     {
         StopAllCoroutines();
-        StartCoroutine(Fade(0f, 1f));
+        StartCoroutine(Coroutines.FadeUIImage(image.color.a, 1f, image, fadeRate));
+        //StartCoroutine(Fade(0f, 1f));
     }
 
     public void FadeOut()
     {
         StopAllCoroutines();
-        StartCoroutine(Fade(1f, 0f));
+        StartCoroutine(Coroutines.FadeUIImage(image.color.a, 0f, image, fadeRate));
+        //StartCoroutine(Fade(1f, 0f));
     }
 
     private IEnumerator Fade(float from, float to)
@@ -76,12 +80,12 @@ public class ApproachingButton : MonoBehaviour
 
         void Up()
         {
-            from += Time.deltaTime * FadeRate;
+            from += Time.deltaTime * fadeRate;
         }
 
         void Down()
         {
-            from -= Time.deltaTime * FadeRate;
+            from -= Time.deltaTime * fadeRate;
         }
     }
 

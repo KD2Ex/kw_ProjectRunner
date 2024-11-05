@@ -28,6 +28,9 @@ public class GameManager : MonoBehaviour
     private SoundList loadingSound;
     public Animator loadingScreen;
     
+    
+    [field: SerializeField] public FloatVariable MovementSpeed { get; private set; }
+    
     public Player Player { get; set; }
     public PlayerBossController PlayerBossController;
     public ChunkSpawnManager ChunkSpawnManager { get; set; }
