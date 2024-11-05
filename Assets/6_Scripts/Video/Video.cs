@@ -5,17 +5,18 @@ using UnityEngine.Video;
 
 public class Video : MonoBehaviour
 {
-
     [SerializeField] private CutScene cutScene;
     [SerializeField] private VideoPlayer video;
 
+    [SerializeField] private bool autoPlayNextVideo;
+    
     private bool start;
     
     void Start()
     {
         Debug.Log(video.length);
 
-        if (cutScene)
+        if (cutScene && autoPlayNextVideo)
         {
             StartCoroutine(WaitForEnd());
         }
