@@ -53,8 +53,24 @@ public class Coroutines
         while (Mathf.Abs(to - from) > .01f)
         {
             from += Time.deltaTime * rate * direction;
-            image.color = MathUtils.GetColorWithAlpha(image.color, from);
+            
+            var color = MathUtils.GetColorWithAlpha(image.color, from);
+            image.color = color;
             yield return null;
         }
     }
+    
+    public static IEnumerator FadeFloat(float from, float to, float rate, Action<float> setter)
+    {
+        var direction = to - from;
+        direction = Mathf.Sign(direction);
+
+        while (Mathf.Abs(to - from) > .01f)
+        {
+            from += Time.deltaTime * rate * direction;
+            setter?.Invoke(from);
+            yield return null;
+        }
+    }
+    
 }

@@ -10,13 +10,28 @@ public class ApproachingButton : MonoBehaviour
 
     private Color color;
     private float colorAlpha = 0f;
+
+    private bool isImage;
     
     private void Awake()
     {
         sprite = GetComponent<SpriteRenderer>();
         image = GetComponent<Image>();
 
-        image.color = MathUtils.GetColorWithAlpha(image.color, 0f);
+        if (image)
+        {
+            isImage = true;
+            color = image.color;
+            image.color = MathUtils.GetColorWithAlpha(image.color, 0f);
+            return;
+        }
+
+        if (sprite)
+        {
+            isImage = false;
+            color = sprite.color;
+            sprite.color = MathUtils.GetColorWithAlpha(color, 0f);
+        }
     }
 
     private void Update()
@@ -35,17 +50,30 @@ public class ApproachingButton : MonoBehaviour
     public void FadeIn()
     {
         StopAllCoroutines();
-        StartCoroutine(Coroutines.FadeUIImage(image.color.a, 1f, image, fadeRate));
+        var color = isImage ? image.color : sprite.color;
+        StartCoroutine(Coroutines.FadeFloat(color.a, 1f, fadeRate, SetColor));
         //StartCoroutine(Fade(0f, 1f));
     }
 
     public void FadeOut()
     {
         StopAllCoroutines();
-        StartCoroutine(Coroutines.FadeUIImage(image.color.a, 0f, image, fadeRate));
+        var color = isImage ? image.color : sprite.color;
+        StartCoroutine(Coroutines.FadeFloat(color.a, 0f, fadeRate, SetColor));
         //StartCoroutine(Fade(1f, 0f));
     }
 
+    private void SetColor(float alpha)
+    {
+        if (isImage)
+        {
+            image.color = MathUtils.GetColorWithAlpha(image.color, alpha);
+            return;
+        }
+
+        sprite.color = MathUtils.GetColorWithAlpha(sprite.color, alpha);
+    }
+    
     private IEnumerator Fade(float from, float to)
     {
         if (sprite)

@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.Video;
 
 public class CutScene : MonoBehaviour
 {
     [SerializeField] private InputReader input;
-    [SerializeField] private VideoPlayer video;
-
     [SerializeField] private GameObject[] vods;
 
     private int currentVod = 0;
