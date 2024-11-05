@@ -9,10 +9,11 @@ public class CutScene : MonoBehaviour
 
     private int currentVod = 0;
     private List<CutsceneNode> nodes = new();
-    
-    public UnityEvent OnEnd;
 
+    private Music locationTheme => GameManager.instance.SceneMusic;
     private bool canPlay;
+
+    public UnityEvent OnEnd;
     
     private void Awake()
     {
@@ -80,11 +81,15 @@ public class CutScene : MonoBehaviour
 
     private void EnterCutscene()
     {
+        input.DisableGameplayInput();
         Time.timeScale = 0f;
+        locationTheme.Source.Pause();
     }
 
     private void ExitCutscene()
     {
+        input.EnableGameplayInput();
+        locationTheme.Source.UnPause();
         currentVod = 0;
         Time.timeScale = 1f;
     }
