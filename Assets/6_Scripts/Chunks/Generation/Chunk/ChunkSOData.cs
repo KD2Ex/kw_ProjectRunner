@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using UnityEditorInternal;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Chunk", menuName = "Scriptable Objects/Chunks/Chunk Data")]
