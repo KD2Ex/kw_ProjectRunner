@@ -14,13 +14,25 @@ public class SlowTime : MonoBehaviour
     private void OnDisable()
     {
         input.SlowTimeEvent -= Execute;
+
+        Time.timeScale = 1f;
     }
 
     private void Execute()
     {
         StopAllCoroutines();
-        
         StartCoroutine(Freeze());
+    }
+
+    public void StopTime()
+    {
+        Time.timeScale = 0f;
+    }
+
+    public void RevertTime()
+    {
+        StopAllCoroutines();
+        StartCoroutine(Coroutines.FadeFloat(0f, 1f, rate, Setter));
     }
 
     private IEnumerator Freeze()

@@ -2,8 +2,6 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
-using UnityEngine.Video;
 using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
@@ -42,7 +40,7 @@ public class GameManager : MonoBehaviour
     public CameraShake CameraShake;
 
     public CutsceneRawImage CutsceneRawImage;
-
+    public Screamer ScreamerManager;
     public Music SceneMusic;
    
     public bool IsEventChunkRunning;

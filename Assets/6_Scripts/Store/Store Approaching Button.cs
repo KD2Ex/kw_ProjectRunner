@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -50,6 +51,11 @@ public class ApproachingButton : MonoBehaviour
     public void FadeIn()
     {
         if (!gameObject.activeSelf) return;
+
+        if (image)
+        {
+            Debug.Log(image.color.a);
+        }
         
         StopAllCoroutines();
         var color = isImage ? image.color : sprite.color;
@@ -60,6 +66,12 @@ public class ApproachingButton : MonoBehaviour
     public void FadeOut()
     {
         if (!gameObject.activeSelf) return;
+        
+        if (image)
+        {
+            Debug.Log(image.color.a);
+        }
+
         
         StopAllCoroutines();
         var color = isImage ? image.color : sprite.color;

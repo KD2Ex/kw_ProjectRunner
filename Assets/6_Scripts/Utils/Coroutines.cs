@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,6 +10,12 @@ public class Coroutines
     {
         before?.Invoke();
         yield return new WaitForSeconds(seconds);
+        after?.Invoke();
+    }
+
+    public static IEnumerator WaitForUnscaled(float seconds, Action after = null)
+    {
+        yield return new WaitForSecondsRealtime(seconds);
         after?.Invoke();
     }
     
@@ -65,12 +72,15 @@ public class Coroutines
         var direction = to - from;
         direction = Mathf.Sign(direction);
 
-        while (Mathf.Abs(to - from) > .01f)
+        while (Mathf.Abs(to - from) > .07f)
         {
             from += Time.unscaledDeltaTime * rate * direction;
             setter?.Invoke(from);
             yield return null;
         }
+
+        from = to;
+        setter?.Invoke(from);
     }
     
 }
