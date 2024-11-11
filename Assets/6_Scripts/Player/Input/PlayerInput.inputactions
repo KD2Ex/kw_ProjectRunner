@@ -502,17 +502,6 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "",
-                    "id": "308399ef-28c2-4b4c-a0d7-83f30ae08cdf",
-                    "path": "",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Interact",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
                     "name": "1D Axis",
                     "id": "fec97212-fc81-4d34-9c0c-5549ff058201",
                     "path": "1DAxis",
@@ -627,6 +616,34 @@
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
+                }
+            ]
+        },
+        {
+            "name": "Cutscene",
+            "id": "abae8b35-654d-4344-868c-d961f654d6b5",
+            "actions": [
+                {
+                    "name": "Skip",
+                    "type": "Button",
+                    "id": "b2379d32-dbac-4d90-b7b6-36db55aa3379",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "ee20959c-4fa7-419d-94ea-7653e115d43a",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "MnK",
+                    "action": "Skip",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }

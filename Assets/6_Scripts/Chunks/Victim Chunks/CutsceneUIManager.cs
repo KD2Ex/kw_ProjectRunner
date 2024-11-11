@@ -19,7 +19,7 @@ public class CutsceneUIManager : MonoBehaviour
         input.StopEvent += OnStop;
         input.RunEvent += OnMove;
         
-        input.InteractEvent += HideButton;
+        input.CutsceneSkipEvent += HideButton;
     }
 
     private void OnDisable()
@@ -27,7 +27,7 @@ public class CutsceneUIManager : MonoBehaviour
         input.StopEvent -= OnStop;
         input.RunEvent -= OnMove;
         
-        input.InteractEvent -= HideButton;
+        input.CutsceneSkipEvent -= HideButton;
     }
 
     private IEnumerator Start()

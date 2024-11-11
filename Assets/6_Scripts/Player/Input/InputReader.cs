@@ -7,7 +7,8 @@ public class InputReader : ScriptableObject,
     PlayerInput.IGameplayActions, 
     PlayerInput.IDevActions, 
     PlayerInput.IUIActions,
-    PlayerInput.IPlayerBossActions
+    PlayerInput.IPlayerBossActions,
+    PlayerInput.ICutsceneActions
 {
     private PlayerInput _input;
 
@@ -28,6 +29,8 @@ public class InputReader : ScriptableObject,
     
     public UnityAction<int> UIXMoveEvent;
     public UnityAction<int> UIYMoveEvent;
+
+    public UnityAction CutsceneSkipEvent; 
     
     public bool RunTriggered =>_input.Gameplay.Run.triggered;
     public float XMoveValue => _input.UI.XMove.ReadValue<float>();
@@ -51,6 +54,9 @@ public class InputReader : ScriptableObject,
     {
         _input.Gameplay.Enable();
     }
+
+    public void DisableUIInput() => _input.UI.Disable();
+    public void EnableUIInput() => _input.UI.Enable();
     
     private void OnEnable()
     {
@@ -60,8 +66,8 @@ public class InputReader : ScriptableObject,
             _input.Dev.SetCallbacks(this);
             _input.Gameplay.SetCallbacks(this);
             _input.UI.SetCallbacks(this);
-            
             _input.PlayerBoss.SetCallbacks(this);
+            _input.Cutscene.SetCallbacks(this);
         }
         
         _input.Enable();
@@ -159,5 +165,13 @@ public class InputReader : ScriptableObject,
     {
         if (!context.started) return;
         PlayerBossMoveEvent?.Invoke(Mathf.RoundToInt(context.ReadValue<float>()));
+    }
+
+    public void OnSkip(InputAction.CallbackContext context)
+    {
+        if (!context.started) return;
+        
+        CutsceneSkipEvent?.Invoke();
+        Debug.Log("Cut event invoked");
     }
 }

@@ -1,48 +1,66 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
+using UnityEngine.Video;
+
+[System.Serializable]
+public class VideoCutscene
+{
+    public VideoPlayer Vod;
+    public bool AutoPlayNext;
+
+    public void Prepare()
+    {
+        Vod.Prepare();
+    }
+
+    public void Play()
+    {
+        Vod.Play();
+        
+    }
+}
 
 public class CutScene : MonoBehaviour
 {
     [SerializeField] private InputReader input;
-    [SerializeField] private GameObject[] vods;
+    [FormerlySerializedAs("vods")] [SerializeField] private VideoCutscene[] videos;
 
-    private int currentVod = 0;
-    private List<CutsceneNode> nodes = new();
+    private int index = 0;
+    private VideoPlayer playing;
 
     private Music locationTheme => GameManager.instance.SceneMusic;
     private bool canPlay;
 
     public UnityEvent OnEnd;
     
+    private void Release() => GameManager.instance.CutsceneRawImage.ReleaseVideoRenderText();
+    
     private void Awake()
     {
-        for (int i = 0; i < vods.Length; i++)
+        foreach (var vod in videos)
         {
-            CutsceneNode node = null;
-            if (i == 0)
+            vod.Prepare();
+            if (vod.AutoPlayNext)
             {
-                node = new CutsceneNode(vods[i], null);
+                vod.Vod.loopPointReached += (video) =>
+                {
+                    Play();
+                };
             }
-            else if (i == vods.Length - 1)
-            {
-                node = new CutsceneNode(vods[i], vods[i - 1]);
-            }
-
-            node ??= new CutsceneNode(vods[i], vods[i - 1]);
-            
-            nodes.Add(node);
         }
+        
+        Release();
     }
 
     private void OnEnable()
     {
-        input.InteractEvent += Play;
+        input.CutsceneSkipEvent += Play;
     }
 
     private void OnDisable()
     {
-        input.InteractEvent -= Play;
+        input.CutsceneSkipEvent -= Play;
     }
 
     private void Update()
@@ -56,32 +74,33 @@ public class CutScene : MonoBehaviour
         
         Debug.Log("Play");
         
-        if (currentVod == 0)
+        if (playing)
+        {
+            playing.Stop();
+        }
+        
+        if (index == 0)
         {
             EnterCutscene();
         }
         
-        if (currentVod == vods.Length)
+        if (index == videos.Length)
         {
             ExitCutscene();
-            nodes[^1].vod.SetActive(false);
             return;
         }
         
-        var currNode = nodes[currentVod];
-
-        if (currNode.prev)
-        {
-            currNode.prev.SetActive(false);
-        }
+        videos[index].Play();
+        playing = videos[index].Vod;
         
-        currNode.vod.SetActive(true);
-        currentVod++;
+        index++;
     }
 
     private void EnterCutscene()
     {
         input.DisableGameplayInput();
+        input.DisableUIInput();
+        
         Time.timeScale = 0f;
         locationTheme.Source.Pause();
     }
@@ -89,20 +108,20 @@ public class CutScene : MonoBehaviour
     private void ExitCutscene()
     {
         input.EnableGameplayInput();
+        input.EnableUIInput();
+        
+        
+        
+        
         locationTheme.Source.UnPause();
-        currentVod = 0;
+        index = 0;
+
+        playing = null;
+        Release();
+        
+        OnEnd?.Invoke();
+        
         Time.timeScale = 1f;
     }
 }
 
-public class CutsceneNode
-{
-    public CutsceneNode(GameObject vod, GameObject prev)
-    {
-        this.vod = vod;
-        this.prev = prev;
-    }
-
-    public GameObject vod { get; }
-    public GameObject prev { get; }
-}

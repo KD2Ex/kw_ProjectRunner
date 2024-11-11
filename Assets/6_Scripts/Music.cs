@@ -15,16 +15,15 @@ public class Music : MonoBehaviour
         if (instance == null)
         {
             instance = this;
+            GameManager.instance.SceneMusic = this;
             DontDestroyOnLoad(this);
+            source = GetComponent<AudioSource>();
+            originClip = source.clip;
         }
         else
         {
             Destroy(gameObject);
         }
-        
-        source = GetComponent<AudioSource>();
-        originClip = source.clip;
-        GameManager.instance.SceneMusic = this;
     }
 
     public void SetVolume(float value)
