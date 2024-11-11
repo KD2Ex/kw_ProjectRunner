@@ -39,9 +39,6 @@ public class ChunkSpawnManager : MonoBehaviour
         chunkMovement = GameObject.FindGameObjectWithTag("ChunkParent").transform;
         playerTransform = PlayerLocator.instance.playerTransform;
 
-
-        Debug.Log(ChunkRandomManager.IsQueueEmpty);
-
         if (ChunkRandomManager.IsQueueEmpty)
         {
         }
@@ -141,7 +138,7 @@ public class ChunkSpawnManager : MonoBehaviour
                 getDestroyed.Value = 30f + rightOffset;
             }
             
-            Debug.Log($"Right Offset: {rightOffset}, getdestroyedvalue: {getDestroyed.Value}");
+            //Debug.Log($"Right Offset: {rightOffset}, getdestroyedvalue: {getDestroyed.Value}");
             //Debug.Log($"{CurrentChunk.gameObject.name} {CurrentChunk.position}");
         }
         
@@ -235,8 +232,6 @@ public class ChunkSpawnManager : MonoBehaviour
         LoadCurrentChunk(data.CurrentChunk);
         foreach (var chunkPrefab in data.Items)
         {
-            Debug.Log(chunkPrefab);
-            
             // find prefab in Resources by name
             ChunkRandomManager.AddChunkToQueue(chunkPrefab);
         }

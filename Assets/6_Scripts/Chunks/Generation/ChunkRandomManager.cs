@@ -101,7 +101,7 @@ public class ChunkRandomManager : ScriptableObject
         var chunks = GetNextChunks();
         chunks.Sort(CompareByPriority);
 
-        Debug.Log(chunks.Count);
+        //Debug.Log(chunks.Count);
         
         foreach (var chunk in chunks)
         {

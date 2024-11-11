@@ -520,12 +520,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 657162060341905449, guid: fcb8d22e0abf0134bb6c06a7c1d4b344, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1258896182805024991, guid: fcb8d22e0abf0134bb6c06a7c1d4b344, type: 3}
       propertyPath: cutScene
       value: 
       objectReference: {fileID: 4976281798245270438}
+    - target: {fileID: 1258896182805024991, guid: fcb8d22e0abf0134bb6c06a7c1d4b344, type: 3}
+      propertyPath: rawImage
+      value: 
+      objectReference: {fileID: 1753720454216401907}
     - target: {fileID: 1258896182805024991, guid: fcb8d22e0abf0134bb6c06a7c1d4b344, type: 3}
       propertyPath: autoPlayNextVideo
       value: 1
@@ -610,10 +614,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6581035992423598405, guid: fcb8d22e0abf0134bb6c06a7c1d4b344, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7713439674416474753, guid: fcb8d22e0abf0134bb6c06a7c1d4b344, type: 3}
       propertyPath: m_VideoClip
       value: 
       objectReference: {fileID: 32900000, guid: 00977ecccfb764d8e9bfb3a7fccf4fd7, type: 3}
+    - target: {fileID: 7713439674416474753, guid: fcb8d22e0abf0134bb6c06a7c1d4b344, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7713439674416474753, guid: fcb8d22e0abf0134bb6c06a7c1d4b344, type: 3}
       propertyPath: m_PlaybackSpeed
       value: 1
@@ -623,6 +635,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fcb8d22e0abf0134bb6c06a7c1d4b344, type: 3}
+--- !u!114 &1753720454216401907 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 879325450220988318, guid: fcb8d22e0abf0134bb6c06a7c1d4b344, type: 3}
+  m_PrefabInstance: {fileID: 1469733276066653293}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2124361785313930308 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 657162060341905449, guid: fcb8d22e0abf0134bb6c06a7c1d4b344, type: 3}

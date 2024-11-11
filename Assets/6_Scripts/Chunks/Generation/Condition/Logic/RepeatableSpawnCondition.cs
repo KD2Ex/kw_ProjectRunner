@@ -25,7 +25,7 @@ public class RepeatableSpawnCondition : ChunkSpawnCondition
         
         triggered = false;
         timeOfTrigger = (int) GameManager.instance.Timer.m_ElapsedTime;
-        Debug.Log(timeOfTrigger);
+        //Debug.Log(timeOfTrigger);
     }
 
     public override bool Evaluate()

@@ -204,6 +204,7 @@ public class Player : MonoBehaviour, IInvincible
     
     private void Awake()
     {
+        Application.targetFrameRate = 60;
         GameManager.instance.Player = this;
         
         so_DashEnergy.Value = 0f;
@@ -408,14 +409,9 @@ public class Player : MonoBehaviour, IInvincible
     private void OnJump(bool value) => m_JumpInput = value;
     private void OnTouchJump(Vector2 value)
     {
-        
-        Debug.Log(value);
         m_JumpInput = value.x < 800 && value.y > 800;
         m_SlideInput = value.x < 800 && value.y <= 800;
         m_RunInput = value.x > 1200;
-
-        Debug.Log(value.x);
-        Debug.Log(m_RunInput);
     }
 
     private void OnSlide(bool value) => m_SlideInput = value;

@@ -1,9 +1,10 @@
-using System.Diagnostics.Tracing;
 using UnityEngine;
 
 [RequireComponent(typeof(AudioSource))]
 public class Music : MonoBehaviour
 {
+    private static Music instance; 
+    
     private AudioSource source;
     private AudioClip originClip;
 
@@ -11,6 +12,16 @@ public class Music : MonoBehaviour
     
     private void Awake()
     {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(this);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+        
         source = GetComponent<AudioSource>();
         originClip = source.clip;
         GameManager.instance.SceneMusic = this;

@@ -12,5 +12,4 @@ public class RepeatableTimeCondition : ScriptableCondition
     {
         return new RepeatableSpawnCondition(this);
     }
-    
 }

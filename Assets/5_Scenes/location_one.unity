@@ -4216,13 +4216,6 @@ MonoBehaviour:
   - _gameObject: {fileID: 1417258490}
     _prefab: Assets/3_prefabs/locations/location_one/start_chunks/chunk_1 Cone n
       Log.prefab
-  - _gameObject: {fileID: 2094497691}
-    _prefab: Assets/3_prefabs/Parallax Layers/Layer objects/Location 1/Default Location
-      Pack/OLD_GLUED_sky.prefab
-  - _gameObject: {fileID: 8429932057258842805}
-    _prefab: Assets/3_prefabs/Parallax Layers/Layer objects/Location 1/Stamps/stump_one.prefab
-  - _gameObject: {fileID: 8429932057258842804}
-    _prefab: Assets/3_prefabs/Parallax Layers/Layer objects/Location 1/Stamps/stump_two.prefab
   - _gameObject: {fileID: 8429932057258842810}
     _prefab: Assets/3_prefabs/Enemies/Desctructable/Cone.prefab
   - _gameObject: {fileID: 8429932057258842809}
@@ -4278,8 +4271,6 @@ MonoBehaviour:
     _prefab: Assets/3_prefabs/Collectables/Coins/Coin.prefab
   - _gameObject: {fileID: 1960796813}
     _prefab: Assets/3_prefabs/locations/location_one/start_chunks/chunk_2 Eyes.prefab
-  - _gameObject: {fileID: 1833086701}
-    _prefab: Assets/3_prefabs/Parallax Layers/Layer objects/Location 1/Stamps/stump_four.prefab
   - _gameObject: {fileID: 1445543048}
     _prefab: Assets/3_prefabs/Enemies/god_eye.prefab
   - _gameObject: {fileID: 1445543047}
@@ -4680,8 +4671,6 @@ MonoBehaviour:
   - _gameObject: {fileID: 1788922070}
     _prefab: Assets/3_prefabs/locations/location_one/start_chunks/chunk_2 Cursed
       coin.prefab
-  - _gameObject: {fileID: 6327602961001965525}
-    _prefab: Assets/3_prefabs/Parallax Layers/Layer objects/Location 1/Stamps/stump_three.prefab
   - _gameObject: {fileID: 6327602961001965521}
     _prefab: Assets/3_prefabs/Collectables/Coins/CURSED/CURSED Air Coin.prefab
   - _gameObject: {fileID: 6327602961001965524}
@@ -34605,11 +34594,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4648877819572549844, guid: 50512f867dc83ae4e8fc53b0e3b57948, type: 3}
   m_PrefabInstance: {fileID: 8721327369677543759}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1833086701 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8593272644686726792, guid: 50512f867dc83ae4e8fc53b0e3b57948, type: 3}
-  m_PrefabInstance: {fileID: 8721327369677543759}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1834117956 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7700220627503686671, guid: e19020d79cc49384a899c494ada0b7b5, type: 3}
@@ -39120,11 +39104,6 @@ GameObject:
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8942080441420807125, guid: 84a63719553ef2d409350a62b2a3b6c5, type: 3}
   m_PrefabInstance: {fileID: 4983147892646311329}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &2094497691 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4612404293634924894, guid: 62979f7bed3705a4ca49df43ca135d42, type: 3}
-  m_PrefabInstance: {fileID: 8429932057258842801}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &2095872952 stripped
 GameObject:
@@ -45427,6 +45406,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1042268388148916830, guid: 84a63719553ef2d409350a62b2a3b6c5, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5261239146025698626, guid: 84a63719553ef2d409350a62b2a3b6c5, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5310703498615769691, guid: 84a63719553ef2d409350a62b2a3b6c5, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -45466,6 +45453,10 @@ PrefabInstance:
     - target: {fileID: 5310703498615769691, guid: 84a63719553ef2d409350a62b2a3b6c5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7044902882852403182, guid: 84a63719553ef2d409350a62b2a3b6c5, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -46658,11 +46649,6 @@ GameObject:
 --- !u!1 &6327602961001965524 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6124025767769882883, guid: 133f38d05077024478c958512b89e4c5, type: 3}
-  m_PrefabInstance: {fileID: 6327602961001965520}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &6327602961001965525 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6369089868508528308, guid: 133f38d05077024478c958512b89e4c5, type: 3}
   m_PrefabInstance: {fileID: 6327602961001965520}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6334471337878328483
@@ -48974,6 +48960,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3194241432718725271, guid: 0e4b0d711e52fa1479df27276b1be3b9, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5150608268836679917, guid: 0e4b0d711e52fa1479df27276b1be3b9, type: 3}
       propertyPath: m_Name
       value: chunk_5 Cursed Karp
@@ -48981,6 +48971,14 @@ PrefabInstance:
     - target: {fileID: 5150608268836679917, guid: 0e4b0d711e52fa1479df27276b1be3b9, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5994776632211339602, guid: 0e4b0d711e52fa1479df27276b1be3b9, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7847889805425497824, guid: 0e4b0d711e52fa1479df27276b1be3b9, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -49247,16 +49245,6 @@ GameObject:
 --- !u!1 &8429932057258842803 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2381886907674684972, guid: 62979f7bed3705a4ca49df43ca135d42, type: 3}
-  m_PrefabInstance: {fileID: 8429932057258842801}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &8429932057258842804 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 9011428261872913260, guid: 62979f7bed3705a4ca49df43ca135d42, type: 3}
-  m_PrefabInstance: {fileID: 8429932057258842801}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &8429932057258842805 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 868701020077198374, guid: 62979f7bed3705a4ca49df43ca135d42, type: 3}
   m_PrefabInstance: {fileID: 8429932057258842801}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &8429932057258842807 stripped

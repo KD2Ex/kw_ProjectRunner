@@ -17,6 +17,6 @@ public class SyncAnimation : MonoBehaviour
         offset = Convert.ToSingle(offset - Math.Truncate(offset));
         
         animator.Play(m_AnimationName, 0, offset);
-        Debug.Log(offset);
+        //Debug.Log(offset);
     }
 }

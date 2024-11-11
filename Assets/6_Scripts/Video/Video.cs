@@ -1,17 +1,26 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Video;
 
 public class Video : MonoBehaviour
 {
     [SerializeField] private CutScene cutScene;
+    [SerializeField] private RawImage rawImage;
     [SerializeField] private VideoPlayer video;
 
     [SerializeField] private bool autoPlayNextVideo;
     
     private bool start;
-    
+
+    private void Awake()
+    {
+        var renderText = rawImage.texture as RenderTexture;
+        renderText.Release();
+        video.Prepare();
+    }
+
     void Start()
     {
         Debug.Log(video.length);

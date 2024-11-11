@@ -60,7 +60,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        brightnessSetting.SetLevel(Config.Data.Brightness);
+        //brightnessSetting.SetLevel(Config.Data.Brightness);
         soundFXSetting.SetLevel(Config.Data.SoundFX);
         musicSetting.SetLevel(Config.Data.Music);
         masterSetting.SetLevel(Config.Data.Master);

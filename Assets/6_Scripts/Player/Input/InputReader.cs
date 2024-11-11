@@ -113,8 +113,6 @@ public class InputReader : ScriptableObject,
 
     public void OnTouchJump(InputAction.CallbackContext context)
     {
-        Debug.Log(Touchscreen.current.primaryTouch.IsPressed());
-        
         var pos = Touchscreen.current.primaryTouch.IsPressed() ? context.ReadValue<Vector2>() : Vector2.zero;
         TouchJumpEvent?.Invoke(context.ReadValue<Vector2>());
     }

@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class RestartScenes : MonoBehaviour
 {
     [SerializeField] private InputReader m_Input;
-
+    [SerializeField] private string sceneName;
     private Player player;
     
     private void Awake()
@@ -35,7 +35,7 @@ public class RestartScenes : MonoBehaviour
         PlayerLocator.instance.playerTransform.position = PlayerLocator.instance.DefaultPosition;
         player.Restart();*/
 
-        SceneManager.LoadScene("Main");
+        SceneManager.LoadScene(sceneName);
         m_Input.EnableGameplayInput();
         /*var async = SceneManager.UnloadSceneAsync("Test");
         StartCoroutine(Unloading(async, () => SceneManager.LoadScene("Test")));*/

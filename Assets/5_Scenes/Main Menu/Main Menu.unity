@@ -510,6 +510,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7640085428616829801, guid: 60f476be610f11747a9ce17ba2adf608, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8308483308126497855, guid: 60f476be610f11747a9ce17ba2adf608, type: 3}
       propertyPath: m_Camera
       value: 
@@ -1670,7 +1674,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 455841413}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 767292280}
+        m_TargetAssemblyTypeName: UIStartGameSelection, Assembly-CSharp
+        m_MethodName: Press
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &455841413
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6548,7 +6564,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2082532887}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 948f4100a11a5c24981795d21301da5c, type: 3}
   m_Name: 
@@ -6725,15 +6741,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4901755188710689828, guid: 1b2b494d8a8bc7c438bf8de44350c25e, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4901755188710689828, guid: 1b2b494d8a8bc7c438bf8de44350c25e, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4901755188710689828, guid: 1b2b494d8a8bc7c438bf8de44350c25e, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4901755188710689828, guid: 1b2b494d8a8bc7c438bf8de44350c25e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
