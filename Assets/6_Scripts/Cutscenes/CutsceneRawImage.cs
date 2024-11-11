@@ -12,6 +12,16 @@ public class CutsceneRawImage : MonoBehaviour
         GameManager.instance.CutsceneRawImage = this;
     }
 
+    private void OnEnable()
+    {
+        ReleaseVideoRenderText();
+    }
+
+    private void OnDisable()
+    {
+        ReleaseVideoRenderText();
+    }
+
     public void ReleaseVideoRenderText()
     {
         VideoRenderTexture.Release();

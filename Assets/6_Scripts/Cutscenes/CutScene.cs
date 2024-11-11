@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Serialization;
 using UnityEngine.Video;
@@ -8,6 +7,7 @@ using UnityEngine.Video;
 public class VideoCutscene
 {
     public VideoPlayer Vod;
+    public AudioSource Source;
     public bool AutoPlayNext;
 
     public void Prepare()
@@ -28,7 +28,7 @@ public class CutScene : MonoBehaviour
     [FormerlySerializedAs("vods")] [SerializeField] private VideoCutscene[] videos;
 
     private int index = 0;
-    private VideoPlayer playing;
+    private VideoCutscene playing;
 
     private Music locationTheme => GameManager.instance.SceneMusic;
     private bool canPlay;
@@ -39,12 +39,12 @@ public class CutScene : MonoBehaviour
     
     private void Awake()
     {
-        foreach (var vod in videos)
+        PrepareVods();
+        foreach (var video in videos)
         {
-            vod.Prepare();
-            if (vod.AutoPlayNext)
+            if (video.AutoPlayNext)
             {
-                vod.Vod.loopPointReached += (video) =>
+                video.Vod.loopPointReached += (video) =>
                 {
                     Play();
                 };
@@ -72,15 +72,27 @@ public class CutScene : MonoBehaviour
         canPlay = GameManager.instance.MovementSpeed.Value < .0001f;
     }
 
+    private void PrepareVods()
+    {
+        foreach (var vod in videos)
+        {
+            vod.Prepare();
+        }
+    }
+
     public void Play()
     {
         if (!canPlay) return;
         
         Debug.Log("Play");
-        
-        if (playing)
+
+        if (playing != null)
         {
-            playing.Stop();
+            playing.Vod.Stop();
+            if (playing.Source)
+            {
+                playing.Source.Stop();
+            }
         }
         
         if (index == 0)
@@ -94,8 +106,14 @@ public class CutScene : MonoBehaviour
             return;
         }
         
-        videos[index].Play();
-        playing = videos[index].Vod;
+        var vod = videos[index];
+        
+        vod.Play();
+        playing = vod;
+        if (vod.Source)
+        {
+            vod.Source.Play();
+        }
         
         index++;
     }
@@ -121,6 +139,8 @@ public class CutScene : MonoBehaviour
         Release();
         
         OnEnd?.Invoke();
+        
+        PrepareVods();
         
         Time.timeScale = 1f;
     }
