@@ -1,15 +1,31 @@
 using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class CollectablesPanel : PanelNavigation
 {
     [SerializeField] private UIBackToGame backToGame;
     [SerializeField] private UIOpenNemoPanel openNemo;
     [SerializeField] private ExitToMenuSelection exit;
+
+    public UnityEvent Open;
+    public UnityEvent Closed;
     
     private void Awake()
     {
         selections = new UISelection[,] { {backToGame, openNemo, exit } };
+    }
+
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+        Open?.Invoke();
+    }
+
+    protected override void OnDisable()
+    {
+        base.OnDisable();
+        Closed?.Invoke();
     }
 
     private void Start()

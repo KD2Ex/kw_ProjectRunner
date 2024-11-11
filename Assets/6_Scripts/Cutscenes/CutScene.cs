@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Serialization;
 using UnityEngine.Video;
@@ -49,7 +50,10 @@ public class CutScene : MonoBehaviour
                 };
             }
         }
-        
+    }
+
+    private void Start()
+    {
         Release();
     }
 
@@ -109,9 +113,6 @@ public class CutScene : MonoBehaviour
     {
         input.EnableGameplayInput();
         input.EnableUIInput();
-        
-        
-        
         
         locationTheme.Source.UnPause();
         index = 0;

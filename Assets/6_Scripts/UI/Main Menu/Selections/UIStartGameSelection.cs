@@ -8,7 +8,7 @@ public class UIStartGameSelection : UISelection
     public override void Press()
     {
         //SoundFXManager.instance.PlayClipAsChild(sounds.GetRandom(), SoundFXManager.instance.transform, 1f);
-        var async = SceneManager.LoadSceneAsync("TestMobileScene");
+        var async = SceneManager.LoadSceneAsync("Main");
         async.allowSceneActivation = true;
         
         GameManager.instance.OpenLoadingScreen(async);

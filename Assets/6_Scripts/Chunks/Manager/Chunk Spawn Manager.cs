@@ -95,7 +95,6 @@ public class ChunkSpawnManager : MonoBehaviour
     {
         var instance = Instantiate(prefab, chunkMovement);
         
-        
         var instPos = instance.transform.position;
         instance.transform.position = new Vector3(instPos.x + xOffset, instPos.y, 0f);
 
