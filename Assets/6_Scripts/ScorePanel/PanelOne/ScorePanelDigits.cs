@@ -51,7 +51,6 @@ public class ScorePanelDigits : ScorePanelElement
             result += $"<sprite={number}>";
         }
 
-        Debug.Log(result);
         return result;
     }
 

@@ -34,7 +34,7 @@ public class DeathVideo : ScorePanelElement
     public override void Stop()
     {
         videoPlayer.Stop();
-        GameManager.instance.CutsceneRawImage.ReleaseVideoRenderText();
+        //GameManager.instance.CutsceneRawImage.ReleaseVideoRenderText();
         
         button.gameObject.SetActive(false);
     }

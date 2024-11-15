@@ -11,12 +11,10 @@ public class ScorePanel : MonoBehaviour
 
     private void OnEnable()
     {
-        input.CutsceneSkipEvent += Execute;
     }
 
     private void OnDisable()
     {
-        input.CutsceneSkipEvent -= Execute;
     }
     
     private void Execute()
@@ -54,6 +52,8 @@ public class ScorePanel : MonoBehaviour
 
     public void StartSequence()
     {
+        input.CutsceneSkipEvent += Execute;
+        
         input.DisableUIInput();
         input.DisableGameplayInput();
         input.DisableBossGameplayInput();
@@ -66,5 +66,7 @@ public class ScorePanel : MonoBehaviour
         input.EnableUIInput();
         input.EnableGameplayInput();
         input.EnableBossGameplayInput();
+        
+        input.CutsceneSkipEvent -= Execute;
     }
 }

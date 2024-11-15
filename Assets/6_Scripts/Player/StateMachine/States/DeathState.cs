@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Linq;
+using UnityEditor.Experimental.GraphView;
+using UnityEngine;
 
 public class DeathState : BaseState
 {
@@ -35,6 +37,7 @@ public class DeathState : BaseState
     {
         base.Update();
 
+        
         /*var stateInfo = animator.GetCurrentAnimatorStateInfo(0);
 
         if (!stateInfo.IsName("run_jump_death")

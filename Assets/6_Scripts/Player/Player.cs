@@ -201,6 +201,8 @@ public class Player : MonoBehaviour, IInvincible
     public float m_AirDashMovementDirection { get; private set; }
 
     #endregion
+
+    public void OnDeathAnimEnd() => OnDeath?.Invoke();
     
     private void Awake()
     {
@@ -578,7 +580,6 @@ public class Player : MonoBehaviour, IInvincible
 
         m_SpeedController.ResetSpeed();
         DisableInput();
-        OnDeath?.Invoke();
         
         SaveSystem.Save();
     }
