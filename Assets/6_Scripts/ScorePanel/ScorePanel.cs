@@ -29,6 +29,7 @@ public class ScorePanel : MonoBehaviour
         if (index == elements.Length)
         {
             index = 0;
+            EndSequence();
             SceneManager.LoadSceneAsync("Main"); // load curr location; save ?
             //SaveSystem.Save();
             return;
@@ -58,5 +59,12 @@ public class ScorePanel : MonoBehaviour
         input.DisableBossGameplayInput();
         
         Execute();
+    }
+
+    private void EndSequence()
+    {
+        input.EnableUIInput();
+        input.EnableGameplayInput();
+        input.EnableBossGameplayInput();
     }
 }

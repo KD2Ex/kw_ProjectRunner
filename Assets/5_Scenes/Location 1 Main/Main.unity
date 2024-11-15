@@ -764,7 +764,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: New Text
+  m_text: <sprite=0><sprite=0><sprite=0><sprite=0><sprite=0><sprite=0>
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -783,7 +783,7 @@ MonoBehaviour:
     bottomLeft: {r: 1, g: 1, b: 1, a: 1}
     bottomRight: {r: 1, g: 1, b: 1, a: 1}
   m_fontColorGradientPreset: {fileID: 0}
-  m_spriteAsset: {fileID: 0}
+  m_spriteAsset: {fileID: 11400000, guid: 189e2de5cb1431342adcd02b957f9791, type: 2}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
   m_TextStyleHashCode: -1183493901
@@ -2532,7 +2532,6 @@ GameObject:
   - component: {fileID: 902838275}
   - component: {fileID: 902838274}
   - component: {fileID: 902838273}
-  - component: {fileID: 902838272}
   - component: {fileID: 902838271}
   m_Layer: 5
   m_Name: E_Button
@@ -2573,19 +2572,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fadeRate: 2
---- !u!114 &902838272
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 902838269}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce0303a0a097e2f46ab5634111e432d3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animator: {fileID: 902838273}
 --- !u!95 &902838273
 Animator:
   serializedVersion: 5
@@ -4669,7 +4655,7 @@ MonoBehaviour:
   scorePanel: {fileID: 533573643}
   coins: {fileID: 11400000, guid: d573596b5a8d7f144a0093c0b4c0fcdb, type: 2}
   text: {fileID: 286273270}
-  rate: 1
+  rate: 100
 --- !u!114 &1894433232
 MonoBehaviour:
   m_ObjectHideFlags: 0

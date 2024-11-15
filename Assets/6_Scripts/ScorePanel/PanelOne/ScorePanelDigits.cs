@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -24,16 +25,39 @@ public class ScorePanelDigits : ScorePanelElement
     {
         for (int i = 0; i < coins.Value; i += rate)
         {
-            text.text = i.ToString();
+            text.text = FormatDigits(i);
             yield return null;
         }
 
-        text.text = coins.Value.ToString();
+        text.text = FormatDigits((int)coins.Value);
+    }
+
+    private string FormatDigits(int value)
+    {
+        string result = "";
+        List<int> extractedNumbers = new();
+        var count = value;
+
+        while (count > 0)
+        {
+            var number = count % 10;
+            extractedNumbers.Add(number);
+            count /= 10;
+        }
+
+        extractedNumbers.Reverse();
+        foreach (var number in extractedNumbers)
+        {
+            result += $"<sprite={number}>";
+        }
+
+        Debug.Log(result);
+        return result;
     }
 
     public void Skip()
     {
         StopAllCoroutines();
-        text.text = coins.Value.ToString();
+        text.text = FormatDigits((int)coins.Value);
     }
 }
