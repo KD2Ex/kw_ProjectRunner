@@ -1,5 +1,7 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.SceneManagement;
 
 public class SoundMixerManager : MonoBehaviour
 {
@@ -24,8 +26,15 @@ public class SoundMixerManager : MonoBehaviour
             -10,
             0
         };
+        
     }
 
+    private void OnEnable()
+    {
+        UnityEngine.Debug.Log("Eanbled " + gameObject.name);
+    }
+    
+    
 
     public void SetMasterVolume(float level)
     {

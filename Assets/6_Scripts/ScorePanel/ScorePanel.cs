@@ -1,11 +1,13 @@
-﻿using UnityEngine;
+﻿using System.Runtime.InteropServices;
+using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 
 public class ScorePanel : MonoBehaviour
 {
     [SerializeField] private ScorePanelElement[] elements;
     [SerializeField] private InputReader input;
-
+    [SerializeField] private AudioMixerGroup mixer;
     private ScorePanelElement currentElement;
     private int index;
 
@@ -50,6 +52,7 @@ public class ScorePanel : MonoBehaviour
         Execute();
     }
 
+    
     public void StartSequence()
     {
         input.CutsceneSkipEvent += Execute;
@@ -57,6 +60,9 @@ public class ScorePanel : MonoBehaviour
         input.DisableUIInput();
         input.DisableGameplayInput();
         input.DisableBossGameplayInput();
+        
+        GameManager.instance.SceneMusic.Source.Pause();
+        mixer.audioMixer.SetFloat("soundFXVolume", -80f);
         
         Execute();
     }

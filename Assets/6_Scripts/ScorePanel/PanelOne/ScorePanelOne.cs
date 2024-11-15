@@ -1,9 +1,17 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.Video;
 
 public class ScorePanelOne : ScorePanelElement
 {
     [SerializeField] private VideoPlayer videoPlayer;
+    [SerializeField] private AudioSource source;
+    [SerializeField] private SoundList soundList;
+    
+    private void Awake()
+    {
+        source.clip = soundList.GetRandom();
+    }
 
     private void OnEnable()
     { 
@@ -21,6 +29,7 @@ public class ScorePanelOne : ScorePanelElement
     public override void Execute()
     {
         videoPlayer.Play();
+        source.Play();
     }
 
     public override void Stop()

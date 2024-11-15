@@ -9,16 +9,25 @@ public class ScorePanelDigits : ScorePanelElement
     [SerializeField] private TMP_Text text;
     
     [SerializeField] private int rate;
+
+    private bool animationFinished;
     
     public override void Execute()
     {
         gameObject.SetActive(true);
         StartCoroutine(ShowScore());
+        StartCoroutine(WaitForAnimation());
     }
 
     public override void Stop()
     {
         
+    }
+
+    private IEnumerator WaitForAnimation()
+    {
+        yield return new WaitUntil(() => animationFinished);
+        scorePanel.PlayNext();
     }
 
     private IEnumerator ShowScore()
@@ -30,6 +39,7 @@ public class ScorePanelDigits : ScorePanelElement
         }
 
         text.text = FormatDigits((int)coins.Value);
+        animationFinished = true;
     }
 
     private string FormatDigits(int value)
@@ -58,5 +68,6 @@ public class ScorePanelDigits : ScorePanelElement
     {
         StopAllCoroutines();
         text.text = FormatDigits((int)coins.Value);
+        animationFinished = true;
     }
 }

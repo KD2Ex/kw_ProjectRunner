@@ -28,7 +28,6 @@ public class GameManager : MonoBehaviour
     private SoundList loadingSound;
     public Animator loadingScreen;
     
-    
     [field: SerializeField] public FloatVariable MovementSpeed { get; private set; }
     
     public Player Player { get; set; }
@@ -56,13 +55,14 @@ public class GameManager : MonoBehaviour
         
         SceneManager.sceneLoaded += (scene, mode) =>
         {
-
+            soundFXSetting.SetLevel(Config.Data.SoundFX);
+            musicSetting.SetLevel(Config.Data.Music);
+            masterSetting.SetLevel(Config.Data.Master);
         };
     }
 
     private void Start()
     {
-        //brightnessSetting.SetLevel(Config.Data.Brightness);
         soundFXSetting.SetLevel(Config.Data.SoundFX);
         musicSetting.SetLevel(Config.Data.Music);
         masterSetting.SetLevel(Config.Data.Master);
