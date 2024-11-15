@@ -52,11 +52,6 @@ public class ApproachingButton : MonoBehaviour
     {
         if (!gameObject.activeSelf) return;
 
-        if (image)
-        {
-            Debug.Log(image.color.a);
-        }
-        
         StopAllCoroutines();
         var color = isImage ? image.color : sprite.color;
         StartCoroutine(Coroutines.FadeFloat(color.a, 1f, fadeRate, SetColor));

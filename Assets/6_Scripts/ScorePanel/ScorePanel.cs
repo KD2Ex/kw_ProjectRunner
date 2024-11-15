@@ -1,6 +1,4 @@
-﻿using System;
-using UnityEngine;
-using UnityEngine.Animations;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class ScorePanel : MonoBehaviour
@@ -25,7 +23,7 @@ public class ScorePanel : MonoBehaviour
     {
         if (currentElement)
         {
-            currentElement.gameObject.SetActive(false);
+            currentElement.Stop();
         }
         
         if (index == elements.Length)
@@ -46,6 +44,11 @@ public class ScorePanel : MonoBehaviour
         elem.Execute();
         index++;
         currentElement = elem;
+    }
+
+    public void PlayNext()
+    {
+        Execute();
     }
 
     public void StartSequence()

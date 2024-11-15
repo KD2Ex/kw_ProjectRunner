@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class DeathVideoHintButton : MonoBehaviour
 {
-    [SerializeField] private InputReader input;
     [SerializeField] private float seconds;
     [SerializeField] private ApproachingButton button;
     private WaitForSecondsRealtime waiter;
@@ -17,22 +16,11 @@ public class DeathVideoHintButton : MonoBehaviour
 
     private void OnEnable()
     {
-        input.CutsceneSkipEvent += Next;
-        
-    }
-    
-    private void OnDisable()
-    {
-        input.CutsceneSkipEvent -= Next;
         StopAllCoroutines();
-    }
-
-    private void Next()
-    {
-        Destroy(gameObject);
+        StartCoroutine(DeathVideoStarts());
     }
     
-    private IEnumerator Start()
+    private IEnumerator DeathVideoStarts()
     {
         while (true)
         {

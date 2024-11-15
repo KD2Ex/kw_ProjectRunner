@@ -1,25 +1,32 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Video;
 
-public class ScorePanelOne : MonoBehaviour
+public class ScorePanelOne : ScorePanelElement
 {
-     [SerializeField] private InputReader input;
+    [SerializeField] private VideoPlayer videoPlayer;
 
-     [SerializeField] private VideoPlayer videoPlayer;
-     
-     private void OnEnable()
-     {
-          
-     }
+    private void OnEnable()
+    { 
+        videoPlayer.Prepare();
+        videoPlayer.loopPointReached += OnVideoEnd;
+    }
+    
+    private void OnDisable()
+    {
+        videoPlayer.loopPointReached -= OnVideoEnd;
+    }
 
-     private void OnDisable()
-     {
-          
-     }
+    private void OnVideoEnd(VideoPlayer vPlayer) => scorePanel.PlayNext();
+    
+    public override void Execute()
+    {
+        videoPlayer.Play();
+    }
 
-     public void Play()
-     {
-          
-     }
+    public override void Stop()
+    {
+        videoPlayer.loopPointReached -= OnVideoEnd;
+        videoPlayer.Stop();
+        GameManager.instance.CutsceneRawImage.ReleaseVideoRenderText();        
+    }
 }

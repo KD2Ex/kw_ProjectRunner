@@ -44,7 +44,6 @@ public class SlowTime : MonoBehaviour
 
     private void Setter(float value)
     {
-        Debug.Log(value);
         Time.timeScale = value;
     }
 }

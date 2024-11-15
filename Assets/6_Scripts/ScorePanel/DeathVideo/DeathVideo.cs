@@ -1,40 +1,41 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Video;
 
-public class DeathVideo : MonoBehaviour
+public class DeathVideo : ScorePanelElement
 {
     [SerializeField] private VideoClipsData data;
-
     [SerializeField] private VideoPlayer videoPlayer;
 
-    private void Awake()
+    [SerializeField] private DeathVideoHintButton button;
+    
+    private void OnEnable()
     {
-        videoPlayer.Prepare();
+        Prepare();
     }
 
-    public void Prepare()
+    private void Prepare()
     {
+        GameManager.instance.CutsceneRawImage.ReleaseVideoRenderText();
         videoPlayer.clip = data.GetRandom();
         videoPlayer.Prepare();
     }
     
-    public void Play()
+    private void Play()
     {
         videoPlayer.Play();
     }
-    
-    // Start is called before the first frame update
-    void Start()
+
+    public override void Execute()
     {
-        
+        Play();
+        button.gameObject.SetActive(true);
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void Stop()
     {
+        videoPlayer.Stop();
+        GameManager.instance.CutsceneRawImage.ReleaseVideoRenderText();
         
+        button.gameObject.SetActive(false);
     }
 }
