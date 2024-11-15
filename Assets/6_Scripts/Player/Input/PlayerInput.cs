@@ -653,6 +653,15 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""XYMove"",
+                    ""type"": ""Button"",
+                    ""id"": ""79bea6a3-8b61-4fbc-9c3b-9dc212e6a4de"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -666,6 +675,39 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""action"": ""Skip"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""1D Axis"",
+                    ""id"": ""0ab9fd2e-f395-4317-9714-457f5ec00e80"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""XYMove"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""0ec83983-0dd6-4664-87fc-a69605293971"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""XYMove"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""e239edca-121f-4ff6-b1fa-68d8f9e52459"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""XYMove"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -720,6 +762,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         // Cutscene
         m_Cutscene = asset.FindActionMap("Cutscene", throwIfNotFound: true);
         m_Cutscene_Skip = m_Cutscene.FindAction("Skip", throwIfNotFound: true);
+        m_Cutscene_XYMove = m_Cutscene.FindAction("XYMove", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1054,11 +1097,13 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Cutscene;
     private List<ICutsceneActions> m_CutsceneActionsCallbackInterfaces = new List<ICutsceneActions>();
     private readonly InputAction m_Cutscene_Skip;
+    private readonly InputAction m_Cutscene_XYMove;
     public struct CutsceneActions
     {
         private @PlayerInput m_Wrapper;
         public CutsceneActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
         public InputAction @Skip => m_Wrapper.m_Cutscene_Skip;
+        public InputAction @XYMove => m_Wrapper.m_Cutscene_XYMove;
         public InputActionMap Get() { return m_Wrapper.m_Cutscene; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1071,6 +1116,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Skip.started += instance.OnSkip;
             @Skip.performed += instance.OnSkip;
             @Skip.canceled += instance.OnSkip;
+            @XYMove.started += instance.OnXYMove;
+            @XYMove.performed += instance.OnXYMove;
+            @XYMove.canceled += instance.OnXYMove;
         }
 
         private void UnregisterCallbacks(ICutsceneActions instance)
@@ -1078,6 +1126,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Skip.started -= instance.OnSkip;
             @Skip.performed -= instance.OnSkip;
             @Skip.canceled -= instance.OnSkip;
+            @XYMove.started -= instance.OnXYMove;
+            @XYMove.performed -= instance.OnXYMove;
+            @XYMove.canceled -= instance.OnXYMove;
         }
 
         public void RemoveCallbacks(ICutsceneActions instance)
@@ -1152,5 +1203,6 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     public interface ICutsceneActions
     {
         void OnSkip(InputAction.CallbackContext context);
+        void OnXYMove(InputAction.CallbackContext context);
     }
 }

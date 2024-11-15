@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -30,6 +31,8 @@ public class InputReader : ScriptableObject,
     public UnityAction<int> UIXMoveEvent;
     public UnityAction<int> UIYMoveEvent;
 
+    public UnityAction<float> XYMoveEvent;
+    
     public UnityAction CutsceneSkipEvent; 
     
     public bool RunTriggered =>_input.Gameplay.Run.triggered;
@@ -173,5 +176,11 @@ public class InputReader : ScriptableObject,
         
         CutsceneSkipEvent?.Invoke();
         Debug.Log("Cut event invoked");
+    }
+
+    public void OnXYMove(InputAction.CallbackContext context)
+    {
+        Debug.Log(context.performed);
+        XYMoveEvent?.Invoke(context.ReadValue<float>());
     }
 }
