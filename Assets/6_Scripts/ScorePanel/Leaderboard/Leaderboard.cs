@@ -23,6 +23,8 @@ public class Leaderboard : ScorePanelElement
             instSprite.sprite = sprite;
             yPos -= 1080;
         }
+        
+        gameObject.SetActive(false);
     }
 
     private void OnEnable()
@@ -54,6 +56,6 @@ public class Leaderboard : ScorePanelElement
 
     public override void Stop()
     {
-        
+        //gameObject.SetActive(false);
     }
 }

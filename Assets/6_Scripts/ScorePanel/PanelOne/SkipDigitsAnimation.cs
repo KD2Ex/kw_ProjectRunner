@@ -11,6 +11,6 @@ public class SkipDigitsAnimation : ScorePanelElement
 
     public override void Stop()
     {
-        
+        digits.gameObject.SetActive(false);
     }
 }
