@@ -6,6 +6,8 @@ public class Coins : ScriptableObject
     [SerializeField] private FloatVariable m_Value;
     [SerializeField] private bool m_ResetOnAwake;
 
+    public int Total { get; private set; }
+    
     public int Value => (int) m_Value.Value;
     
     private void Awake()
@@ -16,6 +18,7 @@ public class Coins : ScriptableObject
     public void AddCoins(float value)
     {
         m_Value.Value += value;
+        Total += (int) value;
     }
 
     public bool RemoveCoins(float value)
@@ -31,15 +34,24 @@ public class Coins : ScriptableObject
         m_Value.Value = 0f;
     }
 
-    public void Save(ref IntSaveData data)
+    public void Save(ref CoinsSaveData data)
     {
-        data.Value = Value;
+        data.Current = Value;
+        data.Total = Total;
     }
 
-    public void Load(IntSaveData data)
+    public void Load(CoinsSaveData data)
     {
-        m_Value.Value = data.Value;
+        m_Value.Value = data.Current;
+        Total = data.Total;
     }
+}
+
+[System.Serializable]
+public struct CoinsSaveData
+{
+    public int Current;
+    public int Total;
 }
 
 [System.Serializable]

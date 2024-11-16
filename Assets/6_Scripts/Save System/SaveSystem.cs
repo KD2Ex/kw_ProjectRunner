@@ -13,7 +13,7 @@ public class SaveSystem
     [System.Serializable]
     public struct SaveData
     {
-        [FormerlySerializedAs("CoinsData")] public IntSaveData Coins;
+        [FormerlySerializedAs("CoinsData")] public CoinsSaveData Coins;
         public IntSaveData Shield;
         public IntSaveData Magnet;
         public IntSaveData X2;
