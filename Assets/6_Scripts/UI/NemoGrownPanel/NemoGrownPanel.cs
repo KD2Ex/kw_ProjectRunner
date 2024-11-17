@@ -3,13 +3,16 @@ using UnityEngine;
 
 public class NemoGrownPanel : MonoBehaviour
 {
-    [SerializeField] private GameObject[] levels;
     [SerializeField] private InputReader input;
+    [SerializeField] private GameObject upgradeButton;
+    [SerializeField] private GameObject[] levels;
 
     private int currentIndex => GameManager.instance.NemoCurrentLevel;
     private GameObject currentLevel => levels[currentIndex];
 
-    private bool readyForEvolve;
+    private bool canBeUpgraded => 
+        GameManager.instance.NemoReadyToEvolve &&
+        !GameManager.instance.NemoEvolvedOnLocation;
     
     private void OnEnable()
     {
@@ -36,6 +39,11 @@ public class NemoGrownPanel : MonoBehaviour
             level.SetActive(false);
         }
         */
+
+        if (canBeUpgraded)
+        {
+            upgradeButton.SetActive(true);
+        }
         input.DisableUIInput();
         Debug.Log("open");
         currentLevel.SetActive(true);
@@ -43,7 +51,7 @@ public class NemoGrownPanel : MonoBehaviour
     
     private void Close()
     {
-        if (GameManager.instance.NemoReadyToEvolve && !GameManager.instance.NemoEvolvedOnLocation)
+        if (canBeUpgraded)
         {
             GameManager.instance.NemoEvolvedOnLocation = true;
             GameManager.instance.NemoCurrentLevel++;
@@ -51,6 +59,7 @@ public class NemoGrownPanel : MonoBehaviour
             currentLevel.SetActive(true);
             levels[currentIndex - 1].SetActive(false);
             
+            upgradeButton.SetActive(false);
             return;
         }
         
