@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class NemoGrownPanel : MonoBehaviour
 {
@@ -7,6 +8,9 @@ public class NemoGrownPanel : MonoBehaviour
     [SerializeField] private GameObject upgradeButton;
     [SerializeField] private GameObject[] levels;
 
+    public UnityEvent OnOpen;
+    public UnityEvent OnClose;
+    
     private int currentIndex => GameManager.instance.NemoCurrentLevel;
     private GameObject currentLevel => levels[currentIndex];
 
@@ -39,7 +43,9 @@ public class NemoGrownPanel : MonoBehaviour
             level.SetActive(false);
         }
         */
-
+        
+        OnOpen?.Invoke();
+        
         if (canBeUpgraded)
         {
             upgradeButton.SetActive(true);
@@ -51,6 +57,7 @@ public class NemoGrownPanel : MonoBehaviour
     
     private void Close()
     {
+        
         if (canBeUpgraded)
         {
             GameManager.instance.NemoEvolvedOnLocation = true;
@@ -62,6 +69,8 @@ public class NemoGrownPanel : MonoBehaviour
             upgradeButton.SetActive(false);
             return;
         }
+        
+        OnClose?.Invoke();
         
         Debug.Log("close");
         input.EnableUIInput();

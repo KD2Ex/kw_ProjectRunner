@@ -4,7 +4,7 @@ using UnityEngine.Events;
 
 public class CollectablesPanel : PanelNavigation
 {
-    [SerializeField] private Coins coins;
+    [SerializeField] private AudioSource music;
     
     [SerializeField] private UIBackToGame backToGame;
     [SerializeField] private UIOpenNemoPanel openNemo;
@@ -25,6 +25,8 @@ public class CollectablesPanel : PanelNavigation
         base.OnEnable();
         Open?.Invoke();
 
+        music.Play();
+        GameManager.instance.SceneMusic.Source.Pause();
         //openNemo.gameObject.SetActive(nemoOpened);
     }
 
@@ -32,6 +34,9 @@ public class CollectablesPanel : PanelNavigation
     {
         base.OnDisable();
         Closed?.Invoke();
+        
+        music.Stop();
+        GameManager.instance.SceneMusic.Source.UnPause();
     }
 
     private void Start()
