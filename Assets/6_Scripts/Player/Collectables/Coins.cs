@@ -6,7 +6,7 @@ public class Coins : ScriptableObject
     [SerializeField] private FloatVariable m_Value;
     [SerializeField] private bool m_ResetOnAwake;
 
-    public int Total { get; private set; }
+    public int Total;/* { get; private set; }*/
     
     public int Value => (int) m_Value.Value;
     

@@ -172,7 +172,7 @@ public class InputReader : ScriptableObject,
 
     public void OnSkip(InputAction.CallbackContext context)
     {
-        if (!context.started) return;
+        if (!context.performed) return;
         
         CutsceneSkipEvent?.Invoke();
         Debug.Log("Cut event invoked");

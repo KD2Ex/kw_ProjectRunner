@@ -13,7 +13,7 @@ public class CollectablesPanel : PanelNavigation
     public UnityEvent Open;
     public UnityEvent Closed;
 
-    private bool nemoOpened => GameManager.instance.NemoOpened;
+    private bool nemoOpened => GameManager.instance.NemoReadyToEvolve;
     
     private void Awake()
     {
@@ -25,7 +25,7 @@ public class CollectablesPanel : PanelNavigation
         base.OnEnable();
         Open?.Invoke();
 
-        openNemo.gameObject.SetActive(nemoOpened);
+        //openNemo.gameObject.SetActive(nemoOpened);
     }
 
     protected override void OnDisable()
@@ -49,11 +49,11 @@ public class CollectablesPanel : PanelNavigation
         var pos = new UICoord(currentPos.x + value, 0);
         Debug.Log($"Pos x: {pos.x},, {nemoOpened}");
 
-        if (pos.x == 1 && !nemoOpened)
+        /*if (pos.x == 1 && !nemoOpened)
         {
             Debug.Log("wtf");
             pos = new UICoord(pos.x + value, 0);
-        }  
+        }  */
         if (!IsValid(pos)) return;
         Debug.Log($"new Pos x: {pos.x}");
 

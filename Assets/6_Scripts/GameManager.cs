@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
@@ -45,8 +46,10 @@ public class GameManager : MonoBehaviour
     public bool IsEventChunkRunning;
 
     [field:SerializeField] public SOListData<int> NemoOpeningCoinValues { get; private set; }
-    public int CurrentLocation { get; private set; } = 0;
-    public bool NemoOpened => Coins.Total > NemoOpeningCoinValues.Items[CurrentLocation];
+    public int CurrentLocation/* { get; private set; }*/ = 0;
+    public bool NemoReadyToEvolve => Coins.Total > NemoOpeningCoinValues.Items[CurrentLocation];
+    public int NemoCurrentLevel = 0;
+    public bool NemoEvolvedOnLocation;
     
     private void Awake()
     {
@@ -130,4 +133,34 @@ public class GameManager : MonoBehaviour
         
         Destroy(source.gameObject);
     }
+
+    public void ProceedToNextLocation()
+    {
+        NemoEvolvedOnLocation = false;
+        CurrentLocation++;
+    }
 }
+
+
+#if UNITY_EDITOR
+
+[CustomEditor(typeof(GameManager))]
+public class GameManagerCustomInspector : Editor
+{
+    
+    public override void OnInspectorGUI()
+    {
+        EditorGUILayout.LabelField("test");
+
+        GameManager gm = target as GameManager;
+
+        if (GUILayout.Button("Go to the next location"))
+        {
+            gm.ProceedToNextLocation();
+        }
+        
+        base.OnInspectorGUI();
+    }
+}
+
+#endif
