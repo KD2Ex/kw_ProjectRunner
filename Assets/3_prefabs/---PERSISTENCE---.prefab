@@ -110,8 +110,14 @@ MonoBehaviour:
   Timer: {fileID: 0}
   UITimer: {fileID: 0}
   CameraShake: {fileID: 0}
+  CutsceneRawImage: {fileID: 0}
+  ScreamerManager: {fileID: 0}
   SceneMusic: {fileID: 0}
   IsEventChunkRunning: 0
+  <NemoOpeningCoinValues>k__BackingField: {fileID: 11400000, guid: 60eddb49bbd47cb42b0d3cad57372506, type: 2}
+  CurrentLocation: 0
+  NemoCurrentLevel: 0
+  NemoEvolvedOnLocation: 0
 --- !u!1 &1390183441368213076
 GameObject:
   m_ObjectHideFlags: 0
@@ -429,7 +435,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7640085428616829801}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8b9a305e18de0c04dbd257a21cd47087, type: 3}
   m_Name: 

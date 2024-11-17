@@ -300,7 +300,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b5f07b6778aa674a98a98d3f884052e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  carCrash: {fileID: 3888005149265467115}
+  eventChunk: {fileID: 3888005149265467115}
+  animator: {fileID: 1659211915786696500}
 --- !u!1 &3447113994525763121
 GameObject:
   m_ObjectHideFlags: 0
@@ -312,7 +313,7 @@ GameObject:
   - component: {fileID: 1622271387113690616}
   - component: {fileID: 3888005149265467115}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Event
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
