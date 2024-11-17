@@ -14,7 +14,7 @@ public class Coins : ScriptableObject
     {
         if (m_ResetOnAwake) ResetValue();
     }
-
+    
     public void AddCoins(float value)
     {
         m_Value.Value += value;

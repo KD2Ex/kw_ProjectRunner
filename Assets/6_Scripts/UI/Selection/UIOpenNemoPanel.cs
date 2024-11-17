@@ -1,3 +1,5 @@
+using System;
+using UnityEngine;
 
 public class UIOpenNemoPanel : UISelection
 {
@@ -5,4 +7,5 @@ public class UIOpenNemoPanel : UISelection
     {
         base.Press();
     }
+
 }

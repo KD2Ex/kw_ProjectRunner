@@ -43,6 +43,10 @@ public class GameManager : MonoBehaviour
     public Music SceneMusic;
    
     public bool IsEventChunkRunning;
+
+    [field:SerializeField] public SOListData<int> NemoOpeningCoinValues { get; private set; }
+    public int CurrentLocation { get; private set; } = 0;
+    public bool NemoOpened => Coins.Total > NemoOpeningCoinValues.Items[CurrentLocation];
     
     private void Awake()
     {

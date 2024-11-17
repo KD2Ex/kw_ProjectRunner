@@ -609,6 +609,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: ---PERSISTENCE---
       objectReference: {fileID: 0}
+    - target: {fileID: 1959848586970887799, guid: 60f476be610f11747a9ce17ba2adf608, type: 3}
+      propertyPath: NemoOpeningCoinValues
+      value: 
+      objectReference: {fileID: 11400000, guid: 60eddb49bbd47cb42b0d3cad57372506, type: 2}
+    - target: {fileID: 1959848586970887799, guid: 60f476be610f11747a9ce17ba2adf608, type: 3}
+      propertyPath: <NemoOpeningCoinValues>k__BackingField
+      value: 
+      objectReference: {fileID: 11400000, guid: 60eddb49bbd47cb42b0d3cad57372506, type: 2}
     - target: {fileID: 3141135106473041580, guid: 60f476be610f11747a9ce17ba2adf608, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.37
@@ -3567,62 +3575,6 @@ PrefabInstance:
     - target: {fileID: 3331394680344341266, guid: 31f83f615c6be9c449a4a5795cdd220b, type: 3}
       propertyPath: m_Name
       value: 'collectibles_panel '
-      objectReference: {fileID: 0}
-    - target: {fileID: 6732258611252364873, guid: 31f83f615c6be9c449a4a5795cdd220b, type: 3}
-      propertyPath: Open.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6732258611252364873, guid: 31f83f615c6be9c449a4a5795cdd220b, type: 3}
-      propertyPath: Closed.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6732258611252364873, guid: 31f83f615c6be9c449a4a5795cdd220b, type: 3}
-      propertyPath: Open.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6732258611252364873, guid: 31f83f615c6be9c449a4a5795cdd220b, type: 3}
-      propertyPath: Closed.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6732258611252364873, guid: 31f83f615c6be9c449a4a5795cdd220b, type: 3}
-      propertyPath: Open.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 11400000, guid: b131247adedce1d4ea2fc4193943766a, type: 2}
-    - target: {fileID: 6732258611252364873, guid: 31f83f615c6be9c449a4a5795cdd220b, type: 3}
-      propertyPath: Closed.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 11400000, guid: b6c0faf4473e44d429693c46b8f4f94c, type: 2}
-    - target: {fileID: 6732258611252364873, guid: 31f83f615c6be9c449a4a5795cdd220b, type: 3}
-      propertyPath: Open.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6732258611252364873, guid: 31f83f615c6be9c449a4a5795cdd220b, type: 3}
-      propertyPath: Open.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Raise
-      objectReference: {fileID: 0}
-    - target: {fileID: 6732258611252364873, guid: 31f83f615c6be9c449a4a5795cdd220b, type: 3}
-      propertyPath: Closed.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6732258611252364873, guid: 31f83f615c6be9c449a4a5795cdd220b, type: 3}
-      propertyPath: Closed.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Raise
-      objectReference: {fileID: 0}
-    - target: {fileID: 6732258611252364873, guid: 31f83f615c6be9c449a4a5795cdd220b, type: 3}
-      propertyPath: Open.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: GameEvent, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 6732258611252364873, guid: 31f83f615c6be9c449a4a5795cdd220b, type: 3}
-      propertyPath: Closed.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: GameEvent, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 6732258611252364873, guid: 31f83f615c6be9c449a4a5795cdd220b, type: 3}
-      propertyPath: Open.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 6732258611252364873, guid: 31f83f615c6be9c449a4a5795cdd220b, type: 3}
-      propertyPath: Closed.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
