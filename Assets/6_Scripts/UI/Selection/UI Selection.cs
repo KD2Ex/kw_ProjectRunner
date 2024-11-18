@@ -2,8 +2,8 @@ using UnityEngine;
 
 public abstract class UISelection : MonoBehaviour
 {
-    private Animator animator;
-    private readonly int animSelect = Animator.StringToHash("Select");
+    protected Animator animator;
+    protected readonly int animSelect = Animator.StringToHash("Select");
 
     [SerializeField] private GameObject tipButton;
     [SerializeField] protected SoundList sounds;

@@ -1,37 +1,38 @@
-using System;
-using System.Collections;
 using UnityEngine;
 
 public class UIOpenNemoPanel : UISelection
 {
     [SerializeField] private NemoGrownPanel panel;
-    [SerializeField] private InputReader input;
-
-    private bool pressed;
-    
     public override void Press()
     {
         base.Press();
         panel.gameObject.SetActive(true);
-
-        Debug.Log("nemo press");
-        pressed = false;
-
     }
 
     private void OnEnable()
     {
+        CheckForUpgrade();
     }
 
-    private void OnDisable()
+    public override void Select(bool value)
     {
-    }
-
-    private void CloseNemo()
-    {
-        if (!pressed) return;
-        if (!panel.gameObject.activeInHierarchy) return;
+        if (CheckForUpgrade())
+        {
+            return;
+        }
         
-        panel.gameObject.SetActive(false);
+        base.Select(value);
+    }
+
+    private bool CheckForUpgrade()
+    {
+        if (GameManager.instance.NemoReadyToEvolve 
+            && !GameManager.instance.NemoEvolvedOnLocation)
+        {
+            animator.SetBool(animSelect, true);
+            return true;
+        }
+
+        return false;
     }
 }
