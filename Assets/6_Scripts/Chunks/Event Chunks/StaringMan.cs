@@ -9,6 +9,8 @@ public class StaringMan : MonoBehaviour
 
     [SerializeField] private Transform[] points;
 
+    [SerializeField] private float slowTimeValue = .5f;
+    
     private WaitForFixedUpdate waiter = new ();
     
     private float distanceToPlayer => GameManager.instance.Player.transform.position.x - transform.position.x;
@@ -25,13 +27,13 @@ public class StaringMan : MonoBehaviour
         {
             pointPositions[i] = points[i].localPosition;
         }
-        GameManager.instance.IsEventChunkRunning = true;
+        //GameManager.instance.IsEventChunkRunning = true;
     }
 
     private void OnDisable()
     {
         input.EnableGameplayInput();
-        GameManager.instance.IsEventChunkRunning = false;
+        //GameManager.instance.IsEventChunkRunning = false;
     }
 
     private void Update()
@@ -59,36 +61,39 @@ public class StaringMan : MonoBehaviour
 
         staringMan.SetParent(null);
         staringMan.position = startingPos;
+        
         StartCoroutine(Execution());
     }
 
     private IEnumerator Execution()
     {
+        Time.timeScale = slowTimeValue;
+        
         var distance = 0f;
         do
         {
             distance = (points[0].position - staringMan.position).magnitude;
-            staringMan.Translate(Vector2.up * (3f * Time.deltaTime));
+            staringMan.Translate(Vector2.up * (3f * Time.unscaledDeltaTime));
             yield return waiter;
         } while (distance > .2f);
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSecondsRealtime(2f);
         
         do
         {
             distance = (points[1].position - staringMan.position).magnitude;
-            staringMan.Translate(Vector2.up * (5f * Time.deltaTime));
+            staringMan.Translate(Vector2.up * (5f * Time.unscaledDeltaTime));
             yield return waiter;
         } while (distance > .2f);
 
-        yield return new WaitForSeconds(source.clip.length - source.time - .5f);
+        yield return new WaitForSecondsRealtime(source.clip.length - source.time - .5f);
 
         var finalPoint = new Vector3(startingPos.x, -12f, 0f);
         
         do
         {
             distance = (finalPoint - staringMan.position).magnitude;
-            staringMan.Translate(Vector2.down * (12f * Time.deltaTime));
+            staringMan.Translate(Vector2.down * (12f * Time.unscaledDeltaTime));
             yield return waiter;
         } while (distance > .1f);
         
@@ -98,6 +103,8 @@ public class StaringMan : MonoBehaviour
         {
             Destroy(points[i].gameObject);
         }
+        
+        GameManager.instance.SlowTime.RevertTime();
         gameObject.SetActive(false);
         Destroy(staringMan.gameObject);
     }

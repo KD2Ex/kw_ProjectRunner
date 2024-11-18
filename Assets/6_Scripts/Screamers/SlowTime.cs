@@ -1,10 +1,16 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 
 public class SlowTime : MonoBehaviour
 {
     [SerializeField] private InputReader input;
     [SerializeField] private float rate;
+
+    private void Awake()
+    {
+        GameManager.instance.SlowTime = this;
+    }
 
     private void OnEnable()
     {
@@ -32,14 +38,14 @@ public class SlowTime : MonoBehaviour
     public void RevertTime()
     {
         StopAllCoroutines();
-        StartCoroutine(Coroutines.FadeFloat(0f, 1f, rate, Setter));
+        StartCoroutine(Coroutines.FadeFloat(Time.timeScale, 1f, rate, Setter));
     }
 
     private IEnumerator Freeze()
     {
         Time.timeScale = 0f;
         yield return new WaitForSecondsRealtime(1f);
-        StartCoroutine(Coroutines.FadeFloat(0f, 1f, rate, Setter));
+        StartCoroutine(Coroutines.FadeFloat(Time.timeScale, 1f, rate, Setter));
     }
 
     private void Setter(float value)

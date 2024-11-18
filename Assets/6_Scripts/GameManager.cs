@@ -42,7 +42,9 @@ public class GameManager : MonoBehaviour
     public CutsceneRawImage CutsceneRawImage;
     public Screamer ScreamerManager;
     public Music SceneMusic;
-   
+
+    public SlowTime SlowTime;
+    
     public bool IsEventChunkRunning;
 
     [field:SerializeField] public SOListData<int> NemoOpeningCoinValues { get; private set; }
