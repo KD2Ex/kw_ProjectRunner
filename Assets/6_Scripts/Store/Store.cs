@@ -10,6 +10,7 @@ public class Store : MonoBehaviour
     
     [FormerlySerializedAs("StopUIButton")] [SerializeField] private ApproachingButton approachingUIButton;
     [SerializeField] private ApproachingButton InteractUIButton;
+    [SerializeField] private AudioSource storeMusic;
     private GameObject Panel;
 
     public UnityEvent OnStoreApproaching;
@@ -23,6 +24,7 @@ public class Store : MonoBehaviour
         var manager = GameObject.FindGameObjectWithTag("StorePanel").GetComponent<StorePanelManager>();
         Panel = manager.Panel;
 
+        storeMusic.volume = 0f;
         Debug.Log(Panel.name);
     }
 
@@ -68,6 +70,11 @@ public class Store : MonoBehaviour
 
         Debug.Log("Store Approaching");
         
+        SoundFXManager.instance.FadeOut();
+        storeMusic.Play();
+        StopAllCoroutines();
+        StartCoroutine(Coroutines.FadeFloat(0f, 1f, 2f, MusicVolumeSetter));
+        
         approached = true;
         OnStoreApproaching?.Invoke();
         approachingUIButton.FadeIn();
@@ -77,11 +84,20 @@ public class Store : MonoBehaviour
     {
         OnStoreLeave?.Invoke();
         
+        SoundFXManager.instance.FadeIn();
+        StopAllCoroutines();
+        StartCoroutine(Coroutines.FadeFloat(storeMusic.volume, 0f, 2f, MusicVolumeSetter));
+        
         InteractUIButton.FadeOut();
         approachingUIButton.FadeOut();
         canBeOpened = false;
         
         gameObject.SetActive(false);
+    }
+
+    private void MusicVolumeSetter(float value)
+    {
+        storeMusic.volume = value;
     }
     
     public void Open()

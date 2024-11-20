@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem.Interactions;
 using UnityEngine.UI;
 
 public class Coroutines
@@ -72,7 +73,11 @@ public class Coroutines
         var direction = to - from;
         direction = Mathf.Sign(direction);
 
-        while (Mathf.Abs(to - from) > .07f)
+        Debug.Log($"From: {from} To: {to} Direction: {direction}");
+        Func<bool> condition = direction > 0
+            ? () => from < to
+            : () => from > to;
+        while (condition()/*Mathf.Abs(to - from) > .2f*/)
         {
             from += Time.unscaledDeltaTime * rate * direction;
             setter?.Invoke(from);
@@ -80,6 +85,7 @@ public class Coroutines
         }
 
         from = to;
+        Debug.Log($"Final value: {from}");
         setter?.Invoke(from);
     }
     
