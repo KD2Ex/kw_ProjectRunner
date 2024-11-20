@@ -7,7 +7,7 @@ public abstract class UISelection : MonoBehaviour
 
     [SerializeField] private GameObject tipButton;
     [SerializeField] protected SoundList sounds;
-
+    
     protected virtual void Awake()
     {
         animator = GetComponent<Animator>();
@@ -30,6 +30,7 @@ public abstract class UISelection : MonoBehaviour
 
     public virtual void Press()
     {
+        if (!sounds) return;
         SoundFXManager.instance.PlayClipAtPoint(sounds.GetRandom(), transform, 1f);
     }
 }

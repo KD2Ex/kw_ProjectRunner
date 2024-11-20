@@ -17,12 +17,21 @@ public class UIBoosterUpgradeSelection : UISelection
     [SerializeField] private Coins coins;
     [SerializeField] private UpgradeLevelsData data;
     
+    [Header("Sounds")]
+    [SerializeField] protected AudioSource source;
+
     public override void Press()
     {
-        if (level.MaxLevel) return;
         
+        if (level.MaxLevel) return;
         var cost = data.Costs[level.Value + 1];
+        
         if (!coins.RemoveCoins(cost.Value)) return;
+
+        if (source.isPlaying) source.Stop();
+        source.clip = sounds.GetRandom();
+        source.Play();
+        
         level.Upgrade();
     }
 }

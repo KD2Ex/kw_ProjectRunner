@@ -1,5 +1,4 @@
-using System;
-using System.Security.Principal;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Serialization;
@@ -44,7 +43,15 @@ public class Store : MonoBehaviour
         if (!Panel.activeInHierarchy)
         {
             Panel.SetActive(true);
+            storeMusic.Pause();
             InteractUIButton.FadeOut();
+            StartCoroutine(WaitForClosing());
+        }
+
+        IEnumerator WaitForClosing()
+        {
+            yield return new WaitUntil(() => !Panel.activeInHierarchy);
+            storeMusic.UnPause();
         }
     }
     

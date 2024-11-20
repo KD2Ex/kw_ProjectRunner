@@ -1,13 +1,14 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 [CreateAssetMenu(fileName = "Sound List", menuName = "Scriptable Objects/Data/Sound List")]
 public class SoundList : ScriptableObject
 {
-    [SerializeField] private List<AudioClip> clips;
+    [FormerlySerializedAs("clips")] public List<AudioClip> Clips;
 
     public AudioClip GetRandom()
     {
-        return clips[Random.Range(0, clips.Count)];
+        return Clips[Random.Range(0, Clips.Count)];
     }
 }

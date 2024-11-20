@@ -7,6 +7,8 @@ public class UIAddHealthSelection : UISelection
     [SerializeField] private FloatVariable currentHealths;
     [SerializeField] private UpgradeLevelsData data;
     
+    [SerializeField] private AudioSource source;
+    
     public override void Press()
     {
         if ((int)currentHealths.Value == 10) return;
@@ -15,5 +17,9 @@ public class UIAddHealthSelection : UISelection
         if (!coins.RemoveCoins(cost.Value)) return;
 
         currentHealths.Value++;
+        
+        if (source.isPlaying) source.Stop();
+        source.clip = sounds.GetRandom();
+        source.Play();
     }
 }
