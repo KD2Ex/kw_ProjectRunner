@@ -73,7 +73,7 @@ public class Coroutines
         var direction = to - from;
         direction = Mathf.Sign(direction);
 
-        Debug.Log($"From: {from} To: {to} Direction: {direction}");
+        //Debug.Log($"From: {from} To: {to} Direction: {direction}");
         Func<bool> condition = direction > 0
             ? () => from < to
             : () => from > to;
@@ -85,7 +85,7 @@ public class Coroutines
         }
 
         from = to;
-        Debug.Log($"Final value: {from}");
+        //Debug.Log($"Final value: {from}");
         setter?.Invoke(from);
     }
     

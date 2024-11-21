@@ -64,7 +64,7 @@ public class ApproachingButton : MonoBehaviour
         
         if (image)
         {
-            Debug.Log(image.color.a);
+            //Debug.Log(image.color.a);
         }
 
         

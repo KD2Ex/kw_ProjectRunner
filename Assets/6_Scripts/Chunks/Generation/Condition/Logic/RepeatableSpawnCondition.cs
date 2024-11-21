@@ -25,13 +25,13 @@ public class RepeatableSpawnCondition : ChunkSpawnCondition
         
         triggered = false;
         timeOfTrigger = (int) GameManager.instance.Timer.m_ElapsedTime;
-        //Debug.Log(timeOfTrigger);
+        Debug.Log(timeOfTrigger);
     }
 
     public override bool Evaluate()
     {
         int timeValue = TimerValue;
-        //Debug.Log($"time {timeValue}, offset {Offset}, {timeValue - Offset}");
+        Debug.Log($"time {timeValue}, offset {Offset}, {timeValue - Offset}");
         
         if (timeValue - Offset < 0) return false;
 
@@ -42,7 +42,7 @@ public class RepeatableSpawnCondition : ChunkSpawnCondition
         int div = timeValue - timeOfTrigger;
         var condition = div >= Every;
 
-        //Debug.Log($"timeOfTrigger {timeOfTrigger}");
+        Debug.Log($"timeOfTrigger {timeOfTrigger}");
         //Debug.Log($"div {div}");
         
         if (condition)
@@ -57,7 +57,7 @@ public class RepeatableSpawnCondition : ChunkSpawnCondition
 
     public override void ResetTrigger()
     {
-        //Debug.Log("Reset trigger");
+        Debug.Log("Reset trigger");
         
         triggered = false;
         timeOfTrigger = TimerValue;

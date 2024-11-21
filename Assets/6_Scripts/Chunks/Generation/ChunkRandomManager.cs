@@ -117,8 +117,11 @@ public class ChunkRandomManager : ScriptableObject
 
         var result = new List<PriorityChunk>();
 
+        var resSet = highestPrioritySets[Random.Range(0, highestPrioritySets.Count)];
+        resSet.ResetAll();
+        
         var resChunk = GetChunkFromSOData(
-            highestPrioritySets[Random.Range(0, highestPrioritySets.Count)].List.TestItems,
+            resSet.List.TestItems,
             FindChunkByWeight);
         
         result.Add(new PriorityChunk(resChunk, highestPrioritySets[0].Priority));
