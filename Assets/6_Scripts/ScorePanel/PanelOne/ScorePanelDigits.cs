@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using _6_Scripts.Utils.DataFormating;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -46,7 +47,7 @@ public class ScorePanelDigits : ScorePanelElement
         
         for (int i = 1; i <= timerSeconds.Value; i++)
         {
-            format = FormatDigits(i, out var count);
+            format = DataFormating.FormatIntData(i, out var count);
 
             if (count == 1)
             {
@@ -63,7 +64,7 @@ public class ScorePanelDigits : ScorePanelElement
         
         for (int i = 0; i <= timerMinutes.Value; i++)
         {
-            timerText.text = $"{FormatDigits(i, out var minCount)}<sprite=10>{format}";
+            timerText.text = $"{DataFormating.FormatIntData(i)}<sprite=10>{format}";
             yield return null;
         }
     }
@@ -72,48 +73,18 @@ public class ScorePanelDigits : ScorePanelElement
     {
         for (int i = 0; i < coins.RunTotal; i += rate)
         {
-            coinsText.text = FormatDigits(i, out var dCount);
+            coinsText.text = DataFormating.FormatIntData(i);
             yield return null;
         }
 
-        coinsText.text = FormatDigits((int)coins.RunTotal, out var count);
+        coinsText.text = DataFormating.FormatIntData(coins.RunTotal);
         animationFinished = true;
-    }
-
-    private string FormatDigits(int value, out int digitsNumber)
-    {
-        string result = "";
-        List<int> extractedNumbers = new();
-        var count = value;
-
-        
-        if (count == 0)
-        {
-            digitsNumber = 0;
-            return "<sprite=0>";
-        }
-        
-        while (count > 0)
-        {
-            var number = count % 10;
-            extractedNumbers.Add(number);
-            count /= 10;
-        }
-
-        extractedNumbers.Reverse();
-        foreach (var number in extractedNumbers)
-        {
-            result += $"<sprite={number}>";
-        }
-
-        digitsNumber = extractedNumbers.Count;
-        return result;
     }
 
     public void Skip()
     {
         StopAllCoroutines();
-        coinsText.text = FormatDigits((int)coins.RunTotal, out var count);
+        coinsText.text = DataFormating.FormatIntData(coins.RunTotal);
         animationFinished = true;
     }
 }
