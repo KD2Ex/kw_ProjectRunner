@@ -4,20 +4,17 @@ using UnityEngine;
 public class Coins : ScriptableObject
 {
     [SerializeField] private FloatVariable m_Value;
-    [SerializeField] private bool m_ResetOnAwake;
 
+    public int RunTotal { get; private set; }
     public int Total;/* { get; private set; }*/
     
     public int Value => (int) m_Value.Value;
     
-    private void Awake()
-    {
-        if (m_ResetOnAwake) ResetValue();
-    }
     
     public void AddCoins(float value)
     {
         m_Value.Value += value;
+        RunTotal += (int) value;
         Total += (int) value;
     }
 
@@ -29,9 +26,10 @@ public class Coins : ScriptableObject
         return true;
     }
 
-    public void ResetValue()
+    public void ResetRunValue()
     {
-        m_Value.Value = 0f;
+        RunTotal = 0;
+        Debug.Log("Reset coins value");
     }
 
     public void Save(ref CoinsSaveData data)

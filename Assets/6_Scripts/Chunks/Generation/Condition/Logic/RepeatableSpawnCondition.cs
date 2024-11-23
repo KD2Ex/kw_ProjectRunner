@@ -31,7 +31,7 @@ public class RepeatableSpawnCondition : ChunkSpawnCondition
     public override bool Evaluate()
     {
         int timeValue = TimerValue;
-        Debug.Log($"time {timeValue}, offset {Offset}, {timeValue - Offset}");
+        //Debug.Log($"time {timeValue}, offset {Offset}, {timeValue - Offset}");
         
         if (timeValue - Offset < 0) return false;
 
@@ -42,7 +42,7 @@ public class RepeatableSpawnCondition : ChunkSpawnCondition
         int div = timeValue - timeOfTrigger;
         var condition = div >= Every;
 
-        Debug.Log($"timeOfTrigger {timeOfTrigger}");
+        //Debug.Log($"timeOfTrigger {timeOfTrigger}");
         //Debug.Log($"div {div}");
         
         if (condition)

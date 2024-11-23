@@ -31,7 +31,7 @@ public class SoundMixerManager : MonoBehaviour
 
     private void OnEnable()
     {
-        UnityEngine.Debug.Log("Eanbled " + gameObject.name);
+        //UnityEngine.Debug.Log("Eanbled " + gameObject.name);
     }
     
     

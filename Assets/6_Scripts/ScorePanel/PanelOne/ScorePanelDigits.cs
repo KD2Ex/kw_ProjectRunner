@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class ScorePanelDigits : ScorePanelElement
 {
-    [SerializeField] private FloatVariable coins;
+    [SerializeField] private Coins coins;
     [SerializeField] private TMP_Text text;
     
     [SerializeField] private int rate;
@@ -15,6 +15,9 @@ public class ScorePanelDigits : ScorePanelElement
     public override void Execute()
     {
         gameObject.SetActive(true);
+
+        rate = Mathf.FloorToInt(Mathf.Log10(coins.RunTotal) + 1);
+        Debug.Log($"rate: {rate}");
         StartCoroutine(ShowScore());
         StartCoroutine(WaitForAnimation());
     }
@@ -32,13 +35,13 @@ public class ScorePanelDigits : ScorePanelElement
 
     private IEnumerator ShowScore()
     {
-        for (int i = 0; i < coins.Value; i += rate)
+        for (int i = 0; i < coins.RunTotal; i += rate)
         {
             text.text = FormatDigits(i);
             yield return null;
         }
 
-        text.text = FormatDigits((int)coins.Value);
+        text.text = FormatDigits((int)coins.RunTotal);
         animationFinished = true;
     }
 
@@ -67,7 +70,7 @@ public class ScorePanelDigits : ScorePanelElement
     public void Skip()
     {
         StopAllCoroutines();
-        text.text = FormatDigits((int)coins.Value);
+        text.text = FormatDigits((int)coins.RunTotal);
         animationFinished = true;
     }
 }

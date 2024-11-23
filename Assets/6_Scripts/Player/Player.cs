@@ -369,8 +369,9 @@ public class Player : MonoBehaviour, IInvincible
         m_inputReader.AirDashEvent += OnAirDash;
         m_inputReader.DashAbilityTest += OnDash;
         
+        m_Coins.ResetRunValue();
+        
         SaveSystem.Load();
-
     }
 
     private void OnDisable()
