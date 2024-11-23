@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using TreeEditor;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -32,7 +33,7 @@ public class SaveSystem
         return saveFile;
     }
     
-    public static void Save(bool withRunProgress = false)
+    public static void Save(bool withRunProgress = true)
     {
         HandleSaveData();
 
