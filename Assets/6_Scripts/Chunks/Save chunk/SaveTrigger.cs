@@ -14,6 +14,6 @@ public class SaveTrigger : MonoBehaviour
         GameManager.instance.Player.FoodUseManager.BlockConsuming();
         
         SaveSystem.Save(true);
-        sign.UpdateSpeed();
+        sign.TriggerSave();
     }
 }

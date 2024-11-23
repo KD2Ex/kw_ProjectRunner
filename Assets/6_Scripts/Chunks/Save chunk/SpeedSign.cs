@@ -7,13 +7,27 @@ public class SpeedSign : MonoBehaviour
 {
     [SerializeField] private FloatVariable speed;
     [SerializeField] private TextMeshProUGUI textComponent;
+    [SerializeField] private AudioSource source;
+    [SerializeField] private SoundList clips;
     
     void Start()
     {
 
     }
+    
+    public void TriggerSave()
+    {
+        UpdateSpeed();
+        PlaySound();
+    }
 
-    public void UpdateSpeed()
+    private void PlaySound()
+    {
+        source.clip = clips.GetRandom();
+        source.Play();
+    }
+    
+    private void UpdateSpeed()
     {
         var text = MatchSpeedValue(speed.Value).ToString();
         UpdateUI(text);
