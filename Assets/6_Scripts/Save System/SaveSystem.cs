@@ -18,6 +18,7 @@ public class SaveSystem
         public IntSaveData Shield;
         public IntSaveData Magnet;
         public IntSaveData X2;
+        public IntSaveData Dash;
         public IntSaveData Healths;
         public IntSaveData Timer;
 
@@ -73,6 +74,7 @@ public class SaveSystem
         GameManager.instance.Player.Shield.Save(ref saveData.Shield);
         GameManager.instance.Player.Magnet.Save(ref saveData.Magnet);
         GameManager.instance.Player.CoinMultiplier.Save(ref saveData.X2);
+        GameManager.instance.DashUpgrade.Save(ref saveData.Dash);
         GameManager.instance.Player.Save(ref saveData.Healths);
 
         GameManager.instance.Creatures.Save(ref saveData.CreaturesInv);
@@ -129,6 +131,7 @@ public class SaveSystem
         GameManager.instance.Player.Magnet.Load(saveData.Magnet);
         GameManager.instance.Player.CoinMultiplier.Load(saveData.X2);
         GameManager.instance.Player.Load(saveData.Healths);
+        GameManager.instance.DashUpgrade.Load(saveData.Dash);
         
         GameManager.instance.Timer.Load(saveData.Timer);
         GameManager.instance.UITimer?.Load(saveData.Timer);

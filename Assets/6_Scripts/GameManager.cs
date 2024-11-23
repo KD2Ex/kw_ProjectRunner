@@ -37,6 +37,7 @@ public class GameManager : MonoBehaviour
     
     public Player Player { get; set; }
     public PlayerBossController PlayerBossController;
+    public DashUpgrade DashUpgrade;
     public ChunkSpawnManager ChunkSpawnManager { get; set; }
     public Coins Coins;
     public Timer Timer;
