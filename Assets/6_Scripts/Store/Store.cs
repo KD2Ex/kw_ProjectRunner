@@ -20,6 +20,8 @@ public class Store : MonoBehaviour
 
     private void Awake()
     {
+        approachingUIButton.gameObject.SetActive(false);
+        
         var manager = GameObject.FindGameObjectWithTag("StorePanel").GetComponent<StorePanelManager>();
         Panel = manager.Panel;
 
@@ -84,6 +86,8 @@ public class Store : MonoBehaviour
         
         approached = true;
         OnStoreApproaching?.Invoke();
+        
+        approachingUIButton.gameObject.SetActive(true);
         approachingUIButton.FadeIn();
     }
 

@@ -180,7 +180,7 @@ public class InputReader : ScriptableObject,
 
     public void OnXYMove(InputAction.CallbackContext context)
     {
-        Debug.Log(context.performed);
+        //Debug.Log(context.performed);
         XYMoveEvent?.Invoke(context.ReadValue<float>());
     }
 }

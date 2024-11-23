@@ -66,7 +66,6 @@ public class ApproachingButton : MonoBehaviour
         {
             //Debug.Log(image.color.a);
         }
-
         
         StopAllCoroutines();
         var color = isImage ? image.color : sprite.color;
