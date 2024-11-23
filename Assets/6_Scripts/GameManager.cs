@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using _6_Scripts.Timer;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -39,7 +40,7 @@ public class GameManager : MonoBehaviour
     public ChunkSpawnManager ChunkSpawnManager { get; set; }
     public Coins Coins;
     public Timer Timer;
-    public UIDigitsTimer UITimer;
+    public UITimer UITimer;
     public CameraShake CameraShake;
 
     public CutsceneRawImage CutsceneRawImage;

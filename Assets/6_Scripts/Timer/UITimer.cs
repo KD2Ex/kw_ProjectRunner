@@ -1,5 +1,4 @@
-﻿using System;
-using _6_Scripts.Utils.DataFormating;
+﻿using _6_Scripts.Utils.DataFormating;
 using TMPro;
 using UnityEngine;
 
@@ -16,8 +15,7 @@ namespace _6_Scripts.Timer
         private void Awake()
         {
             // gm = this
-            
-            
+            GameManager.instance.UITimer = this;
         }
 
         private void Start()
@@ -58,6 +56,8 @@ namespace _6_Scripts.Timer
         {
             minutes.Value = data.Value / 60;
             seconds.Value = data.Value % 60;
+            
+            UpdateUI();
         }
     }
 }

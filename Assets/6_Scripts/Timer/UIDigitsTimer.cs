@@ -12,7 +12,7 @@ public class UIDigitsTimer : MonoBehaviour
 
     private void Awake()
     {
-        GameManager.instance.UITimer = this;
+        //GameManager.instance.UITimer = this;
         
         foreach (var point in spawnPoints)
         {
