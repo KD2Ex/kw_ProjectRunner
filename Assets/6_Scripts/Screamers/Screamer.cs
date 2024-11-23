@@ -51,7 +51,7 @@ public class Screamer : MonoBehaviour
         Image.enabled = true;
         
         Image.color = screamer.ImageColor;
-        animator.Play(screamer.AnimClip.name, 0, 0f);
+        //animator.Play(screamer.AnimClip.name, 0, 0f);
         //SoundFXManager.instance.PlayClipAtPoint(screamer.AudioClip, GameManager.instance.Player.transform, 1f);
         source.clip = screamer.AudioClip;
         source.Play();

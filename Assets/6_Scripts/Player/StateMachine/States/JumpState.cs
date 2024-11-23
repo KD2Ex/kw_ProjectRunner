@@ -16,7 +16,8 @@ public class JumpState : BaseState
         base.Enter();
         time = player.JumpTime;
         animator.SetBool(player.animHash_Jump, true);
-        
+
+        GameManager.instance.SceneMusic.Source.volume = player.VolumeDown;
         SoundFXManager.instance.PlayClipAtPoint(player.JumpOnSound, player.transform, 1f);
     }
 
@@ -53,6 +54,8 @@ public class JumpState : BaseState
         base.Exit();
         elapsedTime = 0f;
         animator.SetBool(player.animHash_Jump, false);
+        
+        GameManager.instance.SceneMusic.Source.volume = player.VolumeDown;
         
         SoundFXManager.instance.PlayClipAtPoint(player.JumpOffSound, player.transform, 1f);
         SoundFXManager.instance.DestroySource(jumpSource);

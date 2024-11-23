@@ -212,31 +212,6 @@ public class ChunkSpawnManager : MonoBehaviour
         }
     }
     
-    public void Load(LoadedChunkNames data)
-    {
-        /*
-        var chunkName = data.Items[0];
-        var path = $"CurrentSavedChunk/{chunkName}";
-        var currentChunk = Resources.Load<GameObject>(path);
-        
-        if (!currentChunk) return;
-        
-        Debug.Log(currentChunk.name);
-        currentChunk.transform.localPosition = Vector3.zero;
-        ChunkRandomManager.AddChunkToQueue(currentChunk);
-        AssetDatabase.DeleteAsset("Resources/" + path);
-        */
-        
-        
-        LoadCurrentChunk(data.CurrentChunk);
-        foreach (var chunkPrefab in data.Items)
-        {
-            // find prefab in Resources by name
-            ChunkRandomManager.AddChunkToQueue(chunkPrefab);
-        }
-        
-    }
-    
     public void SaveCurrentChunk(ref CurrentChunkData data)
     {
         List<ItemInChunk> result = new();
@@ -256,19 +231,6 @@ public class ChunkSpawnManager : MonoBehaviour
         data.Prefab = RuntimeSet.Items[0].chunk;
 
     }
-    
-    public void LoadCurrentChunk(CurrentChunkData data)
-    {
-        if (data.Prefab == null) return;
-        
-        ChunkRandomManager.AddChunkToQueue(data.Prefab);
-        
-        foreach (var item in data.Items)
-        {
-            //var inst = Instantiate(item.Prefab, item.Position, Quaternion.identity,
-            //    GameManager.instance.ChunkSpawnManager.ChunksPosition.transform);
-        }
-    }   
 }
 
 

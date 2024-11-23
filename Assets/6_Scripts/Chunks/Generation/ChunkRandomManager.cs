@@ -8,8 +8,8 @@ using Random = UnityEngine.Random;
 public class PriorityChunk
 {
     //public  Chunk Chunk;
-    public  IChunk ChunkSO;
-    public  int Priority;
+    public IChunk ChunkSO;
+    public int Priority;
     
     public PriorityChunk(/*Chunk chunk, */IChunk chunksSo, int priority)
     {
@@ -23,8 +23,9 @@ public class PriorityChunk
 public class ChunkRandomManager : ScriptableObject
 {
     [SerializeField] private List<ChunkSet> chunkSets;
-    [SerializeField] private List<IChunk> SpawnQueue = new(); // replace with List<GameObjects>
-
+    //[SerializeField] private List<IChunk> SpawnQueue = new(); // replace with List<GameObjects>
+    [SerializeField] private List<ChunkSOData> SpawnQueue = new(); // replace with List<GameObjects>
+    
     public List<ChunkSet> Sets => chunkSets;
     public bool IsQueueEmpty => SpawnQueue.Count == 0;
     
@@ -88,13 +89,6 @@ public class ChunkRandomManager : ScriptableObject
             }
         }
     }
-
-    public void AddChunkToQueue(GameObject prefab, int priority = 1)
-    {
-        Chunk chunk = new Chunk(prefab);
-        //var pch = new PriorityChunk(chunk, 1);
-        SpawnQueue.Add(chunk);
-    }
     
     public void AddRandomChunkToQueue()
     {
@@ -106,7 +100,7 @@ public class ChunkRandomManager : ScriptableObject
         foreach (var chunk in chunks)
         {
             if (chunk.ChunkSO.BecomeUnavailableAfterSpawn) chunk.ChunkSO.Available = false;
-            SpawnQueue.Add(chunk.ChunkSO); // chunks.Chunk.Prefab
+            SpawnQueue.Add(chunk.ChunkSO as ChunkSOData); // chunks.Chunk.Prefab
         }
     }
     

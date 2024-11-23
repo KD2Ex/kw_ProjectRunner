@@ -16,7 +16,6 @@ public class WithinTimeCondition : ChunkSpawnCondition
     public WithinTimeCondition(WithinTimeConditionData data)
     {
         this.data = data;
-
     }
 
     private void RunTests()

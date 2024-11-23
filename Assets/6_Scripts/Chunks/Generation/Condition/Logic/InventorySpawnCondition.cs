@@ -1,4 +1,6 @@
-﻿public class InventorySpawnCondition : ChunkSpawnCondition
+﻿using UnityEngine;
+
+public class InventorySpawnCondition : ChunkSpawnCondition
 {
     private readonly InventoryConditionData data;
 

@@ -10,7 +10,6 @@ public class RandomCollectablePickup : MonoBehaviour
     private void Start()
     {
         var index = Random.Range(0, collectables.Count);
-
         var inst = Instantiate(collectables[index], transform);
         inst.SetClip(soundList.GetRandom());
     }

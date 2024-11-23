@@ -15,6 +15,10 @@ public enum DeathType
 [RequireComponent(typeof(SpeedController))]
 public class Player : MonoBehaviour, IInvincible
 {
+    [Range(0f, 1f)]
+    [SerializeField] private float musicVolumeDown;
+    public float VolumeDown => musicVolumeDown;
+    
     [Header("Sounds")] 
     
     public AudioClip StopSound;

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -13,6 +14,8 @@ public class GameManager : MonoBehaviour
     
     public Inventory Food;
     public Inventory Creatures;
+
+    public List<InventoryItem> Existing = new List<InventoryItem>();
     
     [Space]
     
