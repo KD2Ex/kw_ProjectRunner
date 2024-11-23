@@ -3011,7 +3011,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &32052001070532128
 Transform:
   m_ObjectHideFlags: 0
@@ -5745,7 +5745,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1595266757512811321, guid: 07ec098b8f84c8e4a9805f3701258ae1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -3
       objectReference: {fileID: 0}
     - target: {fileID: 1595266757512811321, guid: 07ec098b8f84c8e4a9805f3701258ae1, type: 3}
       propertyPath: m_LocalPosition.z
@@ -5835,12 +5835,24 @@ PrefabInstance:
     m_TransformParent: {fileID: 32052001070532128}
     m_Modifications:
     - target: {fileID: 1595266757512811321, guid: 07ec098b8f84c8e4a9805f3701258ae1, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 1595266757512811321, guid: 07ec098b8f84c8e4a9805f3701258ae1, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 1595266757512811321, guid: 07ec098b8f84c8e4a9805f3701258ae1, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 1595266757512811321, guid: 07ec098b8f84c8e4a9805f3701258ae1, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1595266757512811321, guid: 07ec098b8f84c8e4a9805f3701258ae1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -1.08
       objectReference: {fileID: 0}
     - target: {fileID: 1595266757512811321, guid: 07ec098b8f84c8e4a9805f3701258ae1, type: 3}
       propertyPath: m_LocalPosition.z
@@ -5874,9 +5886,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1595266757512811321, guid: 07ec098b8f84c8e4a9805f3701258ae1, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3400784773710746041, guid: 07ec098b8f84c8e4a9805f3701258ae1, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8067743920688256546, guid: 07ec098b8f84c8e4a9805f3701258ae1, type: 3}
       propertyPath: m_Name
       value: CoinCounter
+      objectReference: {fileID: 0}
+    - target: {fileID: 8067743920688256546, guid: 07ec098b8f84c8e4a9805f3701258ae1, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
