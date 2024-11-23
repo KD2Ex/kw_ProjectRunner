@@ -14,7 +14,7 @@ public class SlideState : BaseState
     {
         base.Enter();
         animator.SetBool(player.animHash_Slide, true);
-        
+        GameManager.instance.SceneMusic.Source.volume = player.VolumeDown;
         SoundFXManager.instance.PlayClipAtPoint(player.SlideOnSound, player.transform, 1f);
     }
 
@@ -48,6 +48,8 @@ public class SlideState : BaseState
         base.Exit();
         elapsedTime = 0f;
         animator.SetBool(player.animHash_Slide, false);
+        
+        GameManager.instance.SceneMusic.Source.volume = 1f;
         
         SoundFXManager.instance.PlayClipAtPoint(player.SlideOffSound, player.transform, 1f);
         SoundFXManager.instance.DestroySource(source);

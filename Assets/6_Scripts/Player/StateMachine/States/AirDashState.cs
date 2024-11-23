@@ -15,7 +15,7 @@ public class AirDashState : BaseState
         animator.SetBool(player.animHash_Bounce, true);
         player.SwitchControlsToAirDash();
         player.BoostersParentController.ChangeParent(Align.Top);
-        
+        GameManager.instance.SceneMusic.Source.volume = player.VolumeDown;
         SoundFXManager.instance.PlayClipAtPoint(player.BounceOnSound, player.transform, 1f);
     }
 
@@ -53,9 +53,9 @@ public class AirDashState : BaseState
         player.ReturnToDefaultControls();
         elapsedTime = 0f;
         
-        SoundFXManager.instance.PlayClipAtPoint(player.BounceOffSound, player.transform, 1f);
-
+        GameManager.instance.SceneMusic.Source.volume = 1f;
         
+        SoundFXManager.instance.PlayClipAtPoint(player.BounceOffSound, player.transform, 1f);
         SoundFXManager.instance.DestroySource(source);
         source = null;
         
