@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -23,17 +24,19 @@ public class PlayerBossController : MonoBehaviour, IInvincible
 
     private readonly int animDeathLeft = Animator.StringToHash("LeftDeath");
     private readonly int animDeathRight = Animator.StringToHash("RightDeath");
+
     
     public bool Dead { get; private set; }
 
     public UnityEvent OnLoseHeath;
     public UnityEvent OnDeath;
+    public UnityEvent OnDeathAnimationEnd;
     
     private void Awake()
     {
         Sprite = GetComponent<SpriteRenderer>();
         GameManager.instance.PlayerBossController = this;
-        
+
         lines[0] = leftLine;
         lines[1] = middleLine;
         lines[2] = rightLine;
@@ -70,8 +73,8 @@ public class PlayerBossController : MonoBehaviour, IInvincible
         animator.Play(hash);
         input.PlayerBossMoveEvent -= OnMove;
         Dead = true;
-        
-        OnDeath?.Invoke();
+        OnDeath?.Invoke(); 
+        StartCoroutine(Coroutines.WaitFor(2.5f, null, () => OnDeathAnimationEnd?.Invoke()));
     }
 
     public void CheckHealth()

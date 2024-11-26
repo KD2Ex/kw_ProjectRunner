@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -18,7 +19,7 @@ public class FoodUseManager : MonoBehaviour
 
     public void Consume()
     {
-        Debug.Log(blocked);
+        Debug.Log($"Blocked in consume " + blocked);
         Debug.Log(foodInventory.Items.Count);
         
         
@@ -36,12 +37,14 @@ public class FoodUseManager : MonoBehaviour
 
     public void BlockConsuming()
     {
+        Debug.Log("consuming blocked");
         blocked = true;
+        _blocked = true;
     }
-
+    
     public void UnblockConsuming()
     {
         blocked = false;
-        Debug.Log(blocked);
+        Debug.Log("Unblocked");
     }
 }

@@ -7,13 +7,12 @@ public class BossController : MonoBehaviour
     [SerializeField] private BossAttack[] attacks;
 
     private bool CanAttack;
-    
-    public bool Attacking;
-
     private PooledRandom pooledRandom;
     
     private PlayerBossController Player => GameManager.instance.PlayerBossController;
 
+    public bool Attacking;
+    
     private void Awake()
     {
         pooledRandom = new PooledRandom(100, 0, 2);

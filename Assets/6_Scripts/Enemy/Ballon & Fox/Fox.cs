@@ -69,7 +69,7 @@ public class Fox : MonoBehaviour
         var dir = (to.position - transform.position) - new Vector3(offset, 0f, 0f);
         while (dir.x > .03f)
         {
-            Debug.Log($"{dir.x}");
+            //Debug.Log($"{dir.x}");
             
             rb.MovePosition(transform.position + Vector3.Normalize(dir) * (30f * Time.deltaTime));
             dir = (to.position - transform.position) - new Vector3(offset, 0f, 0f);

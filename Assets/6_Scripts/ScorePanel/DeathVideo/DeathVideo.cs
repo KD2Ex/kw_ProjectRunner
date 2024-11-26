@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Video;
 
@@ -10,6 +11,11 @@ public class DeathVideo : ScorePanelElement
     
     private void OnEnable()
     {
+    }
+
+    private void Start()
+    {
+        Debug.Log("Death Video Prepare");
         Prepare();
     }
 

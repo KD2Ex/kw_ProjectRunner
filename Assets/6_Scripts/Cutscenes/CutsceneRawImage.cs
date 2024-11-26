@@ -9,6 +9,7 @@ public class CutsceneRawImage : MonoBehaviour
     
     private void Awake()
     {
+        Debug.Log("Cutscene RawImage");
         GameManager.instance.CutsceneRawImage = this;
     }
 

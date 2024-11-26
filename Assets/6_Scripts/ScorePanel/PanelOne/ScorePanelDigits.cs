@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using _6_Scripts.Utils.DataFormating;
 using TMPro;
 using UnityEngine;
