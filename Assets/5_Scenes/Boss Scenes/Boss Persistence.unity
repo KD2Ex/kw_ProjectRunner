@@ -2866,6 +2866,7 @@ GameObject:
   - component: {fileID: 1122618451}
   - component: {fileID: 1122618449}
   - component: {fileID: 1122618450}
+  - component: {fileID: 1122618452}
   m_Layer: 0
   m_Name: ScorePanel Manager
   m_TagString: Untagged
@@ -2909,6 +2910,18 @@ MonoBehaviour:
   Response:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 1709855907}
+        m_TargetAssemblyTypeName: ScorePanelDigits, Assembly-CSharp
+        m_MethodName: UseBossReward
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1122618449}
         m_TargetAssemblyTypeName: ScorePanel, Assembly-CSharp
         m_MethodName: StartSequence
@@ -2936,6 +2949,46 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1930022039}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1122618452
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1122618448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c01f3b0278a4da4ae5a33bd5c4c76fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 4253a8d06d55d1a4ea3df426cea7983b, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1709855907}
+        m_TargetAssemblyTypeName: ScorePanelDigits, Assembly-CSharp
+        m_MethodName: UseBossReward
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1122618449}
+        m_TargetAssemblyTypeName: ScorePanel, Assembly-CSharp
+        m_MethodName: StartSequence
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1133183029
 GameObject:
   m_ObjectHideFlags: 0
@@ -4137,6 +4190,8 @@ MonoBehaviour:
   coins: {fileID: 11400000, guid: 93d2cd16956b2e5469e68b9781adf222, type: 2}
   coinsText: {fileID: 1133183033}
   timerText: {fileID: 227739810}
+  bossReward: {fileID: 11400000, guid: 4ae0c07c75e4e33409c9d582463ab9b9, type: 2}
+  useBossReward: 0
   timerSeconds: {fileID: 11400000, guid: b5d90aef5f1fb644781e0c04e87ead89, type: 2}
   timerMinutes: {fileID: 11400000, guid: 66055cc7c0b8f76439f2fca020eff812, type: 2}
 --- !u!224 &1709855908
@@ -4542,10 +4597,10 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1122618451}
   - {fileID: 1972492552}
   - {fileID: 930594391}
   - {fileID: 2132694438}
-  - {fileID: 1122618451}
   - {fileID: 514688004}
   - {fileID: 53113672}
   - {fileID: 943384347}

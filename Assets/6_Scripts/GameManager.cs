@@ -58,6 +58,7 @@ public class GameManager : MonoBehaviour
     public int NemoCurrentLevel = 0;
     public bool NemoEvolvedOnLocation;
     
+    
     private void Awake()
     {
         if (instance == null)
@@ -73,6 +74,8 @@ public class GameManager : MonoBehaviour
             musicSetting.SetLevel(Config.Data.Music);
             masterSetting.SetLevel(Config.Data.Master);
         };
+        
+        Coins.ResetRunValue();
     }
 
     private void Start()

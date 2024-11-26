@@ -9,23 +9,33 @@ public class ScorePanelDigits : ScorePanelElement
     [SerializeField] private Coins coins;
     [FormerlySerializedAs("text")] [SerializeField] private TMP_Text coinsText;
     [SerializeField] private TMP_Text timerText;
+
+    [SerializeField] private FloatVariable bossReward;
+    [SerializeField] public bool useBossReward;
     
     [SerializeField] private FloatVariable timerSeconds;
     [SerializeField] private FloatVariable timerMinutes;
     
     private int rate;
-
+    private int coinsValue => useBossReward ? (int) bossReward.Value : coins.RunTotal;
     private bool animationFinished;
+
+    public void UseBossReward(bool value) => useBossReward = value;
     
     public override void Execute()
     {
         gameObject.SetActive(true);
-
-
-        rate = coins.RunTotal == 0 ? 1 : Mathf.FloorToInt(Mathf.Log10(coins.RunTotal) + 1);
+        
+        Debug.Log("use boss reward: " + useBossReward);
+        Debug.Log("coins.RunTotal" + coins.RunTotal);
+        useBossReward = false;
+        Debug.Log("coins value" + coinsValue);
+        
+        rate = coinsValue == 0 ? 1 : Mathf.FloorToInt(Mathf.Log10(coinsValue) + 1);
         Debug.Log($"rate: {rate}");
+        
         StartCoroutine(ShowScore());
-        StartCoroutine(ShowTime());
+        //StartCoroutine(ShowTime());
         StartCoroutine(WaitForAnimation());
     }
 
@@ -70,20 +80,22 @@ public class ScorePanelDigits : ScorePanelElement
     
     private IEnumerator ShowScore()
     {
-        for (int i = 0; i < coins.RunTotal; i += rate)
+        //rate = useBossReward ? 10 : rate;
+        
+        for (int i = 0; i < coinsValue; i += rate)
         {
             coinsText.text = DataFormating.FormatIntData(i);
             yield return null;
         }
 
-        coinsText.text = DataFormating.FormatIntData(coins.RunTotal);
+        coinsText.text = DataFormating.FormatIntData(coinsValue);
         animationFinished = true;
     }
 
     public void Skip()
     {
         StopAllCoroutines();
-        coinsText.text = DataFormating.FormatIntData(coins.RunTotal);
+        coinsText.text = DataFormating.FormatIntData(coinsValue);
         animationFinished = true;
     }
 }

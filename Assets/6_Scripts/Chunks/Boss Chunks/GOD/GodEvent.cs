@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class GodEvent : EventAppearance
+public class GodEvent : BossEventAppearance
 {
     [SerializeField] private GodOnLocation god;
     [SerializeField] private CameraSlide cameraSlide;

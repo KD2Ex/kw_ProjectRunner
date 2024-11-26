@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -24,7 +23,6 @@ public class PlayerBossController : MonoBehaviour, IInvincible
 
     private readonly int animDeathLeft = Animator.StringToHash("LeftDeath");
     private readonly int animDeathRight = Animator.StringToHash("RightDeath");
-
     
     public bool Dead { get; private set; }
 
@@ -37,6 +35,8 @@ public class PlayerBossController : MonoBehaviour, IInvincible
         Sprite = GetComponent<SpriteRenderer>();
         GameManager.instance.PlayerBossController = this;
 
+        SaveSystem.LoadCoins();
+        
         lines[0] = leftLine;
         lines[1] = middleLine;
         lines[2] = rightLine;
@@ -45,6 +45,9 @@ public class PlayerBossController : MonoBehaviour, IInvincible
     private void OnEnable()
     {
         input.PlayerBossMoveEvent += OnMove;
+        
+        input.EnableUIInput();
+        input.EnableGameplayInput();
     }
 
     private void OnDisable()

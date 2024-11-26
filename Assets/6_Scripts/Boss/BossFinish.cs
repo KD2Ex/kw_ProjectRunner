@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using UnityEditor;
+using UnityEngine;
 using UnityEngine.Events;
 
 public class BossFinish : MonoBehaviour
@@ -23,5 +24,28 @@ public class BossFinish : MonoBehaviour
     {
         OnBossDefeated?.Invoke();
         Time.timeScale = 0;
+        SaveSystem.SaveCoins(); // save coins value
+    }
+
+    public void ExecuteDefeat()
+    {
+        DefeatBoss();
     }
 }
+
+#if UNITY_EDITOR
+[CustomEditor(typeof(BossFinish))]
+public class BossFinishEditor : Editor
+{
+    public override void OnInspectorGUI()
+    {
+        var targetScript = target as BossFinish;
+        if (GUILayout.Button("DefeatBoss"))
+        {
+            targetScript?.ExecuteDefeat(); 
+        }
+        
+        base.OnInspectorGUI();
+    }
+}
+#endif

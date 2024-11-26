@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class EventAppearance : MonoBehaviour
+public class BossEventAppearance : MonoBehaviour
 {
     [SerializeField] private InputReader input;
     [SerializeField] private GameObject UIButton;
@@ -18,6 +18,7 @@ public class EventAppearance : MonoBehaviour
     
     private void Accept()
     {
+        SaveSystem.SaveCoins();
         OnInteract?.Invoke();
     }
     

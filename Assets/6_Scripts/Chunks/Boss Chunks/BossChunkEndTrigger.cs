@@ -3,7 +3,7 @@ using UnityEngine.Serialization;
 
 public class BossChunkEndTrigger : MonoBehaviour
 {
-    [FormerlySerializedAs("bossAppearance")] [SerializeField] private EventAppearance eventAppearance;
+    [FormerlySerializedAs("bossAppearance")] [SerializeField] private BossEventAppearance eventAppearance;
     
     private void OnTriggerEnter2D(Collider2D other)
     {

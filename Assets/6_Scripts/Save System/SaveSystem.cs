@@ -46,6 +46,17 @@ public class SaveSystem
             );
     }
 
+    public static void SaveCoins()
+    {
+        GameManager.instance.Coins.Save(ref saveData.Coins);
+        File.WriteAllText(
+            SaveFileName(PlayerProgress),
+            JsonUtility.ToJson(saveData, true)
+            );
+    }
+
+
+    
     public static void SaveSettings()
     {
         HandleSaveSettings();
@@ -98,6 +109,13 @@ public class SaveSystem
         saveData = JsonUtility.FromJson<SaveData>(saveContent);
         
         HandleLoadData();
+    }
+
+    public static void LoadCoins()
+    {
+        var saveContent = File.ReadAllText(SaveFileName(PlayerProgress));
+        saveData = JsonUtility.FromJson<SaveData>(saveContent);
+        GameManager.instance.Coins.Load(saveData.Coins);        
     }
     
     public static void LoadSettings()

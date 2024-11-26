@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-public class CatsEvent : EventAppearance
+public class CatsEvent : BossEventAppearance
 {
     public List<CatOnLocation> heads = new();
     
