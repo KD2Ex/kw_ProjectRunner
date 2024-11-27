@@ -373,6 +373,8 @@ public class Player : MonoBehaviour, IInvincible
         m_inputReader.EnableGameplayInput();
         Time.timeScale = 1f;
         
+        m_Coins.ResetRunValue();
+        
         SaveSystem.Load();
     }
 

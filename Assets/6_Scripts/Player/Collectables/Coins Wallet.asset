@@ -13,5 +13,19 @@ MonoBehaviour:
   m_Name: Coins Wallet
   m_EditorClassIdentifier: 
   m_Value: {fileID: 11400000, guid: d573596b5a8d7f144a0093c0b4c0fcdb, type: 2}
-  m_ResetOnAwake: 0
-  Total: 150010
+  Total: 4045
+  OnAddCoins:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 68db4f8113e06394a9ce7ca7292ea885, type: 2}
+        m_TargetAssemblyTypeName: GameEvent, Assembly-CSharp
+        m_MethodName: Raise
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

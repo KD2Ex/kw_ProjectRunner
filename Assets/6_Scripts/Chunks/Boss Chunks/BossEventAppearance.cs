@@ -18,7 +18,7 @@ public class BossEventAppearance : MonoBehaviour
     
     private void Accept()
     {
-        SaveSystem.SaveCoins();
+        SaveSystem.Save();
         OnInteract?.Invoke();
     }
     

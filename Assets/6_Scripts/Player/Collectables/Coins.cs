@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 [CreateAssetMenu(fileName = "Coins Wallet")]
 public class Coins : ScriptableObject
@@ -9,13 +10,16 @@ public class Coins : ScriptableObject
     public int Total;/* { get; private set; }*/
     
     public int Value => (int) m_Value.Value;
-    
+
+    public UnityEvent OnAddCoins;
     
     public void AddCoins(float value)
     {
         m_Value.Value += value;
         RunTotal += (int) value;
         Total += (int) value;
+        
+        OnAddCoins?.Invoke();
     }
 
     public bool RemoveCoins(float value)

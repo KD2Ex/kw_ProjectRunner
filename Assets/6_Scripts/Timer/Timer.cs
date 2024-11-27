@@ -46,14 +46,19 @@ public class Timer : MonoBehaviour
 
     public void Save(ref IntSaveData data)
     {
-        if (GameManager.instance.Player.Dead)
+        /*if (GameManager.instance.Player.Dead)
         {
             data.Value = 0;
             return;
-        }
+        }*/
         data.Value = (int) m_ElapsedTime;
     }
 
+    public void WriteZero(ref IntSaveData data)
+    {
+        data.Value = 0; 
+    }
+    
     public void Load(IntSaveData data)
     {
         timerData.Value = data.Value;

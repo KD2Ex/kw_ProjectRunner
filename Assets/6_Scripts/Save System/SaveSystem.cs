@@ -90,11 +90,20 @@ public class SaveSystem
 
         GameManager.instance.Creatures.Save(ref saveData.CreaturesInv);
         GameManager.instance.Food.Save(ref saveData.FoodInv);
+        
+        if (GameManager.instance.Player.Dead)
+        {
+            GameManager.instance.Timer.WriteZero(ref saveData.Timer);
+        }
+        else
+        {
+            GameManager.instance.Timer.Save(ref saveData.Timer);
+        }
     }
 
     private static void HandleSaveRun()
     {
-        GameManager.instance.Timer.Save(ref saveData.Timer);
+        //GameManager.instance.Timer.Save(ref saveData.Timer);
     }
     
     public static void Load()
