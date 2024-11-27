@@ -1,5 +1,4 @@
-﻿
-using UnityEngine;
+﻿using UnityEngine;
 
 public class RepeatableSpawnCondition : ChunkSpawnCondition
 {
@@ -24,14 +23,15 @@ public class RepeatableSpawnCondition : ChunkSpawnCondition
         //Debug.Log("Repeatable cond init");
         
         triggered = false;
-        timeOfTrigger = (int) GameManager.instance.Timer.m_ElapsedTime;
-        Debug.Log(timeOfTrigger);
+        var elapsedFromSave = (int) GameManager.instance.Timer.m_ElapsedTime;
+        timeOfTrigger = elapsedFromSave / Every * Every;
+        Debug.Log($"Init of {data.name} " + timeOfTrigger);
     }
 
     public override bool Evaluate()
     {
         int timeValue = TimerValue;
-        //Debug.Log($"time {timeValue}, offset {Offset}, {timeValue - Offset}");
+        Debug.Log($"time {timeValue}, offset {Offset}, {timeValue - Offset}");
         
         if (timeValue - Offset < 0) return false;
 
@@ -42,7 +42,7 @@ public class RepeatableSpawnCondition : ChunkSpawnCondition
         int div = timeValue - timeOfTrigger;
         var condition = div >= Every;
 
-        //Debug.Log($"timeOfTrigger {timeOfTrigger}");
+        Debug.Log($"timeOfTrigger {timeOfTrigger}");
         //Debug.Log($"div {div}");
         
         if (condition)
@@ -61,5 +61,8 @@ public class RepeatableSpawnCondition : ChunkSpawnCondition
         
         triggered = false;
         timeOfTrigger = TimerValue;
+        Debug.Log($"time of trigger in Reset: {timeOfTrigger}");
+        Debug.Log($"timer value: {TimerValue}");
+        Debug.Log($"name: {data.name}");
     }
 }
