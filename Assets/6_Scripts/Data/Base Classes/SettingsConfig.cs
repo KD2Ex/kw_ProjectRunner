@@ -24,11 +24,11 @@ public class SettingsSaveData
    [Range(1, 5)] 
    public int Brightness = 3;
    [Range(0, 5)]
-   public int Master = 3;
+   public int Master = 4;
    [Range(0, 5)]
-   public int SoundFX = 3;
+   public int SoundFX = 4;
    [Range(0, 5)]
-   public int Music = 1;
+   public int Music = 4;
    [Range(1, 4)]
    public int Quality = 4;
 }

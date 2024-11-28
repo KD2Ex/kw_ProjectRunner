@@ -869,7 +869,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &6531240862094470074
 RectTransform:
   m_ObjectHideFlags: 0
@@ -907,6 +907,8 @@ MonoBehaviour:
   coins: {fileID: 11400000, guid: 93d2cd16956b2e5469e68b9781adf222, type: 2}
   coinsText: {fileID: 4739215076729997406}
   timerText: {fileID: 116647651280215238}
+  bossReward: {fileID: 0}
+  useBossReward: 0
   timerSeconds: {fileID: 11400000, guid: b5d90aef5f1fb644781e0c04e87ead89, type: 2}
   timerMinutes: {fileID: 11400000, guid: 66055cc7c0b8f76439f2fca020eff812, type: 2}
 --- !u!222 &6434824797372154471
@@ -2323,7 +2325,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8790815129283201917
 RectTransform:
   m_ObjectHideFlags: 0

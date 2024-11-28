@@ -12,5 +12,6 @@ public class UIStartGameSelection : UISelection
         async.allowSceneActivation = true;
         
         GameManager.instance.OpenLoadingScreen(async);
+        GameManager.instance.SceneMusic.Source.Pause();
     }
 }
